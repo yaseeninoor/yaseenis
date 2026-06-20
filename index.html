@@ -100,6 +100,32 @@ border-radius:10px;
 <a href="#contact">Contact</a>
 </nav>
 
+<marquee>
+Latest Bayan | New PDF Uploaded | Live Program Tonight
+</marquee>
+
+<div id="daily-quran"></div>
+<div id="daily-hadeeth"></div>
+
+<script>
+const quran = [
+"Indeed, Allah is with the patient.",
+"Read in the name of your Lord."
+];
+
+const hadeeth = [
+"Actions are judged by intentions.",
+"Religion is sincere advice."
+];
+
+const day = new Date().getDate();
+
+document.getElementById("daily-quran").innerHTML =
+quran[day % quran.length];
+
+document.getElementById("daily-hadeeth").innerHTML =
+hadeeth[day % hadeeth.length];
+</script>
 <section>
 <div class="card">
 <h2>Welcome</h2>
