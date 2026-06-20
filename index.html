@@ -104,27 +104,21 @@ border-radius:10px;
 Latest Bayan | New PDF Uploaded | Live Program Tonight
 </marquee>
 
-<div id="daily-quran"></div>
-<div id="daily-hadeeth"></div>
+<div id="dailyQuran"></div>
+
+<div id="dailyHadeeth"></div>
+
+<script src="daily-quran.js"></script>
+<script src="daily-hadeeth.js"></script>
 
 <script>
-const quran = [
-"Indeed, Allah is with the patient.",
-"Read in the name of your Lord."
-];
+const day = Math.floor(Date.now()/86400000);
 
-const hadeeth = [
-"Actions are judged by intentions.",
-"Religion is sincere advice."
-];
-
-const day = new Date().getDate();
-
-document.getElementById("daily-quran").innerHTML =
+document.getElementById("dailyQuran").innerHTML =
 quran[day % quran.length];
 
-document.getElementById("daily-hadeeth").innerHTML =
-hadeeth[day % hadeeth.length];
+document.getElementById("dailyHadeeth").innerHTML =
+hadeeths[day % hadeeths.length];
 </script>
 <section>
 <div class="card">
