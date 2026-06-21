@@ -8,3 +8,4 @@ faiss-cpu
 python-multipart
 unstructured
 python-docx
+openai
