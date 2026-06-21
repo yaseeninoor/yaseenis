@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: 20px auto; padding: 10px; }
+        #chat { border: 1px solid #ccc; height: 300px; overflow-y: auto; padding: 10px; margin-bottom: 10px; }
+        input, button { padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+    <h2>Ask AI Assistant</h2>
+    <div id="chat"></div>
+    <input type="text" id="q" placeholder="Ask a question...">
+    <button onclick="ask()">Send Question</button>
+    <script>
+        // Your live backend URL
+        const API_URL = "https://yaseenis-ai-backend.onrender.com"; 
 
+        async function ask() {
+            const qInput = document.getElementById("q");
+            const chat = document.getElementById("chat");
+            if(!qInput.value) return;
+            
+            chat.innerHTML += `<div><b>You:</b> ${qInput.value}</div>`;
+            const currentQ = qInput.value;
+            qInput.value = "";
+            
+            try {
+                const res = await fetch(`${API_URL}/ask/?question=${encodeURIComponent(currentQ)}`);
+                const data = await res.json();
+                chat.innerHTML += `<div><b>AI:</b> ${data.answer || data.error}</div>`;
+            } catch(e) {
+                chat.innerHTML += `<div style="color:red;">Error connecting to server.</div>`;
+            }
+        }
+    </script>
+</body>
+</html>
