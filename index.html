@@ -228,6 +228,172 @@
             .category-btn { white-space: nowrap; transform: none !important; }
             .ai-banner { flex-direction: column; text-align: center; }
         }
+                /* --- ADVERTISEMENT PLACEHOLDER --- */
+        .ad-container {
+            max-width: 1000px;
+            margin: 0 auto 40px auto;
+            padding: 0 40px;
+        }
+        
+        .ad-placeholder {
+            background-color: #e2e8f0;
+            border: 2px dashed #cbd5e1;
+            border-radius: var(--radius-md);
+            padding: 30px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* --- NEWSLETTER SECTION --- */
+        .newsletter-section {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .newsletter-content h2 {
+            font-size: 28px;
+            color: var(--gold-accent);
+            margin-bottom: 15px;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .subscribe-form input {
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: none;
+            width: 60%;
+            font-size: 16px;
+            font-family: inherit;
+        }
+
+        .subscribe-form button {
+            padding: 15px 30px;
+            border-radius: 30px;
+            border: none;
+            background-color: var(--primary-accent);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .subscribe-form button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* --- PREMIUM FOOTER --- */
+        .site-footer {
+            background-color: #0b1120; /* Very dark slate */
+            color: #94a3b8;
+            padding: 60px 40px 20px 40px;
+            font-size: 15px;
+        }
+
+        .footer-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 40px;
+        }
+
+        .footer-about h3 {
+            color: white;
+            font-size: 24px;
+            margin-top: 0;
+        }
+        
+        .footer-about span { color: var(--primary-accent); }
+
+        .footer-links h4, .footer-social h4 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li { margin-bottom: 10px; }
+        
+        .footer-links a, .social-icons a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover, .social-icons a:hover {
+            color: var(--primary-accent);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 14px;
+        }
+
+        /* --- FLOATING AI WIDGET --- */
+        .floating-ai-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border: 2px solid var(--gold-accent);
+            z-index: 1000;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .floating-ai-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+            background-color: #1e293b;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .subscribe-form { flex-direction: column; }
+            .subscribe-form input { width: 100%; box-sizing: border-box; }
+            .floating-ai-btn { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
+        }
+
     </style>
 </head>
 <body>
@@ -266,6 +432,61 @@
                 </div>
                 <a href="ai-assistant.html" class="ai-btn">🤖 AI-யிடம் கேள்</a>
             </div>
+
+    <!-- 1. Advertisement Banner Placeholder -->
+    <div class="ad-container">
+        <div class="ad-placeholder">
+            <span>விளம்பர இடம் (Advertisement)</span>
+        </div>
+    </div>
+
+    <!-- 2. Newsletter Subscription Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h2>புதிய மார்க்கத் தகவல்களைப் பெற</h2>
+            <p>எங்களின் புதிய கட்டுரைகள் மற்றும் முக்கிய அறிவிப்புகளை உங்கள் மின்னஞ்சலில் (Email) நேரடியாகப் பெறுங்கள்.</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="உங்கள் மின்னஞ்சல் முகவரி..." required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 3. Premium Footer -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3>Yaseenis<span>.</span></h3>
+                <p>குர்ஆன் மற்றும் ஆதாரப்பூர்வமான ஹதீஸ்களின் அடிப்படையில் இஸ்லாமிய மார்க்க அறிவை எளிமையான முறையில் உலகெங்கும் கொண்டு சேர்க்கும் ஒரு முயற்சி.</p>
+            </div>
+            <div class="footer-links">
+                <h4>முக்கிய இணைப்புகள்</h4>
+                <ul>
+                    <li><a href="#">முகப்பு (Home)</a></li>
+                    <li><a href="#">எங்களைப் பற்றி (About Us)</a></li>
+                    <li><a href="#">தொடர்புக்கு (Contact)</a></li>
+                    <li><a href="#">தனியுரிமைக் கொள்கை (Privacy Policy)</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>எங்களைப் பின்தொடர</h4>
+                <div class="social-icons">
+                    <a href="#">Facebook</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yaseenis. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 4. Floating AI Chat Button -->
+    <a href="ai-assistant.html" class="floating-ai-btn">
+        <span class="icon">💬</span> AI-யிடம் கேள்
+    </a>
+
 
             <!-- Articles Grid -->
             <div class="post-grid">
