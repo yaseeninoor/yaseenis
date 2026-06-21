@@ -8,7 +8,7 @@
     <!-- தமிழ் மற்றும் அரபி எழுத்துருக்கள் -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- உங்களின் Google AdSense Script -->
+    <!-- Google AdSense Main Script (ஒரு முறை மட்டும் கொடுத்தால் போதுமானது) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9950635734966108" crossorigin="anonymous"></script>
     
     <style>
@@ -106,50 +106,30 @@
         /* --- Left Sidebar --- */
         .sidebar-left { width: 260px; flex-shrink: 0; }
 
-        /* Prayer Times Banner */
-        .prayer-times-box {
+        .prayer-times-box, .menu-box {
             background-color: white;
             border: 1px solid var(--border-color);
             margin-bottom: 20px;
-            border-top: 4px solid var(--portal-yellow);
         }
 
+        .prayer-times-box { border-top: 4px solid var(--portal-yellow); }
+        .menu-box { border-top: 4px solid var(--portal-green); }
+
         .prayer-title {
-            background-color: var(--portal-green);
-            color: white;
-            padding: 10px;
-            margin: 0;
-            font-size: 16px;
-            text-align: center;
+            background-color: var(--portal-green); color: white;
+            padding: 10px; margin: 0; font-size: 16px; text-align: center;
         }
 
         .prayer-list { padding: 10px 15px; }
-        
         .prayer-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
-            border-bottom: 1px dashed #eee;
-            font-size: 15px;
-            font-weight: bold;
+            display: flex; justify-content: space-between; padding: 5px 0;
+            border-bottom: 1px dashed #eee; font-size: 15px; font-weight: bold;
         }
         .prayer-row:last-child { border-bottom: none; }
 
-        /* Categories Menu */
-        .menu-box {
-            background-color: white;
-            border: 1px solid var(--border-color);
-            margin-bottom: 20px;
-            border-top: 4px solid var(--portal-green);
-        }
-
         .menu-title {
-            background-color: #e9e9e9;
-            color: var(--portal-green);
-            padding: 10px 15px;
-            margin: 0;
-            font-size: 18px;
-            border-bottom: 1px solid var(--border-color);
+            background-color: #e9e9e9; color: var(--portal-green);
+            padding: 10px 15px; margin: 0; font-size: 18px; border-bottom: 1px solid var(--border-color);
         }
 
         .menu-list { list-style: none; padding: 0; margin: 0; }
@@ -164,19 +144,11 @@
             background-color: #f0f8f2; color: var(--portal-green); font-weight: bold; padding-left: 20px;
         }
 
-        /* --- Google Ad Placeholder Design --- */
+        /* --- Ad Slots --- */
         .ad-slot {
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            text-align: center;
-            padding: 10px;
             margin-bottom: 20px;
-            color: #888;
-            font-size: 12px;
-            min-height: 90px; /* AdSense Standard Banner Height */
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%;
+            overflow: hidden;
         }
 
         /* --- Center Content --- */
@@ -190,8 +162,7 @@
         .section-header {
             color: var(--portal-green);
             border-bottom: 2px solid var(--portal-green);
-            padding-bottom: 5px;
-            margin-top: 0; margin-bottom: 20px; font-size: 22px;
+            padding-bottom: 5px; margin-top: 0; margin-bottom: 20px; font-size: 22px;
         }
 
         .article-item { display: none; padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px dashed var(--border-color); }
@@ -205,13 +176,8 @@
         /* --- Copyright Footer --- */
         .site-footer {
             background-color: var(--portal-green);
-            color: white;
-            text-align: center;
-            padding: 20px 10px;
-            margin-top: 40px;
-            border-top: 4px solid var(--portal-yellow);
+            color: white; text-align: center; padding: 20px 10px; margin-top: 40px; border-top: 4px solid var(--portal-yellow);
         }
-
         .site-footer p { margin: 0; font-size: 15px; }
         .site-footer a { color: var(--portal-yellow); text-decoration: none; margin: 0 10px; }
         .site-footer a:hover { text-decoration: underline; }
@@ -253,7 +219,7 @@
         <!-- Sidebar -->
         <aside class="sidebar-left">
             
-            <!-- 1. PRAYER TIMES BANNER -->
+            <!-- Prayer Times -->
             <div class="prayer-times-box">
                 <h3 class="prayer-title">இன்றைய தொழுகை நேரங்கள்</h3>
                 <div class="prayer-list">
@@ -275,10 +241,17 @@
                 </ul>
             </div>
 
-            <!-- Sidebar AdSense Banner -->
+            <!-- Google Ad 2: Sidebar (Fluid) -->
             <div class="ad-slot">
-                <!-- Google Auto Ads will appear here automatically -->
-                <span>Google AdSense Banner (250x250)</span>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="fluid"
+                     data-ad-layout-key="-6t+ed+2i-1n-4w"
+                     data-ad-client="ca-pub-9950635734966108"
+                     data-ad-slot="8591826527"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
             
         </aside>
@@ -286,31 +259,69 @@
         <!-- Articles Area -->
         <main class="center-content">
             
-            <!-- Top AdSense Banner -->
+            <!-- Google Ad 1: Top of Content (Auto) -->
             <div class="ad-slot">
-                <!-- Google Auto Ads will appear here automatically -->
-                <span>Google AdSense Banner (Top)</span>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9950635734966108"
+                     data-ad-slot="2326790752"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
 
             <h2 class="section-header">கட்டுரைகள்</h2>
 
             <div class="article-list">
+                
+                <!-- கட்டுரை 1 -->
                 <div class="article-item quran show">
                     <h3><a href="articles/surah-kahf.html">சூரா அல்-கஹ்ஃப்: வெள்ளிக்கிழமையின் சிறப்புகள்</a></h3>
                     <div class="article-meta">பிரிவு: குர்ஆன் | தேதி: 21-Jun-2026</div>
                     <p class="article-desc">ஒவ்வொரு வெள்ளிக்கிழமையும் சூரா அல்-கஹ்ஃப் ஓதுவதன் சிறப்புகளும், அதில் பொதிந்துள்ள மாபெரும் படிப்பினைகளும்...</p>
                 </div>
 
+                <!-- Google Ad 4: In-Article Ad (கட்டுரைகளுக்கு நடுவில்) -->
+                <div class="ad-slot article-item show" style="border-bottom: 1px dashed var(--border-color); padding: 15px 0;">
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-9950635734966108"
+                         data-ad-slot="6049423662"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
+                <!-- கட்டுரை 2 -->
                 <div class="article-item sahaba show">
                     <h3><a href="articles/abubakar.html">அபூபக்கர் சித்தீக் (ரலி) அவர்களின் மாபெரும் தியாகங்கள்</a></h3>
                     <div class="article-meta">பிரிவு: சஹாபாக்கள் | தேதி: 18-Jun-2026</div>
                     <p class="article-desc">இஸ்லாத்தின் வளர்ச்சிக்காக நபிகளாருக்கு உற்ற தோழராக இருந்து அபூபக்கர் (ரலி) செய்த தியாகங்கள்...</p>
                 </div>
+
             </div>
+
+            <!-- Google Ad 3: Bottom Multiplex / Autorelaxed (கட்டுரைகள் முடிந்த பிறகு) -->
+            <div class="ad-slot" style="margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px;">
+                <h3 style="font-size: 16px; color: #777; margin-top: 0;">தொடர்புடைய பதிவுகள்</h3>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="autorelaxed"
+                     data-ad-client="ca-pub-9950635734966108"
+                     data-ad-slot="3448300731"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
         </main>
     </div>
 
-    <!-- COPYRIGHT FOOTER BANNER -->
+    <!-- COPYRIGHT FOOTER -->
     <footer class="site-footer">
         <p>&copy; 2026 Yaseenis. All Rights Reserved.</p>
         <div style="margin-top: 10px;">
