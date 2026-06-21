@@ -3,563 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yaseenis | Authentic Islamic Knowledge</title>
+    <title>Yaseenis | Authentic Islamic Portal</title>
     
-    <!-- அழகான தமிழ் மற்றும் அரபி எழுத்துருக்களுக்கு -->
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- தமிழ் மற்றும் அரபி எழுத்துருக்கள் -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* --- Mail of Islam Style Colors --- */
         :root {
-            --primary-blue: #0b305e;   /* அடர் நீலம் (Deep Navy Blue) */
-            --accent-blue: #0275d8;    /* பிரகாசமான நீலம் (Bright Blue) */
-            --light-blue: #e6f0fa;     /* மிக மெல்லிய நீலப் பின்னணி */
-            --white: #ffffff;
-            --text-dark: #2c3e50;
-            --text-gray: #666666;
+            --portal-green: #005826; /* அடர் பச்சை (Classic Islamic Green) */
+            --portal-light-green: #007a35;
+            --portal-yellow: #ffcc00; /* மஞ்சள் / தங்கம் */
+            --bg-gray: #f4f4f4;
+            --text-dark: #222222;
+            --border-color: #cccccc;
         }
 
         body {
             font-family: 'Mukta Malar', sans-serif;
-            background-color: var(--light-blue);
+            background-color: var(--bg-gray);
             color: var(--text-dark);
             margin: 0;
             padding: 0;
             line-height: 1.6;
         }
 
-        /* மேல் பகுதி (Header) */
-        header {
-            background: linear-gradient(135deg, var(--primary-blue), #1a5296);
-            color: var(--white);
-            padding: 30px 20px;
+        /* --- TOP HEADER --- */
+        .top-header {
+            background-color: var(--portal-green);
+            color: white;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 20px 10px;
+            border-bottom: 4px solid var(--portal-yellow);
         }
 
         .bismillah {
             font-family: 'Amiri', serif;
-            font-size: 28px;
-            color: #8ed1fc; /* வெளிர் நீலம் */
+            font-size: 26px;
+            color: var(--portal-yellow);
             margin-bottom: 5px;
         }
 
-        header h1 {
+        .top-header h1 {
             margin: 0;
-            font-size: 36px;
-            letter-spacing: 1px;
+            font-size: 32px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        header p {
-            margin: 5px 0 0;
+        .top-header p {
+            margin: 5px 0 0 0;
             font-size: 16px;
-            opacity: 0.9;
+            color: #e0e0e0;
         }
 
-        /* லேஅவுட் (Sidebar + Main Content) */
-        .layout {
+        /* --- TOP NAVIGATION MENU --- */
+        .top-nav {
+            background-color: var(--portal-light-green);
             display: flex;
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        /* பக்கவாட்டு மெனு (Sidebar) */
-        .sidebar {
-            flex: 0 0 250px;
-            position: sticky;
-            top: 20px;
-            height: fit-content;
-        }
-
-        .sidebar-title {
-            font-size: 20px;
-            color: var(--primary-blue);
-            border-bottom: 2px solid var(--accent-blue);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .category-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .category-btn {
-            background-color: var(--white);
-            color: var(--primary-blue);
-            border: 1px solid #d1e3f8;
-            padding: 12px 15px;
-            border-radius: 8px;
-            text-align: left;
-            font-size: 16px;
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
+            font-size: 15px;
+            border-right: 1px solid rgba(255,255,255,0.2);
+            transition: 0.3s;
         }
 
-        .category-btn:hover, .category-btn.active {
-            background-color: var(--accent-blue);
-            color: var(--white);
-            border-color: var(--accent-blue);
-            box-shadow: 0 4px 8px rgba(2, 117, 216, 0.2);
-            transform: translateX(5px);
+        .top-nav a:hover {
+            background-color: var(--portal-yellow);
+            color: var(--portal-green);
         }
 
-        /* முதன்மைப் பகுதி (Main Content) */
-        .main-content {
-            flex: 1;
-        }
-
-        /* AI பேனர் (AI Banner) */
-        .ai-banner {
-            background: var(--white);
-            border-left: 5px solid var(--accent-blue);
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        /* --- SCROLLING NEWS (MARQUEE) --- */
+        .scrolling-news {
+            background-color: white;
+            color: #cc0000; /* Red color for news */
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 15px;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
         }
 
-        .ai-banner-text h2 {
-            margin: 0 0 10px 0;
-            color: var(--primary-blue);
-        }
-
-        .ai-banner-text p { margin: 0; color: var(--text-gray); }
-
-        .ai-btn {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: 0.3s;
+        .news-title {
+            background-color: #cc0000;
+            color: white;
+            padding: 4px 10px;
+            margin-right: 15px;
+            border-radius: 3px;
             white-space: nowrap;
         }
 
-        .ai-btn:hover { background-color: var(--accent-blue); }
-
-        /* கட்டுரைகளின் கட்டமைப்பு (Grid) */
-        .post-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .post-card {
-            display: none; /* JS மூலம் காண்பிக்கப்படும் */
-            background: var(--white);
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* கார்டின் மேலே ஒரு சிறிய நீல நிறக் கோடு */
-        .post-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background-color: var(--accent-blue);
-        }
-
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(2, 117, 216, 0.15);
-        }
-
-        .post-tag {
-            display: inline-block;
-            font-size: 12px;
-            background-color: var(--light-blue);
-            color: var(--accent-blue);
-            padding: 4px 10px;
-            border-radius: 15px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .post-card h3 {
-            color: var(--primary-blue);
-            margin: 0 0 10px 0;
-            font-size: 20px;
-        }
-
-        .post-card p {
-            color: var(--text-gray);
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-
-        .post-card a {
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 15px;
-        }
-
-        .post-card a:hover { text-decoration: underline; }
-
-        .show { display: block; }
-
-        /* மொபைல் போனுக்கான லேஅவுட் (Responsive) */
-        @media (max-width: 768px) {
-            .layout { flex-direction: column; }
-            .sidebar { position: static; flex: none; }
-            .category-list {
-                flex-direction: row;
-                overflow-x: auto;
-                padding-bottom: 10px;
-            }
-            .category-btn { white-space: nowrap; transform: none !important; }
-            .ai-banner { flex-direction: column; text-align: center; }
-        }
-                /* --- ADVERTISEMENT PLACEHOLDER --- */
-        .ad-container {
-            max-width: 1000px;
-            margin: 0 auto 40px auto;
-            padding: 0 40px;
-        }
-        
-        .ad-placeholder {
-            background-color: #e2e8f0;
-            border: 2px dashed #cbd5e1;
-            border-radius: var(--radius-md);
-            padding: 30px;
-            text-align: center;
-            color: #94a3b8;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-
-        /* --- NEWSLETTER SECTION --- */
-        .newsletter-section {
-            background-color: var(--primary-dark);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .newsletter-content {
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .newsletter-content h2 {
-            font-size: 28px;
-            color: var(--gold-accent);
-            margin-bottom: 15px;
-        }
-
-        .subscribe-form {
+        /* --- MAIN PORTAL LAYOUT --- */
+        .portal-container {
+            max-width: 1100px;
+            margin: 20px auto;
             display: flex;
-            gap: 10px;
-            margin-top: 25px;
-            justify-content: center;
+            gap: 20px;
+            padding: 0 15px;
         }
 
-        .subscribe-form input {
-            padding: 15px 20px;
-            border-radius: 30px;
-            border: none;
-            width: 60%;
-            font-size: 16px;
-            font-family: inherit;
+        /* --- LEFT SIDEBAR (Classic Menu) --- */
+        .sidebar-left {
+            width: 260px;
+            flex-shrink: 0;
         }
 
-        .subscribe-form button {
-            padding: 15px 30px;
-            border-radius: 30px;
-            border: none;
-            background-color: var(--primary-accent);
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .subscribe-form button:hover {
-            background-color: var(--accent-hover);
-        }
-
-        /* --- PREMIUM FOOTER --- */
-        .site-footer {
-            background-color: #0b1120; /* Very dark slate */
-            color: #94a3b8;
-            padding: 60px 40px 20px 40px;
-            font-size: 15px;
-        }
-
-        .footer-grid {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 40px;
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 40px;
-        }
-
-        .footer-about h3 {
-            color: white;
-            font-size: 24px;
-            margin-top: 0;
-        }
-        
-        .footer-about span { color: var(--primary-accent); }
-
-        .footer-links h4, .footer-social h4 {
-            color: white;
-            font-size: 18px;
+        .menu-box {
+            background-color: white;
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
+            border-top: 4px solid var(--portal-green);
         }
 
-        .footer-links ul {
+        .menu-title {
+            background-color: #e9e9e9;
+            color: var(--portal-green);
+            padding: 10px 15px;
+            margin: 0;
+            font-size: 18px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .menu-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .footer-links li { margin-bottom: 10px; }
-        
-        .footer-links a, .social-icons a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: var(--transition);
+        .menu-list li {
+            border-bottom: 1px dotted var(--border-color);
         }
 
-        .footer-links a:hover, .social-icons a:hover {
-            color: var(--primary-accent);
-            padding-left: 5px;
-        }
-
-        .social-icons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            font-size: 14px;
-        }
-
-        /* --- FLOATING AI WIDGET --- */
-        .floating-ai-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--primary-dark);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            border: 2px solid var(--gold-accent);
-            z-index: 1000;
-            transition: var(--transition);
+        .menu-list button {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            color: var(--text-dark);
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: 0.2s;
             display: flex;
             align-items: center;
-            gap: 10px;
         }
 
-        .floating-ai-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
-            background-color: #1e293b;
+        .menu-list button::before {
+            content: "▸";
+            color: var(--portal-green);
+            margin-right: 8px;
+            font-size: 18px;
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .subscribe-form { flex-direction: column; }
-            .subscribe-form input { width: 100%; box-sizing: border-box; }
-            .floating-ai-btn { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
+        .menu-list button:hover, .menu-list button.active {
+            background-color: #f0f8f2;
+            color: var(--portal-green);
+            font-weight: bold;
+            padding-left: 20px; /* Slight indent on hover */
         }
 
+        /* --- CENTER CONTENT (Articles List) --- */
+        .center-content {
+            flex-grow: 1;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+        }
+
+        .section-header {
+            color: var(--portal-green);
+            border-bottom: 2px solid var(--portal-green);
+            padding-bottom: 5px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        /* Article Items */
+        .article-item {
+            display: none; /* JS will handle showing */
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-item.show {
+            display: block;
+        }
+
+        .article-item h3 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+
+        .article-item h3 a {
+            color: #0044cc; /* Classic blue link color */
+            text-decoration: none;
+        }
+
+        .article-item h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .article-desc {
+            font-size: 15px;
+            color: #444;
+            margin: 0;
+        }
+
+        /* AI Assistant Banner inside Content */
+        .ai-promo {
+            background-color: #fff9e6; /* Light yellow */
+            border: 1px solid var(--portal-yellow);
+            padding: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .ai-promo h3 { margin: 0 0 10px 0; color: var(--portal-green); }
+        .ai-promo p { margin: 0 0 15px 0; font-size: 14px; }
+        
+        .ai-promo-btn {
+            background-color: var(--portal-green);
+            color: white;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        /* --- RESPONSIVE MOBILE FIX --- */
+        @media (max-width: 800px) {
+            .portal-container { flex-direction: column; }
+            .sidebar-left { width: 100%; }
+            .top-nav { display: none; } /* Hide top nav on small screens to save space */
+        }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
+    <!-- Top Header -->
+    <header class="top-header">
         <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
         <h1>Yaseenis</h1>
-        <p>தூய்மையான இஸ்லாமிய மார்க்க அறிவுப் பெட்டகம்</p>
+        <p>இஸ்லாமிய தகவல் களஞ்சியம்</p>
     </header>
 
-    <!-- Layout Container -->
-    <div class="layout">
+    <!-- Top Navigation Menu -->
+    <nav class="top-nav">
+        <a href="index.html">முகப்பு</a>
+        <a href="#">குர்ஆன்</a>
+        <a href="#">ஹதீஸ்</a>
+        <a href="#">கட்டுரைகள்</a>
+        <a href="#">துஆக்கள்</a>
+        <a href="ai-assistant.html">AI உதவி</a>
+    </nav>
+
+    <!-- Scrolling Flash News -->
+    <div class="scrolling-news">
+        <div class="news-title">புதிய செய்திகள்:</div>
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+            அஸ்ஸலாமு அலைக்கும்... Yaseenis இணையதளத்திற்கு உங்களை அன்புடன் வரவேற்கிறோம். எங்களின் புதிய "AI Assistant" சேவையைப் பயன்படுத்தி உங்கள் மார்க்க சந்தேகங்களைத் தீர்த்துக் கொள்ளலாம். புதிய கட்டுரைகள் தினசரி பதிவேற்றப்படும்.
+        </marquee>
+    </div>
+
+    <!-- Main Portal Layout -->
+    <div class="portal-container">
         
-        <!-- Sidebar (Categories) -->
-        <aside class="sidebar">
-            <h2 class="sidebar-title">பிரிவுகள் (Categories)</h2>
-            <div class="category-list">
-                <button class="category-btn active" onclick="filterSelection('all')">அனைத்தும்</button>
-                <button class="category-btn" onclick="filterSelection('quran')">குர்ஆன் சிந்தனைகள்</button>
-                <button class="category-btn" onclick="filterSelection('history')">வரலாறு & சஹாபாக்கள்</button>
-                <button class="category-btn" onclick="filterSelection('family')">இஸ்லாமியக் குடும்பம்</button>
-                <button class="category-btn" onclick="filterSelection('spirituality')">மன அமைதி & ஆன்மீகம்</button>
-                <button class="category-btn" onclick="filterSelection('dua')">துஆக்கள் & திக்ருகள்</button>
+        <!-- Left Sidebar Categories -->
+        <aside class="sidebar-left">
+            <div class="menu-box">
+                <h3 class="menu-title">முக்கிய தலைப்புகள்</h3>
+                <ul class="menu-list">
+                    <li><button class="active" onclick="filterSelection('all')">சமீபத்திய பதிவுகள்</button></li>
+                    <li><button onclick="filterSelection('quran')">குர்ஆன் சிறப்புகள்</button></li>
+                    <li><button onclick="filterSelection('history')">நபிமார்கள் வரலாறு</button></li>
+                    <li><button onclick="filterSelection('sahaba')">சஹாபாக்கள் வரலாறு</button></li>
+                    <li><button onclick="filterSelection('aqeedah')">அகீதா (நம்பிக்கை)</button></li>
+                    <li><button onclick="filterSelection('ibadah')">தொழுகை & நோன்பு</button></li>
+                    <li><button onclick="filterSelection('family')">இஸ்லாமியக் குடும்பம்</button></li>
+                    <li><button onclick="filterSelection('dua')">நபிவழி துஆக்கள்</button></li>
+                </ul>
             </div>
         </aside>
 
-        <!-- Main Content (Articles) -->
-        <main class="main-content">
+        <!-- Center Content (Articles) -->
+        <main class="center-content">
             
-            <!-- AI Assistant Banner -->
-            <div class="ai-banner">
-                <div class="ai-banner-text">
-                    <h2>மார்க்க சந்தேகங்கள் உள்ளதா?</h2>
-                    <p>எங்களின் Yaseeni AI-யிடம் கேட்டு குர்ஆன், ஹதீஸ் அடிப்படையில் தெளிவான பதில்களைப் பெறுங்கள்.</p>
-                </div>
-                <a href="ai-assistant.html" class="ai-btn">🤖 AI-யிடம் கேள்</a>
+            <div class="ai-promo">
+                <h3>மார்க்க சந்தேகங்கள் உள்ளதா?</h3>
+                <p>குர்ஆன் மற்றும் ஹதீஸ் அடிப்படையில் தெளிவான பதில்களைப் பெற எங்களின் Yaseeni AI-ஐப் பயன்படுத்துங்கள்.</p>
+                <a href="ai-assistant.html" class="ai-promo-btn">Ask AI Assistant</a>
             </div>
 
-    <!-- 1. Advertisement Banner Placeholder -->
-    <div class="ad-container">
-        <div class="ad-placeholder">
-            <span>விளம்பர இடம் (Advertisement)</span>
-        </div>
-    </div>
+            <h2 class="section-header">கட்டுரைகள்</h2>
 
-    <!-- 2. Newsletter Subscription Section -->
-    <section class="newsletter-section">
-        <div class="newsletter-content">
-            <h2>புதிய மார்க்கத் தகவல்களைப் பெற</h2>
-            <p>எங்களின் புதிய கட்டுரைகள் மற்றும் முக்கிய அறிவிப்புகளை உங்கள் மின்னஞ்சலில் (Email) நேரடியாகப் பெறுங்கள்.</p>
-            <form class="subscribe-form">
-                <input type="email" placeholder="உங்கள் மின்னஞ்சல் முகவரி..." required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- 3. Premium Footer -->
-    <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-about">
-                <h3>Yaseenis<span>.</span></h3>
-                <p>குர்ஆன் மற்றும் ஆதாரப்பூர்வமான ஹதீஸ்களின் அடிப்படையில் இஸ்லாமிய மார்க்க அறிவை எளிமையான முறையில் உலகெங்கும் கொண்டு சேர்க்கும் ஒரு முயற்சி.</p>
-            </div>
-            <div class="footer-links">
-                <h4>முக்கிய இணைப்புகள்</h4>
-                <ul>
-                    <li><a href="#">முகப்பு (Home)</a></li>
-                    <li><a href="#">எங்களைப் பற்றி (About Us)</a></li>
-                    <li><a href="#">தொடர்புக்கு (Contact)</a></li>
-                    <li><a href="#">தனியுரிமைக் கொள்கை (Privacy Policy)</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h4>எங்களைப் பின்தொடர</h4>
-                <div class="social-icons">
-                    <a href="#">Facebook</a>
-                    <a href="#">YouTube</a>
-                    <a href="#">Instagram</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Yaseenis. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- 4. Floating AI Chat Button -->
-    <a href="ai-assistant.html" class="floating-ai-btn">
-        <span class="icon">💬</span> AI-யிடம் கேள்
-    </a>
-
-
-            <!-- Articles Grid -->
-            <div class="post-grid">
+            <!-- Article List -->
+            <div class="article-list">
                 
-                <!-- Article 1: Quran -->
-                <div class="post-card quran">
-                    <span class="post-tag">குர்ஆன் சிந்தனைகள்</span>
-                    <h3>சூரா அல்-கஹ்ஃப்: வெள்ளிக்கிழமையின் ஒளி</h3>
-                    <p>ஒவ்வொரு வெள்ளிக்கிழமையும் சூரா அல்-கஹ்ஃப் ஓதுவதன் சிறப்புகளும், அதில் பொதிந்துள்ள 4 மாபெரும் படிப்பினைகளும்...</p>
-                    <a href="articles/surah-kahf.html">மேலும் படிக்க →</a>
+                <div class="article-item quran show">
+                    <h3><a href="articles/surah-kahf.html">சூரா அல்-கஹ்ஃப்: வெள்ளிக்கிழமையின் சிறப்புகள்</a></h3>
+                    <div class="article-meta">பிரிவு: குர்ஆன் | தேதி: 21-Jun-2026</div>
+                    <p class="article-desc">ஒவ்வொரு வெள்ளிக்கிழமையும் சூரா அல்-கஹ்ஃப் ஓதுவதன் சிறப்புகளும், அதில் பொதிந்துள்ள மாபெரும் படிப்பினைகளும்...</p>
                 </div>
 
-                <!-- Article 2: Spirituality -->
-                <div class="post-card spirituality">
-                    <span class="post-tag">மன அமைதி</span>
-                    <h3>இஸ்லாம் காட்டும் மன அமைதி</h3>
-                    <p>வாழ்க்கையின் கவலைகளையும், மன அழுத்தங்களையும் தாண்டி இஸ்லாமிய வழியில் நிம்மதியைப் பெறுவது எப்படி?</p>
-                    <a href="articles/mental-peace.html">மேலும் படிக்க →</a>
+                <div class="article-item sahaba show">
+                    <h3><a href="articles/abubakar.html">அபூபக்கர் சித்தீக் (ரலி) அவர்களின் மாபெரும் தியாகங்கள்</a></h3>
+                    <div class="article-meta">பிரிவு: சஹாபாக்கள் | தேதி: 18-Jun-2026</div>
+                    <p class="article-desc">இஸ்லாத்தின் வளர்ச்சிக்காக நபிகளாருக்கு உற்ற தோழராக இருந்து அபூபக்கர் (ரலி) செய்த தியாகங்கள்...</p>
                 </div>
 
-                <!-- Article 3: History -->
-                <div class="post-card history">
-                    <span class="post-tag">வரலாறு</span>
-                    <h3>உமர் (ரலி) அவர்களின் நீதிப் பரிபாலனம்</h3>
-                    <p>இன்றைய உலக ஆட்சியாளர்களுக்குப் பாடமாக அமையும் உமர் இப்னு கத்தாப் (ரலி) அவர்களின் வரலாற்றுச் சம்பவங்கள்...</p>
-                    <a href="articles/umar-history.html">மேலும் படிக்க →</a>
+                <div class="article-item ibadah show">
+                    <h3><a href="articles/prayer.html">தொழுகையில் உள்ளச்சம் (குஷூஃ) பெறுவது எப்படி?</a></h3>
+                    <div class="article-meta">பிரிவு: இபாதத் | தேதி: 15-Jun-2026</div>
+                    <p class="article-desc">தொழுகையில் எண்ணங்கள் சிதறாமல், இறைவனை மட்டுமே நினைத்து உள்ளச்சத்துடன் தொழுவதற்கான வழிமுறைகள்...</p>
                 </div>
 
-                <!-- Article 4: Family -->
-                <div class="post-card family">
-                    <span class="post-tag">இஸ்லாமியக் குடும்பம்</span>
-                    <h3>கணவன் - மனைவி உறவின் புனிதம்</h3>
-                    <p>நபி (ஸல்) அவர்களின் வழிகாட்டுதல்படி வீட்டை ஒரு சொர்க்கமாக மாற்றுவதற்கான அழகிய வழிமுறைகள்...</p>
-                    <a href="articles/islamic-family.html">மேலும் படிக்க →</a>
+                <div class="article-item family show">
+                    <h3><a href="articles/family.html">கணவன் - மனைவி உறவில் இஸ்லாம் காட்டும் வழிகாட்டுதல்</a></h3>
+                    <div class="article-meta">பிரிவு: குடும்பம் | தேதி: 10-Jun-2026</div>
+                    <p class="article-desc">நபி (ஸல்) அவர்களின் வழிகாட்டுதல்படி வீட்டை ஒரு அமைதியான இடமாக மாற்றுவதற்கான அழகிய வழிமுறைகள்...</p>
                 </div>
 
-                <!-- Article 5: Dua -->
-                <div class="post-card dua">
-                    <span class="post-tag">துஆக்கள்</span>
-                    <h3>கடனை அடைப்பதற்கான நபிவழித் துஆக்கள்</h3>
-                    <p>பொருளாதார நெருக்கடிகளில் இருந்து விடுபடவும், ரிஸ்கில் (வாழ்வாதாரத்தில்) பரக்கத் பெறவும் ஓத வேண்டிய துஆக்கள்...</p>
-                    <a href="articles/dua-for-debt.html">மேலும் படிக்க →</a>
-                </div>
-
-                <!-- Article 6: History -->
-                <div class="post-card history">
-                    <span class="post-tag">வரலாறு</span>
-                    <h3>அண்ணல் நபிகளாரின் (ஸல்) இறுதிப் பேருரை</h3>
-                    <p>மனித குலத்திற்கான மாபெரும் சாசனமாக விளங்கும் நபிகள் நாயகம் அவர்களின் இறுதிப் பேருரையின் (ஹஜ்ஜத்துல் விதா) சாராம்சம்.</p>
-                    <a href="articles/last-sermon.html">மேலும் படிக்க →</a>
+                <div class="article-item dua show">
+                    <h3><a href="articles/dua-debt.html">கடனை அடைப்பதற்கான சிறந்த நபிவழித் துஆக்கள்</a></h3>
+                    <div class="article-meta">பிரிவு: துஆக்கள் | தேதி: 05-Jun-2026</div>
+                    <p class="article-desc">பொருளாதார நெருக்கடிகளில் இருந்து விடுபடவும், வாழ்வில் பரக்கத் பெறவும் தினமும் ஓத வேண்டிய துஆக்கள்...</p>
                 </div>
 
             </div>
         </main>
+
     </div>
 
-    <!-- JavaScript for Catalog Filtering -->
+    <!-- Category Filtering Script -->
     <script>
-        filterSelection("all")
+        filterSelection("all");
+        
         function filterSelection(c) {
             var x, i;
-            x = document.getElementsByClassName("post-card");
+            x = document.getElementsByClassName("article-item");
             if (c == "all") c = "";
             for (i = 0; i < x.length; i++) {
                 removeClass(x[i], "show");
                 if (x[i].className.indexOf(c) > -1) addClass(x[i], "show");
             }
             
-            var btns = document.getElementsByClassName("category-btn");
+            // Highlight active button
+            var btns = document.querySelectorAll(".menu-list button");
             for (i = 0; i < btns.length; i++) {
                 btns[i].addEventListener("click", function() {
                     var current = document.getElementsByClassName("active");
-                    current[0].className = current[0].className.replace(" active", "");
+                    if (current.length > 0) {
+                        current[0].className = current[0].className.replace("active", "");
+                    }
                     this.className += " active";
                 });
             }
