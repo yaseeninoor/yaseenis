@@ -8,12 +8,15 @@
     <!-- தமிழ் மற்றும் அரபி எழுத்துருக்கள் -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
     
+    <!-- உங்களின் Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9950635734966108" crossorigin="anonymous"></script>
+    
     <style>
-        /* --- Mail of Islam Style Colors --- */
+        /* --- வண்ணங்கள் (Colors) --- */
         :root {
-            --portal-green: #005826; /* அடர் பச்சை (Classic Islamic Green) */
+            --portal-green: #005826; 
             --portal-light-green: #007a35;
-            --portal-yellow: #ffcc00; /* மஞ்சள் / தங்கம் */
+            --portal-yellow: #ffcc00; 
             --bg-gray: #f4f4f4;
             --text-dark: #222222;
             --border-color: #cccccc;
@@ -28,7 +31,7 @@
             line-height: 1.6;
         }
 
-        /* --- TOP HEADER --- */
+        /* --- Header --- */
         .top-header {
             background-color: var(--portal-green);
             color: white;
@@ -50,13 +53,7 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .top-header p {
-            margin: 5px 0 0 0;
-            font-size: 16px;
-            color: #e0e0e0;
-        }
-
-        /* --- TOP NAVIGATION MENU --- */
+        /* --- Navigation Menu --- */
         .top-nav {
             background-color: var(--portal-light-green);
             display: flex;
@@ -74,15 +71,12 @@
             transition: 0.3s;
         }
 
-        .top-nav a:hover {
-            background-color: var(--portal-yellow);
-            color: var(--portal-green);
-        }
+        .top-nav a:hover { background-color: var(--portal-yellow); color: var(--portal-green); }
 
-        /* --- SCROLLING NEWS (MARQUEE) --- */
+        /* --- Scrolling News --- */
         .scrolling-news {
             background-color: white;
-            color: #cc0000; /* Red color for news */
+            color: #cc0000;
             padding: 8px 15px;
             font-weight: bold;
             font-size: 15px;
@@ -100,7 +94,7 @@
             white-space: nowrap;
         }
 
-        /* --- MAIN PORTAL LAYOUT --- */
+        /* --- Portal Layout Container --- */
         .portal-container {
             max-width: 1100px;
             margin: 20px auto;
@@ -109,12 +103,39 @@
             padding: 0 15px;
         }
 
-        /* --- LEFT SIDEBAR (Classic Menu) --- */
-        .sidebar-left {
-            width: 260px;
-            flex-shrink: 0;
+        /* --- Left Sidebar --- */
+        .sidebar-left { width: 260px; flex-shrink: 0; }
+
+        /* Prayer Times Banner */
+        .prayer-times-box {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            border-top: 4px solid var(--portal-yellow);
         }
 
+        .prayer-title {
+            background-color: var(--portal-green);
+            color: white;
+            padding: 10px;
+            margin: 0;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .prayer-list { padding: 10px 15px; }
+        
+        .prayer-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .prayer-row:last-child { border-bottom: none; }
+
+        /* Categories Menu */
         .menu-box {
             background-color: white;
             border: 1px solid var(--border-color);
@@ -131,46 +152,34 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .menu-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .menu-list li {
-            border-bottom: 1px dotted var(--border-color);
-        }
-
+        .menu-list { list-style: none; padding: 0; margin: 0; }
+        .menu-list li { border-bottom: 1px dotted var(--border-color); }
         .menu-list button {
-            width: 100%;
-            text-align: left;
-            background: none;
-            border: none;
-            padding: 10px 15px;
-            color: var(--text-dark);
-            font-size: 15px;
-            font-family: inherit;
-            cursor: pointer;
-            transition: 0.2s;
+            width: 100%; text-align: left; background: none; border: none;
+            padding: 10px 15px; color: var(--text-dark); font-size: 15px;
+            cursor: pointer; transition: 0.2s; display: flex; align-items: center;
+        }
+        .menu-list button::before { content: "▸"; color: var(--portal-green); margin-right: 8px; font-size: 18px; }
+        .menu-list button:hover, .menu-list button.active {
+            background-color: #f0f8f2; color: var(--portal-green); font-weight: bold; padding-left: 20px;
+        }
+
+        /* --- Google Ad Placeholder Design --- */
+        .ad-slot {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+            color: #888;
+            font-size: 12px;
+            min-height: 90px; /* AdSense Standard Banner Height */
             display: flex;
             align-items: center;
+            justify-content: center;
         }
 
-        .menu-list button::before {
-            content: "▸";
-            color: var(--portal-green);
-            margin-right: 8px;
-            font-size: 18px;
-        }
-
-        .menu-list button:hover, .menu-list button.active {
-            background-color: #f0f8f2;
-            color: var(--portal-green);
-            font-weight: bold;
-            padding-left: 20px; /* Slight indent on hover */
-        }
-
-        /* --- CENTER CONTENT (Articles List) --- */
+        /* --- Center Content --- */
         .center-content {
             flex-grow: 1;
             background-color: white;
@@ -182,139 +191,110 @@
             color: var(--portal-green);
             border-bottom: 2px solid var(--portal-green);
             padding-bottom: 5px;
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 22px;
+            margin-top: 0; margin-bottom: 20px; font-size: 22px;
         }
 
-        /* Article Items */
-        .article-item {
-            display: none; /* JS will handle showing */
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-            border-bottom: 1px dashed var(--border-color);
-        }
+        .article-item { display: none; padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px dashed var(--border-color); }
+        .article-item.show { display: block; }
+        .article-item h3 { margin: 0 0 5px 0; font-size: 18px; }
+        .article-item h3 a { color: #0044cc; text-decoration: none; }
+        .article-item h3 a:hover { text-decoration: underline; }
+        .article-meta { font-size: 12px; color: #777; margin-bottom: 8px; }
+        .article-desc { font-size: 15px; color: #444; margin: 0; }
 
-        .article-item.show {
-            display: block;
-        }
-
-        .article-item h3 {
-            margin: 0 0 5px 0;
-            font-size: 18px;
-        }
-
-        .article-item h3 a {
-            color: #0044cc; /* Classic blue link color */
-            text-decoration: none;
-        }
-
-        .article-item h3 a:hover {
-            text-decoration: underline;
-        }
-
-        .article-meta {
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 8px;
-        }
-
-        .article-desc {
-            font-size: 15px;
-            color: #444;
-            margin: 0;
-        }
-
-        /* AI Assistant Banner inside Content */
-        .ai-promo {
-            background-color: #fff9e6; /* Light yellow */
-            border: 1px solid var(--portal-yellow);
-            padding: 15px;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .ai-promo h3 { margin: 0 0 10px 0; color: var(--portal-green); }
-        .ai-promo p { margin: 0 0 15px 0; font-size: 14px; }
-        
-        .ai-promo-btn {
+        /* --- Copyright Footer --- */
+        .site-footer {
             background-color: var(--portal-green);
             color: white;
-            padding: 8px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
+            text-align: center;
+            padding: 20px 10px;
+            margin-top: 40px;
+            border-top: 4px solid var(--portal-yellow);
         }
 
-        /* --- RESPONSIVE MOBILE FIX --- */
+        .site-footer p { margin: 0; font-size: 15px; }
+        .site-footer a { color: var(--portal-yellow); text-decoration: none; margin: 0 10px; }
+        .site-footer a:hover { text-decoration: underline; }
+
         @media (max-width: 800px) {
             .portal-container { flex-direction: column; }
             .sidebar-left { width: 100%; }
-            .top-nav { display: none; } /* Hide top nav on small screens to save space */
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Header -->
+    <!-- Header -->
     <header class="top-header">
         <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
         <h1>Yaseenis</h1>
-        <p>இஸ்லாமிய தகவல் களஞ்சியம்</p>
     </header>
 
-    <!-- Top Navigation Menu -->
+    <!-- Navigation -->
     <nav class="top-nav">
         <a href="index.html">முகப்பு</a>
         <a href="#">குர்ஆன்</a>
         <a href="#">ஹதீஸ்</a>
         <a href="#">கட்டுரைகள்</a>
-        <a href="#">துஆக்கள்</a>
         <a href="ai-assistant.html">AI உதவி</a>
     </nav>
 
-    <!-- Scrolling Flash News -->
+    <!-- Marquee News -->
     <div class="scrolling-news">
         <div class="news-title">புதிய செய்திகள்:</div>
         <marquee behavior="scroll" direction="left" scrollamount="5">
-            அஸ்ஸலாமு அலைக்கும்... Yaseenis இணையதளத்திற்கு உங்களை அன்புடன் வரவேற்கிறோம். எங்களின் புதிய "AI Assistant" சேவையைப் பயன்படுத்தி உங்கள் மார்க்க சந்தேகங்களைத் தீர்த்துக் கொள்ளலாம். புதிய கட்டுரைகள் தினசரி பதிவேற்றப்படும்.
+            அஸ்ஸலாமு அலைக்கும்... Yaseenis இணையதளத்திற்கு உங்களை அன்புடன் வரவேற்கிறோம். எங்களின் புதிய "AI Assistant" சேவையைப் பயன்படுத்தி உங்கள் மார்க்க சந்தேகங்களைத் தீர்த்துக் கொள்ளலாம்.
         </marquee>
     </div>
 
-    <!-- Main Portal Layout -->
+    <!-- Main Content Area -->
     <div class="portal-container">
         
-        <!-- Left Sidebar Categories -->
+        <!-- Sidebar -->
         <aside class="sidebar-left">
+            
+            <!-- 1. PRAYER TIMES BANNER -->
+            <div class="prayer-times-box">
+                <h3 class="prayer-title">இன்றைய தொழுகை நேரங்கள்</h3>
+                <div class="prayer-list">
+                    <div class="prayer-row"><span>பஜ்ர்</span> <span>04:02 AM</span></div>
+                    <div class="prayer-row"><span>லுஹர்</span> <span>12:22 PM</span></div>
+                    <div class="prayer-row"><span>அஸர்</span> <span>03:42 PM</span></div>
+                    <div class="prayer-row"><span>மஃரிப்</span> <span>07:13 PM</span></div>
+                    <div class="prayer-row"><span>இஷா</span> <span>08:43 PM</span></div>
+                </div>
+            </div>
+
+            <!-- Categories -->
             <div class="menu-box">
                 <h3 class="menu-title">முக்கிய தலைப்புகள்</h3>
                 <ul class="menu-list">
                     <li><button class="active" onclick="filterSelection('all')">சமீபத்திய பதிவுகள்</button></li>
                     <li><button onclick="filterSelection('quran')">குர்ஆன் சிறப்புகள்</button></li>
-                    <li><button onclick="filterSelection('history')">நபிமார்கள் வரலாறு</button></li>
                     <li><button onclick="filterSelection('sahaba')">சஹாபாக்கள் வரலாறு</button></li>
-                    <li><button onclick="filterSelection('aqeedah')">அகீதா (நம்பிக்கை)</button></li>
-                    <li><button onclick="filterSelection('ibadah')">தொழுகை & நோன்பு</button></li>
-                    <li><button onclick="filterSelection('family')">இஸ்லாமியக் குடும்பம்</button></li>
-                    <li><button onclick="filterSelection('dua')">நபிவழி துஆக்கள்</button></li>
                 </ul>
             </div>
+
+            <!-- Sidebar AdSense Banner -->
+            <div class="ad-slot">
+                <!-- Google Auto Ads will appear here automatically -->
+                <span>Google AdSense Banner (250x250)</span>
+            </div>
+            
         </aside>
 
-        <!-- Center Content (Articles) -->
+        <!-- Articles Area -->
         <main class="center-content">
             
-            <div class="ai-promo">
-                <h3>மார்க்க சந்தேகங்கள் உள்ளதா?</h3>
-                <p>குர்ஆன் மற்றும் ஹதீஸ் அடிப்படையில் தெளிவான பதில்களைப் பெற எங்களின் Yaseeni AI-ஐப் பயன்படுத்துங்கள்.</p>
-                <a href="ai-assistant.html" class="ai-promo-btn">Ask AI Assistant</a>
+            <!-- Top AdSense Banner -->
+            <div class="ad-slot">
+                <!-- Google Auto Ads will appear here automatically -->
+                <span>Google AdSense Banner (Top)</span>
             </div>
 
             <h2 class="section-header">கட்டுரைகள்</h2>
 
-            <!-- Article List -->
             <div class="article-list">
-                
                 <div class="article-item quran show">
                     <h3><a href="articles/surah-kahf.html">சூரா அல்-கஹ்ஃப்: வெள்ளிக்கிழமையின் சிறப்புகள்</a></h3>
                     <div class="article-meta">பிரிவு: குர்ஆன் | தேதி: 21-Jun-2026</div>
@@ -326,34 +306,24 @@
                     <div class="article-meta">பிரிவு: சஹாபாக்கள் | தேதி: 18-Jun-2026</div>
                     <p class="article-desc">இஸ்லாத்தின் வளர்ச்சிக்காக நபிகளாருக்கு உற்ற தோழராக இருந்து அபூபக்கர் (ரலி) செய்த தியாகங்கள்...</p>
                 </div>
-
-                <div class="article-item ibadah show">
-                    <h3><a href="articles/prayer.html">தொழுகையில் உள்ளச்சம் (குஷூஃ) பெறுவது எப்படி?</a></h3>
-                    <div class="article-meta">பிரிவு: இபாதத் | தேதி: 15-Jun-2026</div>
-                    <p class="article-desc">தொழுகையில் எண்ணங்கள் சிதறாமல், இறைவனை மட்டுமே நினைத்து உள்ளச்சத்துடன் தொழுவதற்கான வழிமுறைகள்...</p>
-                </div>
-
-                <div class="article-item family show">
-                    <h3><a href="articles/family.html">கணவன் - மனைவி உறவில் இஸ்லாம் காட்டும் வழிகாட்டுதல்</a></h3>
-                    <div class="article-meta">பிரிவு: குடும்பம் | தேதி: 10-Jun-2026</div>
-                    <p class="article-desc">நபி (ஸல்) அவர்களின் வழிகாட்டுதல்படி வீட்டை ஒரு அமைதியான இடமாக மாற்றுவதற்கான அழகிய வழிமுறைகள்...</p>
-                </div>
-
-                <div class="article-item dua show">
-                    <h3><a href="articles/dua-debt.html">கடனை அடைப்பதற்கான சிறந்த நபிவழித் துஆக்கள்</a></h3>
-                    <div class="article-meta">பிரிவு: துஆக்கள் | தேதி: 05-Jun-2026</div>
-                    <p class="article-desc">பொருளாதார நெருக்கடிகளில் இருந்து விடுபடவும், வாழ்வில் பரக்கத் பெறவும் தினமும் ஓத வேண்டிய துஆக்கள்...</p>
-                </div>
-
             </div>
         </main>
-
     </div>
 
-    <!-- Category Filtering Script -->
+    <!-- COPYRIGHT FOOTER BANNER -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Yaseenis. All Rights Reserved.</p>
+        <div style="margin-top: 10px;">
+            <a href="#">முகப்பு</a> | 
+            <a href="#">எங்களைப் பற்றி</a> | 
+            <a href="#">தொடர்புக்கு</a> | 
+            <a href="#">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <!-- Filter Logic -->
     <script>
         filterSelection("all");
-        
         function filterSelection(c) {
             var x, i;
             x = document.getElementsByClassName("article-item");
@@ -362,38 +332,22 @@
                 removeClass(x[i], "show");
                 if (x[i].className.indexOf(c) > -1) addClass(x[i], "show");
             }
-            
-            // Highlight active button
             var btns = document.querySelectorAll(".menu-list button");
             for (i = 0; i < btns.length; i++) {
                 btns[i].addEventListener("click", function() {
                     var current = document.getElementsByClassName("active");
-                    if (current.length > 0) {
-                        current[0].className = current[0].className.replace("active", "");
-                    }
+                    if (current.length > 0) current[0].className = current[0].className.replace("active", "");
                     this.className += " active";
                 });
             }
         }
-
         function addClass(element, name) {
-            var i, arr1, arr2;
-            arr1 = element.className.split(" ");
-            arr2 = name.split(" ");
-            for (i = 0; i < arr2.length; i++) {
-                if (arr1.indexOf(arr2[i]) == -1) element.className += " " + arr2[i];
-            }
+            var i, arr1, arr2; arr1 = element.className.split(" "); arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) { if (arr1.indexOf(arr2[i]) == -1) element.className += " " + arr2[i]; }
         }
-
         function removeClass(element, name) {
-            var i, arr1, arr2;
-            arr1 = element.className.split(" ");
-            arr2 = name.split(" ");
-            for (i = 0; i < arr2.length; i++) {
-                while (arr1.indexOf(arr2[i]) > -1) {
-                    arr1.splice(arr1.indexOf(arr2[i]), 1);     
-                }
-            }
+            var i, arr1, arr2; arr1 = element.className.split(" "); arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) { while (arr1.indexOf(arr2[i]) > -1) { arr1.splice(arr1.indexOf(arr2[i]), 1); } }
             element.className = arr1.join(" ");
         }
     </script>
