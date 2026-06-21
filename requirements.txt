@@ -5,4 +5,5 @@ pypdf
 faiss-cpu
 langchain-openai
 python-multipart
-gunicorn
+unstructured
+python-docx
