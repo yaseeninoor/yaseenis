@@ -3,151 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>நபி (ஸல்) அவர்களின் வரலாறு | Yaseenis</title>
+    <title>Yaseenis | Authentic Islamic Knowledge</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Mukta+Malar:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-green: #0f5132; /* இஸ்லாமிய அடர் பச்சை நிறம் */
-            --gold: #d4af37; /* தங்க நிறம் */
-            --bg-light: #f4f7f6;
-            --text-dark: #333333;
+            --primary-green: #0f5132;
+            --light-green: #198754;
+            --gold: #d4af37;
+            --bg-light: #f8f9fa;
+            --text-dark: #333;
         }
 
         body {
-            font-family: 'Mukta Malar', sans-serif; /* தமிழுக்கான எழுத்துரு */
+            font-family: 'Mukta Malar', sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
             margin: 0;
             padding: 0;
-            line-height: 1.8;
+            line-height: 1.6;
         }
 
-        /* மேல் பகுதி (Header) டிசைன் */
+        /* Header Design */
         header {
             background-color: var(--primary-green);
             color: white;
             text-align: center;
-            padding: 25px 0;
+            padding: 30px 20px;
             border-bottom: 5px solid var(--gold);
         }
 
         .bismillah {
             font-family: 'Amiri', serif;
-            font-size: 28px;
+            font-size: 30px;
             color: var(--gold);
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 32px;
             letter-spacing: 1px;
         }
 
-        /* நடுப்பகுதி (Container) */
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 0 15px;
-        }
-
-        /* முகப்புப் பக்கத்திற்குச் செல்லும் பட்டன் */
-        .back-btn {
-            display: inline-block;
-            text-decoration: none;
-            color: var(--primary-green);
-            font-weight: bold;
-            margin-bottom: 20px;
+        header p {
+            margin: 5px 0 0 0;
+            color: #e0e0e0;
             font-size: 16px;
-            transition: color 0.3s;
         }
 
-        .back-btn:hover {
-            color: var(--gold);
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
 
-        /* கட்டுரையின் அட்டை (Article Card) */
-        .article-card {
-            background: white;
-            padding: 40px;
+        /* AI Assistant Banner */
+        .ai-banner {
+            background: linear-gradient(135deg, var(--light-green), var(--primary-green));
+            color: white;
+            padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary-green);
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(15, 81, 50, 0.2);
         }
 
-        .article-title {
-            color: var(--primary-green);
-            font-size: 28px;
-            margin-top: 0;
+        .ai-banner h2 { margin-top: 0; }
+        
+        .ai-btn {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--text-dark);
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .ai-btn:hover {
+            background-color: #c5a02c;
+            transform: translateY(-2px);
+        }
+
+        /* Catalog / Category Filters */
+        .catalog-title {
             text-align: center;
+            color: var(--primary-green);
+            font-size: 24px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .text-center { text-align: center; }
+
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background-color: white;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            padding: 8px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-green);
+            color: white;
+        }
+
+        /* Grid for Articles */
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Individual Article Card */
+        .post-card {
+            display: none; /* JS will show them */
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--gold);
+            transition: transform 0.3s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .post-card h3 {
+            color: var(--primary-green);
+            margin-top: 0;
+            font-size: 20px;
             margin-bottom: 10px;
         }
 
-        .article-meta {
-            text-align: center;
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 30px;
-            border-bottom: 1px dashed #ddd;
-            padding-bottom: 15px;
-        }
-
-        .article-content p {
-            font-size: 18px;
-            text-align: justify;
+        .post-card p {
+            color: #555;
+            font-size: 15px;
             margin-bottom: 20px;
         }
 
-        /* அரபி வசனங்களுக்கான தனி டிசைன் */
-        .arabic-text {
-            font-family: 'Amiri', serif;
-            font-size: 32px;
-            text-align: center;
-            direction: rtl; /* அரபி வலமிருந்து இடமாகப் படிக்க */
+        .post-card a {
+            display: inline-block;
             color: var(--primary-green);
-            margin: 25px 0;
-            line-height: 1.8;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
         }
 
-        /* மொபைல் போனுக்கான மாற்றம் */
-        @media (max-width: 600px) {
-            .article-card { padding: 20px; }
-            .article-title { font-size: 22px; }
-            .arabic-text { font-size: 26px; }
+        .post-card a:hover {
+            border-color: var(--gold);
         }
+
+        .show { display: block; }
+
     </style>
 </head>
 <body>
 
     <header>
         <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
-        <h1>Yaseenis Islamic Knowledge</h1>
+        <h1>Yaseenis</h1>
+        <p>Authentic Islamic Knowledge in Tamil, Arabic and English.</p>
     </header>
 
     <div class="container">
-        <a href="../index.html" class="back-btn">← முகப்புப் பக்கத்திற்குத் திரும்ப</a>
+        
+        <div class="ai-banner">
+            <h2>கேள்விகள் உள்ளதா?</h2>
+            <p>எங்களின் அதிநவீன Yaseeni AI Assistant-ஐப் பயன்படுத்தி குர்ஆன், ஹதீஸ் மற்றும் மார்க்கத் தீர்ப்புகள் பற்றிய உங்கள் சந்தேகங்களுக்கு உடனடியாகப் பதில்களைப் பெறுங்கள்.</p>
+            <a href="ai-assistant.html" class="ai-btn">🤖 Ask AI Assistant</a>
+        </div>
 
-        <div class="article-card">
-            <h2 class="article-title">நபி (ஸல்) அவர்களின் வரலாறு</h2>
-            <div class="article-meta">பிரிவு: நபிமார்கள் | பிரசுரிக்கப்பட்டது: 21 ஜூன் 2026</div>
+        <div class="text-center">
+            <h2 class="catalog-title">கட்டுரைகள் (Articles Catalog)</h2>
+        </div>
 
-            <div class="article-content">
-                <p>இங்கே உங்களின் முழுமையான கட்டுரையை டைப் செய்யவும். இந்த டிசைன் வாசிப்பதற்கு மிகவும் வசதியாக இருக்கும். எழுத்துக்களின் அளவும் (Font size), இடைவெளியும் நேர்த்தியாக கொடுக்கப்பட்டுள்ளது.</p>
-                
-                <p>நீங்கள் கட்டுரையின் நடுவில் ஏதேனும் குர்ஆன் வசனம் அல்லது ஹதீஸை அரபியில் சேர்க்க விரும்பினால், கீழே உள்ளவாறு `arabic-text` என்ற வகுப்பை (class) பயன்படுத்தலாம்:</p>
-                
-                <div class="arabic-text">
-                    إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ
-                </div>
-                
-                <p><strong>பொருள்:</strong> செயல்கள் அனைத்தும் எண்ணங்களைப் பொறுத்தே அமைகின்றன (புகாரி).</p>
-                
-                <p>மீதமுள்ள உங்களின் கட்டுரையை இங்கே தொடர்ந்து எழுதிக் கொண்டே போகலாம். மொபைல் போனில் பார்ப்பதற்கும் இது மிகவும் அழகாக சுருங்கி (Responsive) பொருந்திக்கொள்ளும்.</p>
+        <div class="category-filters">
+            <button class="filter-btn active" onclick="filterSelection('all')">அனைத்தும்</button>
+            <button class="filter-btn" onclick="filterSelection('nabimargal')">நபிமார்கள்</button>
+            <button class="filter-btn" onclick="filterSelection('sahabakkal')">சஹாபாக்கள்</button>
+            <button class="filter-btn" onclick="filterSelection('valimargal')">வலிமார்கள்</button>
+            <button class="filter-btn" onclick="filterSelection('kurumargal')">குருமார்கள்</button>
+            <button class="filter-btn" onclick="filterSelection('salawath')">சலவாத்</button>
+            <button class="filter-btn" onclick="filterSelection('ahlul_bayt')">அஹ்லுல் பைத்</button>
+            <button class="filter-btn" onclick="filterSelection('kalvi')">கல்வி</button>
+        </div>
+
+        <div class="post-grid">
+            
+            <div class="post-card nabimargal">
+                <h3>நபி (ஸல்) அவர்களின் வரலாறு</h3>
+                <p>நபிகள் நாயகம் அவர்களின் ஆரம்பகால வாழ்க்கை மற்றும் சிறப்புகளைப் பற்றிய சுருக்கம்...</p>
+                <a href="articles/nabi-history.html">மேலும் படிக்க →</a>
             </div>
+
+            <div class="post-card sahabakkal">
+                <h3>அபூபக்கர் (ரலி) அவர்களின் தியாகங்கள்</h3>
+                <p>இஸ்லாத்தின் வளர்ச்சிக்காக உற்ற தோழர்கள் செய்த மாபெரும் தியாகங்கள் மற்றும் அவர்களின் வாழ்க்கை முறை...</p>
+                <a href="articles/abubakar-history.html">மேலும் படிக்க →</a>
+            </div>
+
+            <div class="post-card salawath">
+                <h3>சலவாத் சொல்வதன் நன்மைகள்</h3>
+                <p>நபி (ஸல்) அவர்கள் மீது சலவாத் சொல்வதின் சிறப்புகளும், நாளை மறுமையில் கிடைக்கும் பலன்களும்...</p>
+                <a href="articles/salawath-benefits.html">மேலும் படிக்க →</a>
+            </div>
+
+            <div class="post-card kalvi">
+                <h3>இஸ்லாத்தில் கல்வியின் முக்கியத்துவம்</h3>
+                <p>மார்க்கக் கல்வியையும், உலகக் கல்வியையும் தேடுவதன் அவசியத்தைப் பற்றி இஸ்லாம் கூறுவது என்ன?</p>
+                <a href="articles/education-islam.html">மேலும் படிக்க →</a>
+            </div>
+
+            <div class="post-card ahlul_bayt">
+                <h3>அஹ்லுல் பைத்துகளின் சிறப்புகள்</h3>
+                <p>நபி (ஸல்) அவர்களின் குடும்பத்தினரான அஹ்லுல் பைத்துகளின் கண்ணியமும், வரலாறும்...</p>
+                <a href="articles/ahlul-bayt.html">மேலும் படிக்க →</a>
+            </div>
+
+            <div class="post-card valimargal">
+                <h3>இறைநேசர்களின் சிறப்புகள்</h3>
+                <p>வலிமார்களின் வாழ்க்கை குறிப்புகள் மற்றும் அவர்களின் அற்புதங்கள்...</p>
+                <a href="articles/valimargal-history.html">மேலும் படிக்க →</a>
+            </div>
+
         </div>
     </div>
+
+    <script>
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("post-card");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                removeClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) addClass(x[i], "show");
+            }
+            
+            var btns = document.getElementsByClassName("filter-btn");
+            for (i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click", function() {
+                    var current = document.getElementsByClassName("active");
+                    current[0].className = current[0].className.replace(" active", "");
+                    this.className += " active";
+                });
+            }
+        }
+
+        function addClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) element.className += " " + arr2[i];
+            }
+        }
+
+        function removeClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);     
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+    </script>
 
 </body>
 </html>
