@@ -1,322 +1,194 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Yaseeni Ulama</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f5f5f5;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yaseeni Ulama</title>
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f7f5;
+color:#222;
+}
 
-        /* Header & Navigation */
-        header {
-            background: #0b5ed7;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        nav {
-            background: #083b8a;
-            padding: 12px;
-            text-align: center;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        nav a {
-            color: white;
-            margin: 10px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
+header{
+background:#0F5132;
+color:white;
+text-align:center;
+padding:25px;
+}
 
-        /* Ticker Animation */
-        .ticker-wrap {
-            background-color: #e0e0e0;
-            padding: 10px 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .ticker {
-            display: inline-block;
-            padding-left: 100%;
-            animation: ticker 15s linear infinite;
-            font-weight: bold;
-            color: #d32f2f;
-        }
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
+nav{
+background:#145A32;
+padding:12px;
+text-align:center;
+}
 
-        /* Layout & Cards */
-        section {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+nav a{
+color:white;
+text-decoration:none;
+margin:10px;
+font-weight:bold;
+}
 
-        /* Buttons */
-        .btn {
-            background: #25D366;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            background: #1da851;
-        }
+.slide{
+display:none;
+width:100%;
+height:380px;
+object-fit:cover;
+}
 
-        /* Slideshow */
-        .slideshow-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 20px auto;
-            text-align: center;
-        }
-        .slide {
-            width: 100%;
-            max-width: 800px;
-            display: none;
-            border-radius: 15px;
-            margin: 0 auto;
-        }
+.card{
+background:white;
+margin:15px;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
 
-        /* Footer */
-        footer {
-            background: #0b5ed7;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-        }
-    </style>
+.btn{
+background:#198754;
+color:white;
+padding:10px 20px;
+text-decoration:none;
+border-radius:6px;
+display:inline-block;
+}
+
+footer{
+background:#0F5132;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:20px;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+text-decoration:none;
+font-size:22px;
+}
+</style>
 </head>
 <body>
-
-<header id="home">
-    <h1>YASEENI ULAMA</h1>
-    <p>Yaseeni Moulavies & Old Students Association</p>
+<header>
+<h1>🕌 YASEENI ULAMA</h1>
+<p>யாசீனி உலமா மற்றும் பழைய மாணவர் சங்கம்</p>
 </header>
-
-<section class="card">
-<h2 style="color:red;">🔴 LIVE NOW</h2>
-<h3>கர்பலா நிகழ்ச்சி – ஹஸனைன் மௌலிது ஷரீஃப்</h3>
-<p>நேரடி ஒளிபரப்பு</p>
-
+<nav>
+<a href="#home">முகப்பு</a>
+<a href="#live">நேரலை</a>
+<a href="#articles">கட்டுரைகள்</a>
+<a href="#pdf">நூலகம்</a>
+<a href="#audio">ஒலிப்பதிவு</a>
+<a href="#video">காணொளிகள்</a>
+<a href="#ai">Yaseeni AI</a>
+<a href="#contact">தொடர்பு</a>
+</nav>
+<img class="slide" src="photo1.jpg">
+<img class="slide" src="photo2.jpg">
+<img class="slide" src="photo3.jpg">
+<img class="slide" src="photo4.jpg">
+<img class="slide" src="photo5.jpg">
+<img class="slide" src="photo6.jpg">
+<div class="card" id="home">
+<h2>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
+<p>
+தமிழ், அரபி மற்றும் ஆங்கிலத்தில் உண்மையான
+இஸ்லாமிய அறிவை பரப்பும் தளம்.
+</p>
+<p>
+📖 குர்ஆன் | 📜 ஹதீஸ் | 🎧 பயான்கள் |
+🎥 காணொளிகள் | 📚 நூலகம்
+</p>
+</div>
+<div class="card" id="live">
+<h2>🔴 கர்பலா நிகழ்ச்சி – ஹஸனைன் மௌலிது ஷரீஃப்</h2>
 <iframe
 width="100%"
-height="450"
+height="400"
 src="https://www.youtube.com/embed/5T0QKM5XeBo"
+frameborder="0"
 allowfullscreen>
 </iframe>
-</section>
-<nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#live">Live</a>
-    <a href="#library">PDF</a>
-    <a href="#audio">Audio</a>
-    <a href="#videos">Videos</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-    <a href="#blog">Blog</a> <!-- புதிதாக சேர்க்கப்பட்ட Blog மெனு -->
-</nav>
-
-<div class="ticker-wrap">
-    <div class="ticker">
-        Latest Bayan | New PDF Uploaded | Live Program Tonight
-    </div>
 </div>
-
-<section>
-    <!-- Dynamic Daily Content -->
-    <div id="dailyQuran" class="card" style="display: none;"></div>
-    <div id="dailyHadeeth" class="card" style="display: none;"></div>
-</section>
-
-<!-- External Scripts -->
-<script src="daily-quran.js"></script>
-<script src="daily-hadeeth.js"></script>
-
-<script>
-    window.onload = function() {
-        const day = Math.floor(Date.now() / 86400000);
-        
-        if (typeof quran !== 'undefined' && quran.length > 0) {
-            let quranEl = document.getElementById("dailyQuran");
-            quranEl.innerHTML = "<h3>Daily Quran Ayah</h3><p>" + quran[day % quran.length] + "</p>";
-            quranEl.style.display = "block";
-        }
-
-        if (typeof hadeeths !== 'undefined' && hadeeths.length > 0) {
-            let hadeethEl = document.getElementById("dailyHadeeth");
-            hadeethEl.innerHTML = "<h3>Daily Hadeeth</h3><p>" + hadeeths[day % hadeeths.length] + "</p>";
-            hadeethEl.style.display = "block";
-        }
-    };
-</script>
-
-
-<script>
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-        let slides = document.getElementsByClassName("slide");
-        if (slides.length === 0) return; 
-
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-
-        slideIndex++;
-        if (slideIndex > slides.length) { slideIndex = 1; }
-        
-        // Only attempt to show if the image actually exists
-        if(slides[slideIndex - 1]) {
-            slides[slideIndex - 1].style.display = "block";
-        }
-        setTimeout(showSlides, 6000); 
-    }
-</script>
-
-<section>
-    <div class="card" id="about">
-        <h2>Welcome</h2>
-        <p>Authentic Islamic Knowledge in Tamil, Arabic and English.</p>
-    </div>
-<a href="ai-assistant.html" style="padding: 10px; background: #007bff; color: white; border-radius: 5px; text-decoration: none;">Ask AI Assistant</a>
-
-<div class="card">
+<div class="card" id="articles">
+<h2>📰 இஸ்லாமிய கட்டுரைகள்</h2>
+<ul>
+<li>வாப்பா நாயகம் வாழ்க்கை வரலாறு</li>
+<li>40 நவவி ஹதீஸ்கள்</li>
+<li>தினசரி இஸ்லாமிய ஒழுக்கம்</li>
+<li>அவுலியாக்கள் வரலாறு</li>
+<li>ரமலான் சிறப்புகள்</li>
+<li>ஹஜ் வழிகாட்டி</li>
+</ul>
+</div>
+<div class="card" id="pdf">
+<h2>📚 PDF நூலகம்</h2>
+<p>📖 பூவாரம்</p>
+<p>📖 ஹதீஸ் தொகுப்பு</p>
+<p>📖 மௌலிது ஷரீஃப்</p>
+<p>📖 துஆ தொகுப்பு</p>
+</div>
+<div class="card" id="audio">
+<h2>🎧 பயான் ஒலிப்பதிவுகள்</h2>
+<audio controls style="width:100%;">
+<source src="audio/bayan1.mp3" type="audio/mpeg">
+</audio>
+</div>
+<div class="card" id="video">
+<h2>🎥 காணொளிகள்</h2>
+<p>▶ YouTube சேனலில் அனைத்து பயான்களும் கிடைக்கும்</p>
+</div>
+<div class="card" id="ai">
 <h2>🤖 Yaseeni AI Assistant</h2>
-
-<input id="question"
-placeholder="உங்கள் கேள்வியை எழுதுங்கள்..."
-style="width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;">
-
-<br><br>
-
-<button onclick="askAI()"
-style="background:#0b5ed7;color:white;padding:10px 20px;border:none;border-radius:8px;">
-கேள்
-</button>
-
-<div id="answer"
-style="margin-top:15px;padding:15px;background:#f5f5f5;border-radius:8px;">
-AI பதில் இங்கே வரும்...
+<p>
+இஸ்லாமிய கேள்விகள், PDF தகவல்கள் மற்றும்
+வலைத்தள உதவிகளுக்கான AI உதவியாளர்.
+</p>
 </div>
+<div class="card" id="contact">
+<h2>📞 தொடர்புக்கு</h2>
+<p>📧 noor@yaseenis.com</p>
+<p>📱 +971552688945</p>
+<p>▶ YouTube: @yaseeniulama</p>
+<p>📘 Facebook: yaseeniulama</p>
 </div>
-
-<script>
-async function askAI(){
-
-const question =
-document.getElementById("question").value;
-
-document.getElementById("answer").innerHTML =
-"⏳ பதில் உருவாக்கப்படுகிறது...";
-
-const response = await fetch(
-"https://yaseenis-ai.yaseeninoor.workers.dev",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-message:question
-})
-});
-
-const data = await response.json();
-
-document.getElementById("answer").innerHTML =
-data.candidates?.[0]?.content?.parts?.[0]?.text ||
-"பதில் கிடைக்கவில்லை";
-}
-</script>
-
-    <div class="card" id="ai">
-<h2>🤖 Yaseeni AI Assistant</h2>
-
-<input type="text" id="question"
-placeholder="உங்கள் கேள்வியை எழுதுங்கள்..."
-style="width:100%;padding:10px;">
-
-<br><br>
-
-<button onclick="askAI()">
-கேள்
-</button>
-
-<div id="answer"></div>
-
-</div>
-    
-    
-    <!-- புதிதாக சேர்க்கப்பட்ட கட்டுரைகள் (Blog) பகுதி -->
-        <div class="card" id="blog">
-        <h2>Latest Articles (சமீபத்திய பதிவுகள்)</h2>
-        <p>➤ <a href="ahlul-baith.html" style="color: #0b5ed7; text-decoration: none; font-weight: bold;">அஹ்லுல் பைத்துகளை ஏன் பின்பற்ற வேண்டும்.</a></p>
-    </div>
-
-    
-    
-
-    <!-- Blog பகுதி முடிவு -->
-
-    <div class="card" id="live">
-        <h2>கர்பலா நேரடி ஒலிபரப்பு </h2>
-        <iframe
-            width="100%"
-            height="300"
-            src="https://www.youtube.com/live/5T0QKM5XeBo"
-            title="Yaseeni Ulama Live"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-        <br><br>
-        <a href="https://youtube.com/@yaseeniulama" class="btn" target="_blank" rel="noopener noreferrer">
-            Subscribe YouTube Channel
-        </a>
-    </div>
-
-    <div class="card">
-        <h2>Wisdom</h2>
-        <p>“Whoever follows a path seeking knowledge, Allah will make a path to Paradise easy for him.”</p>
-    </div>
-
-    <div class="card" id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:noor@yaseenis.com">noor@yaseenis.com</a></p>
-        <p>WhatsApp: +971552688945</p>
-        <a class="btn" href="https://wa.me/971552688945" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
-    </div>
-</section>
-
 <footer>
-    &copy; 2026 Yaseeni Ulama. All Rights Reserved Yaseenis.com
-    
+© Yaseeni Ulama
+<br>
+All Rights Reserved
 </footer>
+<script>
+let slideIndex=0;
 
+function showSlides(){
+
+let slides=document.getElementsByClassName("slide");
+
+for(let i=0;i<slides.length;i++){
+slides[i].style.display="none";
+}
+
+slideIndex++;
+
+if(slideIndex>slides.length){
+slideIndex=1;
+}
+
+slides[slideIndex-1].style.display="block";
+
+setTimeout(showSlides,12000);
+}
+
+showSlides();
+</script>
 </body>
 </html>
