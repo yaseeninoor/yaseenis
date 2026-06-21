@@ -1,234 +1,153 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yaseeni Ulama</title>
-<style>
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f5f7f5;
-color:#222;
-}
-<
-header{
-background:#0F5132;
-color:white;
-text-align:center;
-padding:25px;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>நபி (ஸல்) அவர்களின் வரலாறு | Yaseenis</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Mukta+Malar:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #0f5132; /* இஸ்லாமிய அடர் பச்சை நிறம் */
+            --gold: #d4af37; /* தங்க நிறம் */
+            --bg-light: #f4f7f6;
+            --text-dark: #333333;
+        }
 
-nav{
-background:#145A32;
-padding:12px;
-text-align:center;
-}
+        body {
+            font-family: 'Mukta Malar', sans-serif; /* தமிழுக்கான எழுத்துரு */
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
 
-nav a{
-color:white;
-text-decoration:none;
-margin:10px;
-font-weight:bold;
-}
+        /* மேல் பகுதி (Header) டிசைன் */
+        header {
+            background-color: var(--primary-green);
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            border-bottom: 5px solid var(--gold);
+        }
 
-.slide{
-display:none;
-width:100%;
-height:380px;
-object-fit:cover;
-}
+        .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: 28px;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
 
-.card{
-background:white;
-margin:15px;
-padding:20px;
-border-radius:12px;
-box-shadow:0 2px 10px rgba(0,0,0,.1);
-}
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
 
-.btn{
-background:#198754;
-color:white;
-padding:10px 20px;
-text-decoration:none;
-border-radius:6px;
-display:inline-block;
-}
+        /* நடுப்பகுதி (Container) */
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
 
-footer{
-background:#0F5132;
-color:white;
-text-align:center;
-padding:15px;
-margin-top:20px;
-}
+        /* முகப்புப் பக்கத்திற்குச் செல்லும் பட்டன் */
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--primary-green);
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
 
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-padding:15px;
-border-radius:50%;
-text-decoration:none;
-font-size:22px;
-}
-</style>
+        .back-btn:hover {
+            color: var(--gold);
+        }
 
+        /* கட்டுரையின் அட்டை (Article Card) */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-green);
+        }
+
+        .article-title {
+            color: var(--primary-green);
+            font-size: 28px;
+            margin-top: 0;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .article-meta {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 30px;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 15px;
+        }
+
+        .article-content p {
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        /* அரபி வசனங்களுக்கான தனி டிசைன் */
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 32px;
+            text-align: center;
+            direction: rtl; /* அரபி வலமிருந்து இடமாகப் படிக்க */
+            color: var(--primary-green);
+            margin: 25px 0;
+            line-height: 1.8;
+        }
+
+        /* மொபைல் போனுக்கான மாற்றம் */
+        @media (max-width: 600px) {
+            .article-card { padding: 20px; }
+            .article-title { font-size: 22px; }
+            .arabic-text { font-size: 26px; }
+        }
+    </style>
+</head>
 <body>
-<header>
-<h1>🕌 YASEENI ULAMA</h1>
-<p>யாசீனி உலமா மற்றும் பழைய மாணவர் சங்கம்</p>
-</header>
-</div>
-</div>
 
-  
-<a href="#home">முகப்பு</a>
-<a href="#live">நேரலை</a>
-<a href="#articles">கட்டுரைகள்</a>
-<a href="#pdf">நூலகம்</a>
-<a href="#audio">ஒலிப்பதிவு</a>
-<a href="#video">காணொளிகள்</a>
-<a href="#ai">Yaseeni AI</a>
-<a href="#contact">தொடர்பு</a>
-</nav>
+    <header>
+        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+        <h1>Yaseenis Islamic Knowledge</h1>
+    </header>
 
-<!-- Category Filter Buttons (பிரிவுகளைத் தேர்ந்தெடுக்கும் பட்டன்கள்) -->
-<div class="category-filters">
-  <button class="filter-btn active" onclick="filterSelection('all')">அனைத்தும் (All)</button>
-  <button class="filter-btn" onclick="filterSelection('nabimargal')">நபிமார்கள்</button>
-  <button class="filter-btn" onclick="filterSelection('sahabakkal')">சஹாபாக்கள்</button>
-  <button class="filter-btn" onclick="filterSelection('valimargal')">வலிமார்கள்</button>
-  <button class="filter-btn" onclick="filterSelection('kurumargal')">குருமார்கள்</button>
-</div>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← முகப்புப் பக்கத்திற்குத் திரும்ப</a>
 
-<!-- Container for all posts (பதிவுகள் தோன்றும் இடம்) -->
-<div class="post-grid">
-  
-  <!-- Post 1: நபிமார்கள் -->
-  <div class="post-card nabimargal">
-    <h3>நபி (ஸல்) அவர்களின் வரலாறு</h3>
-    <p>இங்கே நபிகள் நாயகம் அவர்களின் வாழ்க்கை வரலாற்றை மற்றும் சிறப்புகளைப் படிக்கலாம்...</p>
-    <a href="#">மேலும் படிக்க</a>
-  </div>
+        <div class="article-card">
+            <h2 class="article-title">நபி (ஸல்) அவர்களின் வரலாறு</h2>
+            <div class="article-meta">பிரிவு: நபிமார்கள் | பிரசுரிக்கப்பட்டது: 21 ஜூன் 2026</div>
 
-  <!-- Post 2: சஹாபாக்கள் -->
-  <div class="post-card sahabakkal">
-    <h3>அபூபக்கர் (ரலி) அவர்களின் தியாகங்கள்</h3>
-    <p>இஸ்லாத்தின் வளர்ச்சிக்காக உற்ற தோழர்கள் செய்த மாபெரும் தியாகங்கள்...</p>
-    <a href="#">மேலும் படிக்க</a>
-  </div>
+            <div class="article-content">
+                <p>இங்கே உங்களின் முழுமையான கட்டுரையை டைப் செய்யவும். இந்த டிசைன் வாசிப்பதற்கு மிகவும் வசதியாக இருக்கும். எழுத்துக்களின் அளவும் (Font size), இடைவெளியும் நேர்த்தியாக கொடுக்கப்பட்டுள்ளது.</p>
+                
+                <p>நீங்கள் கட்டுரையின் நடுவில் ஏதேனும் குர்ஆன் வசனம் அல்லது ஹதீஸை அரபியில் சேர்க்க விரும்பினால், கீழே உள்ளவாறு `arabic-text` என்ற வகுப்பை (class) பயன்படுத்தலாம்:</p>
+                
+                <div class="arabic-text">
+                    إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ
+                </div>
+                
+                <p><strong>பொருள்:</strong> செயல்கள் அனைத்தும் எண்ணங்களைப் பொறுத்தே அமைகின்றன (புகாரி).</p>
+                
+                <p>மீதமுள்ள உங்களின் கட்டுரையை இங்கே தொடர்ந்து எழுதிக் கொண்டே போகலாம். மொபைல் போனில் பார்ப்பதற்கும் இது மிகவும் அழகாக சுருங்கி (Responsive) பொருந்திக்கொள்ளும்.</p>
+            </div>
+        </div>
+    </div>
 
-  <!-- Post 3: வலிமார்கள் -->
-  <div class="post-card valimargal">
-    <h3>இறைநேசர்களின் சிறப்புகள்</h3>
-    <p>வலிமார்களின் வாழ்க்கை குறிப்புகள் மற்றும் அவர்களின் அற்புதங்கள்...</p>
-    <a href="#">மேலும் படிக்க</a>
-  </div>
-
-  <!-- Post 4: குருமார்கள் -->
-  <div class="post-card kurumargal">
-    <h3>மார்க்க அறிஞர்களின் உபதேசங்கள்</h3>
-    <p>நமது மார்க்க குருமார்கள் மற்றும் அறிஞர்கள் வழங்கிய சிறந்த அறிவுரைகள்...</p>
-    <a href="#">மேலும் படிக்க</a>
-  </div>
-
-
-<im
-<div class="card" id="home">
-<h2>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
-<p>
-தமிழ், அரபி மற்றும் ஆங்கிலத்தில் உண்மையான
-இஸ்லாமிய அறிவை பரப்பும் தளம்.
-</p>
-<p>
-📖 குர்ஆன் | 📜 ஹதீஸ் | 🎧 பயான்கள் |
-🎥 காணொளிகள் | 📚 நூலகம்
-</p>
-</div>
-<div class="card" id="live">
-<h2>🔴 கர்பலா நிகழ்ச்சி – ஹஸனைன் மௌலிது ஷரீஃப்</h2>
-<iframe
-width="100%"
-height="400"
-src="https://www.youtube.com/embed/h3tybkn70Tg"
-frameborder="0"
-allowfullscreen>
-</iframe>
-</div>
-<div class="card" id="articles">
-<h2>📰 இஸ்லாமிய கட்டுரைகள்</h2>
-<ul>
-<li>வாப்பா நாயகம் வாழ்க்கை வரலாறு</li>
-<li>40 நவவி ஹதீஸ்கள்</li>
-<li>தினசரி இஸ்லாமிய ஒழுக்கம்</li>
-<li>அவுலியாக்கள் வரலாறு</li>
-<li>ரமலான் சிறப்புகள்</li>
-<li>ஹஜ் வழிகாட்டி</li>
-</ul>
-</div>
-<div class="card" id="pdf">
-<h2>📚 PDF நூலகம்</h2>
-<p>📖 பூவாரம்</p>
-<p>📖 ஹதீஸ் தொகுப்பு</p>
-<p>📖 மௌலிது ஷரீஃப்</p>
-<p>📖 துஆ தொகுப்பு</p>
-</div>
-<div class="card" id="audio">
-<h2>🎧 பயான் ஒலிப்பதிவுகள்</h2>
-<audio controls style="width:100%;">
-<source src="audio/bayan1.mp3" type="audio/mpeg">
-</audio>
-</div>
-<div class="card" id="video">
-<h2>🎥 காணொளிகள்</h2>
-<p>▶ YouTube சேனலில் அனைத்து பயான்களும் கிடைக்கும்</p>
-</div>
-<div class="card" id="ai">
-<h2>🤖 Yaseeni AI Assistant</h2>
-<p>
-இஸ்லாமிய கேள்விகள், PDF தகவல்கள் மற்றும்
-வலைத்தள உதவிகளுக்கான AI உதவியாளர்.
-</p>
-</div>
-<div class="card" id="contact">
-<h2>📞 தொடர்புக்கு</h2>
-<p>📧 noor@yaseenis.com</p>
-<p>📱 +971552688945</p>
-<p>▶ YouTube: @yaseeniulama</p>
-<p>📘 Facebook: yaseeniulama</p>
-</div>
-<footer>
-© Yaseeni Ulama
-<br>
-All Rights Reserved
-</footer>
-<script>
-let slideIndex=0;
-
-function showSlides(){
-
-let slides=document.getElementsByClassName("slide");
-
-for(let i=0;i<slides.length;i++){
-slides[i].style.display="none";
-}
-
-slideIndex++;
-
-if(slideIndex>slides.length){
-slideIndex=1;
-}
-
-slides[slideIndex-1].style.display="block";
-
-setTimeout(showSlides,12000);
-}
-
-showSlides();
-</script>
 </body>
 </html>
