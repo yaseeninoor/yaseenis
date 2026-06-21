@@ -1,9 +1,10 @@
 fastapi
 uvicorn
 langchain
+langchain-community
+langchain-openai
 pypdf
 faiss-cpu
-langchain-openai
 python-multipart
 unstructured
 python-docx
