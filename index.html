@@ -5,254 +5,324 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yaseenis | Authentic Islamic Knowledge</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Mukta+Malar:wght@400;700&display=swap" rel="stylesheet">
+    <!-- அழகான தமிழ் மற்றும் அரபி எழுத்துருக்களுக்கு -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-green: #0f5132;
-            --light-green: #198754;
-            --gold: #d4af37;
-            --bg-light: #f8f9fa;
-            --text-dark: #333;
+            --primary-blue: #0b305e;   /* அடர் நீலம் (Deep Navy Blue) */
+            --accent-blue: #0275d8;    /* பிரகாசமான நீலம் (Bright Blue) */
+            --light-blue: #e6f0fa;     /* மிக மெல்லிய நீலப் பின்னணி */
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+            --text-gray: #666666;
         }
 
         body {
             font-family: 'Mukta Malar', sans-serif;
-            background-color: var(--bg-light);
+            background-color: var(--light-blue);
             color: var(--text-dark);
             margin: 0;
             padding: 0;
             line-height: 1.6;
         }
 
-        /* Header Design */
+        /* மேல் பகுதி (Header) */
         header {
-            background-color: var(--primary-green);
-            color: white;
-            text-align: center;
+            background: linear-gradient(135deg, var(--primary-blue), #1a5296);
+            color: var(--white);
             padding: 30px 20px;
-            border-bottom: 5px solid var(--gold);
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .bismillah {
             font-family: 'Amiri', serif;
-            font-size: 30px;
-            color: var(--gold);
-            margin-bottom: 10px;
+            font-size: 28px;
+            color: #8ed1fc; /* வெளிர் நீலம் */
+            margin-bottom: 5px;
         }
 
         header h1 {
             margin: 0;
-            font-size: 32px;
+            font-size: 36px;
             letter-spacing: 1px;
         }
 
         header p {
-            margin: 5px 0 0 0;
-            color: #e0e0e0;
+            margin: 5px 0 0;
             font-size: 16px;
+            opacity: 0.9;
         }
 
-        /* Container */
-        .container {
-            max-width: 1000px;
+        /* லேஅவுட் (Sidebar + Main Content) */
+        .layout {
+            display: flex;
+            max-width: 1200px;
             margin: 30px auto;
             padding: 0 20px;
+            gap: 30px;
         }
 
-        /* AI Assistant Banner */
+        /* பக்கவாட்டு மெனு (Sidebar) */
+        .sidebar {
+            flex: 0 0 250px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .category-btn {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            border: 1px solid #d1e3f8;
+            padding: 12px 15px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--accent-blue);
+            color: var(--white);
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 8px rgba(2, 117, 216, 0.2);
+            transform: translateX(5px);
+        }
+
+        /* முதன்மைப் பகுதி (Main Content) */
+        .main-content {
+            flex: 1;
+        }
+
+        /* AI பேனர் (AI Banner) */
         .ai-banner {
-            background: linear-gradient(135deg, var(--light-green), var(--primary-green));
-            color: white;
+            background: var(--white);
+            border-left: 5px solid var(--accent-blue);
             padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 15px rgba(15, 81, 50, 0.2);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .ai-banner h2 { margin-top: 0; }
-        
+        .ai-banner-text h2 {
+            margin: 0 0 10px 0;
+            color: var(--primary-blue);
+        }
+
+        .ai-banner-text p { margin: 0; color: var(--text-gray); }
+
         .ai-btn {
-            display: inline-block;
-            background-color: var(--gold);
-            color: var(--text-dark);
+            background-color: var(--primary-blue);
+            color: var(--white);
             padding: 12px 25px;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 30px;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        .ai-btn:hover {
-            background-color: #c5a02c;
-            transform: translateY(-2px);
-        }
-
-        /* Catalog / Category Filters */
-        .catalog-title {
-            text-align: center;
-            color: var(--primary-green);
-            font-size: 24px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--gold);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .text-center { text-align: center; }
-
-        .category-filters {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .filter-btn {
-            background-color: white;
-            color: var(--primary-green);
-            border: 2px solid var(--primary-green);
-            padding: 8px 18px;
             border-radius: 25px;
-            cursor: pointer;
-            font-size: 15px;
             font-weight: bold;
-            transition: all 0.3s ease;
+            transition: 0.3s;
+            white-space: nowrap;
         }
 
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--primary-green);
-            color: white;
-        }
+        .ai-btn:hover { background-color: var(--accent-blue); }
 
-        /* Grid for Articles */
+        /* கட்டுரைகளின் கட்டமைப்பு (Grid) */
         .post-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
 
-        /* Individual Article Card */
         .post-card {
-            display: none; /* JS will show them */
-            background: white;
+            display: none; /* JS மூலம் காண்பிக்கப்படும் */
+            background: var(--white);
             border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--gold);
-            transition: transform 0.3s;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* கார்டின் மேலே ஒரு சிறிய நீல நிறக் கோடு */
+        .post-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--accent-blue);
         }
 
         .post-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(2, 117, 216, 0.15);
+        }
+
+        .post-tag {
+            display: inline-block;
+            font-size: 12px;
+            background-color: var(--light-blue);
+            color: var(--accent-blue);
+            padding: 4px 10px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            font-weight: bold;
         }
 
         .post-card h3 {
-            color: var(--primary-green);
-            margin-top: 0;
+            color: var(--primary-blue);
+            margin: 0 0 10px 0;
             font-size: 20px;
-            margin-bottom: 10px;
         }
 
         .post-card p {
-            color: #555;
+            color: var(--text-gray);
             font-size: 15px;
             margin-bottom: 20px;
         }
 
         .post-card a {
-            display: inline-block;
-            color: var(--primary-green);
+            color: var(--accent-blue);
             text-decoration: none;
             font-weight: bold;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s;
+            font-size: 15px;
         }
 
-        .post-card a:hover {
-            border-color: var(--gold);
-        }
+        .post-card a:hover { text-decoration: underline; }
 
         .show { display: block; }
 
+        /* மொபைல் போனுக்கான லேஅவுட் (Responsive) */
+        @media (max-width: 768px) {
+            .layout { flex-direction: column; }
+            .sidebar { position: static; flex: none; }
+            .category-list {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            .category-btn { white-space: nowrap; transform: none !important; }
+            .ai-banner { flex-direction: column; text-align: center; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
         <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
         <h1>Yaseenis</h1>
-        <p>Authentic Islamic Knowledge in Tamil, Arabic and English.</p>
+        <p>தூய்மையான இஸ்லாமிய மார்க்க அறிவுப் பெட்டகம்</p>
     </header>
 
-    <div class="container">
+    <!-- Layout Container -->
+    <div class="layout">
         
-        <div class="ai-banner">
-            <h2>கேள்விகள் உள்ளதா?</h2>
-            <p>எங்களின் அதிநவீன Yaseeni AI Assistant-ஐப் பயன்படுத்தி குர்ஆன், ஹதீஸ் மற்றும் மார்க்கத் தீர்ப்புகள் பற்றிய உங்கள் சந்தேகங்களுக்கு உடனடியாகப் பதில்களைப் பெறுங்கள்.</p>
-            <a href="ai-assistant.html" class="ai-btn">🤖 Ask AI Assistant</a>
-        </div>
+        <!-- Sidebar (Categories) -->
+        <aside class="sidebar">
+            <h2 class="sidebar-title">பிரிவுகள் (Categories)</h2>
+            <div class="category-list">
+                <button class="category-btn active" onclick="filterSelection('all')">அனைத்தும்</button>
+                <button class="category-btn" onclick="filterSelection('quran')">குர்ஆன் சிந்தனைகள்</button>
+                <button class="category-btn" onclick="filterSelection('history')">வரலாறு & சஹாபாக்கள்</button>
+                <button class="category-btn" onclick="filterSelection('family')">இஸ்லாமியக் குடும்பம்</button>
+                <button class="category-btn" onclick="filterSelection('spirituality')">மன அமைதி & ஆன்மீகம்</button>
+                <button class="category-btn" onclick="filterSelection('dua')">துஆக்கள் & திக்ருகள்</button>
+            </div>
+        </aside>
 
-        <div class="text-center">
-            <h2 class="catalog-title">கட்டுரைகள் (Articles Catalog)</h2>
-        </div>
-
-        <div class="category-filters">
-            <button class="filter-btn active" onclick="filterSelection('all')">அனைத்தும்</button>
-            <button class="filter-btn" onclick="filterSelection('nabimargal')">நபிமார்கள்</button>
-            <button class="filter-btn" onclick="filterSelection('sahabakkal')">சஹாபாக்கள்</button>
-            <button class="filter-btn" onclick="filterSelection('valimargal')">வலிமார்கள்</button>
-            <button class="filter-btn" onclick="filterSelection('kurumargal')">குருமார்கள்</button>
-            <button class="filter-btn" onclick="filterSelection('salawath')">சலவாத்</button>
-            <button class="filter-btn" onclick="filterSelection('ahlul_bayt')">அஹ்லுல் பைத்</button>
-            <button class="filter-btn" onclick="filterSelection('kalvi')">கல்வி</button>
-        </div>
-
-        <div class="post-grid">
+        <!-- Main Content (Articles) -->
+        <main class="main-content">
             
-            <div class="post-card nabimargal">
-                <h3>நபி (ஸல்) அவர்களின் வரலாறு</h3>
-                <p>நபிகள் நாயகம் அவர்களின் ஆரம்பகால வாழ்க்கை மற்றும் சிறப்புகளைப் பற்றிய சுருக்கம்...</p>
-                <a href="articles/nabi-history.html">மேலும் படிக்க →</a>
+            <!-- AI Assistant Banner -->
+            <div class="ai-banner">
+                <div class="ai-banner-text">
+                    <h2>மார்க்க சந்தேகங்கள் உள்ளதா?</h2>
+                    <p>எங்களின் Yaseeni AI-யிடம் கேட்டு குர்ஆன், ஹதீஸ் அடிப்படையில் தெளிவான பதில்களைப் பெறுங்கள்.</p>
+                </div>
+                <a href="ai-assistant.html" class="ai-btn">🤖 AI-யிடம் கேள்</a>
             </div>
 
-            <div class="post-card sahabakkal">
-                <h3>அபூபக்கர் (ரலி) அவர்களின் தியாகங்கள்</h3>
-                <p>இஸ்லாத்தின் வளர்ச்சிக்காக உற்ற தோழர்கள் செய்த மாபெரும் தியாகங்கள் மற்றும் அவர்களின் வாழ்க்கை முறை...</p>
-                <a href="articles/abubakar-history.html">மேலும் படிக்க →</a>
-            </div>
+            <!-- Articles Grid -->
+            <div class="post-grid">
+                
+                <!-- Article 1: Quran -->
+                <div class="post-card quran">
+                    <span class="post-tag">குர்ஆன் சிந்தனைகள்</span>
+                    <h3>சூரா அல்-கஹ்ஃப்: வெள்ளிக்கிழமையின் ஒளி</h3>
+                    <p>ஒவ்வொரு வெள்ளிக்கிழமையும் சூரா அல்-கஹ்ஃப் ஓதுவதன் சிறப்புகளும், அதில் பொதிந்துள்ள 4 மாபெரும் படிப்பினைகளும்...</p>
+                    <a href="articles/surah-kahf.html">மேலும் படிக்க →</a>
+                </div>
 
-            <div class="post-card salawath">
-                <h3>சலவாத் சொல்வதன் நன்மைகள்</h3>
-                <p>நபி (ஸல்) அவர்கள் மீது சலவாத் சொல்வதின் சிறப்புகளும், நாளை மறுமையில் கிடைக்கும் பலன்களும்...</p>
-                <a href="articles/salawath-benefits.html">மேலும் படிக்க →</a>
-            </div>
+                <!-- Article 2: Spirituality -->
+                <div class="post-card spirituality">
+                    <span class="post-tag">மன அமைதி</span>
+                    <h3>இஸ்லாம் காட்டும் மன அமைதி</h3>
+                    <p>வாழ்க்கையின் கவலைகளையும், மன அழுத்தங்களையும் தாண்டி இஸ்லாமிய வழியில் நிம்மதியைப் பெறுவது எப்படி?</p>
+                    <a href="articles/mental-peace.html">மேலும் படிக்க →</a>
+                </div>
 
-            <div class="post-card kalvi">
-                <h3>இஸ்லாத்தில் கல்வியின் முக்கியத்துவம்</h3>
-                <p>மார்க்கக் கல்வியையும், உலகக் கல்வியையும் தேடுவதன் அவசியத்தைப் பற்றி இஸ்லாம் கூறுவது என்ன?</p>
-                <a href="articles/education-islam.html">மேலும் படிக்க →</a>
-            </div>
+                <!-- Article 3: History -->
+                <div class="post-card history">
+                    <span class="post-tag">வரலாறு</span>
+                    <h3>உமர் (ரலி) அவர்களின் நீதிப் பரிபாலனம்</h3>
+                    <p>இன்றைய உலக ஆட்சியாளர்களுக்குப் பாடமாக அமையும் உமர் இப்னு கத்தாப் (ரலி) அவர்களின் வரலாற்றுச் சம்பவங்கள்...</p>
+                    <a href="articles/umar-history.html">மேலும் படிக்க →</a>
+                </div>
 
-            <div class="post-card ahlul_bayt">
-                <h3>அஹ்லுல் பைத்துகளின் சிறப்புகள்</h3>
-                <p>நபி (ஸல்) அவர்களின் குடும்பத்தினரான அஹ்லுல் பைத்துகளின் கண்ணியமும், வரலாறும்...</p>
-                <a href="articles/ahlul-bayt.html">மேலும் படிக்க →</a>
-            </div>
+                <!-- Article 4: Family -->
+                <div class="post-card family">
+                    <span class="post-tag">இஸ்லாமியக் குடும்பம்</span>
+                    <h3>கணவன் - மனைவி உறவின் புனிதம்</h3>
+                    <p>நபி (ஸல்) அவர்களின் வழிகாட்டுதல்படி வீட்டை ஒரு சொர்க்கமாக மாற்றுவதற்கான அழகிய வழிமுறைகள்...</p>
+                    <a href="articles/islamic-family.html">மேலும் படிக்க →</a>
+                </div>
 
-            <div class="post-card valimargal">
-                <h3>இறைநேசர்களின் சிறப்புகள்</h3>
-                <p>வலிமார்களின் வாழ்க்கை குறிப்புகள் மற்றும் அவர்களின் அற்புதங்கள்...</p>
-                <a href="articles/valimargal-history.html">மேலும் படிக்க →</a>
-            </div>
+                <!-- Article 5: Dua -->
+                <div class="post-card dua">
+                    <span class="post-tag">துஆக்கள்</span>
+                    <h3>கடனை அடைப்பதற்கான நபிவழித் துஆக்கள்</h3>
+                    <p>பொருளாதார நெருக்கடிகளில் இருந்து விடுபடவும், ரிஸ்கில் (வாழ்வாதாரத்தில்) பரக்கத் பெறவும் ஓத வேண்டிய துஆக்கள்...</p>
+                    <a href="articles/dua-for-debt.html">மேலும் படிக்க →</a>
+                </div>
 
-        </div>
+                <!-- Article 6: History -->
+                <div class="post-card history">
+                    <span class="post-tag">வரலாறு</span>
+                    <h3>அண்ணல் நபிகளாரின் (ஸல்) இறுதிப் பேருரை</h3>
+                    <p>மனித குலத்திற்கான மாபெரும் சாசனமாக விளங்கும் நபிகள் நாயகம் அவர்களின் இறுதிப் பேருரையின் (ஹஜ்ஜத்துல் விதா) சாராம்சம்.</p>
+                    <a href="articles/last-sermon.html">மேலும் படிக்க →</a>
+                </div>
+
+            </div>
+        </main>
     </div>
 
+    <!-- JavaScript for Catalog Filtering -->
     <script>
         filterSelection("all")
         function filterSelection(c) {
@@ -264,7 +334,7 @@
                 if (x[i].className.indexOf(c) > -1) addClass(x[i], "show");
             }
             
-            var btns = document.getElementsByClassName("filter-btn");
+            var btns = document.getElementsByClassName("category-btn");
             for (i = 0; i < btns.length; i++) {
                 btns[i].addEventListener("click", function() {
                     var current = document.getElementsByClassName("active");
