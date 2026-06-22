@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search | Yaseenis</title>
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- THEME COLORS --- */
+        :root {
+            --emerald-dark: #064e3b;
+            --emerald-main: #047857;
+            --gold-premium: #d97706;
+            --bg-page: #f8fafc;
+            --surface: #ffffff;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --border-light: #e2e8f0;
+            --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Mukta Malar', 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            margin: 0; padding: 0; line-height: 1.7;
+            padding-bottom: 90px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--emerald-dark);
+            color: white; text-align: center;
+            padding: 20px 15px; border-bottom: 4px solid var(--gold-premium);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        header h1 { margin: 0; font-size: 24px; font-weight: 700; }
+        
+        .back-link {
+            position: absolute; left: 15px; top: 25px;
+            color: white; text-decoration: none; font-weight: bold;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
+
+        /* --- SEARCH BAR DESIGN --- */
+        .search-container {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 18px 20px 18px 50px;
+            font-size: 18px;
+            font-family: 'Mukta Malar', sans-serif;
+            border: 2px solid var(--emerald-main);
+            border-radius: 30px;
+            box-shadow: var(--shadow-card);
+            outline: none;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+
+        .search-box:focus {
+            border-color: var(--gold-premium);
+            box-shadow: 0 4px 20px rgba(217, 119, 6, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            color: var(--text-gray);
+        }
+
+        /* --- RESULTS GRID --- */
+        .results-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .result-card {
+            background: var(--surface);
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            box-shadow: var(--shadow-card);
+            border-left: 5px solid var(--border-light);
+            transition: 0.3s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-3px);
+            border-left-color: var(--emerald-main);
+        }
+
+        .result-icon {
+            font-size: 28px;
+            background: var(--bg-page);
+            width: 50px; height: 50px;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 50%;
+        }
+
+        .result-info h3 {
+            margin: 0 0 5px 0;
+            color: var(--emerald-dark);
+            font-size: 18px;
+        }
+
+        .result-info span {
+            font-size: 13px;
+            color: var(--text-gray);
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 5px;
+        }
+
+        .no-results {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 18px;
+            padding: 40px 0;
+            display: none;
+        }
+
+        /* --- BOTTOM NAVIGATION (MOBILE APP STYLE) --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: #ffffff; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-around;
+            padding: 10px 0 15px 0; z-index: 1000;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            text-decoration: none; color: var(--text-dark);
+            font-size: 12px; font-weight: 700; font-family: 'Inter', sans-serif;
+        }
+
+        .icon-circle {
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px; margin-bottom: 5px; color: white;
+        }
+
+        .bg-orange { background-color: #f97316; }
+        .bg-blue { background-color: #3b82f6; }
+        .bg-green { background-color: #22c55e; }
+        .bg-teal { background-color: #14b8a6; }
+        .bg-darkblue { background-color: #4f46e5; }
+
+        @media (min-width: 769px) { .bottom-nav { display: none; } body { padding-bottom: 0; } }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="back-link">← முகப்பு</a>
+        <h1>தேடல் (Search)</h1>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-box" placeholder="கட்டுரைகள், வீடியோக்கள், ஆடியோக்களைத் தேடுங்கள்..." onkeyup="performSearch()">
+        </div>
+
+        <div id="noResults" class="no-results">
+            நீங்கள் தேடிய தகவல் எதுவும் கிடைக்கவில்லை 😔
+        </div>
+
+        <div class="results-container" id="resultsList">
+            <!-- Search Results will appear here dynamically -->
+        </div>
+
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <div class="icon-circle bg-orange">🔊</div>
+            <span>Audios</span>
+        </a>
+        <a href="index.html" class="nav-item">
+            <div class="icon-circle bg-blue">📄</div>
+            <span>Articles</span>
+        </a>
+        <a href="search.html" class="nav-item">
+            <div class="icon-circle bg-green" style="background-color: #047857;">🔍</div>
+            <span>Search</span>
+        </a>
+        <a href="videos/list.html" class="nav-item">
+            <div class="icon-circle bg-teal">🎥</div>
+            <span>Videos</span>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="icon-circle bg-darkblue">📚</div>
+            <span>Books</span>
+        </a>
+    </nav>
+
+    <!-- Search JavaScript -->
+    <script>
+        // இணையதளத்தில் உள்ள அனைத்து தகவல்களும் (Articles, Videos, Audios)
+        const siteContent = [
+            // Articles
+            { title: "அஹ்லுல் பைத்துகளின் சிறப்புகள்", type: "Article", link: "articles/Ahlul-baith.html", icon: "📄" },
+            { title: "பாத்திமா நாயகி - தனிச் சிறப்புகள்", type: "Article", link: "articles/fatima-nayagi.html", icon: "📄" },
+            { title: "பிறை பார்ப்பது (மார்க்க சட்டங்கள்)", type: "Article", link: "articles/pirai-rule.html", icon: "📄" },
+            
+            // Videos - Moulavi Peer Mohammed Yaseeni
+            { title: "மத நல்லிணக்கம் (Tamil Bayan)", type: "Video", link: "videos/peer-mohammed-yaseeni.html", icon: "🎥" },
+            { title: "கர்பலா பயான் நிகழ்வு", type: "Video", link: "videos/peer-mohammed-yaseeni.html", icon: "🎥" },
+            { title: "யா அலி, யா ஹஸன், யா ஹுஸைன் ஸலாம்", type: "Video", link: "videos/peer-mohammed-yaseeni.html", icon: "🎥" },
+            { title: "முஹப்பதே ரசூல் பயான்", type: "Video", link: "videos/peer-mohammed-yaseeni.html", icon: "🎥" },
+            { title: "இமாம் ஜாமிஆ மஸ்ஜித் மதுக்கூர் உரை", type: "Video", link: "videos/peer-mohammed-yaseeni.html", icon: "🎥" },
+            { title: "ஸலாம் பைத்", type: "Video", link: "videos/peer-mohammed-yaseeni.html", icon: "🎥" },
+            { title: "உள்ளம் தூய்மை பெற ஷைகுமார்கள் அவசியம்", type: "Video", link: "videos/peer-mohammed-yaseeni.html", icon: "🎥" },
+            { title: "சத்திய நாவு ஜும்ஆ பயான்", type: "Video", link: "videos/peer-mohammed-yaseeni.html", icon: "🎥" },
+            { title: "நபி புகழ்", type: "Video", link: "videos/peer-mohammed-yaseeni.html", icon: "🎥" },
+            
+            // Videos - Moulavi Sheik Abdullah Jamali
+            { title: "ஜகாத்தின் சட்டங்கள் (பாகம் - 1)", type: "Video", link: "videos/list.html", icon: "🎥" },
+            { title: "ஜகாத்தின் சட்டங்கள் (பாகம் - 2)", type: "Video", link: "videos/list.html", icon: "🎥" },
+            { title: "மீலாதுன்னபீ பெருவிழா கொண்டாடலாமா?", type: "Video", link: "videos/list.html", icon: "🎥" },
+            { title: "சுவனம் செல்லும் சுன்னத் ஜமாஅத்", type: "Video", link: "videos/list.html", icon: "🎥" },
+            { title: "பூமான் நபியின் புனித குடும்பத்தினர்", type: "Video", link: "videos/list.html", icon: "🎥" },
+            { title: "என்னை போல் வாழுங்கள் (ஹதீஸ்)", type: "Video", link: "videos/list.html", icon: "🎥" }
+        ];
+
+        const resultsList = document.getElementById('resultsList');
+        const noResults = document.getElementById('noResults');
+
+        // Function to display all items initially
+        function displayResults(items) {
+            resultsList.innerHTML = '';
+            
+            if (items.length === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+                items.forEach(item => {
+                    const card = document.createElement('a');
+                    card.href = item.link;
+                    card.className = 'result-card';
+                    card.innerHTML = `
+                        <div class="result-icon">${item.icon}</div>
+                        <div class="result-info">
+                            <h3>${item.title}</h3>
+                            <span>${item.type}</span>
+                        </div>
+                    `;
+                    resultsList.appendChild(card);
+                });
+            }
+        }
+
+        // Show all items when page loads
+        displayResults(siteContent);
+
+        // Search logic
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filteredData = siteContent.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.type.toLowerCase().includes(query)
+            );
+            displayResults(filteredData);
+        }
+    </script>
+
+</body>
+</html>
