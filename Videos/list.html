@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Islamic Videos & Bayans | Yaseenis</title>
     
+    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -54,19 +55,34 @@
             display: flex; align-items: center; gap: 10px;
         }
 
-        /* --- HAZRATH LIST DESIGN (ACCORDION/CARDS) --- */
+        /* --- HAZRATH LIST DESIGN (CARDS) --- */
         .hazrath-card {
             background: var(--surface); border-radius: 12px;
-            padding: 20px; margin-bottom: 20px;
+            padding: 25px; margin-bottom: 30px;
             box-shadow: var(--shadow-card);
             border-left: 5px solid var(--emerald-main);
         }
 
-        .hazrath-name {
-            font-size: 20px; color: var(--emerald-dark); margin: 0 0 10px 0;
-            display: flex; align-items: center; gap: 10px;
+        /* Profile Header inside Card */
+        .hazrath-header {
+            display: flex; align-items: center; gap: 20px;
+            margin-bottom: 20px; border-bottom: 1px solid var(--border-light);
+            padding-bottom: 15px;
         }
 
+        .hazrath-img {
+            width: 80px; height: 80px; border-radius: 50%;
+            object-fit: cover; border: 3px solid var(--gold-premium);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .hazrath-info h2 {
+            font-size: 20px; color: var(--emerald-dark); margin: 0 0 5px 0;
+        }
+
+        .hazrath-info p { margin: 0; font-size: 14px; color: var(--text-gray); }
+
+        /* Video List Styling */
         .bayan-list { list-style: none; padding: 0; margin: 0; }
         
         .bayan-list li {
@@ -78,12 +94,21 @@
         .bayan-list a {
             display: flex; justify-content: space-between; align-items: center;
             padding: 12px 5px; color: var(--text-dark);
-            text-decoration: none; font-size: 16px; transition: 0.2s;
+            text-decoration: none; font-size: 15px; transition: 0.2s;
         }
         
         .bayan-list a:hover { color: var(--emerald-main); padding-left: 10px; font-weight: 600; }
         
         .play-icon { color: var(--gold-premium); font-size: 18px; }
+
+        .view-all-btn {
+            display: inline-block; margin-top: 15px;
+            background: #f0fdf4; color: var(--emerald-dark);
+            padding: 8px 15px; border-radius: 8px; font-size: 14px;
+            font-weight: 600; text-decoration: none; border: 1px solid var(--emerald-main);
+            transition: 0.3s; width: 100%; text-align: center; box-sizing: border-box;
+        }
+        .view-all-btn:hover { background: var(--emerald-main); color: white; }
 
         /* --- BOTTOM NAVIGATION (MOBILE APP STYLE) --- */
         .bottom-nav {
@@ -117,18 +142,55 @@
 </head>
 <body>
 
+    <!-- Header -->
     <header>
-        <a href="../index.html" class="back-link">← பின்செல்</a>
+        <a href="../index.html" class="back-link">← முகப்பு</a>
         <h1>வீடியோ பயான்கள்</h1>
     </header>
 
+    <!-- Main Content -->
     <div class="container">
         <div class="page-title">
             <span>🎥</span> சுன்னத் ஜமாஅத் அறிஞர்களின் உரைகள்
         </div>
 
+        <!-- Hazrath 1: Moulavi Peer Mohammed Yaseeni -->
         <div class="hazrath-card">
-            <h2 class="hazrath-name"><span>👳‍♂️</span> மௌலவி V.M. முஹம்மது ஜகரிய்யா யாஸீனிய்</h2>
+            <div class="hazrath-header">
+                <!-- உங்களின் புகைப்படம் -->
+                <img src="../photos/peer-yaseeni.jpg" alt="மௌலவி S. பீர் முஹம்மது யாஸீனிய்" class="hazrath-img" onerror="this.src='https://via.placeholder.com/80/047857/ffffff?text=Photo'">
+                <div class="hazrath-info">
+                    <h2>மௌலவி S. பீர் முஹம்மது யாஸீனிய்</h2>
+                    <p>ஹக்கிய்யுல் காதிரிய், இமாம் ஜாமிஆ மஸ்ஜித் மதுக்கூர்</p>
+                </div>
+            </div>
+
+            <ul class="bayan-list">
+                <li><a href="peer-mohammed-yaseeni.html">மத நல்லிணக்கம் (Tamil Bayan) <span class="play-icon">▶</span></a></li>
+                <li><a href="peer-mohammed-yaseeni.html">கர்பலா பயான் நிகழ்வு <span class="play-icon">▶</span></a></li>
+                <li><a href="peer-mohammed-yaseeni.html">யா அலி, யா ஹஸன், யா ஹுஸைன் ஸலாம் <span class="play-icon">▶</span></a></li>
+                <li><a href="peer-mohammed-yaseeni.html">முஹப்பதே ரசூல் பயான் <span class="play-icon">▶</span></a></li>
+                <li><a href="peer-mohammed-yaseeni.html">இமாம் ஜாமிஆ மஸ்ஜித் மதுக்கூர் உரை <span class="play-icon">▶</span></a></li>
+                <li><a href="peer-mohammed-yaseeni.html">ஸலாம் பைத் <span class="play-icon">▶</span></a></li>
+                <li><a href="peer-mohammed-yaseeni.html">உள்ளம் தூய்மை பெற ஷைகுமார்கள் அவசியம் <span class="play-icon">▶</span></a></li>
+                <li><a href="peer-mohammed-yaseeni.html">சத்திய நாவு (لسان الحق) ஜும்ஆ பயான் <span class="play-icon">▶</span></a></li>
+                <li><a href="peer-mohammed-yaseeni.html">நபி புகழ் <span class="play-icon">▶</span></a></li>
+                <li><a href="peer-mohammed-yaseeni.html">மீலாது விழா பயான் - மேலக்கோட்டை <span class="play-icon">▶</span></a></li>
+                <li><a href="peer-mohammed-yaseeni.html">மீலாது விழா பயான் - மேலக்கோட்டை (பாகம் 2) <span class="play-icon">▶</span></a></li>
+            </ul>
+            
+            <a href="peer-mohammed-yaseeni.html" class="view-all-btn">அனைத்து வீடியோக்களையும் காண மற்றும் இயக்க</a>
+        </div>
+
+        <!-- Hazrath 2: Moulavi V.M. Mohammed Zakariya -->
+        <div class="hazrath-card">
+            <div class="hazrath-header">
+                <img src="https://via.placeholder.com/80/064e3b/ffffff?text=MZ" alt="மௌலவி V.M. முஹம்மது ஜகரிய்யா" class="hazrath-img" style="border-color: var(--emerald-main);">
+                <div class="hazrath-info">
+                    <h2>மௌலவி V.M. முஹம்மது ஜகரிய்யா யாஸீனிய்</h2>
+                    <p>இஸ்லாமிய ஆய்வாளர் மற்றும் கட்டுரையாளர்</p>
+                </div>
+            </div>
             <ul class="bayan-list">
                 <li><a href="#">ரமழான் சிறப்புரை: பிறை சட்டங்கள் <span class="play-icon">▶</span></a></li>
                 <li><a href="#">அஹ்லுல் பைத்துகளின் சிறப்புகள் <span class="play-icon">▶</span></a></li>
@@ -136,34 +198,25 @@
             </ul>
         </div>
 
+        <!-- Hazrath 3: Sheik Abdullah Jamali -->
         <div class="hazrath-card">
-            <h2 class="hazrath-name"><span>👳‍♂️</span> காஜா முயீனுத்தீன் பாகவி</h2>
+            <div class="hazrath-header">
+                <img src="https://via.placeholder.com/80/064e3b/ffffff?text=SJ" alt="மௌலவி ஷேக் அப்துல்லாஹ் ஜமாலி" class="hazrath-img" style="border-color: var(--emerald-main);">
+                <div class="hazrath-info">
+                    <h2>மௌலவி ஷேக் அப்துல்லாஹ் ஜமாலி ஹஜ்ரத்</h2>
+                    <p>பிரபல மார்க்க அறிஞர்</p>
+                </div>
+            </div>
             <ul class="bayan-list">
-                <li><a href="#">பத்து சஹாபாக்களின் மாபெரும் சிறப்பு <span class="play-icon">▶</span></a></li>
-                <li><a href="#">இஸ்லாம் காட்டும் குடும்ப வாழ்க்கை <span class="play-icon">▶</span></a></li>
-                <li><a href="#">நபிகள் நாயகம் (ஸல்) அவர்களின் கருணை <span class="play-icon">▶</span></a></li>
-            </ul>
-        </div>
-
-        <div class="hazrath-card">
-            <h2 class="hazrath-name"><span>👳‍♂️</span> சதிக்குத்தீன் பாஜில் பாகவி</h2>
-            <ul class="bayan-list">
-                <li><a href="#">அர்த்தமுள்ள ஆன்மீகம் <span class="play-icon">▶</span></a></li>
-                <li><a href="#">தடம் பதித்த இளைஞர்களே! தடம் மாறியது ஏன்? <span class="play-icon">▶</span></a></li>
-                <li><a href="#">மத்ஹபுகள் மட்டும் இல்லையென்றால்... <span class="play-icon">▶</span></a></li>
-            </ul>
-        </div>
-
-        <div class="hazrath-card">
-            <h2 class="hazrath-name"><span>👳‍♂️</span> ஏ.ஆர். முஹம்மது அலி ரப்பானி</h2>
-            <ul class="bayan-list">
-                <li><a href="#">திக்ரின் சிறப்புகளும், மன அமைதியும் <span class="play-icon">▶</span></a></li>
-                <li><a href="#">மரணத்தின் சிந்தனை <span class="play-icon">▶</span></a></li>
+                <li><a href="#">ஜகாத்தின் சட்டங்கள் (பாகம் 1 & 2) <span class="play-icon">▶</span></a></li>
+                <li><a href="#">மீலாதுன்னபீ பெருவிழா கொண்டாடலாமா? <span class="play-icon">▶</span></a></li>
+                <li><a href="#">சுவனம் செல்லும் சுன்னத் ஜமாஅத் <span class="play-icon">▶</span></a></li>
             </ul>
         </div>
 
     </div>
 
+    <!-- Mobile Bottom Navigation -->
     <nav class="bottom-nav">
         <a href="#" class="nav-item">
             <div class="icon-circle bg-orange">🔊</div>
