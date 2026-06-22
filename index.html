@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yaseenis | Premium Islamic Magazine</title>
+    <title>Yaseenis | Premium Islamic Portal</title>
+    <meta name="description" content="Yaseenis - தூய்மையான இஸ்லாமிய மார்க்க அறிவு, குர்ஆன், ஹதீஸ் மற்றும் கட்டுரைகள் அடங்கிய தளம்.">
     
-    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Google AdSense Main Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9950635734966108" crossorigin="anonymous"></script>
     
     <style>
@@ -32,6 +31,7 @@
             background-color: var(--bg-page);
             color: var(--text-dark);
             margin: 0; padding: 0; line-height: 1.7;
+            padding-bottom: 80px; /* Space for mobile bottom nav */
         }
 
         /* --- HEADER & NAVIGATION --- */
@@ -61,10 +61,6 @@
             font-weight: 600; margin-left: 25px; font-size: 16px; transition: var(--transition);
         }
         .nav-links a:hover { color: var(--emerald-main); }
-        .ai-badge {
-            background: var(--gold-light); color: var(--gold-premium);
-            padding: 5px 12px; border-radius: 20px; font-size: 14px; margin-left: 10px;
-        }
 
         /* --- HORIZONTAL PRAYER TIMES --- */
         .prayer-ticker {
@@ -74,188 +70,4 @@
             font-size: 15px; font-weight: 600; flex-wrap: wrap;
         }
         .prayer-ticker span { opacity: 0.9; }
-        .prayer-ticker strong { color: var(--gold-light); margin-left: 5px; }
-
-        /* --- MAIN CONTAINER --- */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-
-        /* --- ADSENSE WRAPPER --- */
-        .ad-banner {
-            background: var(--surface); border-radius: 12px; padding: 10px;
-            margin-bottom: 40px; box-shadow: var(--shadow-card); text-align: center;
-        }
-
-        /* --- SECTION TITLE --- */
-        .section-title {
-            display: flex; align-items: center; gap: 15px;
-            margin-bottom: 30px;
-        }
-        .section-title h2 { margin: 0; color: var(--emerald-dark); font-size: 28px; }
-        .section-title::after {
-            content: ''; flex: 1; height: 2px;
-            background: linear-gradient(to right, var(--emerald-main), transparent);
-        }
-
-        /* --- MAGAZINE GRID LAYOUT --- */
-        .article-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px; margin-bottom: 50px;
-        }
-
-        .article-card {
-            background: var(--surface); border-radius: 16px;
-            padding: 30px; box-shadow: var(--shadow-card);
-            border-top: 5px solid var(--emerald-main);
-            transition: var(--transition);
-            display: flex; flex-direction: column;
-        }
-
-        .article-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            border-top-color: var(--gold-premium);
-        }
-
-        .category-tag {
-            align-self: flex-start;
-            background: var(--gold-light); color: var(--gold-premium);
-            padding: 6px 14px; border-radius: 8px; font-size: 13px;
-            font-weight: 700; margin-bottom: 15px;
-        }
-
-        .article-card h3 {
-            font-size: 22px; color: var(--text-dark); margin: 0 0 10px 0; line-height: 1.4;
-        }
-        
-        .article-author {
-            font-size: 13px; color: var(--text-gray); margin-bottom: 15px;
-            display: flex; align-items: center; gap: 5px;
-        }
-
-        .article-card p {
-            color: var(--text-gray); font-size: 16px; margin-bottom: 25px; flex-grow: 1;
-        }
-
-        .read-more {
-            display: inline-flex; align-items: center; gap: 8px;
-            color: var(--emerald-main); text-decoration: none;
-            font-weight: 700; font-size: 15px; transition: var(--transition);
-        }
-        .read-more::after { content: '→'; transition: transform 0.3s; }
-        .read-more:hover { color: var(--gold-premium); }
-        .read-more:hover::after { transform: translateX(5px); }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: var(--emerald-dark); color: white;
-            text-align: center; padding: 40px 20px; margin-top: 50px;
-        }
-        footer p { margin: 0; opacity: 0.8; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simplified for mobile view */
-            .prayer-ticker { gap: 15px; font-size: 14px; }
-            .article-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Top Bismillah -->
-    <div class="header-top">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
-
-    <!-- Navigation -->
-    <header>
-        <div class="nav-container">
-            <div class="logo"><h1>Yaseenis<span>.</span></h1></div>
-            <nav class="nav-links">
-                <a href="index.html">முகப்பு</a>
-                <a href="#">குர்ஆன்</a>
-                <a href="#">ஹதீஸ்</a>
-                <a href="#">கட்டுரைகள்</a>
-                <a href="ai-assistant.html">AI உதவி <span class="ai-badge">புதியது</span></a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Horizontal Prayer Times (Premium Look) -->
-    <div class="prayer-ticker">
-        <div>பஜ்ர் <strong>04:02 AM</strong></div>
-        <div>லுஹர் <strong>12:22 PM</strong></div>
-        <div>அஸர் <strong>03:42 PM</strong></div>
-        <div>மஃரிப் <strong>07:13 PM</strong></div>
-        <div>இஷா <strong>08:43 PM</strong></div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="container">
-
-        <!-- Google Ad 1: Auto Ad -->
-        <div class="ad-banner">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9950635734966108"
-                 data-ad-slot="2326790752"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
-        <div class="section-title">
-            <h2>சமீபத்திய கட்டுரைகள்</h2>
-        </div>
-
-        <!-- 3 Articles Grid -->
-        <div class="article-grid">
-            
-            <!-- Article 1: Ahlul Baith -->
-            <div class="article-card">
-                <span class="category-tag">அஹ்லுல் பைத்</span>
-                <h3>அஹ்லுல் பைத்துகளின் சிறப்புகள்</h3>
-                <div class="article-author">✍️ தொகுப்பு: Yaseenis</div>
-                <p>நபி (ஸல்) அவர்களின் குடும்பத்தினரான அஹ்லுல் பைத்துகளின் கண்ணியமும், சிறப்புகளும் அடங்கிய வரலாற்றுப் பதிவு...</p>
-                <a href="articles/Ahlul-baith.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
-            </div>
-
-            <!-- Article 2: Fatima Nayagi -->
-            <div class="article-card">
-                <span class="category-tag">சஹாபியப் பெண்மணிகள்</span>
-                <h3>பாத்திமா நாயகி - தனிச் சிறப்புகள்</h3>
-                <div class="article-author">✍️ எழுத்து: V.m.முஹம்மது ஜகரிய்யா யாஸீனிய்</div>
-                <p>உலகப் பெண்களின் தலைவி அன்னை பாத்திமா (ரலி) அவர்களின் மகத்துவத்தை உணர்த்தும் ஆதாரப்பூர்வமான ஹதீஸ்களின் தொகுப்பு.</p>
-                <a href="articles/fatima-nayagi.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
-            </div>
-
-            <!-- Article 3: Pirai Rules -->
-            <div class="article-card">
-                <span class="category-tag">மார்க்க சட்டங்கள்</span>
-                <h3>பிறை பார்ப்பது (மார்க்க சட்டங்கள்)</h3>
-                <div class="article-author">✍️ எழுத்து: மௌலவி அல்ஹாபிழ் முஹம்மது ஜகரிய்யா</div>
-                <p>பிறை பார்த்து நோன்பு வைப்பது, மேக மூட்டம் ஏற்பட்டால் என்ன செய்வது? மற்றும் சமூக வலைத்தளங்களில் பிறை செய்திகளை நம்பலாமா?</p>
-                <a href="articles/pirai-rule.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
-            </div>
-
-        </div>
-
-        <!-- Google Ad 3: Multiplex Ad (For End of Articles) -->
-        <div class="ad-banner">
-            <h3 style="font-size: 16px; color: var(--text-gray); text-align: left; margin: 0 0 10px 10px;">தொடர்புடையவை:</h3>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-format="autorelaxed"
-                 data-ad-client="ca-pub-9950635734966108"
-                 data-ad-slot="3448300731"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <h2>Yaseenis Islamic Portal</h2>
-        <p>&copy; 2026 Yaseenis. All Rights Reserved. தூய்மையான மார்க்க அறிவை தேடுவோருக்கு.</p>
-    </footer>
-
-</body>
-</html>
+        .prayer-ticker strong { color: var(--gold-light); margin-left:
