@@ -1,1 +1,312 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <title>பிறை பார்ப்பது - மார்க்க சட்டங்கள் | Yaseenis</title>
+    <meta name="description" content="பிறை பார்த்து நோன்பு வைப்பது, பெருநாள் கொண்டாடுவது மற்றும் அதன் மார்க்க சட்டங்கள் பற்றிய தெளிவான விளக்கம்.">
+    <meta name="author" content="V.M. முஹம்மது ஜகரிய்யா யாஸீனிய்">
+    
+    <!-- Premium Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #064e3b; /* Deep Emerald Green */
+            --primary-accent: #0f5132; /* Classic Islamic Green */
+            --gold-accent: #d4af37; /* Royal Gold */
+            --bg-body: #f4f7f6;
+            --bg-surface: #ffffff;
+            --text-main: #334155;
+        }
+
+        body {
+            font-family: 'Mukta Malar', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 5px solid var(--gold-accent);
+        }
+
+        .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: 28px;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        /* --- Article Container --- */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--gold-accent); }
+
+        .article-card {
+            background: var(--bg-surface);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary-accent);
+        }
+
+        .article-title {
+            color: var(--primary-dark);
+            font-size: 32px;
+            margin-top: 0;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .author-name {
+            text-align: center;
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .article-meta {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 40px;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 15px;
+        }
+
+        /* --- Content Styling --- */
+        .tamil-text {
+            font-size: 18px;
+            color: #1e293b;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        /* --- Hadith & Important Blocks --- */
+        .hadith-block {
+            background-color: #f8fafc;
+            border-left: 5px solid var(--gold-accent);
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 26px;
+            text-align: right;
+            direction: rtl;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            line-height: 2;
+        }
+
+        .transliteration {
+            font-size: 16px;
+            color: #475569;
+            font-style: italic;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+
+        .reference {
+            display: inline-block;
+            background-color: var(--primary-accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* --- Highlight Sections --- */
+        .section-title {
+            color: var(--primary-dark);
+            font-size: 22px;
+            border-bottom: 2px solid var(--gold-accent);
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .bullet-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #1e293b;
+        }
+
+        .bullet-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+
+        .warning-box {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: #b45309;
+            font-weight: 600;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .article-card { padding: 20px; }
+            .article-title { font-size: 24px; }
+            .arabic-text { font-size: 22px; }
+            .tamil-text, .bullet-list li { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+        <h1>Yaseenis Islamic Portal</h1>
+    </header>
+
+    <div class="container">
+        <!-- முகப்பு பக்கத்திற்கு செல்ல -->
+        <a href="../index.html" class="back-btn">← முகப்புப் பக்கத்திற்குத் திரும்ப</a>
+
+        <article class="article-card">
+            <h1 class="article-title">பிறை பார்ப்பது (மார்க்க சட்டங்கள்)</h1>
+            <div class="author-name">எழுத்து: மௌலவி அல்ஹாபிழ் V.M. முஹம்மது ஜகரிய்யா யாஸீனிய்</div>
+            <div class="article-meta">பிரிவு: ரமழான் / மார்க்க சட்டங்கள்</div>
+
+            <div class="article-content">
+                
+                <h2 class="section-title">பிறை பார்த்து நோன்பு வைப்பது</h2>
+
+                <!-- Hadith 1 -->
+                <div class="hadith-block">
+                    <div class="tamil-text"><strong>"நீங்கள் பிறை பார்த்து நோன்பு வையுங்கள். பிறை பார்த்து நோன்பை விடுங்கள் (பெருநாள் கொண்டாடுங்கள்)."</strong></div>
+                    <span class="reference">நூல்: புகாரி</span>
+                </div>
+
+                <p class="tamil-text">"பிறை பார்ப்பதின்" முக்கியத்துவத்தை மேல உள்ள ஹதீஸ் சுட்டிக்காட்டுகின்றது. நோன்பு நோற்க, பெருநாள் கொண்டாட, அந்தந்த பகுதியில் பிறை பார்க்க வேண்டும் என மார்க்கம் நமக்குச் சொல்லித் தருகின்றது.</p>
+
+                <!-- Incident 1 -->
+                <div class="hadith-block">
+                    <p class="tamil-text">குரைத் (ரலி) அவர்கள் சொல்கிறார்கள்:<br>
+                    நான் சிரியா நாட்டிற்குச் சென்றேன். ரமழான் ஆரம்ப நாட்களில் அங்கு தான் தங்கியிருந்தேன். அங்கே வெள்ளிக்கிழமை தான் பிறை பார்த்து, நோன்பும் வைத்தோம். ரமழானில் கடைசி கட்டத்தில் நான் மதீனா திரும்பினேன். ஒரு நாள் இப்னு அப்பாஸ் (ரலி) அவர்களிடம் பல விஷயங்களை பேசிக் கொண்டு வந்தோம்.</p>
+                    <p class="tamil-text">அதில் சிரியாவில் எப்போது நீங்கள் பிறை பார்த்தீர்கள் என்று இப்னு அப்பாஸ் (ரலி) அவர்கள் கேட்க, "வெள்ளிக்கிழமை" என்றேன்.</p>
+                    <p class="tamil-text">"பிறையை நீங்கள் பார்த்தீர்களா?"</p>
+                    <p class="tamil-text">"ஆம்! நானும் பார்த்தேன். முஆவியா (ரலி) அவர்களும், மற்ற ஸஹாபாக்களும் பார்த்தார்கள். எனவே நாங்கள் நோன்பு நோற்றோம்" என்றேன்.</p>
+                    <p class="tamil-text">அதற்கு இப்னு அப்பாஸ் (ரலி) அவர்கள், "மதீனாவில் சனிக்கிழமை இரவுதான் பிறை பார்த்து, நோன்பு வைத்தோம். இங்கு பிறை தெரிந்தால் பெருநாள். இல்லையெனில் 30-ஐ பூர்த்தியாக்குவோம்" என்றார்கள்.</p>
+                    <p class="tamil-text">"நாங்கள் பார்த்த பிறை உங்களுக்கு போதாதா?" என நான் கேட்டேன்.</p>
+                    <p class="tamil-text"><strong>"இங்கு பார்க்கும் பிறையை பார்த்து தான் நோன்பு வைக்கவும், விடவும், ரஸுல்நாயகம் (ஸல்) அவர்கள் எங்களுக்கு கட்டளையிட்டுள்ளார்கள். அதன்படியே நாங்கள் அமல் செய்வோம்"</strong> என்றார்கள் இப்னு அப்பாஸ் (ரலி) அவர்கள்.</p>
+                    <span class="reference">நூல்: முஸ்லிம்</span>
+                </div>
+
+                <h2 class="section-title">நேர வித்தியாசமும், மேக மூட்டமும்</h2>
+                
+                <p class="tamil-text">தமிழகத்திற்கும், சவூதிக்கும் நேரங்களின் வித்தியாசம் நாம் தெரிந்ததே! தொழுகை நேரம் மாறுபடுவதும் நாம் அறிந்ததே! "சவூதியில் பிறையை பார்த்து விட்டார்கள். அதனால நான் நோன்பு வைப்பேன். பெருநாள் கொண்டாடுவேன்" என்றால் அதை விட முட்டாள் தனம் வேறு எதுவுமில்லை. பிறை நமக்கு ஒரு நாள் பிந்தி தெரிவதற்கு மேகத்தின் சுழற்சி தான் காரணம் என்பதை நாம் தெளிவாக விளங்கிக் கொள்ள வேண்டும்.</p>
+
+                <div class="hadith-block">
+                    <div class="tamil-text"><strong>"நீங்கள் பிறையை பார்க்க முடியாமல் போனால் (மேக மூட்டத்தின் காரணமாக), ஷஃபான் மாதத்தை 30 ஆக கணக்கிட்டுக் கொள்ளுங்கள்"</strong> என்றார்கள் ரஸுல்லல்லாஹு அலைஹி வஸல்லம் அவர்கள்.</div>
+                    <span class="reference">நூல்: புகாரி</span>
+                </div>
+
+                <p class="tamil-text">தமிழகத்தில் பிறை வந்து, மேக மூட்டம் காரணத்தினால் நாம் பார்க்க முடியவில்லையானால் ஷஃபான் 30-ஐ பூர்த்தியாக்கி விட்டு, நோன்பு நோற்க வேண்டும். காரணம், "நீங்கள் பிறை பார்த்து நோன்பு வையுங்கள். பிறை பார்த்து நோன்பை விடுங்கள்" என்ற ஹதீஸ் அடிப்படையிலும், மேல குறிப்பிட்ட ஹதீஸ் அடிப்படையிலும் தான்.</p>
+
+                <h2 class="section-title">ஒரு பகுதியில் பார்த்தால் போதுமா?</h2>
+
+                <p class="tamil-text">ஒவ்வொரு ஊரிலும் பிறை பார்க்க தேவையில்லை. ஒரு ஏரியாவில் பிறை பார்த்தாலே போதும்.</p>
+
+                <div class="hadith-block">
+                    <div class="tamil-text">ரஸுல் ஸல்லல்லாஹு அலைஹி வஸல்லம் அவர்களிடத்தில் ஒரு கிராமத்து அரபி வந்து, "எங்கள் பகுதியில் பிறையை நாங்கள் பார்த்து விட்டோம் யா ரஸுலுல்லாஹ்!" என்றார். அதை ஏற்றுக் கொண்டார்கள் நாயகம் ஸல்லல்லாஹு அலைஹி வஸல்லம் அவர்கள்.</div>
+                    <span class="reference">நூல்: திர்மிதி, அபூதாவூத்</span>
+                </div>
+
+                <p class="tamil-text">சிங்கப்பூர், சவூதி போன்ற சிறிய நாடுகளுக்கு ஒரு பகுதியில் பிறை பார்த்து விட்டாலே போதும், நாடு முழுவதும் நோன்பை வைக்கவும், பெருநாள் கொண்டாடவும் அனுமதி உண்டு.</p>
+                <p class="tamil-text">ஆனால், அதிக பரப்பளவு கொண்ட இந்தியாவில் ஒரு மாநிலத்தில் தென்பட்ட பிறை வைத்து நாடு முழுதும் பெருநாள் கொண்டாட முடியாது. அந்தந்த மாநிலத்தில் பிறையைப் பார்த்து, நோன்பு வைக்கவும், பெருநாள் கொண்டாட வேண்டும் என்றும் மார்க்கம் சொல்கின்றது.</p>
+
+                <h2 class="section-title">காழி (மார்க்க நீதிபதி) எதற்கு?</h2>
+                <p class="tamil-text">பிறையை தென்பட்டதை உறுதி செய்பவர் காழி. பிறையை பார்த்தவர் நம்பகமானவரா? எத்தனை சாட்சி? பிறையை எங்கு பார்த்தார்? என்பதை ஆராய்ந்து, பின்னர் முடிவை அவர் அறிவிப்பார்.</p>
+
+                <h3 style="color: var(--primary-dark);">பிறையை பார்த்தவர் எப்படி இருக்க வேண்டும்?</h3>
+                <ul class="bullet-list">
+                    <li>நம்பகமானவராக இருக்க வேண்டும்.</li>
+                    <li>உண்மையாளராக இருக்க வேண்டும்.</li>
+                    <li>நல்ல கண் பார்வை உள்ளவராக இருக்க வேண்டும்.</li>
+                </ul>
+
+                <div class="warning-box">
+                    போலித் தவ்ஹீத்வாதிகள் "நாங்கள் பிறையை பார்த்துவிட்டோம்" என்று குழப்பத்தை ஏற்படுத்துவார்கள். அதை நாம் ஏற்கத் தேவையில்லை. காரணம் அவர்கள் மேலே நாம் சொன்ன "நம்பகமானவர்", "உண்மையாளர்" பட்டியலில் இல்லை.
+                </div>
+
+                <h2 class="section-title">சமூக வலைத்தளங்களில் (WhatsApp) பிறை அறிவிப்பு</h2>
+                <p class="tamil-text">ஒரு இடத்தில் பிறையைப் பார்த்து விட்டால், உடனே WhatsApp-ல் போடாதீர்கள். அதைப் பற்றி அந்த ஜமாஅத்திடமோ, இமாமிடமோ உறுதி செய்து விட்டு, அப்புறம் ஷேர் செய்யுங்கள்.</p>
+                <p class="tamil-text">WhatsApp-ல் பிறையை பார்த்த செய்தி வந்தாலும், குரூப் அட்மின் அல்லது தளத்திலுள்ள ஆலிம்களிடத்தில் உறுதி செய்த பின்னர் ஷேர் செய்யுங்கள்.</p>
+
+                <h2 class="section-title">பிறையைப் பார்த்த பின் ஓதும் துஆ</h2>
+
+                <!-- Dua Block -->
+                <div class="hadith-block">
+                    <div class="arabic-text">اللهم أهله علينا بالأمن و الإيمان و السلامة و الإسلام ربي و ربك الله هلال رشد و خير</div>
+                    
+                    <div class="transliteration">
+                        <strong>ஓத வேண்டிய முறை:</strong><br>
+                        அல்லாஹும்ம‌ அஹில்ல‌ஹூ அலைனா பில் அம்னி வ‌ல் ஈமான் வ‌ஸ்ஸ‌லாம‌த்தி வ‌ல் இஸ்லாம் ரப்பி வ ரப்புக்கல்லாஹ் ஹிலாலு ருஸ்தின் வ ஹைர்.
+                    </div>
+                    
+                    <div class="tamil-text">
+                        <strong>பொருள்:</strong><br>
+                        யா அல்லாஹ்! இந்த‌ பிறையை அபிவிருத்தி உள்ள‌தாக‌வும், ஈமானையும் இஸ்லாமையும் சாந்தியையும் த‌ர‌க் கூடிய‌தாக‌வும் வெளியாக்கி வைப்பாயாக! (பிறையே!) என‌து ர‌ப்பும், உன‌து ர‌ப்பும் அல்லாஹ் தான்! நேர்வழிக்கும் நல்லதற்கும் வழிவகுக்கும் பிறையாக ஆக்கிவைப்பாயாக.
+                    </div>
+                    
+                    <p class="tamil-text" style="text-align: center; font-weight: bold; color: var(--primary-dark); margin-top: 15px;">ஆமீன் ஆமீன் யாரப்பல் ஆலமீன்</p>
+                </div>
+
+            </div>
+        </article>
+    </div>
+
+</body>
+</html>
 
