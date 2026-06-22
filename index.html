@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
     <title>Yaseenis | Premium Islamic Portal</title>
     <meta name="description" content="Yaseenis - தூய்மையான இஸ்லாமிய மார்க்க அறிவு, குர்ஆன், ஹதீஸ் மற்றும் கட்டுரைகள் அடங்கிய தளம்.">
     
+    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Google AdSense Main Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9950635734966108" crossorigin="anonymous"></script>
     
     <style>
@@ -73,7 +76,23 @@
         .prayer-ticker strong { color: var(--gold-light); margin-left: 5px; }
 
         /* --- MAIN CONTAINER --- */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+
+        /* --- GOOGLE SEARCH SECTION (NEW) --- */
+        .home-search {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-card);
+            border-left: 5px solid var(--emerald-main);
+        }
+        
+        /* Customizing Google Search Bar */
+        .gsc-control-cse { background-color: transparent !important; border: none !important; padding: 0 !important; }
+        .gsc-search-button-v2 { background-color: var(--emerald-main) !important; border-radius: 8px !important; }
+        .gsc-search-button-v2:hover { background-color: var(--gold-premium) !important; }
+        .gsc-input-box { border-radius: 8px !important; border: 2px solid #e2e8f0 !important; }
 
         /* --- ADSENSE WRAPPER --- */
         .ad-banner {
@@ -187,8 +206,10 @@
 </head>
 <body>
 
+    <!-- Bismillah -->
     <div class="header-top">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
 
+    <!-- Header Navigation -->
     <header>
         <div class="nav-container">
             <div class="logo"><h1>Yaseenis<span>.</span></h1></div>
@@ -201,6 +222,7 @@
         </div>
     </header>
 
+    <!-- Horizontal Prayer Times -->
     <div class="prayer-ticker">
         <div>பஜ்ர் <strong>04:02 AM</strong></div>
         <div>லுஹர் <strong>12:22 PM</strong></div>
@@ -209,8 +231,16 @@
         <div>இஷா <strong>08:43 PM</strong></div>
     </div>
 
+    <!-- Main Content -->
     <div class="container">
 
+        <!-- ⭐ GOOGLE SEARCH BAR STARTS HERE ⭐ -->
+        <div class="home-search">
+            <script async src="https://cse.google.com/cse.js?cx=7438ab2a1cc494c40"></script>
+            <div class="gcse-search"></div>
+        </div>
+
+        <!-- Google Ad 1: Auto Ad (Top) -->
         <div class="ad-banner">
             <ins class="adsbygoogle"
                  style="display:block"
@@ -225,8 +255,10 @@
             <h2>சமீபத்திய கட்டுரைகள்</h2>
         </div>
 
+        <!-- Articles Grid -->
         <div class="article-grid">
             
+            <!-- Article 1: Ahlul Baith -->
             <div class="article-card">
                 <span class="category-tag">அஹ்லுல் பைத்</span>
                 <h3>அஹ்லுல் பைத்துகளின் சிறப்புகள்</h3>
@@ -235,6 +267,7 @@
                 <a href="articles/Ahlul-baith.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
             </div>
 
+            <!-- Google Ad 2: In-Article Ad -->
             <div class="article-card" style="align-items: center; justify-content: center; padding: 15px;">
                 <span style="font-size: 11px; color: #999;">விளம்பரம்</span>
                 <ins class="adsbygoogle"
@@ -246,6 +279,7 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
 
+            <!-- Article 2: Fatima Nayagi -->
             <div class="article-card">
                 <span class="category-tag">சஹாபியப் பெண்மணிகள்</span>
                 <h3>பாத்திமா நாயகி - தனிச் சிறப்புகள்</h3>
@@ -254,6 +288,7 @@
                 <a href="articles/fatima-nayagi.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
             </div>
 
+            <!-- Article 3: Pirai Rules -->
             <div class="article-card">
                 <span class="category-tag">மார்க்க சட்டங்கள்</span>
                 <h3>பிறை பார்ப்பது (மார்க்க சட்டங்கள்)</h3>
@@ -264,6 +299,7 @@
 
         </div>
 
+        <!-- Google Ad 3: Multiplex Ad (Bottom) -->
         <div class="ad-banner">
             <h3 style="font-size: 16px; color: var(--text-gray); text-align: left; margin: 0 0 10px 10px;">தொடர்புடைய பதிவுகள்:</h3>
             <ins class="adsbygoogle"
@@ -276,11 +312,13 @@
 
     </div>
 
+    <!-- Footer -->
     <footer>
         <h2>Yaseenis Islamic Portal</h2>
         <p>&copy; 2026 Yaseenis. All Rights Reserved.</p>
     </footer>
 
+    <!-- Mobile App-Style Bottom Navigation -->
     <nav class="bottom-nav">
         <a href="#" class="nav-item">
             <div class="icon-circle bg-orange">🔊</div>
@@ -290,11 +328,12 @@
             <div class="icon-circle bg-blue">📄</div>
             <span>Articles</span>
         </a>
-        <a href="#" class="nav-item">
-            <div class="icon-circle bg-green">✍️</div>
-            <span>Authors</span>
+        <!-- Bottom Nav - Search Icon Points back to top of the page smoothly -->
+        <a href="#" onclick="window.scrollTo(0,0);" class="nav-item">
+            <div class="icon-circle bg-green" style="background-color: #047857;">🔍</div>
+            <span>Search</span>
         </a>
-        <a href="https://yaseenis.com/Videos/list" class="nav-item">
+        <a href="videos/list.html" class="nav-item">
             <div class="icon-circle bg-teal">🎥</div>
             <span>Videos</span>
         </a>
