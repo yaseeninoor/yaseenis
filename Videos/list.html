@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Videos & Bayans | Yaseenis</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- THEME COLORS --- */
+        :root {
+            --emerald-dark: #064e3b;
+            --emerald-main: #047857;
+            --gold-premium: #d97706;
+            --bg-page: #f8fafc;
+            --surface: #ffffff;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --border-light: #e2e8f0;
+            --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Mukta Malar', 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            margin: 0; padding: 0; line-height: 1.7;
+            padding-bottom: 90px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--emerald-dark);
+            color: white; text-align: center;
+            padding: 20px 15px; border-bottom: 4px solid var(--gold-premium);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        header h1 { margin: 0; font-size: 24px; font-weight: 700; }
+        
+        .back-link {
+            position: absolute; left: 15px; top: 25px;
+            color: white; text-decoration: none; font-weight: bold;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .container { max-width: 800px; margin: 30px auto; padding: 0 15px; }
+
+        .page-title {
+            color: var(--emerald-dark); font-size: 22px;
+            border-bottom: 2px solid var(--emerald-main);
+            padding-bottom: 8px; margin-bottom: 25px;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        /* --- HAZRATH LIST DESIGN (ACCORDION/CARDS) --- */
+        .hazrath-card {
+            background: var(--surface); border-radius: 12px;
+            padding: 20px; margin-bottom: 20px;
+            box-shadow: var(--shadow-card);
+            border-left: 5px solid var(--emerald-main);
+        }
+
+        .hazrath-name {
+            font-size: 20px; color: var(--emerald-dark); margin: 0 0 10px 0;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .bayan-list { list-style: none; padding: 0; margin: 0; }
+        
+        .bayan-list li {
+            border-bottom: 1px dashed var(--border-light);
+        }
+        
+        .bayan-list li:last-child { border-bottom: none; }
+        
+        .bayan-list a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 5px; color: var(--text-dark);
+            text-decoration: none; font-size: 16px; transition: 0.2s;
+        }
+        
+        .bayan-list a:hover { color: var(--emerald-main); padding-left: 10px; font-weight: 600; }
+        
+        .play-icon { color: var(--gold-premium); font-size: 18px; }
+
+        /* --- BOTTOM NAVIGATION (MOBILE APP STYLE) --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: #ffffff; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-around;
+            padding: 10px 0 15px 0; z-index: 1000;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            text-decoration: none; color: var(--text-dark);
+            font-size: 12px; font-weight: 700; font-family: 'Inter', sans-serif;
+        }
+
+        .icon-circle {
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px; margin-bottom: 5px; color: white;
+        }
+
+        .bg-orange { background-color: #f97316; }
+        .bg-blue { background-color: #3b82f6; }
+        .bg-green { background-color: #22c55e; }
+        .bg-teal { background-color: #14b8a6; }
+        .bg-darkblue { background-color: #4f46e5; }
+
+        @media (min-width: 769px) { .bottom-nav { display: none; } body { padding-bottom: 0; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html" class="back-link">← பின்செல்</a>
+        <h1>வீடியோ பயான்கள்</h1>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <span>🎥</span> சுன்னத் ஜமாஅத் அறிஞர்களின் உரைகள்
+        </div>
+
+        <div class="hazrath-card">
+            <h2 class="hazrath-name"><span>👳‍♂️</span> மௌலவி V.M. முஹம்மது ஜகரிய்யா யாஸீனிய்</h2>
+            <ul class="bayan-list">
+                <li><a href="#">ரமழான் சிறப்புரை: பிறை சட்டங்கள் <span class="play-icon">▶</span></a></li>
+                <li><a href="#">அஹ்லுல் பைத்துகளின் சிறப்புகள் <span class="play-icon">▶</span></a></li>
+                <li><a href="#">பாத்திமா நாயகி (ரலி) வாழ்க்கை வரலாறு <span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+        <div class="hazrath-card">
+            <h2 class="hazrath-name"><span>👳‍♂️</span> காஜா முயீனுத்தீன் பாகவி</h2>
+            <ul class="bayan-list">
+                <li><a href="#">பத்து சஹாபாக்களின் மாபெரும் சிறப்பு <span class="play-icon">▶</span></a></li>
+                <li><a href="#">இஸ்லாம் காட்டும் குடும்ப வாழ்க்கை <span class="play-icon">▶</span></a></li>
+                <li><a href="#">நபிகள் நாயகம் (ஸல்) அவர்களின் கருணை <span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+        <div class="hazrath-card">
+            <h2 class="hazrath-name"><span>👳‍♂️</span> சதிக்குத்தீன் பாஜில் பாகவி</h2>
+            <ul class="bayan-list">
+                <li><a href="#">அர்த்தமுள்ள ஆன்மீகம் <span class="play-icon">▶</span></a></li>
+                <li><a href="#">தடம் பதித்த இளைஞர்களே! தடம் மாறியது ஏன்? <span class="play-icon">▶</span></a></li>
+                <li><a href="#">மத்ஹபுகள் மட்டும் இல்லையென்றால்... <span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+        <div class="hazrath-card">
+            <h2 class="hazrath-name"><span>👳‍♂️</span> ஏ.ஆர். முஹம்மது அலி ரப்பானி</h2>
+            <ul class="bayan-list">
+                <li><a href="#">திக்ரின் சிறப்புகளும், மன அமைதியும் <span class="play-icon">▶</span></a></li>
+                <li><a href="#">மரணத்தின் சிந்தனை <span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <div class="icon-circle bg-orange">🔊</div>
+            <span>Audios</span>
+        </a>
+        <a href="../index.html" class="nav-item">
+            <div class="icon-circle bg-blue">📄</div>
+            <span>Articles</span>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="icon-circle bg-green">✍️</div>
+            <span>Authors</span>
+        </a>
+        <a href="list.html" class="nav-item">
+            <div class="icon-circle bg-teal">🎥</div>
+            <span>Videos</span>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="icon-circle bg-darkblue">📚</div>
+            <span>Books</span>
+        </a>
+    </nav>
+
+</body>
+</html>
