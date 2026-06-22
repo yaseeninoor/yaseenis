@@ -4,165 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>வாப்பா நாயகம் - அமுத மொழிகள் | Yaseenis</title>
-    
-    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        /* --- THEME COLORS --- */
-        :root {
-            --emerald-dark: #064e3b;
-            --emerald-main: #047857;
-            --gold-premium: #d97706;
-            --gold-light: #fef3c7;
-            --bg-page: #f8fafc;
-            --surface: #ffffff;
-            --text-dark: #1e293b;
-            --text-gray: #64748b;
-            --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 10px 30px rgba(4, 120, 87, 0.15);
-            --transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Mukta Malar', 'Inter', sans-serif;
-            background-color: var(--bg-page);
-            color: var(--text-dark);
-            margin: 0; padding: 0; line-height: 1.7;
-            padding-bottom: 90px;
-        }
-
-        /* --- HEADER --- */
-        header {
-            background-color: var(--surface);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky; top: 0; z-index: 100;
-        }
-
-        .header-top {
-            background-color: var(--emerald-dark);
-            color: var(--gold-light);
-            text-align: center; padding: 10px;
-            font-family: 'Amiri', serif; font-size: 22px;
-        }
-
-        .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 15px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .logo h1 { margin: 0; font-size: 28px; color: var(--emerald-dark); font-weight: 800; }
-        .logo span { color: var(--gold-premium); }
-
-        .nav-links a {
-            text-decoration: none; color: var(--text-dark);
-            font-weight: 600; margin-left: 25px; font-size: 16px; transition: var(--transition);
-        }
+        :root { --emerald-dark: #064e3b; --emerald-main: #047857; --gold-premium: #d97706; --gold-light: #fef3c7; --bg-page: #f8fafc; --surface: #ffffff; --text-dark: #1e293b; --text-gray: #64748b; --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05); --shadow-hover: 0 10px 30px rgba(4, 120, 87, 0.15); --transition: all 0.3s ease; }
+        body { font-family: 'Mukta Malar', 'Inter', sans-serif; background-color: var(--bg-page); color: var(--text-dark); margin: 0; padding: 0; line-height: 1.7; padding-bottom: 90px; }
+        header { background-color: var(--surface); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .header-top { background-color: var(--emerald-dark); color: var(--gold-light); text-align: center; padding: 10px; font-family: 'Amiri', serif; font-size: 22px; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { margin: 0; font-size: 28px; color: var(--emerald-dark); font-weight: 800; } .logo span { color: var(--gold-premium); }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; margin-left: 25px; font-size: 16px; transition: var(--transition); }
         .nav-links a:hover { color: var(--emerald-main); }
-
-        /* --- MAIN CONTAINER --- */
         .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-
-        .page-header {
-            background: linear-gradient(135deg, var(--emerald-dark), var(--emerald-main));
-            color: white; border-radius: 16px; padding: 30px; text-align: center;
-            box-shadow: var(--shadow-card); margin-bottom: 40px; border-bottom: 5px solid var(--gold-premium);
-        }
-
-        .page-header h1 { margin: 0 0 10px 0; font-size: 28px; color: var(--gold-light); }
-        .page-header p { margin: 0; font-size: 16px; opacity: 0.9; font-weight: 600; }
-
-        /* --- ARTICLE GRID --- */
-        .article-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px; margin-bottom: 50px;
-        }
-
-        .article-card {
-            background: var(--surface); border-radius: 16px;
-            padding: 30px; box-shadow: var(--shadow-card);
-            border-top: 5px solid var(--emerald-main);
-            transition: var(--transition);
-            display: flex; flex-direction: column;
-            position: relative;
-        }
-
-        .article-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            border-top-color: var(--gold-premium);
-        }
-
-        .article-number {
-            position: absolute; top: -15px; right: 20px;
-            background: var(--gold-premium); color: white;
-            width: 35px; height: 35px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-weight: bold; font-size: 16px; box-shadow: 0 4px 10px rgba(217,119,6,0.3);
-        }
-
-        .category-tag {
-            align-self: flex-start;
-            background: var(--gold-light); color: var(--gold-premium);
-            padding: 6px 14px; border-radius: 8px; font-size: 13px;
-            font-weight: 700; margin-bottom: 15px;
-        }
-
+        .page-header { background: linear-gradient(135deg, var(--emerald-dark), var(--emerald-main)); color: white; border-radius: 16px; padding: 30px; text-align: center; box-shadow: var(--shadow-card); margin-bottom: 40px; border-bottom: 5px solid var(--gold-premium); }
+        .page-header h1 { margin: 0 0 10px 0; font-size: 28px; color: var(--gold-light); } .page-header p { margin: 0; font-size: 16px; opacity: 0.9; font-weight: 600; }
+        .article-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 50px; }
+        .article-card { background: var(--surface); border-radius: 16px; padding: 30px; box-shadow: var(--shadow-card); border-top: 5px solid var(--emerald-main); transition: var(--transition); display: flex; flex-direction: column; position: relative; }
+        .article-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-top-color: var(--gold-premium); }
+        .article-number { position: absolute; top: -15px; right: 20px; background: var(--gold-premium); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 16px; box-shadow: 0 4px 10px rgba(217,119,6,0.3); }
+        .category-tag { align-self: flex-start; background: var(--gold-light); color: var(--gold-premium); padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 700; margin-bottom: 15px; }
         .article-card h3 { font-size: 20px; color: var(--text-dark); margin: 0 0 10px 0; line-height: 1.4; }
-        
         .article-card p { color: var(--text-gray); font-size: 15px; margin-bottom: 25px; flex-grow: 1; }
-
-        .read-more {
-            display: inline-flex; align-items: center; gap: 8px;
-            color: var(--emerald-main); text-decoration: none;
-            font-weight: 700; font-size: 15px; transition: var(--transition);
-        }
-        .read-more::after { content: '→'; transition: transform 0.3s; }
-        .read-more:hover { color: var(--gold-premium); }
-        .read-more:hover::after { transform: translateX(5px); }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: var(--emerald-dark); color: white;
-            text-align: center; padding: 40px 20px; margin-top: 50px;
-        }
-        footer p { margin: 0; opacity: 0.8; }
-
-        /* --- BOTTOM NAVIGATION --- */
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background-color: #ffffff; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            display: flex; justify-content: space-around;
-            padding: 10px 0 15px 0; z-index: 1000; border-top: 1px solid #e2e8f0;
-        }
-
-        .nav-item {
-            display: flex; flex-direction: column; align-items: center;
-            text-decoration: none; color: var(--text-dark);
-            font-size: 12px; font-weight: 700; font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-        }
-        .nav-item:hover { transform: translateY(-2px); }
-
-        .icon-circle {
-            width: 42px; height: 42px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 20px; margin-bottom: 5px; color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .bg-orange { background-color: #f97316; } .bg-blue { background-color: #3b82f6; } 
-        .bg-green { background-color: #22c55e; } .bg-teal { background-color: #14b8a6; } 
-        .bg-darkblue { background-color: #4f46e5; }
-
-        @media (min-width: 769px) { .bottom-nav { display: none; } body { padding-bottom: 0; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .article-grid { grid-template-columns: 1fr; } }
+        .read-more { display: inline-flex; align-items: center; gap: 8px; color: var(--emerald-main); text-decoration: none; font-weight: 700; font-size: 15px; transition: var(--transition); }
+        .read-more::after { content: '→'; transition: transform 0.3s; } .read-more:hover { color: var(--gold-premium); } .read-more:hover::after { transform: translateX(5px); }
+        footer { background-color: var(--emerald-dark); color: white; text-align: center; padding: 40px 20px; margin-top: 50px; } footer p { margin: 0; opacity: 0.8; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #ffffff; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-around; padding: 10px 0 15px 0; z-index: 1000; border-top: 1px solid #e2e8f0; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-dark); font-size: 12px; font-weight: 700; font-family: 'Inter', sans-serif; transition: var(--transition); }
+        .nav-item:hover { transform: translateY(-2px); } .icon-circle { width: 42px; height: 42px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; margin-bottom: 5px; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .bg-orange { background-color: #f97316; } .bg-blue { background-color: #3b82f6; } .bg-green { background-color: #22c55e; } .bg-teal { background-color: #14b8a6; } .bg-darkblue { background-color: #4f46e5; }
+        @media (min-width: 769px) { .bottom-nav { display: none; } body { padding-bottom: 0; } } @media (max-width: 768px) { .nav-links { display: none; } .article-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <!-- ================= HEADER START ================= -->
+    <!-- HEADER -->
     <div class="header-top">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
     <header>
         <div class="nav-container">
@@ -174,95 +48,92 @@
             </nav>
         </div>
     </header>
-    <!-- ================= HEADER END ================= -->
 
     <!-- Main Content -->
     <div class="container">
-
         <div class="page-header">
             <h1>🌹 அமுத மொழிகள் 🌹</h1>
-            <p>சங்கைமிகு குத்புஸ்ஸமான் ஷம்ஸுல் வுஜூத் ஜமாலிய்யா அஸ்ஸெய்யித் கலீல் அவ்ன் மெளலானா அல்ஹஸனிய்யுல் ஹுஸைனிய்யுல் ஹாஷிமிய் வாப்பா நாயகம் (க.ஸி.அ) அவர்களின் மார்க்க பொன்மொழிகள்</p>
+            <p>சங்கைமிகு குத்புஸ்ஸமான் ஷம்ஸுல் வுஜூத் ஜமாலிய்யா அஸ்ஸெய்யித் கலீல் அவ்ன் மெளலானா (க.ஸி.அ) அவர்களின் மார்க்கப் பொன்மொழிகள்</p>
         </div>
 
         <div class="article-grid">
             
-            <!-- Post 1 -->
             <div class="article-card">
-                <div class="article-number">1</div>
-                <span class="category-tag">கர்பலா வரலாறு</span>
+                <div class="article-number">1</div><span class="category-tag">கர்பலா வரலாறு</span>
                 <h3>கூபா மக்களின் அழைப்பும் இமாம் ஹுஸைன் (ரலி) அவர்களின் பயணமும்</h3>
-                <p>யஜீதுடைய ஆட்சி இஸ்லாமிய நெறிமுறைப்படி அமையவில்லை. எனவே கூபா நகரத்து மக்கள் இமாம் ஹுஸைன் (ரலி) அவர்களுக்கு தொடர்ந்து பல கடிதங்கள்...</p>
+                <p>யஜீதுடைய ஆட்சி இஸ்லாமிய நெறிமுறைப்படி அமையவில்லை. எனவே கூபா நகரத்து மக்கள் இமாம் ஹுஸைன் (ரலி) அவர்களுக்கு...</p>
                 <a href="/articles/vappa-nayagam-1.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
             </div>
 
-            <!-- Post 2 -->
             <div class="article-card">
-                <div class="article-number">2</div>
-                <span class="category-tag">இஸ்லாமிய வரலாறு</span>
+                <div class="article-number">2</div><span class="category-tag">இஸ்லாமிய வரலாறு</span>
                 <h3>இமாம் ஹஸன் (ரலி) அவர்களின் தியாகமும் முஆவியா (ரலி) அறிவுரையும்</h3>
-                <p>ஆட்சியைப் பறிக்க எண்ணி யுத்தம் ஏற்படும் சூழ்நிலை ஏற்பட்டது. பெருமானார் (ஸல்) அவர்களின் முன்னறிவிப்பை யோசித்த இமாம் ஹஸன் (ரலி)...</p>
+                <p>ஆட்சியைப் பறிக்க எண்ணி யுத்தம் ஏற்படும் சூழ்நிலை ஏற்பட்டது. பெருமானார் (ஸல்) அவர்களின் முன்னறிவிப்பை யோசித்த...</p>
                 <a href="/articles/vappa-nayagam-2.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
             </div>
 
-            <!-- Post 3 -->
             <div class="article-card">
-                <div class="article-number">3</div>
-                <span class="category-tag">அஹ்லுல் பைத்</span>
+                <div class="article-number">3</div><span class="category-tag">அஹ்லுல் பைத்</span>
                 <h3>கர்பலா யுத்தமும் அஹ்லுல் பைத்துகளின் மாபெரும் தியாகமும்</h3>
-                <p>இமாம் அவர்களும் அவர்களோடு இருந்தவர்களும் வீரமாகப் போர் புரிந்தார்கள். இறுதியாக சையிதுமார்களோடு உடன் வந்தவர்கள் அனைவரும் ஷஹீதாகி...</p>
+                <p>இமாம் அவர்களும் அவர்களோடு இருந்தவர்களும் வீரமாகப் போர் புரிந்தார்கள். இறுதியாக சையிதுமார்களோடு உடன் வந்தவர்கள்...</p>
                 <a href="/articles/vappa-nayagam-3.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
             </div>
 
-            <!-- Post 4 -->
             <div class="article-card">
-                <div class="article-number">4</div>
-                <span class="category-tag">மார்க்க சட்டங்கள்</span>
+                <div class="article-number">4</div><span class="category-tag">மார்க்க சட்டங்கள்</span>
                 <h3>மவ்லிது மற்றும் கந்தூரியின் உன்னத சிறப்புகள்</h3>
-                <p>ஓர் ஊரில் ஒரேயொரு முரீது இருந்தாலும் அவர் ரபீஉல் அவ்வல் மாதத்தில் ஒரு நாளாவது புனித மவ்லிது ஷரீபை ஓதி கந்தூரி கொடுத்து...</p>
+                <p>ஓர் ஊரில் ஒரேயொரு முரீது இருந்தாலும் அவர் ரபீஉல் அவ்வல் மாதத்தில் ஒரு நாளாவது புனித மவ்லிது ஷரீபை ஓதி...</p>
                 <a href="/articles/vappa-nayagam-4.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
             </div>
 
-            <!-- NOTE: NEW POSTS CAN BE ADDED HERE LATER -->
+            <div class="article-card">
+                <div class="article-number">5</div><span class="category-tag">நற்குணங்கள்</span>
+                <h3>நற்குணங்களும் உண்மையான தவ்ஹீதும்</h3>
+                <p>எல்லாப் பிள்ளைகளும் ஒற்றுமையாக இருக்கவேண்டும். கோள் சொல்லக் கூடாது. கோள் சொல்வதைப் போல மோசமானது ஒன்றுமே இல்லை...</p>
+                <a href="/articles/vappa-nayagam-5.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
+            </div>
+
+            <div class="article-card">
+                <div class="article-number">6</div><span class="category-tag">முஹர்ரம் சிந்தனை</span>
+                <h3>முஹர்ரம் புத்தாண்டு மற்றும் கர்பலா சிந்தனைகள்</h3>
+                <p>இன்று இஸ்லாமியப் புத்தாண்டான முஹர்ரம் பிறந்திருக்கிறது. இந்தப் புத்தாண்டை நினைத்து மகிழும் அதே நேரம்...</p>
+                <a href="/articles/vappa-nayagam-6.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
+            </div>
+
+            <div class="article-card">
+                <div class="article-number">7</div><span class="category-tag">ஈமான்</span>
+                <h3>கலிமாவின் உண்மையான விளக்கம்</h3>
+                <p>ஒரு நூலை ஒருவர் வாசிக்க, மற்றவர் நீங்கள் வாசித்ததற்கு பொருள் என்னவென்று கேட்க, பொருள் தெரியாமல் போனால்...</p>
+                <a href="/articles/vappa-nayagam-7.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
+            </div>
+
+            <div class="article-card">
+                <div class="article-number">8</div><span class="category-tag">வரலாற்றுப் பதிவு</span>
+                <h3>1972-ம் ஆண்டின் வரலாற்றுப் பட்டோலை</h3>
+                <p>ஸாஹிபுல் வக்த், ஷம்ஸுல் வுஜூத் வாப்பா நாயகம் அவர்கள் தங்கள் கலீபா அல்ஹாஜ், S. அப்துல் கரீம் (ஜமாலி) அவர்களுக்கு எழுதிய...</p>
+                <a href="/articles/vappa-nayagam-8.html" class="read-more">முழுக்கட்டுரையைப் படிக்க</a>
+            </div>
 
         </div>
     </div>
 
-    <!-- ================= FOOTER START ================= -->
+    <!-- FOOTER -->
     <footer>
         <h2>Yaseenis Islamic Portal</h2>
         <p>&copy; 2026 Yaseenis. All Rights Reserved.</p>
         <div style="margin-top: 15px; font-size: 15px;">
             <a href="/" style="color: var(--gold-premium); text-decoration: none; margin: 0 10px;">முகப்பு</a> |
-            <a href="/videos/list.html" style="color: var(--gold-premium); text-decoration: none; margin: 0 10px;">வீடியோக்கள்</a> |
-            <a href="#" style="color: var(--gold-premium); text-decoration: none; margin: 0 10px;">தொடர்புக்கு</a>
+            <a href="/videos/list.html" style="color: var(--gold-premium); text-decoration: none; margin: 0 10px;">வீடியோக்கள்</a>
         </div>
     </footer>
-    <!-- ================= FOOTER END ================= -->
 
-    <!-- ================= BOTTOM NAV START ================= -->
+    <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
-        <a href="#" class="nav-item">
-            <div class="icon-circle bg-orange">🔊</div>
-            <span>Audios</span>
-        </a>
-        <a href="/" class="nav-item">
-            <div class="icon-circle bg-blue">📄</div>
-            <span>Articles</span>
-        </a>
-        <a href="#" onclick="window.scrollTo(0,0);" class="nav-item">
-            <div class="icon-circle bg-green" style="background-color: #047857;">🔍</div>
-            <span>Search</span>
-        </a>
-        <a href="/videos/list.html" class="nav-item">
-            <div class="icon-circle bg-teal">🎥</div>
-            <span>Videos</span>
-        </a>
-        <a href="#" class="nav-item">
-            <div class="icon-circle bg-darkblue">📚</div>
-            <span>Books</span>
-        </a>
+        <a href="#" class="nav-item"><div class="icon-circle bg-orange">🔊</div><span>Audios</span></a>
+        <a href="/" class="nav-item"><div class="icon-circle bg-blue">📄</div><span>Articles</span></a>
+        <a href="#" onclick="window.scrollTo(0,0);" class="nav-item"><div class="icon-circle bg-green" style="background-color: #047857;">🔍</div><span>Search</span></a>
+        <a href="/videos/list.html" class="nav-item"><div class="icon-circle bg-teal">🎥</div><span>Videos</span></a>
+        <a href="#" class="nav-item"><div class="icon-circle bg-darkblue">📚</div><span>Books</span></a>
     </nav>
-    <!-- ================= BOTTOM NAV END ================= -->
-
 </body>
 </html>
