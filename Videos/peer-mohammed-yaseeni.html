@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moulavi Peer Mohammed Yaseeni Bayans | Yaseenis</title>
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- THEME COLORS --- */
+        :root {
+            --emerald-dark: #064e3b;
+            --emerald-main: #047857;
+            --gold-premium: #d97706;
+            --bg-page: #f8fafc;
+            --surface: #ffffff;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --border-light: #e2e8f0;
+            --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Mukta Malar', 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            margin: 0; padding: 0; line-height: 1.7;
+            padding-bottom: 90px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--emerald-dark);
+            color: white; text-align: center;
+            padding: 20px 15px; border-bottom: 4px solid var(--gold-premium);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        header h1 { margin: 0; font-size: 22px; font-weight: 700; }
+        
+        .back-link {
+            position: absolute; left: 15px; top: 20px;
+            color: white; text-decoration: none; font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 15px; }
+
+        /* --- AUTHOR PROFILE SECTION --- */
+        .profile-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 40px;
+            border-top: 5px solid var(--gold-premium);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--emerald-main);
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-card h2 { color: var(--emerald-dark); margin: 0 0 5px 0; font-size: 24px; }
+        .profile-card p { color: var(--text-gray); margin: 0; font-size: 16px; font-weight: 600; }
+
+        /* --- VIDEO GRID (300px Size) --- */
+        .video-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .video-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 15px;
+            width: 300px;
+            box-shadow: var(--shadow-card);
+            border-bottom: 4px solid var(--emerald-main);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--gold-premium);
+        }
+
+        .video-card iframe {
+            border-radius: 8px;
+            width: 100%;
+            height: 170px;
+            border: none;
+        }
+
+        .video-title {
+            font-size: 16px;
+            color: var(--emerald-dark);
+            margin: 15px 0 10px 0;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        /* --- TAMIL SUMMARY STYLING --- */
+        .video-summary {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-top: auto;
+            line-height: 1.5;
+            border-top: 1px dashed var(--border-light);
+            padding-top: 10px;
+        }
+
+        /* --- BOTTOM NAVIGATION (MOBILE APP STYLE) --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: #ffffff; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-around;
+            padding: 10px 0 15px 0; z-index: 1000;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            text-decoration: none; color: var(--text-dark);
+            font-size: 12px; font-weight: 700; font-family: 'Inter', sans-serif;
+        }
+
+        .icon-circle {
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px; margin-bottom: 5px; color: white;
+        }
+
+        .bg-orange { background-color: #f97316; }
+        .bg-blue { background-color: #3b82f6; }
+        .bg-green { background-color: #22c55e; }
+        .bg-teal { background-color: #14b8a6; }
+        .bg-darkblue { background-color: #4f46e5; }
+
+        @media (min-width: 769px) { .bottom-nav { display: none; } body { padding-bottom: 0; } }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="list.html" class="back-link">← பின்செல்</a>
+        <h1>பயான் தொகுப்பு</h1>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Profile Card with Photo -->
+        <div class="profile-card">
+            <!-- உங்களின் ஃபோட்டோ லிங்க் இங்கே சேர்க்கப்பட்டுள்ளது -->
+            <img src="../photos/peer-yaseeni.jpg" alt="மௌலவி பீர் முஹம்மது யாஸீனிய்" class="profile-img" onerror="this.src='https://via.placeholder.com/150/047857/ffffff?text=Hazrath'">
+            <h2>மௌலவி S. பீர் முஹம்மது யாஸீனிய்</h2>
+            <p>ஹக்கிய்யுல் காதிரிய், இமாம் ஜாமிஆ மஸ்ஜித் மதுக்கூர்.</p>
+        </div>
+
+        <div class="video-grid">
+            
+            <!-- Video 1 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/PDhxcKAVJUI" allowfullscreen></iframe>
+                <h3 class="video-title">மத நல்லிணக்கம் (Tamil Bayan)</h3>
+                <div class="video-summary">இஸ்லாம் வலியுறுத்தும் மத நல்லிணக்கம் மற்றும் அனைத்து மக்களிடையேயான சமூக ஒற்றுமை குறித்த சிறப்பான விளக்கம்.</div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/JZj1rYTTMWA" allowfullscreen></iframe>
+                <h3 class="video-title">கர்பலா பயான் நிகழ்வு</h3>
+                <div class="video-summary">கர்பலா தியாக வரலாறும், சத்தியத்திற்காக உயிர்த்தியாகம் செய்த இமாம் ஹுஸைன் (ரலி) அவர்களின் மாபெரும் தியாகமும் பற்றிய உரை.</div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/3vjqbrnW-6Y" allowfullscreen></iframe>
+                <h3 class="video-title">யா அலி, யா ஹஸன், யா ஹுஸைன் ஸலாம்</h3>
+                <div class="video-summary">அஹ்லுல் பைத்துகளான அலி (ரலி), ஹஸன் (ரலி), ஹுஸைன் (ரலி) மற்றும் பாத்திமா (ரலி) ஆகியோர் மீதான நெகிழ்ச்சியான புகழாரம்.</div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/ZnZIbEkGymU" allowfullscreen></iframe>
+                <h3 class="video-title">முஹப்பதே ரசூல் பயான்</h3>
+                <div class="video-summary">கண்மணி நாயகம் (ஸல்) அவர்கள் மீதான அன்பும் (முஹப்பத்), அதனை நம் வாழ்வில் வெளிப்படுத்தும் உன்னத வழிமுறைகளும்.</div>
+            </div>
+
+            <!-- Video 5 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/oUeu6kwT6ts" allowfullscreen></iframe>
+                <h3 class="video-title">இமாம் ஜாமிஆ மஸ்ஜித் மதுக்கூர் உரை</h3>
+                <div class="video-summary">மதுக்கூர் ஜாமிஆ மஸ்ஜித் இமாம் மௌலவி பீர் முஹம்மது யாஸீனிய் அவர்களின் ஈமானை அதிகப்படுத்தும் சிறப்புப் பயான்.</div>
+            </div>
+
+            <!-- Video 6 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/1BiWQU1i_G4" allowfullscreen></iframe>
+                <h3 class="video-title">ஸலாம் பைத்</h3>
+                <div class="video-summary">நபிகள் நாயகம் (ஸல்) அவர்களின் மீது பாடப்படும் உள்ளத்தை உருக்கும் அழகிய மற்றும் இனிமையான ஸலாம் பைத்.</div>
+            </div>
+
+            <!-- Video 7 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/PGNIbMyzukU" allowfullscreen></iframe>
+                <h3 class="video-title">உள்ளம் தூய்மை பெற ஷைகுமார்கள் அவசியம்</h3>
+                <div class="video-summary">இறை நெருக்கத்தைப் பெறவும், ஆன்மீகப் பாதையில் உள்ளத்தைத் தூய்மைப்படுத்தவும் தரீக்காவின் ஷைகுமார்கள் ஏன் அவசியம் என்பதற்கான விளக்கம்.</div>
+            </div>
+
+            <!-- Video 8 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/O9rEWAxwmHI" allowfullscreen></iframe>
+                <h3 class="video-title">சத்திய நாவு (لسان الحق) ஜும்ஆ பயான்</h3>
+                <div class="video-summary">பொய்களைத் தவிர்த்து, எப்பொழுதும் சத்தியத்தை மட்டுமே பேசும் நாவின் சிறப்புகள் குறித்த ஜும்ஆ சிறப்புரை.</div>
+            </div>
+
+            <!-- Video 9 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/fVLjW-oUJyY" allowfullscreen></iframe>
+                <h3 class="video-title">நபி புகழ்</h3>
+                <div class="video-summary">எம்பெருமானார் (ஸல்) அவர்களின் மகத்துவத்தையும், சிறப்புகளையும் போற்றிப் பாடும் அழகிய நபி புகழ் உரை.</div>
+            </div>
+
+            <!-- Video 10 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/xwymfd7FRDQ" allowfullscreen></iframe>
+                <h3 class="video-title">மீலாது விழா பயான் - மேலக்கோட்டை</h3>
+                <div class="video-summary">மேலக்கோட்டையில் நடைபெற்ற முஹம்மது நபி (ஸல்) அவர்களின் மீலாது நபி விழாவில் ஆற்றிய சிறப்புரையின் முதல் பகுதி.</div>
+            </div>
+
+            <!-- Video 11 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/hcQ9wzQedck" allowfullscreen></iframe>
+                <h3 class="video-title">மீலாது விழா பயான் - மேலக்கோட்டை (பாகம் 2)</h3>
+                <div class="video-summary">மேலக்கோட்டையில் நடைபெற்ற மீலாது நபி விழாவில் ஆற்றிய சிறப்புரையின் தொடர்ச்சி மற்றும் நிறைவுப் பகுதி.</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <div class="icon-circle bg-orange">🔊</div>
+            <span>Audios</span>
+        </a>
+        <a href="../index.html" class="nav-item">
+            <div class="icon-circle bg-blue">📄</div>
+            <span>Articles</span>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="icon-circle bg-green">✍️</div>
+            <span>Authors</span>
+        </a>
+        <a href="list.html" class="nav-item">
+            <div class="icon-circle bg-teal">🎥</div>
+            <span>Videos</span>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="icon-circle bg-darkblue">📚</div>
+            <span>Books</span>
+        </a>
+    </nav>
+
+</body>
+</html>
