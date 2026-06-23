@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>கர்பலா வரலாறு - பாதுகாக்கப்பட்ட பதிவு | Yaseenis</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- THEME COLORS --- */
+        :root { --emerald-dark: #064e3b; --emerald-main: #047857; --gold-premium: #d97706; --gold-light: #fef3c7; --bg-page: #f8fafc; --surface: #ffffff; --text-dark: #1e293b; --text-gray: #475569; --border-light: #e2e8f0; --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05); }
+        body { font-family: 'Mukta Malar', sans-serif; background-color: var(--bg-page); color: var(--text-dark); margin: 0; padding: 0; line-height: 1.8; padding-bottom: 90px; }
+        
+        /* HEADER */
+        header { background-color: var(--surface); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .header-top { background-color: var(--emerald-dark); color: var(--gold-light); text-align: center; padding: 10px; font-family: 'Amiri', serif; font-size: 22px; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { margin: 0; font-size: 28px; color: var(--emerald-dark); font-weight: 800; } .logo span { color: var(--gold-premium); }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; margin-left: 25px; font-size: 16px; }
+
+        .container { max-width: 800px; margin: 50px auto; padding: 0 20px; }
+
+        /* --- LOCK SCREEN DESIGN --- */
+        #lockScreen { background: var(--surface); border-radius: 16px; padding: 40px; text-align: center; box-shadow: var(--shadow-card); border-top: 5px solid #ef4444; max-width: 450px; margin: 0 auto; }
+        #lockScreen h2 { color: var(--text-dark); margin-top: 0; font-size: 24px; }
+        #lockScreen p { color: var(--text-gray); font-size: 15px; margin-bottom: 25px; line-height: 1.6; }
+        
+        .password-input { width: 100%; padding: 15px; border: 2px solid var(--border-light); border-radius: 8px; font-size: 18px; text-align: center; box-sizing: border-box; margin-bottom: 20px; outline: none; transition: 0.3s; font-family: 'Inter', sans-serif; letter-spacing: 2px; }
+        .password-input:focus { border-color: var(--emerald-main); }
+        
+        .unlock-btn { background: var(--emerald-main); color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .unlock-btn:hover { background: var(--gold-premium); }
+        .error-msg { color: #ef4444; font-size: 14px; margin-top: 10px; display: none; font-weight: bold; }
+
+        /* --- SECRET CONTENT (HIDDEN BY DEFAULT) --- */
+        #secretContent { display: none; }
+        
+        .article-card { background: var(--surface); border-radius: 16px; padding: 40px; box-shadow: var(--shadow-card); border-top: 5px solid var(--emerald-main); }
+        .article-title { color: var(--emerald-dark); font-size: 28px; margin-top: 0; text-align: center; margin-bottom: 10px; }
+        .author-name { text-align: center; color: var(--gold-premium); font-weight: bold; font-size: 16px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-light); }
+        .tamil-text { font-size: 18px; color: #334155; text-align: justify; margin-bottom: 20px; }
+
+        .lock-again-btn { margin-top: 30px; display: block; width: 100%; padding: 12px; background: #f8fafc; color: #ef4444; border: 1px solid #ef4444; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 15px; transition: 0.3s; }
+        .lock-again-btn:hover { background: #ef4444; color: white; }
+
+        /* BOTTOM NAV */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #ffffff; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-around; padding: 10px 0 15px 0; z-index: 1000; border-top: 1px solid #e2e8f0; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-dark); font-size: 12px; font-weight: 700; }
+        .icon-circle { width: 42px; height: 42px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; margin-bottom: 5px; color: white; }
+        .bg-orange { background-color: #f97316; } .bg-blue { background-color: #3b82f6; } .bg-green { background-color: #22c55e; } .bg-teal { background-color: #14b8a6; } .bg-darkblue { background-color: #4f46e5; }
+        @media (min-width: 769px) { .bottom-nav { display: none; } body { padding-bottom: 0; } }
+        @media (max-width: 600px) { .article-card { padding: 25px 20px; } .article-title { font-size: 24px; } }
+    </style>
+</head>
+<body>
+
+    <div class="header-top">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><h1>Yaseenis<span>.</span></h1></div>
+            <nav class="nav-links">
+                <a href="/">முகப்பு</a>
+                <a href="/article/">கட்டுரைகள்</a>
+                <a href="/Videos/list.html">வீடியோக்கள்</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div id="lockScreen">
+            <div style="font-size: 50px; margin-bottom: 15px;">🔒</div>
+            <h2>பாதுகாக்கப்பட்ட பதிவு</h2>
+            <p>கர்பலா வரலாற்றுப் பதிவைப் படிக்க கடவுச்சொல்லை (Password) உள்ளிடவும்.</p>
+            
+            <input type="password" id="pwdInput" class="password-input" placeholder="Password...">
+            <button class="unlock-btn" onclick="checkPassword()">பக்கத்தைத் திறக்க</button>
+            
+            <div id="errorMsg" class="error-msg">தவறான கடவுச்சொல்! (Wrong Password)</div>
+        </div>
+
+        <div id="secretContent">
+            
+            <a href="/" style="display: inline-block; text-decoration: none; color: var(--emerald-dark); font-weight: 600; margin-bottom: 20px;">← முகப்புப் பக்கத்திற்குத் திரும்ப</a>
+
+            <article class="article-card">
+                <span style="display:inline-block; background: var(--gold-light); color: var(--gold-premium); padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; margin-bottom: 15px;">வரலாற்றுப் பதிவு</span>
+                
+                <h1 class="article-title">கர்பலா - தியாகத்தின் வரலாறு</h1>
+                
+                <div class="author-name">பதிவு: Yaseenis Media</div>
+                
+                <p class="tamil-text">
+                    இந்த இடத்தில் உங்களின் கர்பலா வரலாற்றுப் பதிவை (Karbala article content) நீங்கள் சேர்த்துக்கொள்ளலாம். இது கடவுச்சொல் உள்ளீடு செய்தவர்களுக்கு மட்டுமே திரையில் காண்பிக்கப்படும்.
+                </p>
+                
+                <p class="tamil-text">
+                    எத்தனை பத்திகள் (Paragraphs) வேண்டுமானாலும் `&lt;p class="tamil-text"&gt; ... &lt;/p&gt;` என்ற குறியீட்டைப் பயன்படுத்தி இங்கே தொடர்ந்து இணைத்துக்கொள்ளலாம்.
+                </p>
+                </article>
+            
+            <button class="lock-again-btn" onclick="lockPageAgain()">பக்கத்தை மீண்டும் பூட்டு (Lock Post)</button>
+        </div>
+
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="/audio/" class="nav-item"><div class="icon-circle bg-orange">🔊</div><span>Audios</span></a>
+        <a href="/article/" class="nav-item"><div class="icon-circle bg-blue">📄</div><span>Articles</span></a>
+        <a href="/search.html" class="nav-item"><div class="icon-circle bg-green">🔍</div><span>Search</span></a>
+        <a href="/Videos/list.html" class="nav-item"><div class="icon-circle bg-teal">🎥</div><span>Videos</span></a>
+        <a href="#" class="nav-item"><div class="icon-circle bg-darkblue">📚</div><span>Books</span></a>
+    </nav>
+
+    <script>
+        // 🔑 உங்களின் ரகசியக் கடவுச்சொல்லை இங்கே மாற்றிக்கொள்ளுங்கள்
+        const correctPassword = "@AkbarAli"; 
+
+        function checkPassword() {
+            const userInput = document.getElementById("pwdInput").value;
+            const errorMsg = document.getElementById("errorMsg");
+            const lockScreen = document.getElementById("lockScreen");
+            const secretContent = document.getElementById("secretContent");
+
+            if (userInput === correctPassword) {
+                // Password is correct: Hide lock screen, show content
+                lockScreen.style.display = "none";
+                secretContent.style.display = "block";
+                document.getElementById("pwdInput").value = ""; // Clear input
+                errorMsg.style.display = "none";
+                window.scrollTo(0,0); // Scroll to top
+            } else {
+                // Wrong password: Show error
+                errorMsg.style.display = "block";
+            }
+        }
+
+        // மீண்டும் பூட்டுவதற்கான Function
+        function lockPageAgain() {
+            document.getElementById("secretContent").style.display = "none";
+            document.getElementById("lockScreen").style.display = "block";
+            window.scrollTo(0,0);
+        }
+        
+        // Enter button அழுத்தினால் Unlock ஆக
+        document.getElementById("pwdInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                checkPassword();
+            }
+        });
+    </script>
+
+</body>
+</html>
