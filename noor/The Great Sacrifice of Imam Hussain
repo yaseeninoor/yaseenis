@@ -44,6 +44,9 @@
         
         .author-name { text-align: center; color: var(--gold-premium); font-weight: bold; font-size: 15px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-light); font-family: 'Inter', sans-serif; }
         .tamil-text { font-size: 18px; color: #334155; text-align: justify; margin-bottom: 20px; line-height: 1.8; }
+        
+        /* Highlight Box for Quotes */
+        .quote-box { background: var(--gold-light); border-left: 5px solid var(--gold-premium); padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; font-style: italic; color: var(--emerald-dark); font-weight: 600; font-size: 19px; }
 
         .lock-again-btn { margin-top: 30px; display: block; width: 100%; padding: 15px; background: #f8fafc; color: #ef4444; border: 1px solid #ef4444; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 15px; transition: 0.3s; font-family: 'Inter', sans-serif; }
         .lock-again-btn:hover { background: #ef4444; color: white; }
@@ -103,15 +106,21 @@
                 
                 <div class="author-name">Posted by: Yaseenis Media</div>
                 
-                <!-- உங்களின் கர்பலா கட்டுரையை இங்கே பேஸ்ட் செய்யவும் -->
                 <p class="tamil-text">
-                    கர்பலா வரலாறு (History of Karbala) இஸ்லாமிய சரித்திரத்தில் மிக முக்கியமான மற்றும் கண்ணீர் மல்க வைக்கும் ஒரு தியாகப் பதிவாகும்.
+                    கர்பலா வரலாறு (History of Karbala) இஸ்லாமிய சரித்திரத்தில் தியாகத்தின் உச்சத்தை உணர்த்தும் ஒரு கண்ணீர் மல்க வைக்கும் நிகழ்வாகும். ஹிஜ்ரி 61, முஹர்ரம் மாதம் 10-ம் நாள் ஈராக் நாட்டின் கர்பலா மைதானத்தில் இந்த மாபெரும் தியாகம் நடைபெற்றது.
                 </p>
                 
                 <p class="tamil-text">
-                    இந்த இடத்தில் உங்களின் முழுமையான கட்டுரையை நீங்கள் பேஸ்ட் செய்து கொள்ளலாம். `&lt;p class="tamil-text"&gt;` மற்றும் `&lt;/p&gt;` என்ற குறியீடுகளுக்கு நடுவில் உங்களின் பத்திகளை (Paragraphs) அமைத்துக்கொள்ளுங்கள்.
+                    சத்தியத்தை நிலைநாட்டுவதற்காகவும், இஸ்லாமிய மார்க்கத்தின் புனிதத்தைக் காப்பதற்காகவும் நபிகள் நாயகம் (ஸல்) அவர்களின் அருமைப் பேரர் இமாம் ஹுஸைன் (ரலி) அவர்கள் தமது குடும்பத்தினர் மற்றும் உற்ற தோழர்களுடன் இணைந்து செய்த தியாகம் உலக வரலாற்றில் ஈடு இணையற்றது.
                 </p>
-                <!-- கட்டுரையின் முடிவு -->
+
+                <div class="quote-box">
+                    "கொடுங்கோலன் முன்னால் உண்மையை எடுத்துரைப்பதே மிகச் சிறந்த அறப்போராட்டமாகும்" - என்ற நாயகம் (ஸல்) அவர்களின் கூற்றுக்கேற்ப வாழ்ந்து காட்டியவர்கள் இமாம் ஹுஸைன் (ரலி) அவர்கள்.
+                </div>
+                
+                <p class="tamil-text">
+                    அநியாயக்கார ஆட்சியாளர் யஸீதின் தவறான அதிகாரத்திற்கு அடிபணிய மறுத்து, பல நாட்கள் குடிக்கத் தண்ணீர் கூட இல்லாமல், தாகத்தோடு நீதிக்காக உயிர்நீத்த அஹ்லுல் பைத் (நபிக்குடும்பம்) மற்றும் சஹாபாக்களின் ஈமானிய உறுதி நமக்கு என்றென்றும் ஒரு சிறந்த பாடமாகும். கர்பலா வெறும் ஒரு துயரச் சம்பவம் மட்டுமல்ல; அது சத்தியமும் அசத்தியமும் மோதிய போது, சத்தியம் எவ்விதம் நிலைத்து நின்றது என்பதற்கான அழியாத சாட்சியாகும்.
+                </p>
 
             </article>
             
@@ -122,11 +131,11 @@
 
     <!-- JavaScript For Password Protection -->
     <script>
-        // கடவுச்சொல் (Password): 786
-        const correctPassword = "786"; 
+        // 🔑 உங்களின் புதிய கடவுச்சொல் (Password): yaseeni
+        const correctPassword = "yaseeni"; 
 
         function checkPassword() {
-            const userInput = document.getElementById("pwdInput").value;
+            const userInput = document.getElementById("pwdInput").value.toLowerCase(); // Case insensitive
             const errorMsg = document.getElementById("errorMsg");
             const lockScreen = document.getElementById("lockScreen");
             const secretContent = document.getElementById("secretContent");
