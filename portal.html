@@ -1,75 +1,167 @@
-<!-- [முந்தைய ஸ்டைல் மற்றும் ஹெடர் பகுதி அப்படியே இருக்கட்டும்] -->
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure User Portal | Yaseenis</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- THEME COLORS --- */
+        :root { --emerald-dark: #064e3b; --emerald-main: #047857; --gold-premium: #d97706; --bg-page: #f8fafc; --surface: #ffffff; --text-dark: #1e293b; --text-gray: #64748b; --border-light: #e2e8f0; --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.08); }
+        body { font-family: 'Mukta Malar', 'Inter', sans-serif; background-color: var(--bg-page); color: var(--text-dark); margin: 0; padding: 0; line-height: 1.7; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* HEADER */
+        .header-top { background-color: var(--emerald-dark); color: #fef3c7; text-align: center; padding: 10px; font-family: 'Amiri', serif; font-size: 22px; }
+        header { background-color: var(--surface); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { margin: 0; font-size: 28px; color: var(--emerald-dark); font-weight: 800; } .logo span { color: var(--gold-premium); }
 
-    <div class="container" id="authScreen">
-        <h2 id="authTitle">User Login</h2>
-        <input type="email" id="emailInput" class="input-field" placeholder="Email">
-        <input type="password" id="passwordInput" class="input-field" placeholder="Password">
-        <button id="mainAuthBtn" class="action-btn">Login</button>
-        <span class="toggle-link" id="toggleLink">Don't have an account? Register</span>
-        <div id="errorMsg" style="color: red; margin-top: 10px; font-size: 14px;"></div>
+        .container { max-width: 800px; margin: 50px auto; padding: 0 20px; flex-grow: 1; width: 100%; box-sizing: border-box; }
+
+        /* --- LOGIN FORM DESIGN --- */
+        #loginScreen {
+            background: var(--surface); border-radius: 16px; padding: 40px; 
+            max-width: 400px; margin: 0 auto; box-shadow: var(--shadow-card);
+            border-top: 5px solid var(--emerald-main); text-align: center;
+        }
+        .login-icon { font-size: 50px; background: #eff6ff; width: 90px; height: 90px; display: flex; justify-content: center; align-items: center; border-radius: 50%; margin: 0 auto 20px auto; color: #3b82f6; }
+        #loginScreen h2 { color: var(--emerald-dark); margin: 0 0 10px 0; font-size: 24px; }
+        #loginScreen p { color: var(--text-gray); font-size: 14px; margin-bottom: 25px; }
+
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+        .input-field { width: 100%; padding: 12px 15px; border: 2px solid var(--border-light); border-radius: 8px; font-size: 16px; box-sizing: border-box; outline: none; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .input-field:focus { border-color: var(--emerald-main); }
+
+        .login-btn { background: var(--emerald-main); color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .login-btn:hover { background: var(--gold-premium); }
+        .error-msg { color: #ef4444; font-size: 14px; margin-top: 15px; display: none; font-weight: bold; background: #fef2f2; padding: 10px; border-radius: 6px; }
+
+        /* --- SECURE CONTENT PORTAL --- */
+        #portalContent { display: none; }
+        .welcome-banner { background: linear-gradient(135deg, var(--emerald-dark), var(--emerald-main)); color: white; padding: 30px; border-radius: 16px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-card); }
+        .welcome-text h2 { margin: 0 0 5px 0; font-size: 24px; color: #fef3c7; }
+        .logout-btn { background: rgba(255,255,255,0.2); color: white; border: 1px solid white; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .logout-btn:hover { background: #ef4444; border-color: #ef4444; }
+
+        /* Content Cards */
+        .content-card { background: var(--surface); border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-left: 4px solid var(--gold-premium); }
+        .content-card h3 { margin: 0 0 10px 0; color: var(--emerald-dark); }
+        .content-card p { color: var(--text-gray); line-height: 1.6; margin: 0; }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-top">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><h1>Yaseenis<span>.</span></h1></div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- 🔐 LOGIN SCREEN -->
+        <div id="loginScreen">
+            <div class="login-icon">👤</div>
+            <h2>User Portal</h2>
+            <p>உள்ளடக்கத்தைப் படிக்க உங்களின் Username மற்றும் Password-ஐ உள்ளிடவும்.</p>
+            
+            <div class="input-group">
+                <label>Username (பயனர்பெயர்)</label>
+                <input type="text" id="usernameInput" class="input-field" placeholder="Enter username">
+            </div>
+
+            <div class="input-group">
+                <label>Password (கடவுச்சொல்)</label>
+                <input type="password" id="passwordInput" class="input-field" placeholder="Enter password">
+            </div>
+
+            <button class="login-btn" onclick="verifyLogin()">Login (உள்நுழைய)</button>
+            
+            <div id="errorMsg" class="error-msg">❌ தவறான Username அல்லது Password!</div>
+        </div>
+
+        <!-- 🔓 SECURE PORTAL CONTENT -->
+        <div id="portalContent">
+            
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h2>அஸ்ஸலாமு அலைக்கும், <span id="displayUser" style="text-transform: capitalize;">User</span>!</h2>
+                    <p style="margin:0; opacity: 0.9;">Yaseenis பிரத்யேகப் பக்கத்திற்கு உங்களை வரவேற்கிறோம்.</p>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+
+            <h3 style="color: var(--text-dark); margin-bottom: 20px;">🔒 உங்களுக்கான பிரத்யேகக் கட்டுரைகள்:</h3>
+
+            <div class="content-card">
+                <h3>ரகசியப் பதிவு 1: இஸ்லாமிய வரலாறு</h3>
+                <p>இந்தக் கட்டுரையை Username மற்றும் Password உள்ளீடு செய்த நபர்கள் மட்டுமே படிக்க முடியும். இது பொதுப் பார்வையில் இருந்து மறைக்கப்பட்டுள்ளது.</p>
+            </div>
+
+            <div class="content-card">
+                <h3>நிர்வாகச் செய்திகள்</h3>
+                <p>இங்கு இணையதளத்தின் முக்கிய அறிவிப்புகள் அல்லது பிரத்யேகமான தரவுகளைப் பயனர்களோடு நீங்கள் பகிர்ந்துகொள்ளலாம்.</p>
+            </div>
+
+        </div>
+
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    <script>
+        // 👥 அனுமதிக்கப்பட்ட பயனர்களின் பட்டியல் (Authorized Users List)
+        // உங்களுக்கு எத்தனை பயனர்கள் வேண்டுமானாலும் இங்கு கமாவால் பிரித்து சேர்த்துக்கொள்ளலாம்.
+        const validUsers = [
+            { username: "shan", password: "786" },
+            { username: "admin", password: "admin123" },
+            { username: "yaseeni", password: "password" }
+        ];
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
-            authDomain: "yaseenis-user.firebaseapp.com",
-            projectId: "yaseenis-user",
-            storageBucket: "yaseenis-user.firebasestorage.app",
-            messagingSenderId: "337971140829",
-            appId: "1:337971140829:web:c30a126aac465ded12e334",
-            measurementId: "G-SKRZ3TS7YR"
-        };
+        function verifyLogin() {
+            const userVal = document.getElementById("usernameInput").value.trim().toLowerCase();
+            const passVal = document.getElementById("passwordInput").value.trim();
+            const errorMsg = document.getElementById("errorMsg");
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+            // Check if entered credentials match any user in our list
+            const matchedUser = validUsers.find(u => u.username === userVal && u.password === passVal);
 
-        let isLoginMode = true;
-        const mainAuthBtn = document.getElementById("mainAuthBtn");
-        const toggleLink = document.getElementById("toggleLink");
-        const emailInput = document.getElementById("emailInput");
-        const passwordInput = document.getElementById("passwordInput");
-        const errorMsg = document.getElementById("errorMsg");
-
-        toggleLink.onclick = () => {
-            isLoginMode = !isLoginMode;
-            document.getElementById("authTitle").innerText = isLoginMode ? "User Login" : "Register";
-            mainAuthBtn.innerText = isLoginMode ? "Login" : "Register";
-            toggleLink.innerText = isLoginMode ? "Don't have an account? Register" : "Already have an account? Login";
-            errorMsg.innerText = "";
-        };
-
-        mainAuthBtn.onclick = () => {
-            const email = emailInput.value;
-            const password = passwordInput.value;
-            
-            // "Processing" என மாற்றுவதன் மூலம் பயனர் மீண்டும் கிளிக் செய்வதைத் தவிர்க்கலாம்
-            mainAuthBtn.innerText = "Processing...";
-            mainAuthBtn.disabled = true;
-
-            if(isLoginMode) {
-                signInWithEmailAndPassword(auth, email, password)
-                    .catch(e => {
-                        errorMsg.innerText = e.message;
-                        mainAuthBtn.innerText = "Login";
-                        mainAuthBtn.disabled = false;
-                    });
+            if (matchedUser) {
+                // Success Login
+                document.getElementById("loginScreen").style.display = "none";
+                document.getElementById("portalContent").style.display = "block";
+                
+                // Show user's name on the dashboard
+                document.getElementById("displayUser").innerText = matchedUser.username;
+                
+                // Clear inputs & errors
+                document.getElementById("usernameInput").value = "";
+                document.getElementById("passwordInput").value = "";
+                errorMsg.style.display = "none";
+                window.scrollTo(0,0);
             } else {
-                createUserWithEmailAndPassword(auth, email, password)
-                    .catch(e => {
-                        errorMsg.innerText = e.message;
-                        mainAuthBtn.innerText = "Register";
-                        mainAuthBtn.disabled = false;
-                    });
+                // Failed Login
+                errorMsg.style.display = "block";
             }
-        };
+        }
 
-        // முக்கிய மாற்றம்: லாகின் வெற்றி பெற்றவுடன் தானாகவே மாறும்
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                window.location.replace("index.html"); // .href-க்கு பதில் .replace பயன்படுத்துவது சிறந்தது
+        function logout() {
+            document.getElementById("portalContent").style.display = "none";
+            document.getElementById("loginScreen").style.display = "block";
+            window.scrollTo(0,0);
+        }
+
+        // Enter Button Support
+        document.getElementById("passwordInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                verifyLogin();
             }
         });
     </script>
+
+</body>
+</html>
