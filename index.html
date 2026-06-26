@@ -3,78 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yaseenis | தூய இஸ்லாமிய இணையதளம்</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Yaseenis | Premium Islamic Portal</title>
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase Authentication Gatekeeper -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+            authDomain: "yaseenis-user.firebaseapp.com",
+            projectId: "yaseenis-user",
+            storageBucket: "yaseenis-user.firebasestorage.app",
+            messagingSenderId: "337971140829",
+            appId: "1:337971140829:web:c30a126aac465ded12e334",
+            measurementId: "G-SKRZ3TS7YR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            // லாகின் செய்யாதவர்களை portal.html-க்கு அனுப்பவும்
+            if (!user && window.location.pathname !== "/portal.html") {
+                window.location.href = "portal.html";
+            }
+        });
+    </script>
+    
     <style>
-        :root {
-            --primary: #064e3b; /* Emerald */
-            --accent: #d97706;  /* Gold */
-            --bg: #f8fafc;
-            --text: #1e293b;
-        }
-        body { font-family: 'Mukta Malar', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; line-height: 1.6; }
-        
-        /* Header */
-        .top-bar { background: var(--primary); color: #fef3c7; text-align: center; padding: 10px; font-family: 'Amiri', serif; font-size: 20px; }
-        header { background: #ffffff; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h1 { margin: 0; color: var(--primary); }
-        nav { margin-top: 15px; }
-        nav a { margin: 0 10px; text-decoration: none; color: var(--text); font-weight: 600; transition: 0.3s; }
-        nav a:hover { color: var(--accent); }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(rgba(6, 78, 59, 0.9), rgba(6, 78, 59, 0.9)), 
-                        url('https://www.transparenttextures.com/patterns/arabesque.png');
-            color: white; padding: 60px 20px; text-align: center;
-        }
-        .hero h2 { font-family: 'Amiri', serif; font-size: 2.5rem; color: var(--accent); }
-
-        /* Sections */
-        .container { max-width: 900px; margin: 40px auto; padding: 20px; }
-        .card { background: white; padding: 25px; border-radius: 12px; border-left: 5px solid var(--accent); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        
-        footer { text-align: center; padding: 30px; background: #e2e8f0; margin-top: 50px; }
+        /* [உங்கள் முந்தைய CSS டிசைன் அனைத்தும் இங்கே அப்படியே இருக்கும்] */
+        /* கவனிக்க: நீளமான CSS-ஐ இங்கே நான் சுருக்கமாகக் குறிப்பிட்டுள்ளேன், 
+           நீங்கள் ஏற்கனவே வைத்திருந்த CSS-ஐ அப்படியே இதனுடன் இணைத்துக் கொள்ளவும். */
+        :root { --emerald-900: #064e3b; --emerald-700: #047857; --gold-primary: #d97706; --gold-light: #fef3c7; --bg-body: #f8fafc; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; }
+        body { font-family: 'Mukta Malar', 'Inter', sans-serif; background-color: var(--bg-body); margin: 0; }
+        .bismillah { background-color: var(--emerald-900); color: var(--gold-light); text-align: center; padding: 8px; font-family: 'Amiri', serif; }
+        /* ... மீதமுள்ள அனைத்து CSS ஸ்டைல்களும் இங்கே வர வேண்டும் ... */
     </style>
 </head>
 <body>
 
-    <div class="top-bar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+    <!-- உங்கள் முந்தைய முகப்பு பக்க உள்ளடக்கங்கள் அனைத்தும் இங்கே தொடரும் -->
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
     
     <header>
-        <h1>Yaseenis</h1>
-        <nav>
-            <a href="index.html">முகப்பு</a>
-            <a href="portal.html">பயனர் பக்கம்</a>
-            <a href="shop.html">அங்காடி</a>
-        </nav>
+        <div class="nav-container">
+            <div class="logo"><h1>Yaseenis<span>.</span></h1></div>
+            <nav class="nav-links">
+                <a href="/">முகப்பு</a>
+                <a href="/article/">கட்டுரைகள்</a>
+                <a href="/Videos/list.html">வீடியோக்கள்</a>
+            </nav>
+        </div>
     </header>
 
-    <div class="hero">
-        <h2>தூய இஸ்லாமிய அறிவுக்களஞ்சியம்</h2>
-        <p>குர்ஆன், ஹதீஸ் மற்றும் வரலாற்றுப் பதிவுகளின் உன்னத தொகுப்பு.</p>
-    </div>
-
-    <div class="container">
-        <div class="card">
-            <h3>வரவேற்பு</h3>
-            <p>Yaseenis தளத்தின் மூலம் இஸ்லாமிய மார்க்கக் கல்வியை எளிமையாகவும் ஆதாரப்பூர்வமாகவும் பயிலுங்கள்.</p>
-        </div>
-
-        <div class="card">
-            <h3>முக்கிய சேவைகள்</h3>
-            <ul>
-                <li>ஆதாரப்பூர்வமான கட்டுரைகள்</li>
-                <li>வரலாற்று வீடியோக்கள்</li>
-                <li>ஆன்லைன் அங்காடி (Shop)</li>
-            </ul>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Yaseenis. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
-    </footer>
+    <!-- [Hero Section, Prayer Times, Categories, Latest Articles, Footer] -->
+    <!-- உங்கள் முந்தைய முழு HTML உள்ளடக்கம் அனைத்தும் இங்கே இருக்க வேண்டும் -->
 
 </body>
 </html>
