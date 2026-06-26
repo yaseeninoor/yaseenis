@@ -134,14 +134,22 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-        // ⚠️ இதை நீக்கிவிட்டு, உங்களின் FIREBASE CONSOLE-ல் உள்ள குறியீட்டைப் பேஸ்ட் செய்யவும் ⚠️
+            <!-- ============================================== -->
+    <!-- FIREBASE AUTHENTICATION SCRIPT (MODULE TYPE)   -->
+    <!-- ============================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        // உங்களின் உண்மையான Firebase Config
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+            authDomain: "yaseenis-user.firebaseapp.com",
+            projectId: "yaseenis-user",
+            storageBucket: "yaseenis-user.firebasestorage.app",
+            messagingSenderId: "337971140829",
+            appId: "1:337971140829:web:c30a126aac465ded12e334",
+            measurementId: "G-SKRZ3TS7YR"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -164,6 +172,103 @@
         const successMsg = document.getElementById("successMsg");
         const displayUserEmail = document.getElementById("displayUserEmail");
         const logoutBtn = document.getElementById("logoutBtn");
+
+        let isLoginMode = true; // State to toggle between Login and Sign Up
+
+        // Toggle Function (Switch between Login and Registration UI)
+        toggleLink.addEventListener("click", () => {
+            isLoginMode = !isLoginMode;
+            errorMsg.style.display = "none";
+            successMsg.style.display = "none";
+            
+            if (isLoginMode) {
+                authTitle.innerText = "User Login";
+                authSubtitle.innerText = "கட்டுரைகளைப் படிக்க உள்நுழையவும்.";
+                mainAuthBtn.innerText = "Login (உள்நுழைய)";
+                toggleQuestion.innerText = "புதிய பயனரா?";
+                toggleLink.innerText = "Register Here";
+            } else {
+                authTitle.innerText = "Create Account";
+                authSubtitle.innerText = "புதிய கணக்கை உருவாக்கவும்.";
+                mainAuthBtn.innerText = "Sign Up (பதிவு செய்க)";
+                toggleQuestion.innerText = "ஏற்கனவே கணக்கு உள்ளதா?";
+                toggleLink.innerText = "Login Here";
+            }
+        });
+
+        // Main Button Click (Handles both Login and Sign Up)
+        mainAuthBtn.addEventListener("click", () => {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            
+            errorMsg.style.display = "none";
+            successMsg.style.display = "none";
+
+            if (!email || !password) {
+                errorMsg.innerText = "❌ Email மற்றும் Password-ஐ சரியாக உள்ளிடவும்.";
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            mainAuthBtn.disabled = true;
+            mainAuthBtn.innerText = "Processing...";
+
+            if (isLoginMode) {
+                // LOGIN LOGIC
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        mainAuthBtn.innerText = "Login (உள்நுழைய)";
+                        mainAuthBtn.disabled = false;
+                    })
+                    .catch((error) => {
+                        errorMsg.innerText = "❌ தவறான Email அல்லது Password!";
+                        errorMsg.style.display = "block";
+                        mainAuthBtn.innerText = "Login (உள்நுழைய)";
+                        mainAuthBtn.disabled = false;
+                    });
+            } else {
+                // SIGN UP LOGIC
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        successMsg.innerText = "✅ கணக்கு வெற்றிகரமாக உருவாக்கப்பட்டது!";
+                        successMsg.style.display = "block";
+                        mainAuthBtn.innerText = "Sign Up (பதிவு செய்க)";
+                        mainAuthBtn.disabled = false;
+                    })
+                    .catch((error) => {
+                        errorMsg.innerText = "❌ பிழை: " + error.message; 
+                        errorMsg.style.display = "block";
+                        mainAuthBtn.innerText = "Sign Up (பதிவு செய்க)";
+                        mainAuthBtn.disabled = false;
+                    });
+            }
+        });
+
+        // Logout Logic
+        logoutBtn.addEventListener("click", () => {
+            signOut(auth).then(() => {
+            }).catch((error) => {
+                alert("Logout Error: " + error.message);
+            });
+        });
+
+        // Real-time Authentication State Observer
+        onAuthStateChanged(auth, (user) => {
+            pageLoader.style.display = "none"; 
+            
+            if (user) {
+                authScreen.style.display = "none";
+                portalContent.style.display = "block";
+                displayUserEmail.innerText = user.email;
+                emailInput.value = "";
+                passwordInput.value = "";
+            } else {
+                portalContent.style.display = "none";
+                authScreen.style.display = "block";
+            }
+        });
+    </script>
+
 
         let isLoginMode = true; // State to toggle between Login and Sign Up
 
