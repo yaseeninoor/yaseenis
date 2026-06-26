@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaseenis | Secure User Portal</title>
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --emerald-dark: #064e3b; --emerald-main: #047857; --gold-primary: #d97706; --bg-body: #f8fafc; --surface: #ffffff; --text-main: #0f172a; }
+        body { font-family: 'Mukta Malar', sans-serif; background-color: var(--bg-body); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* Auth Screen */
+        .container { max-width: 400px; margin: 100px auto; padding: 40px; background: white; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 5px solid var(--emerald-main); text-align: center; }
+        .input-field { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; }
+        .action-btn { width: 100%; padding: 12px; background: var(--emerald-main); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .toggle-link { color: #3b82f6; cursor: pointer; text-decoration: underline; display: block; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="authScreen">
+        <h2 id="authTitle">User Login</h2>
+        <input type="email" id="emailInput" class="input-field" placeholder="Email">
+        <input type="password" id="passwordInput" class="input-field" placeholder="Password">
+        <button id="mainAuthBtn" class="action-btn">Login</button>
+        <span class="toggle-link" id="toggleLink">Don't have an account? Register</span>
+        <div id="errorMsg" style="color: red; margin-top: 10px;"></div>
+    </div>
+
+    <!-- Firebase SDK & Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+            authDomain: "yaseenis-user.firebaseapp.com",
+            projectId: "yaseenis-user",
+            storageBucket: "yaseenis-user.firebasestorage.app",
+            messagingSenderId: "337971140829",
+            appId: "1:337971140829:web:c30a126aac465ded12e334",
+            measurementId: "G-SKRZ3TS7YR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        let isLoginMode = true;
+        const mainAuthBtn = document.getElementById("mainAuthBtn");
+        const toggleLink = document.getElementById("toggleLink");
+
+        toggleLink.onclick = () => {
+            isLoginMode = !isLoginMode;
+            document.getElementById("authTitle").innerText = isLoginMode ? "User Login" : "Register";
+            mainAuthBtn.innerText = isLoginMode ? "Login" : "Register";
+            toggleLink.innerText = isLoginMode ? "Don't have an account? Register" : "Already have an account? Login";
+        };
+
+        mainAuthBtn.onclick = () => {
+            const email = document.getElementById("emailInput").value;
+            const password = document.getElementById("passwordInput").value;
+            const errorMsg = document.getElementById("errorMsg");
+
+            if(isLoginMode) {
+                signInWithEmailAndPassword(auth, email, password).catch(e => errorMsg.innerText = e.message);
+            } else {
+                createUserWithEmailAndPassword(auth, email, password).catch(e => errorMsg.innerText = e.message);
+            }
+        };
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = "index.html"; // லாகின் ஆனதும் முகப்புப் பக்கத்திற்குச் செல்லவும்
+            }
+        });
+    </script>
+</body>
+</html>
