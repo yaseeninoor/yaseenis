@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>யார் இந்த யஜீத்? | Yaseenis</title>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+            authDomain: "yaseenis-user.firebaseapp.com",
+            projectId: "yaseenis-user",
+            storageBucket: "yaseenis-user.firebasestorage.app",
+            messagingSenderId: "337971140829",
+            appId: "1:337971140829:web:c30a126aac465ded12e334",
+            measurementId: "G-SKRZ3TS7YR"
+        };
+        initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        onAuthStateChanged(auth, (user) => {
+            // லாகின் செய்யாதவர்கள் தானாக portal.html-க்குத் திருப்பி விடப்படுவார்கள்
+            if (!user) {
+                window.location.href = "../portal.html";
+            }
+        });
+    </script>
+
+    <style>
+        body { font-family: 'Mukta Malar', sans-serif; line-height: 1.8; background: #f8fafc; padding: 20px; }
+        .container { max-width: 800px; margin: 40px auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        h1 { color: #064e3b; }
+        .quote { background: #fffbeb; padding: 20px; border-left: 6px solid #d97706; margin: 20px 0; font-style: italic; }
+        .source { font-size: 14px; color: #64748b; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>யார் இந்த யஜீத்?</h1>
+    
+    <p><strong>இமாம் அஹ்மத் (Ahmad ibn Hanbal)</strong> அவர்கள் குறித்து அவரது மகன் <strong>Abdullah ibn Ahmad ibn Hanbal (ரஹ்மதுல்லாஹி அலைஹி)</strong> கேட்டார்:</p>
+
+    <div class="quote">
+        قلت لأبي: إن قوماً يقولون إنهم يحبون يزيد. فقال: يا بني، وهل يحب يزيد أحد يؤمن بالله واليوم الآخر؟
+        <br><br>
+        <strong>தமிழ்:</strong><br>
+        “அப்பா! சிலர் யஜீதை நேசிக்கிறோம் என்று கூறுகிறார்கள்.”<br><br>
+        அதற்கு இமாம் அஹ்மத்:<br>
+        “மகனே! அல்லாஹ்வையும் மறுமை நாளையும் நம்புகிறவன் யஜீதை நேசிப்பானா?”
+    </div>
+
+    <div class="source">
+        ஆதாரம்: الرد على المتعصب العنيد – Ibn al-Jawzi
+    </div>
+</div>
+
+</body>
+</html>
