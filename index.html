@@ -1,175 +1,103 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yaseenis | Login</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Mukta Malar',sans-serif;
-}
-body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:
-linear-gradient(rgba(6,78,59,.85),rgba(4,120,87,.90)),
-url("https://images.unsplash.com/photo-1512632578888-169bbbc64f33?auto=format&fit=crop&w=1600&q=80");
-background-size:cover;
-background-position:center;
-}
-.login-card{
-width:380px;
-max-width:95%;
-background:rgba(255,255,255,.95);
-backdrop-filter:blur(15px);
-border-radius:20px;
-padding:40px;
-box-shadow:0 20px 50px rgba(0,0,0,.25);
-animation:fade .6s;
-}
-@keyframes fade{
-from{
-opacity:0;
-transform:translateY(30px);
-}
-to{
-opacity:1;
-transform:none;
-}
-}
-.logo{
-text-align:center;
-font-size:38px;
-font-weight:bold;
-color:#065f46;
-}
-.logo span{
-color:#D4AF37;
-}
-.arabic{
-text-align:center;
-font-family:'Amiri',serif;
-font-size:26px;
-margin:15px 0;
-color:#065f46;
-}
-.subtitle{
-text-align:center;
-margin-bottom:30px;
-color:#555;
-}
-.input{
-margin-bottom:18px;
-}
-.input label{
-display:block;
-margin-bottom:8px;
-font-weight:600;
-color:#065f46;
-}
-.input input{
-width:100%;
-padding:14px;
-border:1px solid #ddd;
-border-radius:12px;
-font-size:15px;
-outline:none;
-transition:.3s;
-}
-.input input:focus{
-border-color:#047857;
-box-shadow:0 0 10px rgba(4,120,87,.2);
-}
-button{
-width:100%;
-padding:15px;
-border:none;
-border-radius:12px;
-background:linear-gradient(135deg,#047857,#065f46);
-color:white;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-transition:.3s;
-}
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 10px 25px rgba(4,120,87,.35);
-}
-.links{
-display:flex;
-justify-content:space-between;
-margin-top:18px;
-font-size:14px;
-}
-.links a{
-text-decoration:none;
-color:#047857;
-font-weight:bold;
-}
-.footer{
-margin-top:30px;
-text-align:center;
-font-size:13px;
-color:#666;
-}
-.footer span{
-color:#D4AF37;
-font-weight:bold;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaseenis | தூய இஸ்லாமிய அறிவுக்களஞ்சியம்</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #065f46;
+            --secondary: #047857;
+            --gold: #d4af37;
+            --glass: rgba(255, 255, 255, 0.95);
+            --shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        body { font-family: 'Mukta Malar', sans-serif; background: #f0f4f8; margin: 0; color: #334155; }
+        
+        /* Glassmorphism Header */
+        header { position: sticky; top: 0; background: var(--glass); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .top-bar { background: var(--primary); color: white; text-align: center; padding: 8px; font-family: 'Amiri', serif; font-size: 22px; }
+        nav { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 28px; font-weight: 800; color: var(--primary); }
+        .logo span { color: var(--gold); }
+        .nav-links a { text-decoration: none; color: #475569; font-weight: 600; margin-left: 20px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .login-btn { background: var(--primary); color: white; padding: 8px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; }
+
+        /* Hero Banner */
+        .hero { padding: 80px 20px; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; }
+        .hero h1 { font-family: 'Amiri', serif; font-size: 3rem; color: var(--gold); margin-bottom: 10px; }
+        .search-container { margin-top: 30px; background: white; padding: 8px; border-radius: 50px; display: inline-flex; width: 100%; max-width: 500px; box-shadow: var(--shadow); }
+        .search-container input { border: none; padding: 15px; width: 100%; outline: none; border-radius: 50px; }
+        .search-container button { background: var(--gold); border: none; padding: 0 25px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+
+        /* Content Grid */
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: var(--shadow); transition: 0.3s; text-decoration: none; color: inherit; }
+        .card:hover { transform: translateY(-10px); }
+        .card h3 { color: var(--primary); margin: 10px 0; }
+        
+        /* Stats */
+        .stats-bar { display: flex; justify-content: space-around; background: var(--primary); color: white; padding: 40px; border-radius: 20px; margin: 40px 0; }
+        .stat-item { text-align: center; }
+        .stat-item h2 { margin: 0; font-size: 2.5rem; }
+
+        footer { background: var(--primary); color: white; text-align: center; padding: 40px; }
+    </style>
 </head>
 <body>
-<div class="login-card">
-<div class="logo">
-Yaseenis<span>.</span>
-</div>
-<div class="arabic">
-بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيم
-</div>
-<div class="subtitle">
-பயனர் உள்நுழைவு
-</div>
-<form id="loginForm">
-<div class="input">
-<label>👤 Username</label>
-<input type="text" id="username" placeholder="Enter Username" required>
-</div>
-<div class="input">
-<label>🔒 Password</label>
-<input type="password" id="password" placeholder="Enter Password" required>
-</div>
-<button type="submit">
-Login →
-</button>
-</form>
-<div class="links">
-<a href="#">Forgot Password?</a>
-<a href="#">Register</a>
-</div>
-<div class="footer">
-© 2026 <span>Yaseenis Islamic Portal</span>
-</div>
-</div>
-<script>
-document.getElementById("loginForm").addEventListener("submit",function(e){
-e.preventDefault();
-const u=document.getElementById("username").value;
-const p=document.getElementById("password").value;
-if(u==="admin" && p==="123"){
-alert("Login Successful");
-// Redirect to portal page instead of going back home
-window.location.href = "portal.html";
-}else{
-alert("Invalid Username or Password");
-}
-});
-</script>
+
+    <div class="top-bar">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيم</div>
+    <header>
+        <nav>
+            <div class="logo">Yaseenis<span>.</span></div>
+            <div class="nav-links">
+                <a href="/">முகப்பு</a>
+                <a href="/article/">கட்டுரைகள்</a>
+                <a href="portal.html" class="login-btn">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>ياسينيس</h1>
+        <h2>தமிழ் இஸ்லாமிய அறிவுக்களஞ்சியம்</h2>
+        <p>குர்ஆன், ஹதீஸ், வரலாறு மற்றும் மார்க்கக் கல்வியின் சங்கமம்.</p>
+        <div class="search-container">
+            <input type="text" placeholder="எதைத் தேடுகிறீர்கள்?">
+            <button>தேடு</button>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 30px;">📚 முக்கியப் பிரிவுகள்</h2>
+        <div class="card-grid">
+            <a href="#" class="card">
+                <h3>📖 அல்குர்ஆன்</h3>
+                <p>திருக்குர்ஆன் தப்ஸீர் மற்றும் விளக்கங்கள்.</p>
+            </a>
+            <a href="#" class="card">
+                <h3>📜 ஹதீஸ்</h3>
+                <p>ஸஹீஹ் ஹதீஸ் தொகுப்புகள்.</p>
+            </a>
+            <a href="#" class="card">
+                <h3>🕌 வரலாறு</h3>
+                <p>நபிமார்கள் மற்றும் சஹாபாக்களின் வாழ்க்கை வரலாறு.</p>
+            </a>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item"><h2>500+</h2><p>Articles</p></div>
+            <div class="stat-item"><h2>2500+</h2><p>Hadith</p></div>
+            <div class="stat-item"><h2>300+</h2><p>Videos</p></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Yaseenis Islamic Portal. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+    </footer>
+
 </body>
 </html>
