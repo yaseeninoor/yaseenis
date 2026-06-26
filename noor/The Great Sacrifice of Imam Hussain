@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karbala Varalaru - Protected Post | Yaseenis</title>
+    <title>Karbala: Dream of Umm Salamah (RA) | Yaseenis</title>
     
     <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         .logo h1 { margin: 0; font-size: 28px; color: var(--emerald-dark); font-weight: 800; } .logo span { color: var(--gold-premium); }
         .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; margin-left: 25px; font-size: 16px; }
 
-        .container { max-width: 800px; margin: 50px auto; padding: 0 20px; }
+        .container { max-width: 850px; margin: 50px auto; padding: 0 20px; }
 
         /* --- LOCK SCREEN DESIGN --- */
         #lockScreen { background: var(--surface); border-radius: 16px; padding: 40px; text-align: center; box-shadow: var(--shadow-card); border-top: 5px solid #ef4444; max-width: 450px; margin: 0 auto; }
@@ -37,18 +37,38 @@
         /* --- SECRET CONTENT (HIDDEN BY DEFAULT) --- */
         #secretContent { display: none; }
         
-        .article-card { background: var(--surface); border-radius: 16px; padding: 40px; box-shadow: var(--shadow-card); border-top: 5px solid var(--emerald-main); }
+        .article-card { background: var(--surface); border-radius: 16px; padding: 40px; box-shadow: var(--shadow-card); border-top: 5px solid var(--emerald-main); margin-bottom: 30px; }
         
-        /* Tanglish Title Style */
-        .article-title { color: var(--emerald-dark); font-size: 28px; margin-top: 0; text-align: center; margin-bottom: 10px; font-family: 'Inter', 'Mukta Malar', sans-serif; line-height: 1.4; font-weight: 800; }
+        .article-title { color: var(--emerald-dark); font-size: 26px; margin-top: 0; text-align: center; margin-bottom: 10px; font-weight: 800; line-height: 1.4; }
+        .article-subtitle { text-align: center; font-size: 16px; color: var(--text-gray); font-family: 'Inter', sans-serif; margin-bottom: 15px; }
+        .article-arabic-title { text-align: center; font-family: 'Amiri', serif; font-size: 26px; color: var(--gold-premium); margin-bottom: 30px; border-bottom: 1px dashed var(--border-light); padding-bottom: 20px; }
         
-        .author-name { text-align: center; color: var(--gold-premium); font-weight: bold; font-size: 15px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-light); font-family: 'Inter', sans-serif; }
-        .tamil-text { font-size: 18px; color: #334155; text-align: justify; margin-bottom: 20px; line-height: 1.8; }
+        /* Language Sections */
+        .lang-section { margin-bottom: 35px; }
+        .lang-title { display: inline-block; background: var(--emerald-main); color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* Highlight Box for Quotes */
-        .quote-box { background: var(--gold-light); border-left: 5px solid var(--gold-premium); padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; font-style: italic; color: var(--emerald-dark); font-weight: 600; font-size: 19px; }
+        .arabic-text { font-family: 'Amiri', serif; font-size: 24px; color: #1e293b; text-align: right; line-height: 2.2; margin-bottom: 15px; padding: 20px; background: #f8fafc; border-right: 4px solid var(--emerald-main); border-radius: 8px; }
+        .english-text { font-family: 'Inter', sans-serif; font-size: 16px; color: #334155; line-height: 1.8; margin-bottom: 15px; padding: 20px; background: #f8fafc; border-left: 4px solid var(--gold-premium); border-radius: 8px; }
+        .tamil-text { font-size: 17px; color: #334155; line-height: 1.9; margin-bottom: 15px; padding: 20px; background: #f8fafc; border-left: 4px solid var(--emerald-main); border-radius: 8px; text-align: justify; }
 
-        .lock-again-btn { margin-top: 30px; display: block; width: 100%; padding: 15px; background: #f8fafc; color: #ef4444; border: 1px solid #ef4444; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 15px; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        /* Lessons List */
+        .lessons-grid { display: grid; gap: 25px; }
+        .lessons-box { background: white; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .lessons-box h4 { margin: 0 0 15px 0; color: var(--emerald-dark); border-bottom: 2px solid var(--gold-light); display: inline-block; padding-bottom: 5px; }
+        .lessons-box ul { padding-left: 20px; margin: 0; color: var(--text-dark); }
+        .lessons-box li { margin-bottom: 10px; font-size: 15px; }
+        
+        .arabic-list ul { list-style-type: none; padding-right: 0; padding-left: 0; }
+        .arabic-list li { text-align: right; font-family: 'Amiri', serif; font-size: 20px; padding-right: 20px; position: relative; }
+        .arabic-list li::before { content: "•"; position: absolute; right: 0; color: var(--gold-premium); }
+
+        /* Reference Box */
+        .ref-box { background: var(--emerald-dark); color: white; padding: 25px; border-radius: 12px; margin-top: 30px; text-align: center; }
+        .ref-box p { margin: 5px 0; font-size: 15px; opacity: 0.9; }
+        .ref-box .salawat { font-family: 'Amiri', serif; font-size: 22px; color: var(--gold-light); margin-top: 15px; display: block; }
+        .brand-footer { margin-top: 15px; font-size: 13px; opacity: 0.7; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
+
+        .lock-again-btn { margin-top: 20px; display: block; width: 100%; padding: 15px; background: #f8fafc; color: #ef4444; border: 1px solid #ef4444; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 15px; transition: 0.3s; font-family: 'Inter', sans-serif; text-align: center; }
         .lock-again-btn:hover { background: #ef4444; color: white; }
 
         /* BOTTOM NAV */
@@ -89,7 +109,7 @@
             <div id="errorMsg" class="error-msg">தவறான கடவுச்சொல்! (Wrong Password)</div>
         </div>
 
-        <!-- 🔓 SECRET CONTENT (Karbala Post) -->
+        <!-- 🔓 SECRET CONTENT -->
         <div id="secretContent">
             
             <a href="/" style="display: inline-flex; align-items: center; gap: 5px; text-decoration: none; color: var(--emerald-dark); font-weight: 600; margin-bottom: 20px; font-family: 'Inter', sans-serif;">
@@ -97,30 +117,139 @@
             </a>
 
             <article class="article-card">
-                <div style="text-align: center;">
-                    <span style="display:inline-block; background: var(--gold-light); color: var(--gold-premium); padding: 5px 15px; border-radius: 8px; font-size: 13px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">History / வரலாறு</span>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span style="display:inline-block; font-family: 'Amiri', serif; font-size: 22px; color: var(--emerald-main);">الصَّلَاةُ وَالسَّلَامُ عَلَيْكَ يَا رَسُولَ اللَّهِ ﷺ</span>
                 </div>
                 
-                <!-- TANGLISH TITLE -->
-                <h1 class="article-title">Karbala Varalaru: The Great Sacrifice of Imam Hussain (RA)</h1>
+                <h1 class="article-title">உம்மு ஸலமா (ரழி) அவர்கள் கண்ட கனவு – இமாம் ஹுஸைன் (ரழி) அவர்களின் ஷஹாதத்</h1>
+                <p class="article-subtitle">The Dream of Umm Salamah (رضي الله عنها) After the Martyrdom of al-Husayn (رضي الله عنه)</p>
+                <div class="article-arabic-title" dir="rtl">الرؤيا التي رأتها أم سلمة رضي الله عنها بعد استشهاد الحسين رضي الله عنه</div>
                 
-                <div class="author-name">Posted by: Yaseenis Media</div>
-                
-                <p class="tamil-text">
-                    கர்பலா வரலாறு (History of Karbala) இஸ்லாமிய சரித்திரத்தில் தியாகத்தின் உச்சத்தை உணர்த்தும் ஒரு கண்ணீர் மல்க வைக்கும் நிகழ்வாகும். ஹிஜ்ரி 61, முஹர்ரம் மாதம் 10-ம் நாள் ஈராக் நாட்டின் கர்பலா மைதானத்தில் இந்த மாபெரும் தியாகம் நடைபெற்றது.
-                </p>
-                
-                <p class="tamil-text">
-                    சத்தியத்தை நிலைநாட்டுவதற்காகவும், இஸ்லாமிய மார்க்கத்தின் புனிதத்தைக் காப்பதற்காகவும் நபிகள் நாயகம் (ஸல்) அவர்களின் அருமைப் பேரர் இமாம் ஹுஸைன் (ரலி) அவர்கள் தமது குடும்பத்தினர் மற்றும் உற்ற தோழர்களுடன் இணைந்து செய்த தியாகம் உலக வரலாற்றில் ஈடு இணையற்றது.
-                </p>
+                <!-- ARABIC HADITH -->
+                <div class="lang-section">
+                    <span class="lang-title">Arabic</span>
+                    <div class="arabic-text" dir="rtl">
+                        عَنْ سَلْمَى رَضِيَ اللَّهُ عَنْهَا قَالَتْ:<br><br>
+                        دَخَلْتُ عَلَى أُمِّ سَلَمَةَ وَهِيَ تَبْكِي، فَقُلْتُ:<br>
+                        مَا يُبْكِيكِ؟<br><br>
+                        قَالَتْ:<br>
+                        رَأَيْتُ رَسُولَ اللَّهِ ﷺ فِي الْمَنَامِ، وَعَلَى رَأْسِهِ وَلِحْيَتِهِ التُّرَابُ.<br><br>
+                        فَقُلْتُ:<br>
+                        مَا لَكَ يَا رَسُولَ اللَّهِ؟<br><br>
+                        فَقَالَ ﷺ:<br>
+                        «شَهِدْتُ قَتْلَ الْحُسَيْنِ آنِفًا»
+                    </div>
+                </div>
 
-                <div class="quote-box">
-                    "கொடுங்கோலன் முன்னால் உண்மையை எடுத்துரைப்பதே மிகச் சிறந்த அறப்போராட்டமாகும்" - என்ற நாயகம் (ஸல்) அவர்களின் கூற்றுக்கேற்ப வாழ்ந்து காட்டியவர்கள் இமாம் ஹுஸைன் (ரலி) அவர்கள்.
+                <!-- ENGLISH TRANSLATION -->
+                <div class="lang-section">
+                    <span class="lang-title" style="background: var(--gold-premium);">English Translation</span>
+                    <div class="english-text">
+                        <strong>Narrated Salma (RA):</strong><br><br>
+                        "I entered upon Umm Salamah (RA) while she was weeping.<br>
+                        I asked,<br>
+                        'What makes you cry?'<br><br>
+                        She replied,<br>
+                        'I saw the Messenger of Allah ﷺ in a dream. Dust covered his head and beard.<br>
+                        I asked,<br>
+                        “O Messenger of Allah ﷺ, what has happened?”<br><br>
+                        He replied,<br>
+                        “I have just witnessed the killing of Al-Husayn.”'"
+                    </div>
                 </div>
+
+                <!-- TAMIL TRANSLATION -->
+                <div class="lang-section">
+                    <span class="lang-title">தமிழ் மொழிபெயர்ப்பு</span>
+                    <div class="tamil-text">
+                        <strong>ஹஸ்ரத் ஸல்மா (ரழியல்லாஹு அன்ஹா) அவர்கள் அறிவிக்கிறார்கள்:</strong><br><br>
+                        “நான் உம்மு ஸலமா (ரழியல்லாஹு அன்ஹா) அவர்களிடம் சென்றபோது அவர்கள் அழுது கொண்டிருந்தார்கள்.<br>
+                        நான் கேட்டேன்:<br>
+                        ‘உங்களை அழவைத்தது என்ன?’<br><br>
+                        அவர்கள் கூறினார்கள்:<br>
+                        ‘நான் அல்லாஹ்வின் தூதர் ﷺ அவர்களை கனவில் கண்டேன்.<br>
+                        அவர்களின் தலை மற்றும் தாடியில் மண் படிந்திருந்தது.<br>
+                        நான் கேட்டேன்:<br>
+                        ‘யா ரசூலல்லாஹ் ﷺ! உங்களுக்கு என்ன ஆனது?’<br><br>
+                        அவர்கள் ﷺ கூறினார்கள்:<br>
+                        ‘நான் இப்போதுதான் ஹுஸைன் (ரழியல்லாஹு அன்ஹு) அவர்கள் ஷஹீதாக்கப்பட்டதை கண்டேன்.’”
+                    </div>
+                </div>
+
+                <hr style="border: none; border-top: 1px dashed var(--border-light); margin: 40px 0;">
+
+                <!-- LESSONS -->
+                <h3 style="text-align: center; color: var(--emerald-dark); margin-bottom: 25px;">Lessons | الفوائد | படிப்பினைகள்</h3>
                 
-                <p class="tamil-text">
-                    அநியாயக்கார ஆட்சியாளர் யஸீதின் தவறான அதிகாரத்திற்கு அடிபணிய மறுத்து, பல நாட்கள் குடிக்கத் தண்ணீர் கூட இல்லாமல், தாகத்தோடு நீதிக்காக உயிர்நீத்த அஹ்லுல் பைத் (நபிக்குடும்பம்) மற்றும் சஹாபாக்களின் ஈமானிய உறுதி நமக்கு என்றென்றும் ஒரு சிறந்த பாடமாகும். கர்பலா வெறும் ஒரு துயரச் சம்பவம் மட்டுமல்ல; அது சத்தியமும் அசத்தியமும் மோதிய போது, சத்தியம் எவ்விதம் நிலைத்து நின்றது என்பதற்கான அழியாத சாட்சியாகும்.
-                </p>
+                <div class="lessons-grid">
+                    <div class="lessons-box arabic-list" dir="rtl">
+                        <h4 style="font-family: 'Amiri', serif; font-size: 22px;">الفوائد</h4>
+                        <ul>
+                            <li>محبة النبي ﷺ للحسن والحسين رضي الله عنهما.</li>
+                            <li>مكانة الحسين رضي الله عنه عند رسول الله ﷺ.</li>
+                            <li>استشهاد الحسين رضي الله عنه من أعظم المصائب في تاريخ الأمة.</li>
+                            <li>رؤيا الأنبياء حق.</li>
+                            <li>وجوب محبة أهل بيت النبي ﷺ.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lessons-box">
+                        <h4 style="font-family: 'Inter', sans-serif;">English</h4>
+                        <ul style="font-family: 'Inter', sans-serif;">
+                            <li>The Prophet ﷺ deeply loved al-Hasan and al-Husayn.</li>
+                            <li>The martyrdom of al-Husayn was among the greatest tragedies in Islamic history.</li>
+                            <li>This narration reflects the grief felt over his martyrdom.</li>
+                            <li>Muslims should love and respect the family of the Prophet ﷺ.</li>
+                            <li>Dreams of the Prophets are true.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lessons-box">
+                        <h4>தமிழ்</h4>
+                        <ul>
+                            <li>நபி ﷺ அவர்கள் ஹஸன், ஹுஸைன் (ரழி) இருவரையும் மிகுந்த அன்புடன் நேசித்தார்கள்.</li>
+                            <li>இமாம் ஹுஸைன் (ரழி) அவர்களின் ஷஹாதத் இஸ்லாமிய வரலாற்றின் மிகப் பெரிய துயர நிகழ்வுகளில் ஒன்றாகும்.</li>
+                            <li>நபி ﷺ அவர்களின் குடும்பத்தை நேசிப்பது ஒவ்வொரு முஸ்லிமின் கடமையாகும்.</li>
+                            <li>நபிமார்களின் கனவு உண்மையாகும்.</li>
+                            <li>இந்த ஹதீஸ் ஹுஸைன் (ரழி) அவர்களின் உயர்ந்த அந்தஸ்தை எடுத்துக்காட்டுகிறது.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- HADITH REFERENCE -->
+                <div class="ref-box">
+                    <h3 style="margin-top: 0; color: var(--gold-light); font-family: 'Inter', sans-serif;">Hadith Reference</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; text-align: left;">
+                        <div dir="rtl" style="text-align: right; font-family: 'Amiri', serif; font-size: 18px;">
+                            <strong>المصدر:</strong> جامع الترمذي<br>
+                            <strong>عن:</strong> سَلْمَى رضي الله عنها<br>
+                            <strong>وقال الإمام الترمذي:</strong> هذا حديث غريب
+                        </div>
+                        <div style="font-family: 'Inter', sans-serif; font-size: 14px;">
+                            <strong>Source:</strong> Jami’ at-Tirmidhi<br>
+                            <strong>Narrator:</strong> Salma (RA)<br>
+                            <strong>Companion:</strong> Umm Salamah (RA)<br>
+                            <strong>Hadith:</strong> 3774<br>
+                            <strong>Imam al-Tirmidhi’s grading:</strong> Gharib<br>
+                            <strong>Shaykh al-Albani:</strong> Hasan
+                        </div>
+                        <div style="font-size: 14px;">
+                            <strong>நூல்:</strong> ஜாமிஉத் திர்மிதி<br>
+                            <strong>அறிவிப்பாளர்:</strong> ஸல்மா (ரழி)<br>
+                            <strong>ஹதீஸ்:</strong> 3774<br>
+                            <strong>இமாம் திர்மிதி:</strong> ஹதீஸ் கரீப்<br>
+                            <strong>ஷெய்க் அல்பானி:</strong> ஹஸன்
+                        </div>
+                    </div>
+
+                    <span class="salawat">ﷺ اللهم صل وسلم وبارك على سيدنا محمد وعلى آله وصحبه أجمعين</span>
+                    
+                    <div class="brand-footer">
+                        Presented by <strong>SunnathJamath</strong><br>
+                        Authentic Hadith • Ahlus Sunnah wal Jama’ah • Islamic History
+                    </div>
+                </div>
 
             </article>
             
