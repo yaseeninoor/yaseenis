@@ -1,557 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Yaseenis Premium Portal</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-:root{
-
---primary:#047857;
---primary2:#065f46;
---gold:#f59e0b;
---white:#ffffff;
---text:#f8fafc;
---card:rgba(255,255,255,.12);
---border:rgba(255,255,255,.18);
-
-}
-
-body{
-
-font-family:Inter,sans-serif;
-
-background:
-linear-gradient(rgba(2,44,34,.90),rgba(6,95,70,.90)),
-url("https://images.unsplash.com/photo-1519817650390-64a93db511aa?auto=format&fit=crop&w=1800&q=80");
-
-background-size:cover;
-
-background-position:center;
-
-background-attachment:fixed;
-
-color:white;
-
-min-height:100vh;
-
-overflow-x:hidden;
-
-}
-
-body::before{
-
-content:"";
-
-position:fixed;
-
-left:0;
-
-top:0;
-
-width:100%;
-
-height:100%;
-
-background-image:
-
-radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);
-
-background-size:30px 30px;
-
-pointer-events:none;
-
-}
-
-header{
-
-width:100%;
-
-padding:18px 8%;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-backdrop-filter:blur(20px);
-
-background:rgba(0,0,0,.15);
-
-border-bottom:1px solid rgba(255,255,255,.08);
-
-position:sticky;
-
-top:0;
-
-z-index:999;
-
-}
-
-.logo{
-
-font-size:34px;
-
-font-family:Amiri,serif;
-
-font-weight:bold;
-
-}
-
-.logo span{
-
-color:var(--gold);
-
-}
-
-nav a{
-
-text-decoration:none;
-
-color:white;
-
-margin-left:25px;
-
-font-weight:600;
-
-transition:.3s;
-
-}
-
-nav a:hover{
-
-color:#ffd166;
-
-}
-
-.hero{
-
-display:grid;
-
-grid-template-columns:1fr 430px;
-
-gap:50px;
-
-align-items:center;
-
-padding:70px 8%;
-
-}
-
-.left h1{
-
-font-size:55px;
-
-line-height:1.2;
-
-margin-bottom:15px;
-
-}
-
-.left p{
-
-font-size:18px;
-
-opacity:.9;
-
-margin-bottom:30px;
-
-}
-
-.stats{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:20px;
-
-margin-top:30px;
-
-}
-
-.stat{
-
-padding:20px;
-
-border-radius:18px;
-
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(12px);
-
-text-align:center;
-
-}
-
-.stat h2{
-
-font-size:32px;
-
-color:#ffd166;
-
-}
-
-.card{
-
-background:rgba(255,255,255,.12);
-
-backdrop-filter:blur(18px);
-
-padding:35px;
-
-border-radius:25px;
-
-border:1px solid rgba(255,255,255,.15);
-
-box-shadow:0 20px 60px rgba(0,0,0,.35);
-
-}
-
-.card h2{
-
-text-align:center;
-
-margin-bottom:8px;
-
-}
-
-.card p{
-
-text-align:center;
-
-opacity:.8;
-
-margin-bottom:30px;
-
-}
-
-.input{
-
-margin-bottom:18px;
-
-}
-
-.input label{
-
-display:block;
-
-margin-bottom:8px;
-
-font-weight:600;
-
-}
-
-.input input{
-
-width:100%;
-
-padding:15px;
-
-border:none;
-
-outline:none;
-
-border-radius:12px;
-
-font-size:16px;
-
-background:white;
-
-}
-
-.btn{
-
-width:100%;
-
-padding:15px;
-
-border:none;
-
-border-radius:12px;
-
-font-size:17px;
-
-font-weight:700;
-
-cursor:pointer;
-
-transition:.3s;
-
-margin-top:10px;
-
-background:linear-gradient(90deg,#10b981,#047857);
-
-color:white;
-
-}
-
-.btn:hover{
-
-transform:translateY(-2px);
-
-background:linear-gradient(90deg,#f59e0b,#fbbf24);
-
-}
-
-.google{
-
-background:white;
-
-color:#222;
-
-margin-top:15px;
-
-}
-
-.remember{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-font-size:14px;
-
-margin-top:10px;
-
-margin-bottom:15px;
-
-}
-
-.remember a{
-
-color:#ffd166;
-
-text-decoration:none;
-
-}
-
-.footer{
-
-margin-top:60px;
-
-padding:40px;
-
-text-align:center;
-
-background:rgba(0,0,0,.20);
-
-backdrop-filter:blur(15px);
-
-}
-
-@media(max-width:900px){
-
-.hero{
-
-grid-template-columns:1fr;
-
-}
-
-.left h1{
-
-font-size:38px;
-
-}
-
-header{
-
-flex-direction:column;
-
-gap:15px;
-
-}
-
-nav{
-
-display:flex;
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-}
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>இஸ்லாமியக் கட்டுரைகள் | Yaseenis</title>
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase Authentication Gatekeeper -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+            authDomain: "yaseenis-user.firebaseapp.com",
+            projectId: "yaseenis-user",
+            storageBucket: "yaseenis-user.firebasestorage.app",
+            messagingSenderId: "337971140829",
+            appId: "1:337971140829:web:c30a126aac465ded12e334",
+            measurementId: "G-SKRZ3TS7YR"
+        };
+        initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        onAuthStateChanged(auth, (user) => {
+            // லாகின் செய்யாதவர்களை portal.html பக்கத்திற்கு அனுப்பவும்
+            if (!user && window.location.pathname !== "/portal.html") {
+                window.location.href = "portal.html";
+            }
+        });
+    </script>
+    
+    <style>
+        /* --- THEME COLORS --- */
+        :root {
+            --emerald-dark: #064e3b; --emerald-main: #047857; --gold-premium: #d97706; --gold-light: #fef3c7;
+            --bg-page: #f8fafc; --surface: #ffffff; --text-dark: #1e293b; --text-gray: #64748b;
+        }
+        body { font-family: 'Mukta Malar', 'Inter', sans-serif; background-color: var(--bg-page); color: var(--text-dark); margin: 0; padding: 0; line-height: 1.7; padding-bottom: 90px; }
+
+        /* --- HEADER --- */
+        header { background-color: var(--surface); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .header-top { background-color: var(--emerald-dark); color: var(--gold-light); text-align: center; padding: 10px; font-family: 'Amiri', serif; font-size: 22px; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { margin: 0; font-size: 28px; color: var(--emerald-dark); font-weight: 800; } .logo span { color: var(--gold-premium); }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; margin-left: 25px; font-size: 16px; }
+        .login-btn { background: var(--emerald-main); color: white !important; padding: 8px 20px; border-radius: 20px; font-weight: bold; }
+        
+        /* --- HERO SECTION & REST --- */
+        .hero-section { background: linear-gradient(135deg, var(--emerald-dark), var(--emerald-main)); color: white; padding: 50px 20px; text-align: center; border-bottom: 5px solid var(--gold-premium); }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        /* ... (உங்கள் இதர ஸ்டைல்கள் அனைத்தும் அப்படியே இருக்கட்டும்) ... */
+    </style>
 </head>
-
 <body>
 
-<header>
-
-<div class="logo">
-
-☪ Yaseenis<span>.</span>
-
-</div>
-
-<nav>
-
-<a href="#">Home</a>
-
-<a href="#">Articles</a>
-
-<a href="#">Books</a>
-
-<a href="#">Videos</a>
-
-<a href="#">Downloads</a>
-
-<a href="#">Contact</a>
-
-</nav>
-
-</header>
-
-<section class="hero">
-
-<div class="left">
-
-<h1>
-
-Premium Islamic Knowledge Portal
-
-</h1>
-
-<p>
-
-Read exclusive Islamic articles, books, videos and member-only content.
-
-Powered by Firebase Authentication.
-
-</p>
-
-<div class="stats">
-
-<div class="stat">
-
-<h2>1500+</h2>
-
-Articles
-
-</div>
-
-<div class="stat">
-
-<h2>850+</h2>
-
-Books
-
-</div>
-
-<div class="stat">
-
-<h2>500+</h2>
-
-Videos
-
-</div>
-
-<div class="stat">
-
-<h2>24/7</h2>
-
-Support
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>Member Login</h2>
-
-<p>
-
-Welcome back.
-
-Login to continue.
-
-</p>
-
-<div class="input">
-
-<label>Email Address</label>
-
-<input
-type="email"
-id="email"
-placeholder="Enter Email">
-
-</div>
-
-<div class="input">
-
-<label>Password</label>
-
-<input
-type="password"
-id="password"
-placeholder="Enter Password">
-
-</div>
-
-<div class="remember">
-
-<label>
-
-<input
-type="checkbox">
-
-Remember Me
-
-</label>
-
-<a href="#">
-
-Forgot Password?
-
-</a>
-
-</div>
-
-<button
-class="btn"
-onclick="login()">
-
-Login
-
-</button>
-
-<button
-class="btn google">
-
-Continue with Google
-
-</button>
-
-<p
-id="message"
-style="margin-top:20px;color:#ffd166">
-
-</p>
-
-</div>
-
-</section>
-
+    <div class="header-top">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><h1>Yaseenis<span>.</span></h1></div>
+            <nav class="nav-links">
+                <a href="/">முகப்பு</a>
+                <a href="/article/">கட்டுரைகள்</a>
+                <a href="/Videos/list.html">வீடியோக்கள்</a>
+                <a href="portal.html" class="login-btn">Login / Portal</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <h1>இஸ்லாமிய அறிவுக்களஞ்சியம்</h1>
+        <p>குர்ஆன், ஹதீஸ், வரலாற்றுப் பதிவுகள் மற்றும் சங்கைமிகு ஆலிம்களின் அமுத மொழிகள் அடங்கிய முழுமையான தமிழ்க் கட்டுரைகளின் தொகுப்பு.</p>
+    </div>
+
+    <!-- உங்கள் மீதமுள்ள HTML உள்ளடக்கத்தை இங்கே தொடரவும் -->
+    <div class="container">
+        <!-- CATEGORY GRID மற்றும் RECENT ARTICLES இங்கு வரும் -->
+    </div>
+
+    <footer>
+        <h2>Yaseenis Islamic Portal</h2>
+        <p>&copy; 2026 Yaseenis. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
