@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure User Portal | Yaseenis</title>
+    <title>Secure Portal | Yaseenis</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
@@ -17,148 +17,242 @@
         header { background-color: var(--surface); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
         .logo h1 { margin: 0; font-size: 28px; color: var(--emerald-dark); font-weight: 800; } .logo span { color: var(--gold-premium); }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; margin-left: 25px; font-size: 16px; }
 
         .container { max-width: 800px; margin: 50px auto; padding: 0 20px; flex-grow: 1; width: 100%; box-sizing: border-box; }
 
-        /* --- LOGIN FORM DESIGN --- */
-        #loginScreen {
+        /* --- AUTHENTICATION SCREEN --- */
+        #authScreen {
             background: var(--surface); border-radius: 16px; padding: 40px; 
             max-width: 400px; margin: 0 auto; box-shadow: var(--shadow-card);
             border-top: 5px solid var(--emerald-main); text-align: center;
         }
         .login-icon { font-size: 50px; background: #eff6ff; width: 90px; height: 90px; display: flex; justify-content: center; align-items: center; border-radius: 50%; margin: 0 auto 20px auto; color: #3b82f6; }
-        #loginScreen h2 { color: var(--emerald-dark); margin: 0 0 10px 0; font-size: 24px; }
-        #loginScreen p { color: var(--text-gray); font-size: 14px; margin-bottom: 25px; }
+        #authTitle { color: var(--emerald-dark); margin: 0 0 10px 0; font-size: 24px; }
+        #authSubtitle { color: var(--text-gray); font-size: 14px; margin-bottom: 25px; }
 
         .input-group { margin-bottom: 20px; text-align: left; }
         .input-group label { display: block; font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
         .input-field { width: 100%; padding: 12px 15px; border: 2px solid var(--border-light); border-radius: 8px; font-size: 16px; box-sizing: border-box; outline: none; transition: 0.3s; font-family: 'Inter', sans-serif; }
         .input-field:focus { border-color: var(--emerald-main); }
 
-        .login-btn { background: var(--emerald-main); color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; }
-        .login-btn:hover { background: var(--gold-premium); }
+        .action-btn { background: var(--emerald-main); color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; margin-bottom: 15px; }
+        .action-btn:hover { background: var(--gold-premium); }
+        
+        .toggle-text { font-size: 14px; color: var(--text-gray); }
+        .toggle-link { color: #3b82f6; font-weight: bold; cursor: pointer; text-decoration: underline; }
+        
         .error-msg { color: #ef4444; font-size: 14px; margin-top: 15px; display: none; font-weight: bold; background: #fef2f2; padding: 10px; border-radius: 6px; }
+        .success-msg { color: var(--emerald-main); font-size: 14px; margin-top: 15px; display: none; font-weight: bold; background: #ecfdf5; padding: 10px; border-radius: 6px; }
 
-        /* --- SECURE CONTENT PORTAL --- */
+        /* --- SECURE PORTAL CONTENT --- */
         #portalContent { display: none; }
-        .welcome-banner { background: linear-gradient(135deg, var(--emerald-dark), var(--emerald-main)); color: white; padding: 30px; border-radius: 16px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-card); }
+        .welcome-banner { background: linear-gradient(135deg, var(--emerald-dark), var(--emerald-main)); color: white; padding: 30px; border-radius: 16px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-card); flex-wrap: wrap; gap: 15px; }
         .welcome-text h2 { margin: 0 0 5px 0; font-size: 24px; color: #fef3c7; }
         .logout-btn { background: rgba(255,255,255,0.2); color: white; border: 1px solid white; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .logout-btn:hover { background: #ef4444; border-color: #ef4444; }
 
-        /* Content Cards */
         .content-card { background: var(--surface); border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-left: 4px solid var(--gold-premium); }
         .content-card h3 { margin: 0 0 10px 0; color: var(--emerald-dark); }
-        .content-card p { color: var(--text-gray); line-height: 1.6; margin: 0; }
+        .content-card p { color: var(--text-gray); line-height: 1.6; margin: 0 0 15px 0; }
+        .content-link { color: var(--emerald-main); font-weight: bold; text-decoration: none; }
 
+        /* Loader */
+        #pageLoader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; justify-content: center; align-items: center; z-index: 1000; font-size: 20px; color: var(--emerald-main); font-weight: bold; }
     </style>
 </head>
 <body>
+
+    <div id="pageLoader">ஏற்றப்படுகிறது (Loading)...</div>
 
     <div class="header-top">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
     <header>
         <div class="nav-container">
             <div class="logo"><h1>Yaseenis<span>.</span></h1></div>
+            <nav class="nav-links">
+                <a href="/">முகப்பு (Home)</a>
+            </nav>
         </div>
     </header>
 
     <div class="container">
         
-        <!-- 🔐 LOGIN SCREEN -->
-        <div id="loginScreen">
+        <div id="authScreen" style="display: none;">
             <div class="login-icon">👤</div>
-            <h2>User Portal</h2>
-            <p>உள்ளடக்கத்தைப் படிக்க உங்களின் Username மற்றும் Password-ஐ உள்ளிடவும்.</p>
+            <h2 id="authTitle">User Login</h2>
+            <p id="authSubtitle">கட்டுரைகளைப் படிக்க உள்நுழையவும்.</p>
             
             <div class="input-group">
-                <label>Username (பயனர்பெயர்)</label>
-                <input type="text" id="usernameInput" class="input-field" placeholder="Enter username">
+                <label>Email Address</label>
+                <input type="email" id="emailInput" class="input-field" placeholder="yourname@email.com">
             </div>
 
             <div class="input-group">
-                <label>Password (கடவுச்சொல்)</label>
-                <input type="password" id="passwordInput" class="input-field" placeholder="Enter password">
+                <label>Password</label>
+                <input type="password" id="passwordInput" class="input-field" placeholder="Enter password (min 6 chars)">
             </div>
 
-            <button class="login-btn" onclick="verifyLogin()">Login (உள்நுழைய)</button>
+            <button id="mainAuthBtn" class="action-btn">Login (உள்நுழைய)</button>
             
-            <div id="errorMsg" class="error-msg">❌ தவறான Username அல்லது Password!</div>
+            <p class="toggle-text">
+                <span id="toggleQuestion">புதிய பயனரா?</span> 
+                <span class="toggle-link" id="toggleLink">Register Here</span>
+            </p>
+
+            <div id="errorMsg" class="error-msg">❌ பிழை!</div>
+            <div id="successMsg" class="success-msg">✅ வெற்றி!</div>
         </div>
 
-        <!-- 🔓 SECURE PORTAL CONTENT -->
         <div id="portalContent">
             
             <div class="welcome-banner">
                 <div class="welcome-text">
-                    <h2>அஸ்ஸலாமு அலைக்கும், <span id="displayUser" style="text-transform: capitalize;">User</span>!</h2>
-                    <p style="margin:0; opacity: 0.9;">Yaseenis பிரத்யேகப் பக்கத்திற்கு உங்களை வரவேற்கிறோம்.</p>
+                    <h2>அஸ்ஸலாமு அலைக்கும்!</h2>
+                    <p style="margin:0; opacity: 0.9;">User: <span id="displayUserEmail" style="font-weight:bold;">email</span></p>
                 </div>
-                <button class="logout-btn" onclick="logout()">Logout</button>
+                <button class="logout-btn" id="logoutBtn">Logout (வெளியேற)</button>
             </div>
 
-            <h3 style="color: var(--text-dark); margin-bottom: 20px;">🔒 உங்களுக்கான பிரத்யேகக் கட்டுரைகள்:</h3>
+            <h3 style="color: var(--text-dark); margin-bottom: 20px;">🔒 உங்களுக்கான பிரத்யேகப் பதிவுகள்:</h3>
 
             <div class="content-card">
-                <h3>ரகசியப் பதிவு 1: இஸ்லாமிய வரலாறு</h3>
-                <p>இந்தக் கட்டுரையை Username மற்றும் Password உள்ளீடு செய்த நபர்கள் மட்டுமே படிக்க முடியும். இது பொதுப் பார்வையில் இருந்து மறைக்கப்பட்டுள்ளது.</p>
+                <h3>ரகசியப் பதிவு 1: கர்பலாவின் முழு வரலாறு</h3>
+                <p>ரெஜிஸ்டர் செய்த பயனர்கள் மட்டுமே இந்தப் பக்கத்தைப் படிக்க முடியும். இது பொதுப் பார்வையில் இருந்து பாதுகாக்கப்பட்டுள்ளது.</p>
+                <a href="#" class="content-link">முழுக்கட்டுரையைப் படிக்க →</a>
             </div>
 
             <div class="content-card">
                 <h3>நிர்வாகச் செய்திகள்</h3>
-                <p>இங்கு இணையதளத்தின் முக்கிய அறிவிப்புகள் அல்லது பிரத்யேகமான தரவுகளைப் பயனர்களோடு நீங்கள் பகிர்ந்துகொள்ளலாம்.</p>
+                <p>மதரஸா மாணவர்களுக்கான சிறப்பு அறிவிப்புகள் மற்றும் மார்க்க வகுப்புகளின் இணைப்புகளை (Zoom Link) இங்கே நீங்கள் பாதுகாப்பாகப் பகிரலாம்.</p>
             </div>
 
         </div>
 
     </div>
 
-    <script>
-        // 👥 அனுமதிக்கப்பட்ட பயனர்களின் பட்டியல் (Authorized Users List)
-        // உங்களுக்கு எத்தனை பயனர்கள் வேண்டுமானாலும் இங்கு கமாவால் பிரித்து சேர்த்துக்கொள்ளலாம்.
-        const validUsers = [
-            { username: "shan", password: "786" },
-            { username: "admin", password: "admin123" },
-            { username: "yaseeni", password: "password" }
-        ];
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-        function verifyLogin() {
-            const userVal = document.getElementById("usernameInput").value.trim().toLowerCase();
-            const passVal = document.getElementById("passwordInput").value.trim();
-            const errorMsg = document.getElementById("errorMsg");
+        // உங்களின் உண்மையான Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+            authDomain: "yaseenis-user.firebaseapp.com",
+            projectId: "yaseenis-user",
+            storageBucket: "yaseenis-user.firebasestorage.app",
+            messagingSenderId: "337971140829",
+            appId: "1:337971140829:web:c30a126aac465ded12e334",
+            measurementId: "G-SKRZ3TS7YR"
+        };
 
-            // Check if entered credentials match any user in our list
-            const matchedUser = validUsers.find(u => u.username === userVal && u.password === passVal);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
-            if (matchedUser) {
-                // Success Login
-                document.getElementById("loginScreen").style.display = "none";
-                document.getElementById("portalContent").style.display = "block";
-                
-                // Show user's name on the dashboard
-                document.getElementById("displayUser").innerText = matchedUser.username;
-                
-                // Clear inputs & errors
-                document.getElementById("usernameInput").value = "";
-                document.getElementById("passwordInput").value = "";
-                errorMsg.style.display = "none";
-                window.scrollTo(0,0);
+        // UI Elements
+        const pageLoader = document.getElementById("pageLoader");
+        const authScreen = document.getElementById("authScreen");
+        const portalContent = document.getElementById("portalContent");
+        
+        const authTitle = document.getElementById("authTitle");
+        const authSubtitle = document.getElementById("authSubtitle");
+        const emailInput = document.getElementById("emailInput");
+        const passwordInput = document.getElementById("passwordInput");
+        const mainAuthBtn = document.getElementById("mainAuthBtn");
+        const toggleQuestion = document.getElementById("toggleQuestion");
+        const toggleLink = document.getElementById("toggleLink");
+        
+        const errorMsg = document.getElementById("errorMsg");
+        const successMsg = document.getElementById("successMsg");
+        const displayUserEmail = document.getElementById("displayUserEmail");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        let isLoginMode = true; 
+
+        // Toggle UI
+        toggleLink.addEventListener("click", () => {
+            isLoginMode = !isLoginMode;
+            errorMsg.style.display = "none";
+            successMsg.style.display = "none";
+            
+            if (isLoginMode) {
+                authTitle.innerText = "User Login";
+                authSubtitle.innerText = "கட்டுரைகளைப் படிக்க உள்நுழையவும்.";
+                mainAuthBtn.innerText = "Login (உள்நுழைய)";
+                toggleQuestion.innerText = "புதிய பயனரா?";
+                toggleLink.innerText = "Register Here";
             } else {
-                // Failed Login
-                errorMsg.style.display = "block";
+                authTitle.innerText = "Create Account";
+                authSubtitle.innerText = "புதிய கணக்கை உருவாக்கவும்.";
+                mainAuthBtn.innerText = "Sign Up (பதிவு செய்க)";
+                toggleQuestion.innerText = "ஏற்கனவே கணக்கு உள்ளதா?";
+                toggleLink.innerText = "Login Here";
             }
-        }
+        });
 
-        function logout() {
-            document.getElementById("portalContent").style.display = "none";
-            document.getElementById("loginScreen").style.display = "block";
-            window.scrollTo(0,0);
-        }
+        // Auth Logic
+        mainAuthBtn.addEventListener("click", () => {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            
+            errorMsg.style.display = "none";
+            successMsg.style.display = "none";
 
-        // Enter Button Support
-        document.getElementById("passwordInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                verifyLogin();
+            if (!email || !password) {
+                errorMsg.innerText = "❌ Email மற்றும் Password-ஐ சரியாக உள்ளிடவும்.";
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            mainAuthBtn.disabled = true;
+            mainAuthBtn.innerText = "Processing...";
+
+            if (isLoginMode) {
+                signInWithEmailAndPassword(auth, email, password)
+                    .then(() => {
+                        mainAuthBtn.innerText = "Login (உள்நுழைய)";
+                        mainAuthBtn.disabled = false;
+                    })
+                    .catch(() => {
+                        errorMsg.innerText = "❌ தவறான Email அல்லது Password!";
+                        errorMsg.style.display = "block";
+                        mainAuthBtn.innerText = "Login (உள்நுழைய)";
+                        mainAuthBtn.disabled = false;
+                    });
+            } else {
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then(() => {
+                        successMsg.innerText = "✅ கணக்கு வெற்றிகரமாக உருவாக்கப்பட்டது!";
+                        successMsg.style.display = "block";
+                        mainAuthBtn.innerText = "Sign Up (பதிவு செய்க)";
+                        mainAuthBtn.disabled = false;
+                    })
+                    .catch((error) => {
+                        errorMsg.innerText = "❌ பிழை: " + error.message; 
+                        errorMsg.style.display = "block";
+                        mainAuthBtn.innerText = "Sign Up (பதிவு செய்க)";
+                        mainAuthBtn.disabled = false;
+                    });
+            }
+        });
+
+        // Logout
+        logoutBtn.addEventListener("click", () => {
+            signOut(auth).catch((error) => alert("Logout Error: " + error.message));
+        });
+
+        // State Observer
+        onAuthStateChanged(auth, (user) => {
+            pageLoader.style.display = "none"; 
+            
+            if (user) {
+                authScreen.style.display = "none";
+                portalContent.style.display = "block";
+                displayUserEmail.innerText = user.email;
+                emailInput.value = "";
+                passwordInput.value = "";
+            } else {
+                portalContent.style.display = "none";
+                authScreen.style.display = "block";
             }
         });
     </script>
