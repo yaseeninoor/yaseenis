@@ -3,687 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Yaseenis Islamic Portal</title>
-
-<meta name="description" content="தமிழ் இஸ்லாமிய அறிவுக்களஞ்சியம்">
-
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
-
+<title>Yaseenis | Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-
-:root{
---primary:#065f46;
---secondary:#047857;
---gold:#d4af37;
---white:#ffffff;
---light:#f8fafc;
---text:#1f2937;
---shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-
 font-family:'Mukta Malar',sans-serif;
-background:#f5f7fb;
-color:var(--text);
-
 }
-
-header{
-
-position:sticky;
-top:0;
-background:white;
-box-shadow:var(--shadow);
-z-index:1000;
-
-}
-
-.top{
-
-background:var(--primary);
-color:white;
-padding:10px;
-text-align:center;
-font-family:'Amiri',serif;
-font-size:28px;
-
-}
-
-nav{
-
-max-width:1200px;
-margin:auto;
+body{
+height:100vh;
 display:flex;
-justify-content:space-between;
+justify-content:center;
 align-items:center;
-padding:15px;
-
-}
-
-.logo{
-
-font-size:32px;
-font-weight:bold;
-color:var(--primary);
-
-}
-
-.logo span{
-
-color:var(--gold);
-
-}
-
-.menu{
-
-display:flex;
-gap:20px;
-
-}
-
-.menu a{
-
-text-decoration:none;
-color:#333;
-font-weight:600;
-transition:.3s;
-
-}
-
-.menu a:hover{
-
-color:var(--secondary);
-
-}
-
-.login{
-
-background:var(--secondary);
-color:white;
-padding:10px 20px;
-border-radius:30px;
-text-decoration:none;
-
-}
-
-.hero{
-
-padding:90px 20px;
-text-align:center;
-background:linear-gradient(rgba(6,95,70,.9),rgba(4,120,87,.9)),url("https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1600&q=80");
+background:
+linear-gradient(rgba(6,78,59,.85),rgba(4,120,87,.90)),
+url("https://images.unsplash.com/photo-1512632578888-169bbbc64f33?auto=format&fit=crop&w=1600&q=80");
 background-size:cover;
 background-position:center;
-color:white;
-
 }
-
-.hero h1{
-
-font-family:'Amiri',serif;
-font-size:55px;
-color:#FFD700;
-
-}
-
-.hero h2{
-
-font-size:38px;
-margin-top:20px;
-
-}
-
-.hero p{
-
-margin:20px auto;
-max-width:700px;
-font-size:18px;
-
-}
-
-.search{
-
-margin-top:30px;
-
-}
-
-.search input{
-
-width:70%;
-max-width:600px;
-padding:16px;
-border:none;
-border-radius:50px;
-
-}
-
-.search button{
-
-padding:16px 30px;
-border:none;
-background:gold;
-font-weight:bold;
-border-radius:50px;
-cursor:pointer;
-
-}
-
-.container{
-
-max-width:1200px;
-margin:auto;
-padding:50px 20px;
-
-}
-
-.title{
-
-font-size:34px;
-margin-bottom:30px;
-color:var(--primary);
-
-}
-
-.grid{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-
-}
-
-.card{
-
-background:white;
-padding:30px;
+.login-card{
+width:380px;
+max-width:95%;
+background:rgba(255,255,255,.95);
+backdrop-filter:blur(15px);
 border-radius:20px;
-box-shadow:var(--shadow);
-transition:.4s;
-text-decoration:none;
-color:#222;
-
+padding:40px;
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+animation:fade .6s;
 }
-
-.card:hover{
-
-transform:translateY(-8px);
-
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(30px);
 }
-
-.card h3{
-
+to{
+opacity:1;
+transform:none;
+}
+}
+.logo{
+text-align:center;
+font-size:38px;
+font-weight:bold;
+color:#065f46;
+}
+.logo span{
+color:#D4AF37;
+}
+.arabic{
+text-align:center;
+font-family:'Amiri',serif;
+font-size:26px;
 margin:15px 0;
-
+color:#065f46;
 }
-
-.count{
-
-display:inline-block;
-margin-top:20px;
-padding:8px 18px;
-background:#fff8dc;
-border-radius:30px;
-font-size:14px;
-color:#996600;
-
+.subtitle{
+text-align:center;
+margin-bottom:30px;
+color:#555;
 }
-
-.latest{
-
-display:flex;
-flex-direction:column;
-gap:20px;
-
+.input{
+margin-bottom:18px;
 }
-
-.article{
-
+.input label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+color:#065f46;
+}
+.input input{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:15px;
+outline:none;
+transition:.3s;
+}
+.input input:focus{
+border-color:#047857;
+box-shadow:0 0 10px rgba(4,120,87,.2);
+}
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#047857,#065f46);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(4,120,87,.35);
+}
+.links{
 display:flex;
 justify-content:space-between;
-align-items:center;
-background:white;
-padding:20px;
-border-radius:15px;
+margin-top:18px;
+font-size:14px;
+}
+.links a{
 text-decoration:none;
-color:#222;
-box-shadow:var(--shadow);
-
+color:#047857;
+font-weight:bold;
 }
-
-.article:hover{
-
-border-left:6px solid var(--gold);
-
-}
-
-.stats{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-margin-top:50px;
-
-}
-
-.stat{
-
-background:linear-gradient(135deg,var(--primary),var(--secondary));
-color:white;
-padding:30px;
+.footer{
+margin-top:30px;
 text-align:center;
-border-radius:20px;
-
-}
-
-.stat h1{
-
-font-size:50px;
-
-}
-
-.quote{
-
-margin:60px 0;
-padding:50px;
-background:white;
-border-left:8px solid gold;
-border-radius:15px;
-text-align:center;
-box-shadow:var(--shadow);
-
-}
-
-.quote h2{
-
-font-family:'Amiri',serif;
-font-size:38px;
-
-}
-
-footer{
-
-background:var(--primary);
-color:white;
-text-align:center;
-padding:50px 20px;
-margin-top:60px;
-
-}
-
-.bottom{
-
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:white;
-display:flex;
-justify-content:space-around;
-padding:10px;
-box-shadow:0 -5px 20px rgba(0,0,0,.08);
-
-}
-
-.bottom a{
-
-text-decoration:none;
-color:#333;
 font-size:13px;
-text-align:center;
-
+color:#666;
 }
-
-@media(min-width:900px){
-
-.bottom{
-
-display:none;
-
+.footer span{
+color:#D4AF37;
+font-weight:bold;
 }
-
-}
-
-@media(max-width:700px){
-
-.menu{
-
-display:none;
-
-}
-
-.hero h1{
-
-font-size:42px;
-
-}
-
-.hero h2{
-
-font-size:26px;
-
-}
-
-.search input{
-
-width:100%;
-margin-bottom:10px;
-
-}
-
-.search button{
-
-width:100%;
-
-}
-
-.article{
-
-flex-direction:column;
-align-items:flex-start;
-gap:10px;
-
-}
-
-}
-
 </style>
-
 </head>
-
 <body>
-
-<header>
-
-<div class="top">
-
-بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيم
-
-</div>
-
-<nav>
-
+<div class="login-card">
 <div class="logo">
-
 Yaseenis<span>.</span>
-
 </div>
-
-<div class="menu">
-
-<a href="/">முகப்பு</a>
-
-<a href="/article/">கட்டுரைகள்</a>
-
-<a href="/Videos/list.html">வீடியோக்கள்</a>
-
-<a href="/pdfs/">PDF</a>
-
-<a href="/audio/">Audio</a>
-
+<div class="arabic">
+بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيم
 </div>
-
-<a class="login" href="portal.html">
-
-Login
-
-</a>
-
-</nav>
-
-</header>
-
-<section class="hero">
-
-<h1>ياسينيس</h1>
-
-<h2>தமிழ் இஸ்லாமிய அறிவுக்களஞ்சியம்</h2>
-
-<p>
-
-குர்ஆன் • ஹதீஸ் • வரலாறு • மார்க்க சட்டங்கள் • வீடியோக்கள் • PDF நூலகம்
-
-</p>
-
-<div class="search">
-
-<input placeholder="கட்டுரைகளைத் தேடுங்கள்...">
-
-<button>🔍 தேடு</button>
-
+<div class="subtitle">
+பயனர் உள்நுழைவு
 </div>
-
-</section>
-
-<div class="container">
-
-<h2 class="title">
-
-📚 முக்கிய பிரிவுகள்
-
-</h2>
-
-<div class="grid">
-
-<a href="#" class="card">
-
-<h1>📖</h1>
-
-<h3>அல்குர்ஆன்</h3>
-
-<p>தப்ஸீர் மற்றும் விளக்கங்கள்</p>
-
-<span class="count">120</span>
-
-</a>
-
-<a href="#" class="card">
-
-<h1>📜</h1>
-
-<h3>ஹதீஸ்</h3>
-
-<p>ஸஹீஹ் ஹதீஸ்கள்</p>
-
-<span class="count">2500</span>
-
-</a>
-
-<a href="#" class="card">
-
-<h1>🕌</h1>
-
-<h3>சீரா</h3>
-
-<p>நபிமார்கள் வரலாறு</p>
-
-<span class="count">80</span>
-
-</a>
-
-<a href="#" class="card">
-
-<h1>👑</h1>
-
-<h3>அஹ்லுல் பைத்</h3>
-
-<p>நபி குடும்ப வரலாறு</p>
-
-<span class="count">30</span>
-
-</a>
-
-<a href="#" class="card">
-
-<h1>🎥</h1>
-
-<h3>வீடியோக்கள்</h3>
-
-<p>மார்க்க சொற்பொழிவுகள்</p>
-
-<span class="count">300</span>
-
-</a>
-
-<a href="#" class="card">
-
-<h1>📚</h1>
-
-<h3>PDF நூலகம்</h3>
-
-<p>இலவச புத்தகங்கள்</p>
-
-<span class="count">500</span>
-
-</a>
-
+<form id="loginForm">
+<div class="input">
+<label>👤 Username</label>
+<input type="text" id="username" placeholder="Enter Username" required>
 </div>
-
-<h2 class="title" style="margin-top:60px;">
-
-📰 சமீபத்திய கட்டுரைகள்
-
-</h2>
-
-<div class="latest">
-
-<a href="#" class="article">
-
-<div>
-
-<h3>அஹ்லுல் பைத்துகளின் சிறப்புகள்</h3>
-
-<p>புதிய பதிவு</p>
-
+<div class="input">
+<label>🔒 Password</label>
+<input type="password" id="password" placeholder="Enter Password" required>
 </div>
-
-<span>→</span>
-
-</a>
-
-<a href="#" class="article">
-
-<div>
-
-<h3>பாத்திமா நாயகி (ரலி)</h3>
-
-<p>புதிய பதிவு</p>
-
+<button type="submit">
+Login →
+</button>
+</form>
+<div class="links">
+<a href="#">Forgot Password?</a>
+<a href="#">Register</a>
 </div>
-
-<span>→</span>
-
-</a>
-
-<a href="#" class="article">
-
-<div>
-
-<h3>பிறை பார்ப்பது</h3>
-
-<p>புதிய பதிவு</p>
-
+<div class="footer">
+© 2026 <span>Yaseenis Islamic Portal</span>
 </div>
-
-<span>→</span>
-
-</a>
-
 </div>
-
-<div class="stats">
-
-<div class="stat">
-
-<h1>500+</h1>
-
-<p>Articles</p>
-
-</div>
-
-<div class="stat">
-
-<h1>2500+</h1>
-
-<p>Hadith</p>
-
-</div>
-
-<div class="stat">
-
-<h1>300+</h1>
-
-<p>Videos</p>
-
-</div>
-
-<div class="stat">
-
-<h1>500+</h1>
-
-<p>Books</p>
-
-</div>
-
-</div>
-
-<div class="quote">
-
-<h2>
-
-خيركم من تعلم القرآن وعلمه
-
-</h2>
-
-<p>
-
-உங்களில் சிறந்தவர் குர்ஆனை கற்று அதைப் பிறருக்குக் கற்பிப்பவரே.
-
-</p>
-
-</div>
-
-</div>
-
-<footer>
-
-<h2>
-
-Yaseenis Islamic Portal
-
-</h2>
-
-<p>
-
-© 2026 All Rights Reserved
-
-</p>
-
-</footer>
-
-<div class="bottom">
-
-<a href="/">🏠<br>Home</a>
-
-<a href="/article/">📖<br>Articles</a>
-
-<a href="/search.html">🔍<br>Search</a>
-
-<a href="/Videos/list.html">🎥<br>Videos</a>
-
-<a href="/pdfs/">📚<br>Books</a>
-
-</div>
-
+<script>
+document.getElementById("loginForm").addEventListener("submit",function(e){
+e.preventDefault();
+const u=document.getElementById("username").value;
+const p=document.getElementById("password").value;
+if(u==="admin" && p==="123"){
+alert("Login Successful");
+// Redirect to portal page instead of going back home
+window.location.href = "portal.html";
+}else{
+alert("Invalid Username or Password");
+}
+});
+</script>
 </body>
 </html>
