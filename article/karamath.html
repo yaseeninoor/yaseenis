@@ -3,34 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>கராமத் (பிறந்த குழந்தை பேசியது) | Yaseenis</title>
+    <title>கராமத் (பிறந்த குழந்தை பேசியது) | Yaseenis Articles</title>
     
+    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
-            authDomain: "yaseenis-user.firebaseapp.com",
-            projectId: "yaseenis-user",
-            storageBucket: "yaseenis-user.firebasestorage.app",
-            messagingSenderId: "337971140829",
-            appId: "1:337971140829:web:c30a126aac465ded12e334",
-            measurementId: "G-SKRZ3TS7YR"
-        };
-        initializeApp(firebaseConfig);
-        const auth = getAuth();
-
-        onAuthStateChanged(auth, (user) => {
-            // பயனர் லாகின் செய்யவில்லை எனில் முதன்மைப் பக்கத்தில் உள்ள portal.html-க்குத் திருப்பிவிடப்படுவார்
-            if (!user) {
-                window.location.href = "../portal.html";
-            }
-        });
-    </script>
-
     <style>
         :root {
             --emerald-dark: #064e3b;
@@ -52,6 +29,7 @@
             line-height: 1.8; 
         }
 
+        /* --- Header --- */
         .header-bar { 
             background-color: var(--emerald-dark); 
             color: var(--gold-light); 
@@ -61,7 +39,19 @@
             font-size: 24px; 
             letter-spacing: 1px; 
         }
+        
+        nav { 
+            background: var(--surface); 
+            padding: 15px 20px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .logo { font-size: 24px; font-weight: 800; color: var(--emerald-dark); text-decoration: none; }
+        .back-btn { background: var(--emerald-main); color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-size: 14px; font-weight: bold; }
 
+        /* --- Article Content --- */
         .container { 
             max-width: 800px; 
             margin: 40px auto; 
@@ -83,37 +73,24 @@
             margin-bottom: 30px; 
             border-left: 4px solid var(--gold-premium); 
         }
-
         .meta-info p { margin: 5px 0; font-weight: 600; }
         .copyright-tag { color: #ef4444; font-size: 13px; font-weight: bold; text-transform: uppercase; }
 
-        h1 { color: var(--emerald-dark); font-size: 32px; margin-top: 0; }
+        h1 { color: var(--emerald-dark); font-size: 32px; margin-top: 0; line-height: 1.4; }
         h2 { color: var(--emerald-main); font-size: 24px; margin-top: 30px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
 
-        .quote-block { 
-            background: #fffbeb; 
-            padding: 20px; 
-            border-left: 5px solid var(--gold-premium); 
-            margin: 20px 0; 
-            font-style: italic; 
-            border-radius: 0 8px 8px 0; 
-        }
-
-        .arabic-text { 
-            font-family: 'Amiri', serif; 
-            font-size: 24px; 
-            text-align: right; 
-            direction: rtl; 
-            margin-bottom: 15px; 
-            color: #022c22; 
-        }
+        p { font-size: 17px; margin-bottom: 20px; }
 
         .source-tag { 
             font-size: 14px; 
             color: var(--text-gray); 
             font-weight: bold; 
             margin-top: 15px; 
-            display: block; 
+            display: inline-block; 
+            background: var(--gold-light);
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: var(--gold-premium);
         }
 
         footer { 
@@ -122,11 +99,21 @@
             color: var(--text-gray); 
             font-size: 14px; 
         }
+        
+        @media (max-width: 768px) {
+            .article-card { padding: 25px; }
+            h1 { font-size: 26px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="header-bar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+    
+    <nav>
+        <a href="/" class="logo">Yaseenis.</a>
+        <a href="/article/" class="back-btn">← கட்டுரைகள்</a>
+    </nav>
 
     <div class="container">
         <div class="article-card">
@@ -136,7 +123,7 @@
                 <p class="copyright-tag">© Copy right கட்டுரை</p>
             </div>
 
-            <h1>கராமாத் (பிறந்த குழந்தை பேசியது)</h1>
+            <h1>கராமத் (பிறந்த குழந்தை பேசியது)</h1>
             
             <p>காஜா முயீனுத்தீன் சிஷ்தி (ரலியல்லாஹு அன்ஹு) அவர்கள் மார்க்கப்பணி செய்ய குத்புத்தீன் (ரலியல்லாஹு அன்ஹு) அவர்களை டில்லிக்கு அனுப்புகிறார்கள். ஷரீஅத், ஹகீகத், மஃரிபத் எனும் ஞான விஷயங்களை மக்களுக்கு மத்தியில் சொல்ல வேண்டும் என்று தங்கள் கலீபா குத்புத்தீன் வலி அவர்களுக்கு கட்டளை பிறப்பிக்கிறார்கள்.</p>
             
@@ -160,6 +147,7 @@
             <p>"ஏன் அடிக்கிறீர்கள்?" என்று ஜுரைத் (ரஹ்மதுல்லாஹி அலைஹி) கேட்ட போது, "நீ தான் அப்பெண்ணுக்குத் தந்தை; எல்லா விஷயங்களும் செய்து விட்டு அல்லாஹ்வை வணங்குவாயா!" என்று சொன்னவுடன்; "ஓ! இது தான் விஷயமா? அப்பெண்ணையும் குழந்தையையும் அழைத்து வாருங்கள்" என்றவுடன் இருவரும் வந்தனர்.</p>
             
             <p>பிறந்த குழந்தையைப் பார்த்து "உன் தந்தை யார்?" என்றார்கள். "நிச்சயமாக நீங்கள் இல்லை. இந்த ஆட்டு இடையன் தான் என் தந்தை" என்றது குழந்தை.</p>
+            
             <span class="source-tag">📖 நூல்: முஸ்லிம்</span>
 
             <h2>முடிவுரை</h2>
