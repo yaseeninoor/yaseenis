@@ -1,290 +1,368 @@
- Mak<!DOCTYPE html>
-<html lang="ta">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>இஸ்லாமியக் கட்டுரைகள் | Yaseenis Yaseeni Ulama </title>
-    
-    <!-- Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <nav class="nav-links">
-    <a href="/">முகப்பு</a>
-    <a href="/article/">கட்டுரைகள்</a>
-    <a href="/Videos/list.html">வீடியோக்கள்</a>
-    <a href="portal.html" style="background: #047857; color: white; padding: 8px 15px; border-radius: 20px;">Login / Register</a>
-</nav>
-
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yaseenis | தூய இஸ்லாமிய இணையதளம்</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Firebase Security Gatekeeper -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-        const firebaseConfig = { apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o", authDomain: "yaseenis-user.firebaseapp.com", projectId: "yaseenis-user", storageBucket: "yaseenis-user.firebasestorage.app", messagingSenderId: "337971140829", appId: "1:337971140829:web:c30a126aac465ded12e334", measurementId: "G-SKRZ3TS7YR" };
-        initializeApp(firebaseConfig);
-        onAuthStateChanged(getAuth(), (user) => { if (!user) window.location.href = "portal.html"; });
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        :root { --emerald: #064e3b; --gold: #d97706; }
-        body { font-family: 'Mukta Malar', sans-serif; margin: 0; background: #f8fafc; }
-        /* Banner */
-        .hero-banner { 
-            background: linear-gradient(rgba(6,78,59,0.85), rgba(6,78,59,0.85)), url('https://www.transparenttextures.com/patterns/arabesque.png');
-            color: white; padding: 80px 20px; text-align: center; border-bottom: 5px solid var(--gold);
-        }
-        .hero-banner h1 { font-family: 'Amiri', serif; font-size: 3rem; color: var(--gold); }
-        /* Nav */
-        .nav-bar { background: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .login-btn { background: var(--emerald); color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; }
-        .container { max-width: 900px; margin: 40px auto; padding: 20px; }
-        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
-    </style>
+<title>Yaseenis | தமிழ் இஸ்லாமிய அறிவுக் களஞ்சியம்</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Mukta+Malar:wght@400;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Mukta Malar',sans-serif;
+
+background:#f8fafc;
+
+color:#1e293b;
+
+}
+
+.topbar{
+
+background:#064e3b;
+
+color:#ffd166;
+
+padding:10px;
+
+text-align:center;
+
+font-family:'Amiri',serif;
+
+font-size:24px;
+
+}
+
+header{
+
+background:white;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+}
+
+.container{
+
+max-width:1200px;
+
+margin:auto;
+
+padding:18px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.logo{
+
+font-size:32px;
+
+font-weight:bold;
+
+color:#064e3b;
+
+}
+
+.logo span{
+
+color:#d97706;
+
+}
+
+nav a{
+
+text-decoration:none;
+
+margin-left:25px;
+
+color:#1e293b;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#047857;
+
+}
+
+.hero{
+
+background:linear-gradient(rgba(6,78,59,.85),rgba(4,120,87,.85)),
+url('https://images.unsplash.com/photo-1519817650390-64a93db511aa?auto=format&fit=crop&w=1600&q=80');
+
+background-size:cover;
+
+background-position:center;
+
+padding:120px 20px;
+
+text-align:center;
+
+color:white;
+
+}
+
+.hero h1{
+
+font-size:48px;
+
+margin-bottom:15px;
+
+}
+
+.hero p{
+
+font-size:20px;
+
+max-width:700px;
+
+margin:auto;
+
+margin-bottom:35px;
+
+}
+
+.search{
+
+max-width:650px;
+
+margin:auto;
+
+display:flex;
+
+background:white;
+
+border-radius:50px;
+
+overflow:hidden;
+
+}
+
+.search input{
+
+flex:1;
+
+padding:18px;
+
+border:none;
+
+outline:none;
+
+font-size:17px;
+
+}
+
+.search button{
+
+background:#047857;
+
+color:white;
+
+border:none;
+
+padding:18px 35px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.search button:hover{
+
+background:#d97706;
+
+}
+
+.buttons{
+
+margin-top:30px;
+
+}
+
+.btn{
+
+display:inline-block;
+
+padding:15px 30px;
+
+margin:10px;
+
+border-radius:40px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+.primary{
+
+background:#f59e0b;
+
+color:white;
+
+}
+
+.secondary{
+
+background:white;
+
+color:#047857;
+
+}
+
+.btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+@media(max-width:768px){
+
+.container{
+
+flex-direction:column;
+
+}
+
+nav{
+
+margin-top:15px;
+
+}
+
+.hero h1{
+
+font-size:34px;
+
+}
+
+.search{
+
+flex-direction:column;
+
+border-radius:15px;
+
+}
+
+.search button{
+
+width:100%;
+
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <nav class="nav-bar">
-        <div style="font-weight: 800; font-size: 24px; color: var(--emerald);">Yaseenis.</div>
-        <a href="portal.html" class="login-btn">👤 Login / Portal</a>
-    </nav>
+<div class="topbar">
 
-    <section class="hero-banner">
-        <h1>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</h1>
-        <p>தூய இஸ்லாமிய அறிவுக்களஞ்சியத்திற்கு உங்களை வரவேற்கிறோம்.</p>
-    </section>
+﷽
 
-    <main class="container">
-        <div class="card">
-            <h3>வலைதள வரைபடம் (Sitemap)</h3>
-            <p><a href="article.html">📖 கட்டுரைகள்</a> | <a href="Videos/list.html">🎥 வீடியோக்கள்</a> | <a href="shop.html">🛒 அங்காடி</a></p>
-        </div>
-    </main>
+</div>
 
-</body>
-</html>
+<header>
 
-    <style>
-        /* --- THEME COLORS --- */
-        :root {
-            --emerald-dark: #064e3b;
-            --emerald-main: #047857;
-            --gold-premium: #d97706;
-            --gold-light: #fef3c7;
-            --bg-page: #f8fafc;
-            --surface: #ffffff;
-            --text-dark: #1e293b;
-            --text-gray: #64748b;
-            --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 10px 30px rgba(4, 120, 87, 0.15);
-            --transition: all 0.3s ease;
-        }
+<div class="container">
 
-        body { font-family: 'Mukta Malar', 'Inter', sans-serif; background-color: var(--bg-page); color: var(--text-dark); margin: 0; padding: 0; line-height: 1.7; padding-bottom: 90px; }
+<div class="logo">
 
-        /* --- HEADER --- */
-        header { background-color: var(--surface); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-        .header-top { background-color: var(--emerald-dark); color: var(--gold-light); text-align: center; padding: 10px; font-family: 'Amiri', serif; font-size: 22px; }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .logo h1 { margin: 0; font-size: 28px; color: var(--emerald-dark); font-weight: 800; } .logo span { color: var(--gold-premium); }
-        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; margin-left: 25px; font-size: 16px; transition: var(--transition); }
-        .nav-links a:hover { color: var(--emerald-main); }
+Yaseenis<span>.</span>
 
-        /* --- HERO SECTION --- */
-        .hero-section {
-            background: linear-gradient(135deg, var(--emerald-dark), var(--emerald-main));
-            color: white; padding: 50px 20px; text-align: center;
-            border-bottom: 5px solid var(--gold-premium);
-        }
-        .hero-section h1 { font-size: 36px; margin: 0 0 15px 0; color: var(--gold-light); text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
-        .hero-section p { font-size: 18px; max-width: 700px; margin: 0 auto; opacity: 0.9; line-height: 1.6; }
+</div>
 
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+<nav>
 
-        /* --- SECTION TITLE --- */
-        .section-title { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
-        .section-title h2 { margin: 0; color: var(--emerald-dark); font-size: 26px; font-weight: 700; }
-        .section-title::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, var(--emerald-main), transparent); }
+<a href="#">முகப்பு</a>
 
-        /* --- CATEGORY GRID --- */
-        .category-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 50px;
-        }
-        .category-card {
-            background: var(--surface); border-radius: 16px; padding: 25px;
-            box-shadow: var(--shadow-card); border: 1px solid var(--border-light);
-            transition: var(--transition); text-decoration: none; display: flex; flex-direction: column;
-            position: relative; overflow: hidden;
-        }
-        .category-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%;
-            background: var(--emerald-main); transition: var(--transition);
-        }
-        .category-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--emerald-main); }
-        .category-card:hover::before { width: 100%; opacity: 0.05; }
-        
-        .cat-icon { font-size: 35px; margin-bottom: 15px; display: inline-block; }
-        .cat-title { font-size: 20px; font-weight: 700; color: var(--text-dark); margin: 0 0 10px 0; }
-        .cat-desc { font-size: 14px; color: var(--text-gray); margin: 0 0 15px 0; line-height: 1.6; flex-grow: 1; }
-        .cat-count { font-size: 12px; font-weight: bold; color: var(--gold-premium); background: var(--gold-light); padding: 4px 10px; border-radius: 20px; align-self: flex-start; }
+<a href="#">கட்டுரைகள்</a>
 
-        /* --- RECENT ARTICLES (LIST STYLE) --- */
-        .recent-list { display: flex; flex-direction: column; gap: 15px; }
-        .recent-item {
-            background: var(--surface); padding: 20px; border-radius: 12px; box-shadow: var(--shadow-card);
-            display: flex; align-items: center; gap: 20px; text-decoration: none; transition: var(--transition);
-            border-left: 4px solid transparent;
-        }
-        .recent-item:hover { transform: translateX(5px); border-left-color: var(--gold-premium); }
-        .item-tag { background: #f1f5f9; color: var(--emerald-dark); padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; min-width: 100px; text-align: center; }
-        .item-title { font-size: 18px; color: var(--text-dark); font-weight: 600; margin: 0; }
-        .item-date { margin-left: auto; font-size: 13px; color: var(--text-gray); }
+<a href="#">ஹதீஸ்</a>
 
-        /* --- FOOTER & BOTTOM NAV --- */
-        footer { background-color: var(--emerald-dark); color: white; text-align: center; padding: 40px 20px; margin-top: 50px; } footer p { margin: 0; opacity: 0.8; }
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #ffffff; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-around; padding: 10px 0 15px 0; z-index: 1000; border-top: 1px solid #e2e8f0; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-dark); font-size: 12px; font-weight: 700; transition: var(--transition); }
-        .nav-item:hover { transform: translateY(-2px); } .icon-circle { width: 42px; height: 42px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; margin-bottom: 5px; color: white; }
-        .bg-orange { background-color: #f97316; } .bg-blue { background-color: #3b82f6; } .bg-green { background-color: #22c55e; } .bg-teal { background-color: #14b8a6; } .bg-darkblue { background-color: #4f46e5; }
+<a href="#">புத்தகங்கள்</a>
 
-        @media (min-width: 769px) { .bottom-nav { display: none; } body { padding-bottom: 0; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .recent-item { flex-direction: column; align-items: flex-start; gap: 10px; } .item-date { margin-left: 0; } }
-    </style>
-</head>
-<body>
+<a href="#">வீடியோக்கள்</a>
 
-    <!-- Header -->
-    <div class="header-top">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
-    <header>
-        <div class="nav-container">
-            <div class="logo"><h1>Yaseenis<span>.</span></h1></div>
-            <nav class="nav-links">
-                <a href="/">முகப்பு</a>
-                <a href="/article/">கட்டுரைகள்</a>
-                <a href="/Videos/list.html">வீடியோக்கள்</a>
-            </nav>
-        </div>
-    </header>
+<a href="#">உள்நுழை</a>
 
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <h1>இஸ்லாமிய அறிவுக்களஞ்சியம்</h1>
-        <p>குர்ஆன், ஹதீஸ், வரலாற்றுப் பதிவுகள் மற்றும் சங்கைமிகு ஆலிம்களின் அமுத மொழிகள் அடங்கிய முழுமையான தமிழ்க் கட்டுரைகளின் தொகுப்பு.</p>
-    </div>
+</nav>
 
-    <!-- Main Content -->
-    <div class="container">
+</div>
 
-        <div class="section-title"><h2>கட்டுரைப் பிரிவுகள் (Categories)</h2></div>
+</header>
 
-        <!-- CATEGORY GRID -->
-        <div class="category-grid">
-            
-            <a href="#" class="category-card">
-                <span class="cat-icon">📖</span>
-                <h3 class="cat-title">அல்குர்ஆன்</h3>
-                <p class="cat-desc">திருக்குர்ஆன் விரிவுரை (தப்ஸீர்), குர்ஆனின் சிறப்புகள் மற்றும் அறிவியல் உண்மைகள்.</p>
-                <span class="cat-count">விரைவில்...</span>
-            </a>
+<section class="hero">
 
-            <a href="#" class="category-card">
-                <span class="cat-icon">📜</span>
-                <h3 class="cat-title">அல்-ஹதீஸ்</h3>
-                <p class="cat-desc">நபி (ஸல்) அவர்களின் பொன்மொழிகள், சுன்னத்துகள் மற்றும் ஆதாரப்பூர்வமான ஹதீஸ்கள்.</p>
-                <span class="cat-count">விரைவில்...</span>
-            </a>
+<h1>
 
-            <a href="#" class="category-card">
-                <span class="cat-icon">🕌</span>
-                <h3 class="cat-title">நபிமார்கள் வரலாறு</h3>
-                <p class="cat-desc">ஆதம் (அலை) முதல் அண்ணல் நபி (ஸல்) வரையிலான நபிமார்களின் சீரா வரலாற்றுப் பதிவுகள்.</p>
-                <span class="cat-count">விரைவில்...</span>
-            </a>
+தமிழின் சிறந்த இஸ்லாமிய அறிவுக் களஞ்சியம்
 
-            <a href="#" class="category-card">
-                <span class="cat-icon">👑</span>
-                <h3 class="cat-title">அஹ்லுல் பைத் & சஹாபாக்கள்</h3>
-                <p class="cat-desc">நபிக்குடும்பத்தினர், கலீபாக்கள் மற்றும் சஹாபியப் பெண்மணிகளின் தியாக வரலாறு.</p>
-                <span class="cat-count">3 கட்டுரைகள்</span>
-            </a>
+</h1>
 
-            <a href="#" class="category-card">
-                <span class="cat-icon">⚖️</span>
-                <h3 class="cat-title">மார்க்க சட்டங்கள் (Fiqh)</h3>
-                <p class="cat-desc">தொழுகை, நோன்பு, ஜகாத், ஹஜ் மற்றும் அன்றாட வாழ்வியல் மார்க்க சட்டங்கள்.</p>
-                <span class="cat-count">1 கட்டுரை</span>
-            </a>
+<p>
 
-            <a href="#" class="category-card">
-                <span class="cat-icon">🤲</span>
-                <h3 class="cat-title">திக்ரு & துஆ</h3>
-                <p class="cat-desc">காலை மாலை திக்ருகள், நோயிலிருந்து பாதுகாப்புப் பெறும் துஆக்கள் மற்றும் சிறப்புகள்.</p>
-                <span class="cat-count">விரைவில்...</span>
-            </a>
+குர்ஆன் • ஹதீஸ் • இஸ்லாமிய வரலாறு • மார்க்கக் கட்டுரைகள் • PDF புத்தகங்கள் • வீடியோக்கள்
 
-            <a href="/vappa-nayagam/list.html" class="category-card">
-                <span class="cat-icon">🌹</span>
-                <h3 class="cat-title">அமுத மொழிகள்</h3>
-                <p class="cat-desc">சங்கைமிகு வாப்பா நாயகம் அவர்களின் ஆன்மீகப் பொன்மொழிகள் மற்றும் வழிகாட்டுதல்கள்.</p>
-                <span class="cat-count">8 கட்டுரைகள்</span>
-            </a>
+</p>
 
-            <a href="#" class="category-card">
-                <span class="cat-icon">✨</span>
-                <h3 class="cat-title">சிறப்புப் பதிவுகள்</h3>
-                <p class="cat-desc">ரமலான், முஹர்ரம், மீலாது விழா மற்றும் இஸ்லாமிய பண்டிகைகளின் சிறப்புப் பதிவுகள்.</p>
-                <span class="cat-count">விரைவில்...</span>
-            </a>
+<div class="search">
 
-        </div>
+<input
+type="text"
+placeholder="தேடுங்கள்...">
 
-        <!-- RECENT ARTICLES -->
-        <div class="section-title"><h2>சமீபத்திய கட்டுரைகள்</h2></div>
-        
-        <div class="recent-list">
-            
-            <a href="/article/Ahlul-baith.html" class="recent-item">
-                <span class="item-tag">அஹ்லுல் பைத்</span>
-                <h3 class="item-title">அஹ்லுல் பைத்துகளின் சிறப்புகள் மற்றும் கண்ணியம்</h3>
-                <span class="item-date">புதிய பதிவு</span>
-            </a>
+<button>
 
-            <a href="/article/fatima-nayagi.html" class="recent-item">
-                <span class="item-tag">வரலாறு</span>
-                <h3 class="item-title">பாத்திமா நாயகி (ரலி) - தனிச் சிறப்புகள்</h3>
-                <span class="item-date">புதிய பதிவு</span>
-            </a>
+தேடு
 
-            <a href="/article/pirai-rule.html" class="recent-item">
-                <span class="item-tag">மார்க்க சட்டங்கள்</span>
-                <h3 class="item-title">பிறை பார்ப்பது குறித்த மார்க்க சட்டங்கள்</h3>
-                <span class="item-date">புதிய பதிவு</span>
-            </a>
+</button>
 
-        </div>
+</div>
 
-    </div>
+<div class="buttons">
 
-    <!-- Footer -->
-    <footer>
-        <h2>Yaseenis Islamic Portal</h2>
-        <p>&copy; 2026 Yaseenis. All Rights Reserved.</p>
-    </footer>
+<a href="#" class="btn primary">
 
-    <!-- Bottom Nav -->
-    <nav class="bottom-nav">
-        <a href="/audio/" class="nav-item"><div class="icon-circle bg-orange">🔊</div><span>Audios</span></a>
-        <a href="/article/" class="nav-item"><div class="icon-circle bg-blue" style="background-color: #3b82f6;">📄</div><span>Articles</span></a>
-        <a href="/search.html" class="nav-item"><div class="icon-circle bg-green">🔍</div><span>Search</span></a>
-        <a href="/Videos/list.html" class="nav-item"><div class="icon-circle bg-teal">🎥</div><span>Videos</span></a>
-        <a href="/pdfs/" class="nav-item"><div class="icon-circle bg-darkblue">📚</div><span>Books</span></a>
-    </nav>
+📖 கட்டுரைகள்
 
-</body>
-</html>
+</a>
+
+<a href="#" class="btn secondary">
+
+📚 புத்தகங்கள்
+
+</a>
+
+</div>
+
+</section>
