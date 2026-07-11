@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>கட்டுரை எழுதுக | Yaseenis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --primary: #064e3b; --primary-light: #047857; --gold: #d97706; --bg-light: #f8fafc; --white: #ffffff; }
+        body { font-family: 'Mukta Malar', sans-serif; background: var(--bg-light); margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 40px auto; background: var(--white); padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 5px solid var(--primary); }
+        h2 { color: var(--primary); text-align: center; margin-bottom: 20px; }
+        
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #334155; }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 16px; box-sizing: border-box; }
+        textarea { resize: vertical; min-height: 200px; }
+        
+        .submit-btn { background: var(--primary-light); color: var(--white); padding: 12px 25px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
+        .submit-btn:hover { background: var(--gold); }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: var(--primary-light); font-weight: bold; text-decoration: none; }
+        
+        #statusMsg { text-align: center; margin-top: 15px; font-weight: bold; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>புதிய கட்டுரை எழுதுக ✍️</h2>
+        <form id="articleForm">
+            <div class="form-group">
+                <label>கட்டுரையின் தலைப்பு</label>
+                <input type="text" id="title" placeholder="தலைப்பை இங்கே உள்ளிடவும்..." required>
+            </div>
+            
+            <div class="form-group">
+                <label>எழுதியவர் பெயர்</label>
+                <input type="text" id="author" placeholder="உங்கள் பெயர்..." required>
+            </div>
+
+            <div class="form-group">
+                <label>கட்டுரை உள்ளடக்கம்</label>
+                <textarea id="content" placeholder="உங்கள் கட்டுரையை இங்கே தட்டச்சு செய்யவும்..." required></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" class="submit-btn">கட்டுரையைப் பதிவேற்று</button>
+            <div id="statusMsg"></div>
+        </form>
+        <a href="index.html" class="back-link">← முகப்புக்குத் திரும்பு</a>
+    </div>
+
+    <!-- Firebase Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+            authDomain: "yaseenis-user.firebaseapp.com",
+            projectId: "yaseenis-user",
+            storageBucket: "yaseenis-user.firebasestorage.app",
+            messagingSenderId: "337971140829",
+            appId: "1:337971140829:web:c30a126aac465ded12e334"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Security: Only logged-in users can see this page
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.replace("portal.html");
+            }
+        });
+
+        // Handle Form Submission
+        document.getElementById("articleForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById("submitBtn");
+            const statusMsg = document.getElementById("statusMsg");
+            
+            submitBtn.innerText = "பதிவேற்றப்படுகிறது...";
+            submitBtn.disabled = true;
+
+            const title = document.getElementById("title").value;
+            const author = document.getElementById("author").value;
+            const content = document.getElementById("content").value;
+
+            try {
+                // Add data to Firestore
+                await addDoc(collection(db, "articles"), {
+                    title: title,
+                    author: author,
+                    content: content,
+                    createdAt: serverTimestamp(),
+                    userEmail: auth.currentUser.email
+                });
+
+                statusMsg.style.display = "block";
+                statusMsg.style.color = "green";
+                statusMsg.innerText = "கட்டுரை வெற்றிகரமாகப் பதிவேற்றப்பட்டது! ✅";
+                document.getElementById("articleForm").reset();
+
+            } catch (error) {
+                statusMsg.style.display = "block";
+                statusMsg.style.color = "red";
+                statusMsg.innerText = "பிழை: " + error.message;
+            } finally {
+                submitBtn.innerText = "கட்டுரையைப் பதிவேற்று";
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
