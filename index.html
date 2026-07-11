@@ -8,302 +8,167 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Mukta+Malar:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     
-    <style>
-        /* --- Global Variables --- */
-        :root {
-            --primary-dark: #022c22;
-            --primary: #064e3b;
-            --primary-light: #047857;
-            --gold: #d97706;
-            --gold-light: #FFD166;
-            --bg-light: #f8fafc;
-            --text-main: #1e293b;
-            --text-muted: #555555;
-            --white: #ffffff;
-            --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
-            --shadow-lg: 0 15px 30px rgba(0,0,0,0.12);
-        }
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-        /* --- Reset & Base --- */
+        const firebaseConfig = {
+            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+            authDomain: "yaseenis-user.firebaseapp.com",
+            projectId: "yaseenis-user",
+            storageBucket: "yaseenis-user.firebasestorage.app",
+            messagingSenderId: "337971140829",
+            appId: "1:337971140829:web:c30a126aac465ded12e334"
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Dynamic UI Logic Based on Login Status
+        onAuthStateChanged(auth, (user) => {
+            const loginBtn = document.getElementById("loginBtn");
+            const logoutBtn = document.getElementById("logoutBtn");
+            const memberDashboard = document.getElementById("memberDashboard");
+            const welcomeMsg = document.getElementById("welcomeMsg");
+
+            if (user) {
+                // User is Logged In
+                loginBtn.style.display = "none";
+                logoutBtn.style.display = "inline-block";
+                memberDashboard.style.display = "block"; // Show member features
+                welcomeMsg.innerText = "அஸ்ஸலாமு அலைக்கும், உறுப்பினர்!"; 
+            } else {
+                // User is NOT Logged In
+                loginBtn.style.display = "inline-block";
+                logoutBtn.style.display = "none";
+                memberDashboard.style.display = "none"; // Hide member features
+            }
+        });
+
+        // Logout Functionality
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            signOut(auth).then(() => {
+                window.location.reload();
+            });
+        });
+    </script>
+
+    <style>
+        /* --- Global Variables & Base --- */
+        :root { --primary-dark: #022c22; --primary: #064e3b; --primary-light: #047857; --gold: #d97706; --gold-light: #FFD166; --bg-light: #f8fafc; --text-main: #1e293b; --white: #ffffff; --shadow-md: 0 10px 25px rgba(0,0,0,0.08); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
         body { font-family: 'Mukta Malar', sans-serif; background: var(--bg-light); color: var(--text-main); line-height: 1.6; }
         a { text-decoration: none; transition: 0.3s ease; }
 
-        /* --- Topbar & Header --- */
-        .topbar { background: var(--primary); color: var(--gold-light); padding: 10px; text-align: center; font-family: 'Amiri', serif; font-size: 24px; letter-spacing: 1px; }
+        /* --- Header & Nav --- */
+        .topbar { background: var(--primary); color: var(--gold-light); padding: 10px; text-align: center; font-family: 'Amiri', serif; font-size: 24px; }
         header { background: var(--white); box-shadow: 0 5px 20px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 999; }
         .nav-container { max-width: 1200px; margin: auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 30px; font-weight: bold; color: var(--primary); }
         .logo span { color: var(--gold); }
-        nav { display: flex; align-items: center; gap: 25px; }
+        nav { display: flex; align-items: center; gap: 20px; }
         nav a { color: var(--text-main); font-weight: bold; font-size: 16px; }
         nav a:hover { color: var(--primary-light); }
-        .login-btn { background: var(--primary-light); color: var(--white) !important; padding: 8px 20px; border-radius: 20px; }
-        .login-btn:hover { background: var(--gold); }
+        
+        /* Buttons */
+        .action-btn { background: var(--primary-light); color: var(--white) !important; padding: 8px 20px; border-radius: 20px; cursor: pointer; border: none; font-weight: bold; font-family: inherit; font-size: 16px; }
+        .logout-btn { background: #ef4444; color: var(--white) !important; display: none; }
 
         /* --- Hero Section --- */
-        .hero { 
-            background: linear-gradient(rgba(6,78,59,0.85), rgba(4,120,87,0.85)), url('https://images.unsplash.com/photo-1519817650390-64a93db511aa?auto=format&fit=crop&w=1600&q=80') center/cover;
-            padding: 120px 20px; text-align: center; color: var(--white); 
-        }
-        .hero h1 { font-size: 48px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .hero p { font-size: 20px; max-width: 700px; margin: 0 auto 35px auto; opacity: 0.9; }
-        
-        /* --- Search Bar --- */
-        .search { max-width: 650px; margin: auto; display: flex; background: var(--white); border-radius: 50px; overflow: hidden; box-shadow: var(--shadow-md); }
-        .search input { flex: 1; padding: 18px 25px; border: none; outline: none; font-size: 16px; font-family: 'Mukta Malar', sans-serif; }
-        .search button { background: var(--primary-light); color: var(--white); border: none; padding: 18px 40px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s; }
-        .search button:hover { background: var(--gold); }
+        .hero { background: linear-gradient(rgba(6,78,59,0.85), rgba(4,120,87,0.85)), url('https://images.unsplash.com/photo-1519817650390-64a93db511aa?auto=format&fit=crop&w=1600&q=80') center/cover; padding: 100px 20px; text-align: center; color: var(--white); }
+        .hero h1 { font-size: 42px; margin-bottom: 15px; }
 
-        /* --- Hero Buttons --- */
-        .buttons { margin-top: 35px; }
-        .btn { display: inline-block; padding: 14px 30px; margin: 10px; border-radius: 40px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .btn-primary { background: var(--gold); color: var(--white); }
-        .btn-secondary { background: var(--white); color: var(--primary-light); }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        /* --- Member Dashboard (Hidden by Default) --- */
+        #memberDashboard { background: #e0f2fe; padding: 50px 20px; display: none; border-bottom: 4px solid var(--primary); }
+        .dash-container { max-width: 1000px; margin: auto; text-align: center; }
+        .dash-title { color: var(--primary-dark); font-size: 28px; margin-bottom: 30px; }
+        .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .dash-card { background: var(--white); padding: 30px; border-radius: 15px; box-shadow: var(--shadow-md); transition: 0.3s; border-top: 4px solid var(--primary-light); }
+        .dash-card:hover { transform: translateY(-5px); }
+        .dash-card h3 { color: var(--primary); margin: 15px 0 10px; }
+        .dash-icon { font-size: 40px; }
 
-        /* --- Sections Common --- */
-        section { padding: 80px 20px; }
-        .section-title { text-align: center; font-size: 36px; color: var(--primary); margin-bottom: 50px; font-weight: 700; }
-        .container-inner { max-width: 1200px; margin: auto; }
-
-        /* --- Featured Cards --- */
+        /* --- General Sections --- */
+        section { padding: 60px 20px; max-width: 1200px; margin: auto; }
+        .section-title { text-align: center; font-size: 32px; color: var(--primary); margin-bottom: 40px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--white); padding: 20px; border-radius: 18px; box-shadow: var(--shadow-md); transition: 0.4s; }
-        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
-        .card img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
-        .card h3 { color: var(--primary); font-size: 22px; margin-bottom: 10px; }
-        .card p { color: var(--text-muted); margin-bottom: 15px; }
-        .card a { color: var(--primary-light); font-weight: bold; display: inline-block; }
+        .card { background: var(--white); padding: 20px; border-radius: 18px; box-shadow: var(--shadow-md); transition: 0.3s; }
+        .card:hover { transform: translateY(-8px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
 
-        /* --- Statistics --- */
-        .stats-section { background: var(--primary); color: var(--white); }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
-        .stats-grid h1 { font-size: 48px; color: var(--gold-light); margin-bottom: 5px; }
-        .stats-grid p { font-size: 18px; opacity: 0.9; }
-
-        /* --- Daily Hadith --- */
-        .hadith-box { max-width: 800px; margin: auto; background: var(--bg-light); padding: 40px; border-radius: 20px; box-shadow: var(--shadow-md); border-top: 5px solid var(--gold); }
-        .hadith-arabic { font-family: 'Amiri', serif; font-size: 32px; color: var(--primary-dark); margin-bottom: 20px; }
-        .hadith-tamil { font-size: 22px; color: var(--text-main); font-weight: 500; }
-        .hadith-source { margin-top: 20px; color: var(--primary-light); font-weight: bold; }
-
-        /* --- Newsletter --- */
-        .newsletter { background: var(--primary-light); text-align: center; color: var(--white); }
-        .newsletter h2 { font-size: 34px; margin-bottom: 15px; }
-        .newsletter-box { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
-        .newsletter-box input { padding: 15px 25px; width: 100%; max-width: 350px; border: none; border-radius: 40px; font-size: 16px; outline: none; }
-        .newsletter-box button { padding: 15px 35px; border: none; background: var(--gold-light); color: var(--primary-dark); border-radius: 40px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
-        .newsletter-box button:hover { background: var(--gold); color: var(--white); }
-
-        /* --- Footer --- */
-        footer { background: var(--primary-dark); color: var(--white); padding: 60px 20px 20px 20px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: auto; }
-        footer h2, footer h3 { color: var(--gold-light); margin-bottom: 20px; }
-        footer ul { list-style: none; }
-        footer li { margin-bottom: 12px; }
-        footer a { color: var(--white); opacity: 0.8; }
-        footer a:hover { color: var(--gold-light); opacity: 1; padding-left: 5px; }
-        footer hr { margin: 40px 0 20px 0; border: 0; border-top: 1px solid rgba(255,255,255,0.1); }
-        .copyright { text-align: center; opacity: 0.7; font-size: 14px; }
-
-        /* --- Scroll to Top Button --- */
-        #topBtn { position: fixed; right: 25px; bottom: 25px; background: var(--primary-light); color: var(--white); border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: none; font-size: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 99; transition: 0.3s; }
-        #topBtn:hover { background: var(--gold); transform: translateY(-3px); }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 15px; }
-            nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
-            .hero h1 { font-size: 36px; }
-            .search { flex-direction: column; border-radius: 15px; }
-            .search input { border-radius: 15px 15px 0 0; }
-            .search button { width: 100%; border-radius: 0 0 15px 15px; }
-            .newsletter-box input, .newsletter-box button { width: 100%; max-width: 100%; border-radius: 12px; }
-        }
+        @media (max-width: 768px) { .nav-container { flex-direction: column; gap: 15px; } nav { flex-wrap: wrap; justify-content: center; } }
     </style>
 </head>
 <body>
 
-    <!-- Topbar -->
     <div class="topbar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
 
-    <!-- Header / Navigation -->
     <header>
         <div class="nav-container">
             <div class="logo">Yaseenis<span>.</span></div>
             <nav>
                 <a href="index.html">முகப்பு</a>
                 <a href="article.html">கட்டுரைகள்</a>
-                <a href="hadith.html">ஹதீஸ்</a>
-                <a href="books.html">புத்தகங்கள்</a>
                 <a href="Videos/list.html">வீடியோக்கள்</a>
-                <a href="portal.html" class="login-btn">உள்நுழை</a>
+                <a href="portal.html" id="loginBtn" class="action-btn">உள்நுழை</a>
+                <button id="logoutBtn" class="action-btn logout-btn">வெளியேறு (Logout)</button>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- MEMBER DASHBOARD (Only visible to logged-in users) -->
+    <div id="memberDashboard">
+        <div class="dash-container">
+            <h2 class="dash-title" id="welcomeMsg">அஸ்ஸலாமு அலைக்கும்!</h2>
+            <p style="margin-bottom: 30px; color: #334155;">உங்கள் சமூகப் பணிகளை இங்கிருந்தே நிர்வகிக்கலாம்.</p>
+            
+            <div class="dash-grid">
+                <!-- Links to your future feature pages -->
+                <a href="add-article.html" class="dash-card">
+                    <div class="dash-icon">✍️</div>
+                    <h3>கட்டுரை எழுதுக</h3>
+                    <p>புதிய மார்க்கக் கட்டுரைகள் மற்றும் தகவல்களைப் பகிரவும்.</p>
+                </a>
+                
+                <a href="upload-file.html" class="dash-card">
+                    <div class="dash-icon">📁</div>
+                    <h3>கோப்பு பதிவேற்றம்</h3>
+                    <p>PDF புத்தகங்கள் மற்றும் ஆவணங்களைச் சமூகத்துடன் பகிரவும்.</p>
+                </a>
+
+                <a href="community-chat.html" class="dash-card">
+                    <div class="dash-icon">💬</div>
+                    <h3>குழு உரையாடல்</h3>
+                    <p>உறுப்பினர்களுடன் நிகழ்நேரத்தில் (Real-time) உரையாடவும்.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero">
         <h1>தமிழின் சிறந்த இஸ்லாமிய அறிவுக் களஞ்சியம்</h1>
-        <p>குர்ஆன் • ஹதீஸ் • இஸ்லாமிய வரலாறு • மார்க்கக் கட்டுரைகள் • PDF புத்தகங்கள் • வீடியோக்கள்</p>
-        
-        <div class="search">
-            <input type="text" placeholder="கட்டுரைகள், ஹதீஸ்களைத் தேடுங்கள்...">
-            <button>தேடு</button>
-        </div>
+        <p>குர்ஆன் • ஹதீஸ் • இஸ்லாமிய வரலாறு • மார்க்கக் கட்டுரைகள்</p>
+    </div>
 
-        <div class="buttons">
-            <a href="article.html" class="btn btn-primary">📖 கட்டுரைகள்</a>
-            <a href="books.html" class="btn btn-secondary">📚 புத்தகங்கள்</a>
-        </div>
-    </section>
-
-    <!-- Featured Section -->
     <section>
-        <div class="container-inner">
-            <h2 class="section-title">📖 சிறப்பு பதிவுகள்</h2>
-            <div class="grid-3">
-                <div class="card fade-element">
-                    <img src="images/hadith.jpg" alt="Hadith">
-                    <h3>தினசரி ஹதீஸ்</h3>
-                    <p>அரபி, தமிழ் மற்றும் ஆங்கிலத்தில் ஆதாரப்பூர்வமான தினசரி ஹதீஸ் தொகுப்புகள்.</p>
-                    <a href="hadith.html">மேலும் படிக்க →</a>
-                </div>
-                <div class="card fade-element">
-                    <img src="images/books.jpg" alt="Islamic Books">
-                    <h3>இஸ்லாமிய புத்தகங்கள்</h3>
-                    <p>மார்க்க அறிஞர்கள் எழுதிய PDF நூல்கள் மற்றும் Online Reading வசதி.</p>
-                    <a href="books.html">பார்க்க →</a>
-                </div>
-                <div class="card fade-element">
-                    <img src="images/video.jpg" alt="Videos">
-                    <h3>வீடியோ சொற்பொழிவுகள்</h3>
-                    <p>பயனுள்ள தமிழ் மற்றும் அரபி மார்க்க விளக்க வீடியோக்கள்.</p>
-                    <a href="Videos/list.html">பார்க்க →</a>
-                </div>
+        <h2 class="section-title">📖 பொதுவான பதிவுகள்</h2>
+        <div class="grid-3">
+            <div class="card">
+                <img src="images/hadith.jpg" alt="Hadith">
+                <h3 style="color:var(--primary);">தினசரி ஹதீஸ்</h3>
+                <p>ஆதாரப்பூர்வமான தினசரி ஹதீஸ் தொகுப்புகள்.</p>
+            </div>
+            <div class="card">
+                <img src="images/books.jpg" alt="Islamic Books">
+                <h3 style="color:var(--primary);">இஸ்லாமிய புத்தகங்கள்</h3>
+                <p>மார்க்க அறிஞர்கள் எழுதிய PDF நூல்கள்.</p>
             </div>
         </div>
     </section>
 
-    <!-- Statistics Section -->
-    <section class="stats-section">
-        <div class="container-inner stats-grid">
-            <div class="fade-element">
-                <h1>1500+</h1>
-                <p>கட்டுரைகள்</p>
-            </div>
-            <div class="fade-element">
-                <h1>850+</h1>
-                <p>PDF புத்தகங்கள்</p>
-            </div>
-            <div class="fade-element">
-                <h1>400+</h1>
-                <p>வீடியோக்கள்</p>
-            </div>
-            <div class="fade-element">
-                <h1>24/7</h1>
-                <p>ஆன்லைன் சேவை</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Daily Hadith Section -->
-    <section>
-        <div class="container-inner" style="text-align: center;">
-            <h2 class="section-title">🕌 இன்றைய ஹதீஸ்</h2>
-            <div class="hadith-box fade-element">
-                <p class="hadith-arabic">قال رسول الله ﷺ</p>
-                <p class="hadith-tamil">"இங்கு உங்களின் தினசரி ஹதீஸ் மற்றும் அதற்கான தமிழாக்கம் காண்பிக்கப்படும்."</p>
-                <p class="hadith-source">📚 ஸஹீஹுல் புகாரி</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="container-inner">
-            <h2 class="fade-element">📩 எங்கள் செய்திமடலில் இணையுங்கள்</h2>
-            <p class="fade-element">புதிய ஹதீஸ், கட்டுரைகள், மற்றும் அறிவிப்புகளை Email மூலம் பெறுங்கள்.</p>
-            <div class="newsletter-box fade-element">
-                <input type="email" placeholder="உங்கள் Email முகவரி">
-                <button>Subscribe</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <h2>Yaseenis.com</h2>
-                <p>தமிழில் முழுமையான இஸ்லாமிய அறிவுக் களஞ்சியம். தூய மார்க்கத்தை அறிந்து கொள்ள ஓர் இணையதளம்.</p>
-            </div>
-            <div>
-                <h3>விரைவு இணைப்புகள்</h3>
-                <ul>
-                    <li><a href="index.html">முகப்பு</a></li>
-                    <li><a href="article.html">கட்டுரைகள்</a></li>
-                    <li><a href="books.html">புத்தகங்கள்</a></li>
-                    <li><a href="Videos/list.html">வீடியோக்கள்</a></li>
-                    <li><a href="portal.html">உள்நுழை (Portal)</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>எங்களைப் பின்தொடருங்கள்</h3>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">YouTube</a></li>
-                    <li><a href="#">Telegram</a></li>
-                    <li><a href="#">Instagram</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr>
-        <p class="copyright">&copy; 2026 Yaseenis.com | All Rights Reserved.</p>
+    <footer style="background: var(--primary-dark); color: white; text-align: center; padding: 30px;">
+        <p>&copy; 2026 Yaseenis.com | All Rights Reserved.</p>
     </footer>
-
-    <!-- Scroll to Top Button -->
-    <button id="topBtn" title="Go to top">⬆</button>
-
-    <!-- Scripts -->
-    <script>
-        // Scroll to Top Button Logic
-        const topBtn = document.getElementById("topBtn");
-        window.onscroll = function() {
-            if (document.documentElement.scrollTop > 300) {
-                topBtn.style.display = "block";
-            } else {
-                topBtn.style.display = "none";
-            }
-        };
-
-        topBtn.onclick = function() {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        };
-
-        // Scroll Fade-in Animation Logic
-        const elementsToFadeIn = document.querySelectorAll(".fade-element");
-        const observerOptions = { root: null, threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        elementsToFadeIn.forEach(el => {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(30px)";
-            el.style.transition = "opacity 0.6s ease-out, transform 0.6s ease-out";
-            observer.observe(el);
-        });
-    </script>
 
 </body>
 </html>
