@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>நேரடி அரட்டை | Live Chat</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f5f9;
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+        }
+        .chat-header {
+            background-color: #0ea5e9;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        #chat-box {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f8fafc;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            background-color: #e2e8f0;
+            width: fit-content;
+            max-width: 80%;
+        }
+        .chat-input-area {
+            display: flex;
+            padding: 15px;
+            background-color: white;
+            border-top: 1px solid #e2e8f0;
+        }
+        #message-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            outline: none;
+        }
+        #send-btn {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #send-btn:hover {
+            background-color: #059669;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>பொது அரட்டை (Live Chat)</h2>
+            <p style="font-size: 13px; margin: 0;">விருந்தினர் முறையில் பாதுகாப்பாகப் பேசலாம்</p>
+        </div>
+        
+        <div id="chat-box">
+            <!-- மெசேஜ்கள் இங்கே தோன்றும் -->
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="message-input" placeholder="உங்கள் செய்தியை டைப் செய்யவும்...">
+            <button id="send-btn" onclick="sendMessage()">அனுப்பு</button>
+        </div>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script>
+        // உங்களின் Firebase Config-ஐ கீழே ஒட்டவும் (Paste here)
+        var firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        // Firebase-ஐ தொடங்குதல்
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Guest ஆக லாகின் செய்தல்
+        firebase.auth().signInAnonymously().catch((error) => {
+            console.error("Login Error:", error);
+        });
+
+        // மெசேஜ்களைப் படித்தல் (Read Messages)
+        database.ref("messages").on("child_added", function(snapshot) {
+            const data = snapshot.val();
+            const chatBox = document.getElementById("chat-box");
+            
+            const msgElement = document.createElement("div");
+            msgElement.classList.add("message");
+            msgElement.innerText = "விருந்தினர்: " + data.text;
+            
+            chatBox.appendChild(msgElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+        });
+
+        // மெசேஜை அனுப்புதல் (Send Message)
+        function sendMessage() {
+            const input = document.getElementById("message-input");
+            const text = input.value.trim();
+            
+            if (text !== "") {
+                database.ref("messages").push({
+                    text: text,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                });
+                input.value = ""; // இன்புட் பாக்ஸை காலி செய்தல்
+            }
+        }
+
+        // Enter பட்டனை அழுத்தினால் மெசேஜ் அனுப்ப
+        document.getElementById("message-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
