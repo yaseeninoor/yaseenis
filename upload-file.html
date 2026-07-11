@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>கோப்பு பதிவேற்றம் | File Upload</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        header {
+            background-color: #1e293b;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #0f172a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .upload-box {
+            background-color: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .email-btn {
+            background-color: #0ea5e9;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .email-btn:hover {
+            background-color: #0284c7;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #10b981;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .iframe-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>கோப்புகளைப் பதிவேற்றுக</h1>
+        <p>உங்கள் ஆவணங்கள் மற்றும் புத்தகங்களை எங்களுக்கு அனுப்பவும்</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Option 1: Google Forms Embed -->
+        <div class="upload-box">
+            <h2>முறை 1: படிவம் மூலம் பதிவேற்றவும்</h2>
+            <p>கீழே உள்ள படிவத்தைப் பயன்படுத்தி உங்கள் கோப்புகளைப் பாதுகாப்பாகப் பதிவேற்றலாம்.</p>
+            
+            <div class="iframe-container">
+                <!-- உங்களின் Google Form Embed Code-ஐ கீழே உள்ள வரியில் மாற்றவும் -->
+                <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" width="640" height="400" frameborder="0" marginheight="0" marginwidth="0">ஏற்றப்படுகிறது...</iframe>
+            </div>
+        </div>
+
+        <!-- Option 2: Direct Email -->
+        <div class="upload-box" style="background-color: #e0f2fe; border: 1px solid #bae6fd;">
+            <h2>முறை 2: மின்னஞ்சல் மூலம் அனுப்பவும்</h2>
+            <p>படிவத்தைப் பயன்படுத்த முடியவில்லையா? உங்கள் கோப்புகளை எங்களுக்கு நேரடியாக மின்னஞ்சலில் அனுப்பலாம்.</p>
+            <!-- உங்களின் உண்மையான Email முகவரியை கீழே மாற்றவும் -->
+            <a href="mailto:your-email@example.com?subject=புதிய கோப்பு சமர்ப்பிப்பு" class="email-btn">
+                ✉️ மின்னஞ்சலில் அனுப்பவும்
+            </a>
+        </div>
+
+        <a href="storage.html" class="back-link">← சேமிப்பகப் பக்கத்திற்குத் திரும்புக</a>
+        <br>
+        <a href="index.html" class="back-link" style="color: #64748b;">← முதன்மைப் பக்கத்திற்குத் திரும்புக</a>
+
+    </div>
+
+</body>
+</html>
