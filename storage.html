@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>புத்தகங்கள் & கோப்புகள் சேமிப்பகம்</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        header {
+            background-color: #1e293b;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .upload-section {
+            background-color: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 2px dashed #cbd5e1;
+            text-align: center;
+        }
+        .upload-btn {
+            background-color: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .upload-btn:hover {
+            background-color: #0284c7;
+        }
+        h2 {
+            color: #0f172a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .card h3 {
+            font-size: 16px;
+            margin: 10px 0 5px 0;
+            color: #1e293b;
+        }
+        .card p {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+        .download-btn {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .download-btn:hover {
+            background-color: #059669;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #0ea5e9;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>டிஜிட்டல் புத்தகங்கள் & கோப்புகள் சேமிப்பகம்</h1>
+        <p>உங்கள் முக்கிய ஆவணங்கள் மற்றும் புத்தகங்களை இங்கே பாதுகாப்பாக நிர்வகிக்கலாம்</p>
+    </header>
+
+    <div class="container">
+        <div class="upload-section">
+            <h3>புதிய கோப்பு அல்லது புத்தகத்தைச் சேர்க்கவும்</h3>
+            <p style="font-size: 13px; color: #64748b;">உங்கள் கணினியிலிருந்து கோப்பைத் தேர்ந்தெடுக்கவும்</p>
+            <input type="file" id="fileInput" style="margin-bottom: 15px;"><br>
+            <button class="upload-btn" onclick="uploadFile()">பதிவேற்று (Upload)</button>
+        </div>
+
+        <h2>📚 சேமிக்கப்பட்ட புத்தகங்கள்</h2>
+        <div class="grid" id="booksGrid">
+            <div class="card">
+                <h3>வரலாற்றுப் புத்தகம்</h3>
+                <p>PDF ஆவணம் (2.4 MB)</p>
+                <button class="download-btn">பதிவிறக்கு</button>
+            </div>
+            <div class="card">
+                <h3>இலக்கியத் தொகுப்பு</h3>
+                <p>EPUB கோப்பு (1.1 MB)</p>
+                <button class="download-btn">பதிவிறக்கு</button>
+            </div>
+        </div>
+
+        <h2>📁 இதர ஆவணங்கள் & கோப்புகள்</h2>
+        <div class="grid" id="filesGrid">
+            <div class="card">
+                <h3>முக்கிய சான்றிதழ்கள்</h3>
+                <p>ZIP கோப்பு (5.8 MB)</p>
+                <button class="download-btn">பதிவிறக்கு</button>
+            </div>
+            <div class="card">
+                <h3>ப்ராஜெக்ட் அறிக்கை 2026</h3>
+                <p>Word ஆவணம் (850 KB)</p>
+                <button class="download-btn">பதிவிறக்கு</button>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← முதன்மைப் பக்கத்திற்குத் திரும்புக</a>
+    </div>
+
+    <script>
+        function uploadFile() {
+            const input = document.getElementById('fileInput');
+            if (input.files.length > 0) {
+                alert(input.files[0].name + " என்ற கோப்பு தற்காலிகமாகப் பதிவேற்றப்பட்டது! (குறிப்பு: GitHub Pages என்பது நிலையான (Static) தளம் என்பதால், கோப்புகளை நிரந்தரமாகச் சேமிக்க பின்தள (Backend) தரவுத்தளம் தேவைப்படும்).");
+            } else {
+                alert("தயவுசெய்து முதலில் ஒரு கோப்பைத் தேர்ந்தெடுக்கவும்.");
+            }
+        }
+    </script>
+
+</body>
+</html>
