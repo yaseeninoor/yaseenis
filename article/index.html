@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>இஸ்லாமியக் கட்டுரைகள் | Yaseenis</title>
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mukta+Malar:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Core Variables --- */
+        :root {
+            --primary: #064e3b; --primary-light: #059669; --primary-dark: #022c22;
+            --gold: #d97706; --gold-light: #fef3c7; 
+            --bg-body: #f8fafc; --bg-surface: #ffffff;
+            --text-main: #0f172a; --text-muted: #64748b;
+            --radius-lg: 20px; --radius-md: 12px;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        /* --- Reset & Global --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Mukta Malar', 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.7; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Header --- */
+        .topbar { background: var(--primary-dark); color: var(--gold-light); text-align: center; padding: 8px; font-family: 'Amiri', serif; font-size: 20px; letter-spacing: 2px; }
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 28px; font-weight: 800; color: var(--primary-dark); }
+        .logo span { color: var(--gold); }
+        nav { display: flex; gap: 25px; align-items: center; }
+        nav a.nav-link { font-weight: 600; color: var(--text-muted); transition: var(--transition); font-size: 16px; }
+        nav a.nav-link:hover { color: var(--primary); }
+
+        /* --- Page Header --- */
+        .page-header { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; padding: 60px 20px; text-align: center; margin-bottom: 40px; border-bottom: 5px solid var(--gold); }
+        .page-header h1 { font-size: 42px; font-weight: 800; margin-bottom: 15px; }
+        .page-header p { font-size: 18px; color: #cbd5e1; max-width: 600px; margin: 0 auto; }
+
+        /* --- Article Grid --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 80px; }
+        .article-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .article-card { background: var(--bg-surface); border-radius: var(--radius-md); padding: 30px; box-shadow: var(--shadow-sm); border: 1px solid #e2e8f0; transition: var(--transition); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .article-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary); transition: var(--transition); }
+        .article-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: transparent; }
+        .article-card:hover::before { width: 100%; opacity: 0.05; }
+        
+        .article-icon { font-size: 32px; margin-bottom: 15px; }
+        .article-title { font-size: 22px; color: var(--primary-dark); font-weight: 700; margin-bottom: 12px; line-height: 1.4; }
+        .article-desc { color: var(--text-muted); font-size: 15px; margin-bottom: 20px; flex-grow: 1; }
+        .read-more { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); font-weight: 700; font-size: 15px; transition: var(--transition); }
+        .article-card:hover .read-more { color: var(--primary); gap: 12px; }
+
+        /* --- Footer --- */
+        footer { background: #0f172a; color: white; text-align: center; padding: 40px 20px; margin-top: auto; }
+        footer p { color: #94a3b8; font-size: 15px; }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 15px; }
+            .page-header h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="topbar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo">Yaseenis<span>.</span></a>
+            <nav>
+                <a href="/" class="nav-link">முகப்பு</a>
+                <a href="/article/" class="nav-link" style="color: var(--primary);">கட்டுரைகள்</a>
+                <a href="/Videos/list.html" class="nav-link">வீடியோக்கள்</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <div class="page-header">
+        <h1>இஸ்லாமியக் கட்டுரைகள்</h1>
+        <p>மார்க்க அறிஞர்கள் மற்றும் நன்மக்களால் எழுதப்பட்ட சிறப்புமிக்க கட்டுரைகளின் தொகுப்பு.</p>
+    </div>
+
+    <!-- Article List / Grid -->
+    <div class="container">
+        <div class="article-grid">
+
+            <!-- Article 1 -->
+            <a href="Fathima-naayagiyin-serape.html" class="article-card">
+                <div class="article-icon">👑</div>
+                <h2 class="article-title">பாத்திமா நாயகி (ரலி) அவர்களின் சிறப்பு</h2>
+                <p class="article-desc">அன்னை பாத்திமா (ரலி) அவர்களின் சீரிய வரலாற்றுச் சிறப்புகள் மற்றும் அவர்களின் தியாக வாழ்க்கை பற்றிய பதிவு.</p>
+                <span class="read-more">வாசிக்க தொடங்குங்கள் →</span>
+            </a>
+
+            <!-- Article 2 -->
+            <a href="ahlul-baith.html" class="article-card">
+                <div class="article-icon">🌹</div>
+                <h2 class="article-title">அஹ்லுல் பைத் சிறப்புகள்</h2>
+                <p class="article-desc">நபிக்குடும்பத்தினரான அஹ்லுல் பைத்துகளின் சிறப்புகள், கண்ணியம் மற்றும் அவர்களை நேசிப்பதன் மாண்புகள்.</p>
+                <span class="read-more">வாசிக்க தொடங்குங்கள் →</span>
+            </a>
+
+            <!-- Article 3 -->
+            <a href="karamath.html" class="article-card">
+                <div class="article-icon">✨</div>
+                <h2 class="article-title">கராமத் (பிறந்த குழந்தை பேசியது)</h2>
+                <p class="article-desc">காஜா முயீனுத்தீன் சிஷ்தி (ரஹ்) அவர்களின் சீடரின் வாழ்வில் நடந்த கராமத் மற்றும் ஜுரைத் (ரஹ்) அவர்களின் வரலாறு.</p>
+                <span class="read-more">வாசிக்க தொடங்குங்கள் →</span>
+            </a>
+
+            <!-- Article 4 -->
+            <a href="pirai-rule.html" class="article-card">
+                <div class="article-icon">🌙</div>
+                <h2 class="article-title">பிறை பார்ப்பது குறித்த மார்க்க சட்டங்கள்</h2>
+                <p class="article-desc">ரமலான் மற்றும் இஸ்லாமிய மாதங்களின் தொடக்கத்தைக் குறிக்கும் பிறை பார்ப்பது தொடர்பான மார்க்கச் சட்டங்கள் (Fiqh).</p>
+                <span class="read-more">வாசிக்க தொடங்குங்கள் →</span>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Yaseenis Community. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
