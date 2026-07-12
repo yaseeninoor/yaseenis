@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>மன்ஸுர் ஹல்லாஜ் (ரலி) - பகுதி 1 | Yaseenis Articles</title>
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mukta+Malar:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #064e3b; --primary-light: #059669; --primary-dark: #022c22;
+            --gold: #d97706; --gold-light: #fef3c7; 
+            --bg-body: #f8fafc; --bg-surface: #ffffff;
+            --text-main: #0f172a; --text-muted: #64748b;
+        }
+
+        body { font-family: 'Mukta Malar', 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.8; margin: 0; padding: 0; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Header */
+        .topbar { background: var(--primary-dark); color: var(--gold-light); text-align: center; padding: 8px; font-family: 'Amiri', serif; font-size: 20px; letter-spacing: 2px; }
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 28px; font-weight: 800; color: var(--primary-dark); }
+        .logo span { color: var(--gold); }
+        .back-btn { background: var(--primary); color: white !important; padding: 8px 20px; border-radius: 30px; font-weight: 600; font-size: 15px; transition: 0.3s; }
+        .back-btn:hover { background: var(--primary-dark); }
+
+        /* Article Container */
+        .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
+        .article-card { background: var(--bg-surface); padding: 50px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 5px solid var(--primary); }
+        
+        .meta-info { background: #f1f5f9; padding: 20px; border-radius: 12px; margin-bottom: 30px; border-left: 4px solid var(--gold); }
+        .meta-info p { margin: 5px 0; font-weight: 600; font-size: 16px; }
+
+        h1 { color: var(--primary-dark); font-size: 36px; margin-top: 0; margin-bottom: 20px; font-weight: 800; line-height: 1.4; }
+        h2 { color: var(--primary); font-size: 24px; margin-top: 40px; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+        h3 { color: var(--gold); font-size: 20px; margin-top: 25px; margin-bottom: 10px; }
+        
+        p { font-size: 18px; margin-bottom: 20px; color: #334155; }
+
+        /* Custom Information Grid */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .info-box { background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .info-box h3 { margin-top: 0; color: var(--primary-dark); font-size: 18px; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px; }
+        .info-box p { margin-bottom: 0; font-size: 16px; }
+
+        /* Highlight Boxes (For Conversations & Special Events) */
+        .highlight-box { background: #fffbeb; border: 1px solid #fef3c7; padding: 25px; border-radius: 12px; margin-bottom: 30px; border-left: 5px solid var(--gold); position: relative; }
+        .dialogue-text { font-style: italic; color: #475569; font-weight: 500; margin-bottom: 15px; }
+        .dialogue-speaker { font-weight: 700; color: var(--primary-dark); }
+
+        .continue-tag { text-align: center; margin-top: 40px; padding: 15px; background: var(--primary-dark); color: var(--gold-light); border-radius: 10px; font-size: 20px; font-weight: bold; letter-spacing: 1px; }
+
+        /* Footer */
+        footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 15px; margin-top: 40px; background: #0f172a; color: white; }
+
+        @media (max-width: 768px) {
+            .article-card { padding: 30px 20px; }
+            h1 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+    
+    <header>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Yaseenis<span>.</span></a>
+            <a href="index.html" class="back-btn">← கட்டுரைகள்</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="article-card">
+            
+            <div class="meta-info">
+                <p>✍️ தொகுப்பு: V.M. முஹம்மது ஜகரிய்யா யாஸீனிய்</p>
+                <p style="color: var(--primary);">📚 இஸ்லாமிய வரலாற்றுத் தொடர்</p>
+            </div>
+
+            <h1>மன்ஸுர் ஹல்லாஜ் (ரலி) - பகுதி 1</h1>
+
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>பிறப்பு</h3>
+                    <p>ஹிஜ்ரி 244 (கி.பி 858), ஈரானில் பார்ஸ் மாநிலத்தில் பைழா ஊருக்கு அருகிலுள்ள தூர் என்ற கிராமத்தில் பிறந்தார். மன்ஸுர் என்பவர் அவருக்கு <strong>ஹுஸைன்</strong> என்று பெயரிட்டார்.</p>
+                </div>
+                <div class="info-box">
+                    <h3>ஹல்லாஜ் - பெயர் காரணம்</h3>
+                    <p>தந்தை பஞ்சு வெட்டி வாழ்ந்து வந்ததால் "பஞ்சு வெட்டுபவர்" எனும் பொருள் கொண்ட <strong>ஹல்லாஜ்</strong> என்ற பெயர் வந்தது.</p>
+                </div>
+                <div class="info-box">
+                    <h3>முழுப் பெயர்</h3>
+                    <p>ஹுஸைன் மன்ஸுர் ஹல்லாஜ் ரழியல்லாஹு அன்ஹு.</p>
+                </div>
+                <div class="info-box">
+                    <h3>வம்சா வழி</h3>
+                    <p>அபூ அய்யூப் அன்சாரி ரழியல்லாஹு அன்ஹு அவர்களின் வம்சா வழி.</p>
+                </div>
+            </div>
+
+            <h2>கல்வி மற்றும் திருமணம்</h2>
+            <p>16 வயது அடைந்த மன்ஸுர் ஹல்லாஜ் (ரலி) அவர்கள் ஸஹ்ல் இப்னு அப்துல்லாஹ் தூஸ்தரீ (ரஹ்) அவர்களிடமும், அம்ர் இப்னு உதுமான் மக்கீ (ரஹ்) அவர்களிடமும் ஆன்மீகக் கலையைக் கற்றார்கள்.</p>
+            <p>மன்ஸுர் ஹல்லாஜ் (ரலி) அவர்களின் ஆன்மீக அறிவைக் கண்டு வியந்த யஃகூப் அல் அக்தா என்பவர் தம் மகளை மன்ஸுர் ஹல்லாஜ் (ரலி) அவர்களுக்கு மணமுடித்து வைத்தார்கள். அதன் மூலம் ஒரு ஆண் பிள்ளை பிறந்து, அதற்கு 'ஹம்து' என்று பெயர் வைத்து மகிழ்வுடன் வாழ்ந்து வந்தார்கள்.</p>
+
+            <h2>ஞானம் (ஆன்மீகப் பயணம்)</h2>
+            <p>இயற்கையிலேயே இறையறிவைப் பெற்றிருந்த அவர்கள், ஒரு காலகட்டத்திற்குப் பின் மடை திறந்த வெள்ளம் போல், "ஹக்கு" என்பதின் தாற்பரியத்தை மக்களிடத்தில் எடுத்துச் சொல்ல ஆரம்பிக்கிறார்கள்.</p>
+            <p>ஷரீஆவில் உள்ள "இறையறிவை" இதுவரை மக்கள் கேள்வி படாத விஷயங்களாக இருந்ததினால், அது மார்க்கத்திற்கு முரணானது என்றே மக்கள் கருதினார்கள். "உங்கள் மாணவர் இப்படி எல்லாம் பேசுகிறாரே, அவரை நீங்கள் கண்டிக்க மாட்டீர்களா?" என்று அம்ர் இப்னு உதுமான் (ரஹ்) அவர்களிடம் மக்கள் புகார் செய்கிறார்கள்.</p>
+
+            <div class="highlight-box">
+                <p class="dialogue-text"><span class="dialogue-speaker">அம்ர் இப்னு உதுமான் (ரஹ்):</span> "மறைக்கப்பட வேண்டிய மெஞ்ஞான அறிவை ஏன் வெளியில் கொண்டு வருகிறீர்கள்?"</p>
+                <p class="dialogue-text"><span class="dialogue-speaker">மன்ஸுர் நாயகம்:</span> "ஆம்! எம் உள்ளேயிருந்தது இப்போது வெளியாகி விட்டது. தடுப்பதற்கு இனி எம்மால் கூட முடியாது. ஏனென்றால் நான் நானாக இல்லை."</p>
+                <p class="dialogue-text"><span class="dialogue-speaker">அம்ர் இப்னு உதுமான் (ரஹ்):</span> "மன்ஸுரே! நீர் ஹக்கை (உண்மையை) சொல்வதை எம்மால் தடுக்க இயலாது. ஆனால் அறிவாளிகளுக்கு சொல்ல வேண்டிய விஷயங்களை பாமரர்களுக்கு ஏன் எடுத்துச் சொல்கிறீர்கள்? அது அவர்களுக்கு குழப்பத்தினை ஏற்படுத்தும் என்று நான் அஞ்சுகிறேன்."</p>
+                <p class="dialogue-text"><span class="dialogue-speaker">மன்ஸுர் நாயகம்:</span> "இனி எம்மால் கட்டுப்படுத்த முடியாது."</p>
+                <p class="dialogue-text"><span class="dialogue-speaker">அம்ர் இப்னு உதுமான் (ரஹ்):</span> "மன்ஸுரே! இப்படி பேசித் திரிந்தால் இனி எம் பள்ளிக்கு வராதீர்! நம் தொடர்பு இத்தோடு முறிந்து விட்டது."</p>
+            </div>
+
+            <p>உடனே அவ்விடத்திலிருந்து அகன்று மக்கா நோக்கிச் செல்கிறார்கள் மன்ஸுர் நாயகம். ஒரு வருடம் அங்கு வாழ்ந்து விட்டு மீண்டும் பக்தாதே வருகிறார்கள். அங்கே அபுல் காஸிம் ஜுனைதி (ரஹ்) அவர்களின் ஆன்மீகப் பள்ளியில் மன்ஸுர் நாயகம் சேர்கிறார்கள்.</p>
+
+            <p>மன்ஸுர் நாயகத்தின் மனக்குழப்பத்தை அறிந்து கொண்ட ஜுனைதி (ரஹ்) அவர்கள், வாய் மூடி அமைதி காத்திருக்கும்படி கட்டளையிடுகிறார்கள். சிறிது காலத்திற்குப் பின், "ஆன்மீக இரகசியம்" சம்மந்தப்பட்ட கேள்விகளை மன்ஸுர் நாயகம் ஜுனைதி (ரஹ்) அவர்களிடம் கேட்கிறார்கள்.</p>
+
+            <div class="highlight-box">
+                <p class="dialogue-text"><span class="dialogue-speaker">ஜுனைதி (ரஹ்):</span> "மன்ஸுரே! நமக்குத்தான் ஸல்லல்லாஹு அலைஹி வஸல்லம் காட்டித்தந்த அழகிய முன் மாதிரி ஷரீஆ இருக்கின்றதே! அதைப் பின் தொடர்ந்தே சென்று விடுவோம்."</p>
+                <p class="dialogue-text"><span class="dialogue-speaker">மன்ஸுர் நாயகம்:</span> "அண்ணலெம் பெருமான் (ஸல்) அவர்கள் போதித்த ஆன்மீக இரகசியங்களை மறைத்து, மக்களை ஏன் இப்படி இருளில் வைக்க வேண்டும்? ஞான விளக்கங்களை போதித்து, அவர்களை நேர் வழிபடுத்துவது உங்களைப் போன்ற ஆன்மீக அறிஞர்களுக்கு கடமையல்லவா? இதே நிலைமையில் அவர்களை வாழ செய்து மரணிக்கச் செய்வது, மிகப் பெரிய குற்றமாகும். மறுமையில் அல்லாஹ்விடத்தில் இதற்கு நீங்கள் பதில் சொல்லியே ஆக வேண்டும்."</p>
+                <p class="dialogue-text"><span class="dialogue-speaker">ஜுனைதி (ரஹ்):</span> "மன்ஸுரே! இது போல் வெளிப்படையாகப் பேசினால், உம்முடைய இரத்தத்தால் மரத்தின் நுனி சிவப்பாகும்."</p>
+                <p class="dialogue-text"><span class="dialogue-speaker">மன்ஸுர் நாயகம்:</span> "ஆம்! அந்நாளில் தாங்கள் ஆத்மீக உடையைக் கழற்றி விட்டு, மார்க்க மேதைகளின் உடைகளை அணிந்திருப்பீர்கள்."</p>
+            </div>
+
+            <p>இதன் பின் பக்தாத் மாநகரை விடை கொடுத்து விட்டு, மனைவி, மகனுடன் துஸ்தர் நகர் சென்று, ஆன்மீக போதனைகளை ஒரு வருட காலம் மக்களுக்கு எடுத்துக் கூறினார்கள். இதற்கிடையில் அம்ர் இப்னு உதுமான் (ரஹ்) அவர்கள் மன்ஸுர் நாயகத்தைக் குறை கூறி தபால் ஒன்றை அவ்வூர் மக்களுக்கு எழுதுகிறார்கள்.</p>
+            <p>விஷயத்தின் வீரியத்தைப் புரிந்து கொண்ட மன்ஸுர் நாயகம், இனி இவ்வூரில் தங்கிப் பலனில்லை என்று உணர்ந்து, மக்கள் அதிகம் இல்லாத குராஸான், ஷீஸ்தான் பகுதிகளில் ஐந்து வருடம் வாழ்ந்தார்கள். அங்கே ஏராளமான ஆன்மீக கிதாபுகளையும் எழுதினார்கள்.</p>
+
+            <h2>ஷரீஅத் தவறாத மஹான்</h2>
+            <p>நாள் ஒன்றுக்கு நானூறு ரக்அத்கள் மன்ஸுர் நாயகம் தொழுவதைக் கண்ட மக்கள், "தாங்கள் தாம் ஆன்மீகத்தில் உச்ச நிலையில் அடைந்து விட்டீர்களே! பிறகேன் இவ்வாறு சிரம் மேற்கொண்டு தொழுகிறீர்கள்?" என்று வினவினர்.</p>
+            <p>அதற்கு மன்ஸுர் நாயகம், <strong>"இது இன்பம், இது துன்பம் என்று உங்களைப் போன்ற சராசரி மனிதர்களுக்குத் தான் தெரியும். இறைவனில் தன்னில் அழித்து விட்ட (FANA) எங்களைப் போன்ற வலீமார்களுக்கு என்றுமே இன்பம் தான்"</strong> என்றார்கள்.</p>
+
+            <div class="highlight-box" style="border-left-color: var(--primary-light); background: #f0fdf4;">
+                <h3 style="color: var(--primary); margin-top: 0;">தேளும் மன்ஸுர் நாயகமும்</h3>
+                <p>ஒரே சட்டையில் மன்ஸுர் நாயகம் வாழ்ந்து வந்ததைப் பார்த்த அவ்வூர் மக்கள், ஒரு நாள் அதைக் கழட்டிய போது, அதில் ஒரு தேள் இருந்தது. அதை அடிக்க அவர்கள் முற்பட்ட போது...</p>
+                <p><strong>"20 வருடம் காலம் அந்தத் தேள் என்னுடன் வாழ்ந்து வருகிறது. அதை அடிக்க வேண்டாம். இருந்த இடத்தில் விட்டு விடுங்கள்"</strong> என மன்ஸுர் நாயகம் தடுத்து விடுகிறார்கள்.</p>
+            </div>
+
+            <p>இதன் பின் அஹ்வாஸ் என்ற இடத்திற்கு வந்த அவர்கள் ஆன்மீக ரகசியங்களை மக்களுக்கு வெளிப்படையாகக் கூற ஆரம்பிக்கிறார்கள். இவர்களை ஆதரித்து ஒரு கூட்டமும், எதிர்த்து ஒரு கூட்டமும் உருவாகியது. "ஆன்மீக அரசர்" என்று ஆதரித்தவர்கள் புகழ் பாட, எதிர்த்தோரோ "ஊரை கெடுக்க வந்த உளறுவாயரே!" என்று வசைபாட ஆரம்பித்தனர்.</p>
+            
+            <p>சிறிது காலத்திற்குப் பின் ஆத்மீக உடை அணிந்து, மக்கமா நகருக்குச் செல்கிறார்கள். இவர்களைப் பின் தொடர்ந்து நாலாயிரத்துக்கும் அதிகமான நபர்கள் செல்கிறார்கள். வழமை போல் தங்கள் ஆன்மீக விஷயங்களை மக்களுக்கு எடுத்துயெம்பினார்கள்.</p>
+            
+            <p>அந்நகரின் பிரமுகர் யஃகூப் நஹ்ரஜுரி, "இந்த மன்ஸுர் ஒரு வித்தைக்காரர், மந்திரிவாதி, சூனியக்காரர்" என்று மக்களிடத்தில் நஞ்சுகளை விதைக்கவே, "மன்சூரே! ஊரை விட்டு ஓடிப்போ" என்ற கோஷம் நாலாபுறமும் பரவியது.</p>
+            
+            <p>இதைப் பொருட்படுத்தாத மன்ஸுர் நாயகம், ஹஜ்ஜுக் கடமையை நிறைவாய் செய்து, தம் பின் வந்தவர்களை அவரவர் ஊருக்குத் திரும்பச் சொல்லி விட்டு, ஒரு வருடம் அங்கேயே கடும் தவம் புரிந்தார்கள்.</p>
+
+            <div class="continue-tag">
+                ( தொடரும் : 1 )
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Yaseenis Community. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
