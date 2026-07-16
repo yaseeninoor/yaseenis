@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>இஸ்லாமியக் கட்டுரைகள் | Yaseenis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mukta+Malar:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #064e3b; --primary-light: #059669; --gold: #d97706; --bg-light: #f1f5f9; --white: #ffffff; --text-dark: #1e293b; --text-gray: #475569; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Mukta Malar', sans-serif; background: var(--bg-light); color: var(--text-dark); padding: 20px; }
+        
+        .header { text-align: center; margin: 40px 0; }
+        .header h1 { color: var(--primary); font-size: 36px; font-weight: 800; }
+
+        .container { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px; }
+        #loader { text-align: center; font-size: 18px; color: var(--primary); padding: 40px; }
+        .spinner { display: inline-block; width: 40px; height: 40px; border: 4px solid rgba(6,78,59,0.2); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 10px; }
+
+        .article-card { background: var(--white); padding: 35px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 5px solid var(--primary); animation: fadeIn 0.5s ease; transition: 0.3s; }
+        .article-card:hover { box-shadow: 0 15px 35px rgba(6,78,59,0.1); }
+        
+        .a-title { font-size: 26px; color: var(--primary); font-weight: 800; margin-bottom: 15px; line-height: 1.3; }
+        .a-meta { font-size: 14px; color: var(--text-gray); font-weight: 600; margin-bottom: 25px; display: flex; gap: 15px; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px;}
+        .a-content { font-size: 18px; line-height: 2; white-space: pre-wrap; color: var(--text-dark); }
+
+        .back-link { display: block; text-align: center; margin-top: 40px; color: var(--primary); font-weight: bold; text-decoration: none; font-size: 18px; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📝 இஸ்லாமியக் கட்டுரைகள்</h1>
+    </div>
+
+    <div class="container" id="katturaiContainer">
+        <div id="loader"><div class="spinner"></div><br>கட்டுரைகள் ஏற்றப்படுகின்றன...</div>
+    </div>
+
+    <a href="index.html" class="back-link">⬅️ முகப்புக்குத் திரும்பு</a>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const firebaseConfig = { apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o", authDomain: "yaseenis-user.firebaseapp.com", projectId: "yaseenis-user", storageBucket: "yaseenis-user.firebasestorage.app", messagingSenderId: "337971140829", appId: "1:337971140829:web:c30a126aac465ded12e334" };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function fetchKatturai() {
+            const container = document.getElementById("katturaiContainer");
+            try {
+                const q = query(collection(db, "katturai_uploads"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+                container.innerHTML = ""; 
+
+                if (querySnapshot.empty) { container.innerHTML = `<div style="text-align:center; color:#64748b;">கட்டுரைகள் ஏதுமில்லை.</div>`; return; }
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data(); 
+                    const card = document.createElement("div");
+                    card.className = "article-card";
+                    card.innerHTML = `
+                        <div class="a-title">${data.title}</div>
+                        <div class="a-meta">
+                            <span>✍️ ${data.uploaderName}</span>
+                            <span>📅 ${data.uploadDateString}</span>
+                        </div>
+                        <div class="a-content">${data.content}</div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (error) { container.innerHTML = `<div style="color:red; text-align:center;">பிழை!</div>`; }
+        }
+        window.onload = fetchKatturai;
+    </script>
+</body>
+</html>
