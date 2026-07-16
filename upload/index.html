@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Upload Portal | Yaseenis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --primary: #064e3b; --primary-light: #047857; --gold: #d97706; --bg-light: #f8fafc; --white: #ffffff; }
+        body { font-family: 'Mukta Malar', sans-serif; background: var(--bg-light); margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 40px auto; background: var(--white); padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 5px solid var(--primary); }
+        h2 { color: var(--primary); text-align: center; margin-bottom: 30px; font-size: 28px; }
+        
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #334155; }
+        input[type="text"], select, input[type="file"], textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 16px; box-sizing: border-box; }
+        textarea { resize: vertical; min-height: 150px; }
+        
+        .auto-field { background-color: #e2e8f0; color: #475569; font-weight: 600; border: 1px dashed #94a3b8; cursor: not-allowed; }
+        
+        .submit-btn { background: var(--primary-light); color: var(--white); padding: 14px 25px; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; margin-top: 10px; }
+        .submit-btn:hover { background: var(--gold); }
+        .submit-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+        
+        #statusMsg { text-align: center; margin-top: 20px; font-weight: bold; font-size: 16px; display: none; padding: 10px; border-radius: 8px;}
+        
+        /* Dynamic fields hiding */
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Yaseenis Upload Portal 🚀</h2>
+        <form id="masterUploadForm">
+            
+            <div class="form-group">
+                <label>பதிவேற்ற வகை (Upload Category)</label>
+                <select id="uploadCategory" required>
+                    <option value="" disabled selected>வகையைத் தேர்ந்தெடுக்கவும்...</option>
+                    <option value="audio">🎙️ ஆடியோ பயான் (Audio)</option>
+                    <option value="video">🎥 வீடியோ (Video)</option>
+                    <option value="pdf">📚 PDF புத்தகம் (PDF)</option>
+                    <option value="katturai">📝 கட்டுரை / ஹதீஸ் (Text Only)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>தலைப்பு / பெயர் (Title)</label>
+                <input type="text" id="title" placeholder="உம்: ரமலான் பயான் / திருக்குர்ஆன்..." required>
+            </div>
+
+            <!-- This will hide if 'Katturai' is selected -->
+            <div class="form-group" id="fileUploadGroup">
+                <label id="fileLabel">ஃபைலைத் தேர்ந்தெடுக்கவும்</label>
+                <input type="file" id="mediaFile">
+            </div>
+
+            <!-- This will show ONLY if 'Katturai' is selected -->
+            <div class="form-group hidden" id="textUploadGroup">
+                <label>கட்டுரை / உள்ளடக்கம் (Content)</label>
+                <textarea id="textContent" placeholder="கட்டுரை அல்லது செய்தியை இங்கே தட்டச்சு செய்யவும்..."></textarea>
+            </div>
+
+            <div style="display: flex; gap: 20px;">
+                <div class="form-group" style="flex: 1;">
+                    <label>பதிவேற்றுபவர்</label>
+                    <input type="text" id="uploaderName" class="auto-field" readonly placeholder="Loading user...">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>தேதி</label>
+                    <input type="text" id="uploadDate" class="auto-field" readonly>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="submit-btn">பதிவேற்று</button>
+            <div id="statusMsg"></div>
+        </form>
+    </div>
+
+    <!-- Firebase Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+            authDomain: "yaseenis-user.firebaseapp.com",
+            projectId: "yaseenis-user",
+            storageBucket: "yaseenis-user.firebasestorage.app",
+            messagingSenderId: "337971140829",
+            appId: "1:337971140829:web:c30a126aac465ded12e334"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        // Date Setup
+        const dateInput = document.getElementById("uploadDate");
+        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' };
+        dateInput.value = new Date().toLocaleDateString('ta-IN', options);
+
+        // Auth Setup
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById("uploaderName").value = user.displayName || user.email;
+            } else {
+                window.location.replace("portal.html"); 
+            }
+        });
+
+        // Dynamic Form Logic: Change UI based on Dropdown selection
+        const categorySelect = document.getElementById("uploadCategory");
+        const fileUploadGroup = document.getElementById("fileUploadGroup");
+        const textUploadGroup = document.getElementById("textUploadGroup");
+        const fileInput = document.getElementById("mediaFile");
+        const fileLabel = document.getElementById("fileLabel");
+        const textContent = document.getElementById("textContent");
+
+        categorySelect.addEventListener("change", (e) => {
+            const type = e.target.value;
+            
+            if (type === "katturai") {
+                // Show text area, hide file input
+                fileUploadGroup.classList.add("hidden");
+                textUploadGroup.classList.remove("hidden");
+                fileInput.required = false;
+                textContent.required = true;
+            } else {
+                // Show file input, hide text area
+                fileUploadGroup.classList.remove("hidden");
+                textUploadGroup.classList.add("hidden");
+                fileInput.required = true;
+                textContent.required = false;
+
+                // Restrict file types dynamically
+                if (type === "audio") {
+                    fileInput.accept = "audio/*";
+                    fileLabel.innerText = "ஆடியோ ஃபைலைத் தேர்ந்தெடுக்கவும் (MP3)";
+                } else if (type === "video") {
+                    fileInput.accept = "video/*";
+                    fileLabel.innerText = "வீடியோ ஃபைலைத் தேர்ந்தெடுக்கவும் (MP4)";
+                } else if (type === "pdf") {
+                    fileInput.accept = "application/pdf";
+                    fileLabel.innerText = "PDF ஃபைலைத் தேர்ந்தெடுக்கவும்";
+                }
+            }
+        });
+
+        // Form Submission
+        document.getElementById("masterUploadForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById("submitBtn");
+            const statusMsg = document.getElementById("statusMsg");
+            const type = categorySelect.value;
+            
+            if (!auth.currentUser) return;
+
+            submitBtn.innerText = "பதிவேற்றப்படுகிறது... காத்திருக்கவும் ⏳";
+            submitBtn.disabled = true;
+            statusMsg.style.display = "none";
+
+            try {
+                let downloadURL = "";
+                let fileName = "";
+                const title = document.getElementById("title").value;
+                const uploaderEmail = auth.currentUser.email;
+                const uploaderName = document.getElementById("uploaderName").value;
+
+                // 1. If it's a Media File, Upload to Storage First
+                if (type !== "katturai") {
+                    const file = fileInput.files[0];
+                    fileName = file.name;
+                    
+                    // Route to correct folder dynamically
+                    let folderPath = "";
+                    if (type === "audio") folderPath = "audio/";
+                    if (type === "video") folderPath = "video/";
+                    if (type === "pdf") folderPath = "books/";
+
+                    const uniqueFileName = `${folderPath}${Date.now()}_${file.name}`;
+                    const storageRef = ref(storage, uniqueFileName);
+                    
+                    await uploadBytes(storageRef, file);
+                    downloadURL = await getDownloadURL(storageRef);
+                }
+
+                // 2. Save Details to Firestore Database
+                // Route to correct collection dynamically
+                let collectionName = `${type}_uploads`; // Output: audio_uploads, video_uploads, pdf_uploads, katturai_uploads
+
+                const dataToSave = {
+                    title: title,
+                    category: type,
+                    uploaderEmail: uploaderEmail,
+                    uploaderName: uploaderName,
+                    uploadDateString: dateInput.value,
+                    createdAt: serverTimestamp()
+                };
+
+                // Add specific fields based on type
+                if (type === "katturai") {
+                    dataToSave.content = textContent.value;
+                } else {
+                    dataToSave.fileUrl = downloadURL;
+                    dataToSave.fileName = fileName;
+                }
+
+                await addDoc(collection(db, collectionName), dataToSave);
+
+                // Success
+                statusMsg.style.display = "block";
+                statusMsg.style.background = "#dcfce7";
+                statusMsg.style.color = "#166534";
+                statusMsg.innerText = "வெற்றிகரமாகப் பதிவேற்றப்பட்டது! ✅";
+                document.getElementById("masterUploadForm").reset();
+                dateInput.value = new Date().toLocaleDateString('ta-IN', options);
+
+            } catch (error) {
+                statusMsg.style.display = "block";
+                statusMsg.style.background = "#fee2e2";
+                statusMsg.style.color = "#dc2626";
+                statusMsg.innerText = "பிழை: " + error.message; 
+                console.error("Upload Error:", error);
+            } finally {
+                submitBtn.innerText = "பதிவேற்று";
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
