@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF புத்தகங்கள் பதிவேற்றம் | Yaseenis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --primary: #064e3b; --primary-light: #047857; --gold: #d97706; --bg-light: #f8fafc; --white: #ffffff; }
+        body { font-family: 'Mukta Malar', sans-serif; background: var(--bg-light); margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 40px auto; background: var(--white); padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 5px solid var(--primary); }
+        h2 { color: var(--primary); text-align: center; margin-bottom: 30px; font-size: 28px; }
+        
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #334155; }
+        input[type="text"], select, input[type="file"] { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 16px; box-sizing: border-box; }
+        
+        /* Auto-filled fields styling */
+        .auto-field { background-color: #e2e8f0; color: #475569; font-weight: 600; border: 1px dashed #94a3b8; cursor: not-allowed; }
+        
+        .submit-btn { background: var(--primary-light); color: var(--white); padding: 14px 25px; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; margin-top: 10px; }
+        .submit-btn:hover { background: var(--gold); }
+        .submit-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+        
+        .back-link { display: block; text-align: center; margin-top: 25px; color: var(--primary-light); font-weight: bold; text-decoration: none; }
+        #statusMsg { text-align: center; margin-top: 20px; font-weight: bold; font-size: 16px; display: none; padding: 10px; border-radius: 8px;}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>PDF புத்தகம் பதிவேற்றம் 📚</h2>
+        <form id="pdfForm">
+            
+            <div class="form-group">
+                <label>புத்தகத்தின் பெயர் (Book Name)</label>
+                <input type="text" id="bookName" placeholder="உம்: திருக்குர்ஆன் தமிழாக்கம்" required>
+            </div>
+
+            <div class="form-group">
+                <label>மொழி (Language)</label>
+                <select id="language" required>
+                    <option value="தமிழ்">தமிழ் (Tamil)</option>
+                    <option value="English">ஆங்கிலம் (English)</option>
+                    <option value="عربي">அரபி (Arabic)</option>
+                    <option value="اردو">உருது (Urdu)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>PDF ஃபைலைத் தேர்ந்தெடுக்கவும் (Max: 15MB)</label>
+                <input type="file" id="pdfFile" accept="application/pdf" required>
+            </div>
+
+            <div style="display: flex; gap: 20px;">
+                <div class="form-group" style="flex: 1;">
+                    <label>பதிவேற்றுபவர் (Uploader)</label>
+                    <!-- Automatically filled by JS -->
+                    <input type="text" id="uploaderName" class="auto-field" readonly placeholder="Loading user...">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>தேதி (Date)</label>
+                    <!-- Automatically filled by JS -->
+                    <input type="text" id="uploadDate" class="auto-field" readonly>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="submit-btn">PDF பதிவேற்று</button>
+            <div id="statusMsg"></div>
+        </form>
+        <a href="index.html" class="back-link">← முகப்புக்குத் திரும்பு</a>
+    </div>
+
+    <!-- Firebase Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        // New Import for Firebase Storage
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+            authDomain: "yaseenis-user.firebaseapp.com",
+            projectId: "yaseenis-user",
+            storageBucket: "yaseenis-user.firebasestorage.app",
+            messagingSenderId: "337971140829",
+            appId: "1:337971140829:web:c30a126aac465ded12e334"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app); // Initialize Storage
+
+        // Set Today's Date in UI Automatically
+        const dateInput = document.getElementById("uploadDate");
+        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' };
+        dateInput.value = new Date().toLocaleDateString('ta-IN', options);
+
+        // Security & Auto-fill Uploader Name
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Auto-fill the disabled input with the user's email or display name
+                document.getElementById("uploaderName").value = user.displayName || user.email;
+            } else {
+                window.location.replace("portal.html"); 
+            }
+        });
+
+        // Form Submission
+        document.getElementById("pdfForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById("submitBtn");
+            const statusMsg = document.getElementById("statusMsg");
+            const fileInput = document.getElementById("pdfFile");
+            const file = fileInput.files[0];
+            
+            if (!auth.currentUser) return;
+
+            // Optional: Limit file size to 15MB (15 * 1024 * 1024 bytes)
+            if (file.size > 15728640) {
+                statusMsg.style.display = "block";
+                statusMsg.style.background = "#fee2e2";
+                statusMsg.style.color = "#dc2626";
+                statusMsg.innerText = "பிழை: ஃபைல் அளவு 15MB-க்கு மேல் உள்ளது!";
+                return;
+            }
+
+            submitBtn.innerText = "PDF பதிவேற்றப்படுகிறது... காத்திருக்கவும் ⏳";
+            submitBtn.disabled = true;
+            statusMsg.style.display = "none";
+
+            try {
+                // 1. Upload PDF to Firebase Storage (Folder: 'books/')
+                // Create a unique file name using the current timestamp so files don't overwrite each other
+                const uniqueFileName = `books/${Date.now()}_${file.name}`;
+                const storageRef = ref(storage, uniqueFileName);
+                
+                await uploadBytes(storageRef, file);
+                
+                // 2. Get the Download URL of the uploaded PDF
+                const downloadURL = await getDownloadURL(storageRef);
+
+                // 3. Save details to Firestore Database
+                await addDoc(collection(db, "pdf_books"), {
+                    bookName: document.getElementById("bookName").value,
+                    language: document.getElementById("language").value,
+                    pdfUrl: downloadURL, // The link to read/download the PDF
+                    fileName: file.name,
+                    uploaderEmail: auth.currentUser.email,
+                    uploaderName: document.getElementById("uploaderName").value,
+                    uploadDateString: dateInput.value,
+                    createdAt: serverTimestamp() // Real database time
+                });
+
+                statusMsg.style.display = "block";
+                statusMsg.style.background = "#dcfce7";
+                statusMsg.style.color = "#166534";
+                statusMsg.innerText = "புத்தகம் வெற்றிகரமாகப் பதிவேற்றப்பட்டது! ✅";
+                document.getElementById("pdfForm").reset();
+                dateInput.value = new Date().toLocaleDateString('ta-IN', options); // Reset date text
+
+            } catch (error) {
+                statusMsg.style.display = "block";
+                statusMsg.style.background = "#fee2e2";
+                statusMsg.style.color = "#dc2626";
+                statusMsg.innerText = "பிழை: " + error.message; 
+                console.error("Upload Error:", error);
+            } finally {
+                submitBtn.innerText = "PDF பதிவேற்று";
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
