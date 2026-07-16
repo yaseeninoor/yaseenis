@@ -3,12 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yaseenis | தூய இஸ்லாமிய சமூக இணையதளம்</title>
+    <title>முகப்பு | Yaseenis Islamic Portal</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mukta+Malar:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mukta+Malar:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Firebase SDK & Dynamic UI Logic -->
+    <style>
+        /* --- Premium Color Palette & Variables --- */
+        :root { 
+            --primary: #064e3b;        /* Deep Islamic Green */
+            --primary-light: #059669;  /* Emerald Green */
+            --gold: #d97706;           /* Premium Gold */
+            --gold-light: #fbbf24;
+            --dark: #0f172a;
+            --text-gray: #475569;
+            --bg-main: #f8fafc;
+            --white: #ffffff;
+        }
+
+        /* --- Base Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Mukta Malar', 'Inter', sans-serif; 
+            background-color: var(--bg-main); 
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Navbar --- */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo span { color: var(--gold); }
+        
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--primary-light); }
+        
+        .auth-btn {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .auth-btn:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            margin-top: 70px;
+            padding: 80px 5%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 10px 30px rgba(6, 78, 59, 0.2);
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/arabesque.png'); /* Subtle Islamic pattern */
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+
+        /* --- Main Content & Grid --- */
+        .container {
+            max-width: 1200px;
+            margin: -40px auto 50px auto; /* Overlaps with hero slightly for premium feel */
+            padding: 0 5%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- Premium Cards --- */
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--dark);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(6, 78, 59, 0.1), 0 10px 10px -5px rgba(6, 78, 59, 0.04);
+            border-color: rgba(6, 78, 59, 0.1);
+        }
+        .card:hover::before { transform: scaleX(1); }
+        
+        .card-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .card:hover .card-icon { transform: scale(1.1); }
+        
+        .card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        .card p {
+            font-size: 15px;
+            color: var(--text-gray);
+        }
+
+        /* --- Admin Upload Button (Hidden by default) --- */
+        #adminUploadCard { display: none; }
+        .admin-card {
+            background: linear-gradient(135deg, var(--dark), #1e293b);
+            color: var(--white) !important;
+        }
+        .admin-card h3 { color: var(--gold-light); }
+        .admin-card p { color: #cbd5e1; }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--white);
+            color: var(--text-gray);
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero { padding: 60px 5% 80px 5%; }
+            .nav-links a.hide-mobile { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">🕌 Yaseenis<span>.com</span></a>
+        <div class="nav-links">
+            <a href="index.html" class="hide-mobile">முகப்பு</a>
+            <!-- Auth Button toggles dynamically -->
+            <a href="portal.html" id="loginBtn" class="auth-btn">உள்நுழைய (Login)</a>
+            <a href="#" id="logoutBtn" class="auth-btn" style="display: none; background: #dc2626;">வெளியேறு (Logout)</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>அஸ்ஸலாமு அலைக்கும்</h1>
+        <p>யாசீனிஸ் இஸ்லாமிய வலைத்தளத்திற்கு அன்புடன் வரவேற்கிறோம். திருக்குர்ஆன், ஹதீஸ்கள், பயான்கள் மற்றும் பல இஸ்லாமியப் பொக்கிஷங்களை ஒரே இடத்தில் பெறுங்கள்.</p>
+    </header>
+
+    <!-- Main Categories -->
+    <main class="container">
+        <div class="category-grid">
+            
+            <!-- Card 1: Audio -->
+            <a href="audio-payan.html" class="card">
+                <div class="card-icon">🎙️</div>
+                <h3>ஆடியோ பயான்</h3>
+                <p>சிறந்த அறிஞர்களின் இஸ்லாமிய சொற்பொழிவுகளைக் கேளுங்கள்.</p>
+            </a>
+
+            <!-- Card 2: Hadith -->
+            <a href="hadith.html" class="card">
+                <div class="card-icon">📜</div>
+                <h3>ஹதீஸ்கள்</h3>
+                <p>நபி (ஸல்) அவர்களின் பொன்மொழிகள் மற்றும் வழிமுறைகள்.</p>
+            </a>
+
+            <!-- Card 3: Video -->
+            <a href="video.html" class="card">
+                <div class="card-icon">🎥</div>
+                <h3>வீடியோக்கள்</h3>
+                <p>பயனுள்ள இஸ்லாமிய வீடியோக்கள் மற்றும் விளக்கங்கள்.</p>
+            </a>
+
+            <!-- Card 4: Books -->
+            <a href="pdf.html" class="card">
+                <div class="card-icon">📚</div>
+                <h3>PDF புத்தகங்கள்</h3>
+                <p>இஸ்லாமிய நூல்கள், வரலாற்றுப் புத்தகங்கள் மற்றும் கட்டுரைகள்.</p>
+            </a>
+
+            <!-- Card 5: Articles -->
+            <a href="katturai.html" class="card">
+                <div class="card-icon">📝</div>
+                <h3>கட்டுரைகள்</h3>
+                <p>அன்றாட வாழ்விற்கான இஸ்லாமிய சிந்தனைகள் மற்றும் குறிப்புகள்.</p>
+            </a>
+
+            <!-- Card 6: Admin Master Upload (Visible only to logged-in users) -->
+            <a href="upload.html" class="card admin-card" id="adminUploadCard">
+                <div class="card-icon">🚀</div>
+                <h3>Upload Portal</h3>
+                <p>புதிய ஆடியோ, வீடியோ மற்றும் கட்டுரைகளைப் பதிவேற்ற.</p>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Yaseenis.com. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Firebase Logic for Dynamic Navbar & Admin Portal Access -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
@@ -21,277 +287,42 @@
             messagingSenderId: "337971140829",
             appId: "1:337971140829:web:c30a126aac465ded12e334"
         };
+
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        onAuthStateChanged(auth, (user) => {
-            const loginBtn = document.getElementById("loginBtn");
-            const logoutBtn = document.getElementById("logoutBtn");
-            const memberDashboard = document.getElementById("memberDashboard");
+        const loginBtn = document.getElementById("loginBtn");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const adminUploadCard = document.getElementById("adminUploadCard");
 
+        // Set dynamic year in footer
+        document.getElementById("year").innerText = new Date().getFullYear();
+
+        // Listen for Authentication State Changes
+        onAuthStateChanged(auth, (user) => {
             if (user) {
+                // User is logged in: Show Logout & Admin Upload Card
                 loginBtn.style.display = "none";
                 logoutBtn.style.display = "inline-block";
-                memberDashboard.style.display = "block"; 
+                adminUploadCard.style.display = "block"; // Only show upload portal to admins
             } else {
+                // User is NOT logged in: Show Login, Hide Upload Card
                 loginBtn.style.display = "inline-block";
                 logoutBtn.style.display = "none";
-                memberDashboard.style.display = "none"; 
+                adminUploadCard.style.display = "none";
             }
         });
 
-        document.getElementById("logoutBtn").addEventListener("click", () => {
-            signOut(auth).then(() => { window.location.reload(); });
+        // Logout Function
+        logoutBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            signOut(auth).then(() => {
+                alert("நீங்கள் வெற்றிகரமாக வெளியேறிவிட்டீர்கள் (Logged out).");
+                window.location.reload(); // Refresh page to update UI
+            }).catch((error) => {
+                console.error("Logout Error:", error);
+            });
         });
-    </script>
-
-    <style>
-        /* --- Core Variables --- */
-        :root {
-            --primary: #064e3b; --primary-light: #059669; --primary-dark: #022c22;
-            --gold: #d97706; --gold-light: #fef3c7; 
-            --bg-body: #f8fafc; --bg-surface: #ffffff;
-            --text-main: #0f172a; --text-muted: #64748b;
-            --radius-lg: 20px; --radius-md: 12px;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* --- Reset & Global --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Mukta Malar', 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
-        /* --- Header & Glassmorphism --- */
-        .topbar { background: var(--primary-dark); color: var(--gold-light); text-align: center; padding: 8px; font-family: 'Amiri', serif; font-size: 20px; letter-spacing: 2px; }
-        header { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1280px; margin: 0 auto; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 28px; font-weight: 800; color: var(--primary-dark); letter-spacing: -0.5px; }
-        .logo span { color: var(--gold); }
-        
-        nav { display: flex; gap: 30px; align-items: center; }
-        nav a.nav-link { font-weight: 600; color: var(--text-muted); transition: var(--transition); font-size: 16px; }
-        nav a.nav-link:hover { color: var(--primary); }
-        .btn-auth { background: var(--primary); color: white !important; padding: 10px 24px; border-radius: 30px; font-weight: 600; transition: var(--transition); border: none; cursor: pointer; font-size: 15px; }
-        .btn-auth:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(6, 78, 59, 0.2); }
-        #logoutBtn { background: #ef4444; }
-
-        /* --- Professional Hero Section --- */
-        .hero { position: relative; padding: 120px 20px; text-align: center; color: white; background: var(--primary-dark); overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1519817650390-64a93db511aa?auto=format&fit=crop&w=2000&q=80') center/cover; opacity: 0.2; }
-        .hero-content { position: relative; z-index: 10; max-width: 800px; margin: 0 auto; }
-        .hero-badge { display: inline-block; background: rgba(217, 119, 6, 0.2); color: var(--gold-light); padding: 6px 16px; border-radius: 30px; font-size: 14px; font-weight: 600; margin-bottom: 20px; border: 1px solid rgba(217, 119, 6, 0.3); }
-        .hero h1 { font-size: 56px; font-weight: 800; line-height: 1.2; margin-bottom: 24px; letter-spacing: -1px; }
-        .hero p { font-size: 20px; color: #cbd5e1; margin-bottom: 40px; font-weight: 400; }
-        .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-        .btn-large { padding: 14px 32px; border-radius: 30px; font-weight: 600; font-size: 16px; transition: var(--transition); }
-        .btn-primary { background: var(--gold); color: var(--primary-dark); }
-        .btn-primary:hover { background: #f59e0b; transform: translateY(-3px); }
-        .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); }
-        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-3px); }
-
-        /* --- Member Dashboard (Exclusive Area) --- */
-        #memberDashboard { display: none; background: linear-gradient(to right, #f0fdf4, #ecfdf5); padding: 60px 20px; border-bottom: 1px solid #d1fae5; }
-        .dash-header { text-align: center; max-width: 600px; margin: 0 auto 40px; }
-        .dash-header h2 { color: var(--primary); font-size: 32px; font-weight: 800; }
-        .dash-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .dash-card { background: white; padding: 32px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid #e2e8f0; transition: var(--transition); text-align: center; position: relative; overflow: hidden; }
-        .dash-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: var(--primary); transform: scaleX(0); transition: var(--transition); }
-        .dash-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: transparent; }
-        .dash-card:hover::after { transform: scaleX(1); }
-        .dash-icon { width: 64px; height: 64px; background: var(--gold-light); color: var(--gold); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 20px; }
-        .dash-card h3 { color: var(--text-main); font-size: 20px; margin-bottom: 10px; }
-        .dash-card p { color: var(--text-muted); font-size: 15px; }
-
-        /* --- Common Sections --- */
-        .section-padding { padding: 100px 20px; }
-        .container { max-width: 1280px; margin: 0 auto; }
-        .section-head { text-align: center; margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .section-head h2 { font-size: 36px; color: var(--primary-dark); font-weight: 800; margin-bottom: 15px; }
-        .section-head p { color: var(--text-muted); font-size: 18px; }
-
-        /* --- Featured Content Grid --- */
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .feature-card { background: var(--bg-surface); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); border: 1px solid rgba(0,0,0,0.05); }
-        .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
-        .feature-img { width: 100%; height: 240px; object-fit: cover; }
-        .feature-content { padding: 30px; }
-        .feature-tag { font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
-        .feature-content h3 { font-size: 22px; color: var(--text-main); margin-bottom: 12px; }
-        .feature-content p { color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
-        .feature-link { color: var(--gold); font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
-        .feature-link:hover { color: var(--primary); }
-
-        /* --- Footer --- */
-        footer { background: #0f172a; color: white; padding: 80px 20px 30px; }
-        .footer-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 60px; }
-        .footer-brand h2 { font-size: 28px; color: white; margin-bottom: 15px; }
-        .footer-brand span { color: var(--gold); }
-        .footer-brand p { color: #94a3b8; line-height: 1.8; }
-        .footer-links h3 { color: white; font-size: 18px; margin-bottom: 20px; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: #94a3b8; transition: var(--transition); }
-        .footer-links a:hover { color: var(--gold); padding-left: 5px; }
-        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: #64748b; font-size: 14px; }
-
-        /* --- Scroll Animation Classes --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 15px; }
-            nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
-            .hero h1 { font-size: 40px; }
-            .feature-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="topbar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
-
-    <header>
-        <div class="nav-container">
-            <a href="index.html" class="logo">Yaseenis<span>.</span></a>
-            <nav>
-                <a href="index.html" class="nav-link">முகப்பு</a>
-                <a href="article.html" class="nav-link">கட்டுரைகள்</a>
-                <a href="Videos/list.html" class="nav-link">வீடியோக்கள்</a>
-                <button id="loginBtn" class="btn-auth" onclick="window.location.href='portal.html'">உள்நுழை</button>
-                <button id="logoutBtn" class="btn-auth">வெளியேறு</button>
-            </nav>
-        </div>
-    </header>
-
-    <!-- MEMBER DASHBOARD -->
-    <div id="memberDashboard">
-        <div class="dash-header">
-            <h2>அஸ்ஸலாமு அலைக்கும்!</h2>
-            <p style="color: var(--text-muted); font-size: 18px; margin-top: 10px;">சமூக தளத்தின் கட்டுப்பாட்டு அறை. உங்கள் பணிகளை இங்கிருந்தே நிர்வகிக்கலாம்.</p>
-        </div>
-        <div class="dash-grid">
-            <a href="add-article.html" class="dash-card">
-                <div class="dash-icon">✍️</div>
-                <h3>கட்டுரை எழுதுக</h3>
-                <p>புதிய மார்க்கக் கட்டுரைகள் மற்றும் வரலாற்றுத் தகவல்களைச் சமூகத்துடன் பகிரவும்.</p>
-            </a>
-            <a href="upload-file.html" class="dash-card">
-                <div class="dash-icon">📁</div>
-                <h3>கோப்பு பதிவேற்றம்</h3>
-                <p>PDF புத்தகங்கள் மற்றும் முக்கிய ஆவணங்களை எளிதாகப் பதிவேற்றம் செய்யலாம்.</p>
-            </a>
-            <a href="community-chat.html" class="dash-card">
-                <div class="dash-icon">💬</div>
-                <h3>குழு உரையாடல்</h3>
-                <p>நமது சமூக உறுப்பினர்களுடன் நிகழ்நேரத்தில் (Real-time) உரையாடவும்.</p>
-            </a>
-        </div>
-    </div>
-
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content reveal active">
-            <span class="hero-badge">🌟 தூய இஸ்லாமிய சமூகத் தளம்</span>
-            <h1>அறிவின் ஒளியில் <br>நமது சமூகம்</h1>
-            <p>குர்ஆன், ஹதீஸ், இஸ்லாமிய வரலாறு மற்றும் மார்க்கக் கட்டுரைகளை உள்ளடக்கிய முழுமையான தமிழ்க் களஞ்சியம்.</p>
-            <div class="hero-btns">
-                <a href="article.html" class="btn-large btn-primary">கட்டுரைகள் வாசிக்க</a>
-                <a href="books.html" class="btn-large btn-outline">புத்தகங்கள் தேட</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURED CONTENT -->
-    <section class="section-padding bg-body">
-        <div class="container">
-            <div class="section-head reveal">
-                <h2>பிரதான பிரிவுகள்</h2>
-                <p>மார்க்க அறிவை வளர்த்துக்கொள்ளத் தேவையான முக்கிய தொகுப்புகள்.</p>
-            </div>
-            
-            <div class="feature-grid">
-                <div class="feature-card reveal">
-                    <img src="https://images.unsplash.com/photo-1584286595398-a59f21d313f5?auto=format&fit=crop&w=800&q=80" alt="Hadith" class="feature-img">
-                    <div class="feature-content">
-                        <span class="feature-tag">Daily Updates</span>
-                        <h3>தினசரி ஹதீஸ்</h3>
-                        <p>அரபி, தமிழ் மற்றும் ஆங்கிலத்தில் ஆதாரப்பூர்வமான தினசரி ஹதீஸ் தொகுப்புகளைத் தினமும் வாசியுங்கள்.</p>
-                        <a href="hadith.html" class="feature-link">மேலும் படிக்க →</a>
-                    </div>
-                </div>
-
-                <div class="feature-card reveal" style="transition-delay: 0.1s;">
-                    <img src="https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=800&q=80" alt="Books" class="feature-img">
-                    <div class="feature-content">
-                        <span class="feature-tag">Library</span>
-                        <h3>இஸ்லாமிய புத்தகங்கள்</h3>
-                        <p>மார்க்க அறிஞர்கள் எழுதிய அரிய PDF நூல்களை எளிதாகத் தரவிறக்கம் செய்து ஆன்லைனில் வாசிக்கலாம்.</p>
-                        <a href="books.html" class="feature-link">நூலகம் செல்ல →</a>
-                    </div>
-                </div>
-
-                <div class="feature-card reveal" style="transition-delay: 0.2s;">
-                    <img src="https://images.unsplash.com/photo-1512632578888-169bbbc64f33?auto=format&fit=crop&w=800&q=80" alt="Videos" class="feature-img">
-                    <div class="feature-content">
-                        <span class="feature-tag">Media</span>
-                        <h3>வீடியோ சொற்பொழிவுகள்</h3>
-                        <p>பயனுள்ள தமிழ் மற்றும் அரபி மார்க்க விளக்க வீடியோக்கள், தப்ஸீர் தொடர்கள் அனைத்தையும் ஒரே இடத்தில் காணலாம்.</p>
-                        <a href="Videos/list.html" class="feature-link">வீடியோக்கள் பார்க்க →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-grid container">
-            <div class="footer-brand">
-                <h2>Yaseenis<span>.</span></h2>
-                <p>தமிழில் முழுமையான இஸ்லாமிய அறிவுக் களஞ்சியம். தூய மார்க்கத்தை அறிந்து கொள்ளவும், சமூகத்தை ஒருங்கிணைக்கவும் உருவாக்கப்பட்ட ஒரு தளம்.</p>
-            </div>
-            <div class="footer-links">
-                <h3>விரைவு இணைப்புகள்</h3>
-                <ul>
-                    <li><a href="index.html">முகப்பு (Home)</a></li>
-                    <li><a href="article.html">கட்டுரைகள் (Articles)</a></li>
-                    <li><a href="books.html">புத்தகங்கள் (Books)</a></li>
-                    <li><a href="portal.html">உறுப்பினர் நுழைவு (Portal)</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>தொடர்புக்கு</h3>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">YouTube</a></li>
-                    <li><a href="#">Telegram</a></li>
-                    <li><a href="#">Instagram</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Yaseenis Community. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Scroll Animation Script -->
-    <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal(); // Trigger on load
     </script>
 </body>
 </html>
