@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ஆடியோ பயான் | Yaseenis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --primary: #064e3b; 
+            --primary-light: #047857; 
+            --gold: #d97706; 
+            --bg-light: #f8fafc; 
+            --white: #ffffff; 
+        }
+        
+        body { 
+            font-family: 'Mukta Malar', sans-serif; 
+            background: var(--bg-light); 
+            margin: 0; 
+            padding: 20px; 
+        }
+        
+        .container { 
+            max-width: 800px; 
+            margin: 40px auto; 
+            background: var(--white); 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            border-top: 5px solid var(--primary); 
+        }
+        
+        h2 { 
+            color: var(--primary); 
+            text-align: center; 
+            margin-bottom: 30px; 
+            font-size: 28px; 
+        }
+
+        .audio-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .audio-card {
+            background: var(--bg-light);
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .audio-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(4, 120, 87, 0.1);
+        }
+
+        /* Photo and Info Layout */
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .speaker-img {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .audio-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0 0 6px 0;
+        }
+
+        .audio-speaker {
+            font-size: 16px;
+            color: var(--primary);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .audio-date {
+            font-size: 13px;
+            color: #475569;
+            margin-top: 6px;
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        audio {
+            width: 100%;
+            outline: none;
+            border-radius: 8px;
+        }
+        
+        .back-link { 
+            display: block; 
+            text-align: center; 
+            margin-top: 30px; 
+            color: var(--primary-light); 
+            font-weight: bold; 
+            text-decoration: none; 
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 500px) {
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>ஆடியோ பயான் 🎙️</h2>
+        
+        <div class="audio-list" id="audioContainer"></div>
+
+        <a href="index.html" class="back-link">← முகப்புக்குத் திரும்பு</a>
+    </div>
+
+    <script>
+        // இன்றைய தேதியை தானாக உருவாக்கும் Function (Auto Today's Date)
+        const getTodayDate = () => {
+            const date = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            // தேதியை தமிழில் காட்ட 'ta-IN' பயன்படுத்தப்பட்டுள்ளது
+            return date.toLocaleDateString('ta-IN', options); 
+        };
+
+        // உங்கள் ஆடியோ தகவல்கள்
+        const payans = [
+            {
+                title: "ஈமான் (இறைநம்பிக்கை) விளக்கம்",
+                speaker: "மௌலவி அப்துல்லாஹ்",
+                imageUrl: "./images/speaker1.jpg", // உங்கள் GitHub-ல் உள்ள போட்டோ லிங்க்
+                audioUrl: "./audio/payan1.mp3",    // ஆடியோ லிங்க்
+                date: getTodayDate()               // இது தானாகவே இன்றைய தேதியை எடுக்கும்
+            },
+            {
+                title: "தொழுகையின் சிறப்புகள்",
+                speaker: "மௌலவி முஹம்மது",
+                imageUrl: "https://via.placeholder.com/150", // டெஸ்டிங் செய்ய தற்காலிக போட்டோ
+                audioUrl: "./audio/payan2.mp3",
+                date: "15 ஜூலை 2026"                 // நீங்கள் பழைய தேதியை நிரந்தரமாகவும் கொடுக்கலாம்
+            }
+        ];
+
+        // HTML-ல் டிசைனை உருவாக்கும் Function
+        function loadAudios() {
+            const container = document.getElementById('audioContainer');
+            
+            payans.forEach(payan => {
+                const card = document.createElement('div');
+                card.className = 'audio-card';
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="${payan.imageUrl}" alt="Speaker Photo" class="speaker-img">
+                        <div class="info">
+                            <h3 class="audio-title">${payan.title}</h3>
+                            <p class="audio-speaker">🎙️ ${payan.speaker}</p>
+                            <span class="audio-date">📅 ${payan.date}</span>
+                        </div>
+                    </div>
+                    <audio controls preload="metadata">
+                        <source src="${payan.audioUrl}" type="audio/mpeg">
+                        உங்கள் உலாவி ஆடியோவை ஆதரிக்கவில்லை.
+                    </audio>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        window.onload = loadAudios;
+    </script>
+
+</body>
+</html>
