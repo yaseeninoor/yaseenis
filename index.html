@@ -3,16 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>முகப்பு | Yaseenis Islamic Portal</title>
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mukta+Malar:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mukta+Malar:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Cloudflare AI Search -->
+    <script
+        type="module"
+        src="https://a8c67a81-ebf0-444b-b7cf-f38e4fa789c5.search.ai.cloudflare.com/assets/v0.0.25/search-snippet.es.js">
+    </script>
+
     <style>
-        /* --- Premium Color Palette & Variables --- */
-        :root { 
-            --primary: #064e3b;        /* Deep Islamic Green */
-            --primary-light: #059669;  /* Emerald Green */
-            --gold: #d97706;           /* Premium Gold */
+
+        /* =========================================================
+           PREMIUM COLOR PALETTE
+        ========================================================= */
+
+        :root {
+            --primary: #064e3b;
+            --primary-light: #059669;
+            --gold: #d97706;
             --gold-light: #fbbf24;
             --dark: #0f172a;
             --text-gray: #475569;
@@ -20,319 +35,1008 @@
             --white: #ffffff;
         }
 
-        /* --- Base Reset --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Mukta Malar', 'Inter', sans-serif; 
-            background-color: var(--bg-main); 
+
+        /* =========================================================
+           BASE RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Mukta Malar', 'Inter', sans-serif;
+            background-color: var(--bg-main);
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- Navbar --- */
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
         nav {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+
             padding: 15px 5%;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
             z-index: 1000;
         }
+
+
         .logo {
             font-size: 26px;
             font-weight: 700;
             color: var(--primary);
+
             text-decoration: none;
+
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .logo span { color: var(--gold); }
-        
-        .nav-links { display: flex; gap: 20px; align-items: center; }
+
+
+        .logo span {
+            color: var(--gold);
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
+
             font-weight: 600;
             font-size: 16px;
+
             transition: color 0.3s ease;
         }
-        .nav-links a:hover { color: var(--primary-light); }
-        
+
+
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+
         .auth-btn {
             background: var(--primary);
             color: var(--white) !important;
+
             padding: 8px 20px;
             border-radius: 25px;
+
             transition: all 0.3s ease;
         }
+
+
         .auth-btn:hover {
             background: var(--gold);
+
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+
+            box-shadow:
+                0 4px 12px rgba(217, 119, 6, 0.3);
         }
 
-        /* --- Hero Section --- */
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
         .hero {
             margin-top: 70px;
+
             padding: 80px 5%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary) 0%,
+                    var(--primary-light) 100%
+                );
+
             color: var(--white);
+
             text-align: center;
+
             position: relative;
+
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
-            box-shadow: 0 10px 30px rgba(6, 78, 59, 0.2);
+
+            box-shadow:
+                0 10px 30px rgba(6, 78, 59, 0.2);
         }
+
+
         .hero::after {
             content: '';
+
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://www.transparenttextures.com/patterns/arabesque.png'); /* Subtle Islamic pattern */
+
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            background-image:
+                url('https://www.transparenttextures.com/patterns/arabesque.png');
+
             opacity: 0.1;
+
             pointer-events: none;
         }
+
+
         .hero h1 {
             font-size: 42px;
             font-weight: 700;
+
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .hero p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            opacity: 0.9;
+
+            text-shadow:
+                2px 2px 4px rgba(0,0,0,0.2);
+
+            position: relative;
+            z-index: 2;
         }
 
-        /* --- Main Content & Grid --- */
-        .container {
-            max-width: 1200px;
-            margin: -40px auto 50px auto; /* Overlaps with hero slightly for premium feel */
-            padding: 0 5%;
+
+        .hero p {
+            font-size: 18px;
+
+            max-width: 650px;
+
+            margin: 0 auto 30px auto;
+
+            opacity: 0.95;
+
             position: relative;
+            z-index: 2;
+        }
+
+
+        /* =========================================================
+           AI SEARCH SECTION
+        ========================================================= */
+
+        .ai-search-section {
+
+            max-width: 900px;
+
+            margin: 40px auto 20px;
+
+            padding: 30px 5%;
+
+            text-align: center;
+        }
+
+
+        .ai-search-section h2 {
+
+            color: var(--primary);
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+
+        .ai-search-section p {
+
+            color: var(--text-gray);
+
+            font-size: 16px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* Cloudflare Search Bar */
+
+        search-bar-snippet {
+
+            display: block;
+
+            width: 100%;
+
+            --search-snippet-primary-color: #064e3b;
+
+            --search-snippet-border-radius: 14px;
+        }
+
+
+        /* =========================================================
+           MAIN CONTENT
+        ========================================================= */
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: 20px auto 50px;
+
+            padding: 0 5%;
+
+            position: relative;
+
             z-index: 10;
         }
 
+
         .category-grid {
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+
             gap: 25px;
         }
 
-        /* --- Premium Cards --- */
+
+        /* =========================================================
+           PREMIUM CARDS
+        ========================================================= */
+
         .card {
+
             background: var(--white);
+
             border-radius: 20px;
+
             padding: 30px;
+
             text-align: center;
+
             text-decoration: none;
+
             color: var(--dark);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(0,0,0,0.02);
+
+            box-shadow:
+                0 10px 25px -5px rgba(0, 0, 0, 0.05),
+                0 8px 10px -6px rgba(0, 0, 0, 0.01);
+
+            transition:
+                all 0.4s
+                cubic-bezier(0.4, 0, 0.2, 1);
+
+            border:
+                1px solid rgba(0,0,0,0.02);
+
             position: relative;
+
             overflow: hidden;
         }
+
+
         .card::before {
+
             content: '';
+
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 4px;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 4px;
+
             background: var(--gold);
+
             transform: scaleX(0);
+
             transform-origin: left;
-            transition: transform 0.4s ease;
+
+            transition:
+                transform 0.4s ease;
         }
+
+
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(6, 78, 59, 0.1), 0 10px 10px -5px rgba(6, 78, 59, 0.04);
-            border-color: rgba(6, 78, 59, 0.1);
+
+            transform:
+                translateY(-10px);
+
+            box-shadow:
+                0 20px 25px -5px
+                rgba(6, 78, 59, 0.1),
+
+                0 10px 10px -5px
+                rgba(6, 78, 59, 0.04);
+
+            border-color:
+                rgba(6, 78, 59, 0.1);
         }
-        .card:hover::before { transform: scaleX(1); }
-        
+
+
+        .card:hover::before {
+
+            transform:
+                scaleX(1);
+        }
+
+
         .card-icon {
+
             font-size: 45px;
+
             margin-bottom: 15px;
+
             display: inline-block;
-            transition: transform 0.3s ease;
+
+            transition:
+                transform 0.3s ease;
         }
-        .card:hover .card-icon { transform: scale(1.1); }
-        
+
+
+        .card:hover .card-icon {
+
+            transform:
+                scale(1.1);
+        }
+
+
         .card h3 {
+
             font-size: 22px;
+
             font-weight: 700;
+
             margin-bottom: 10px;
+
             color: var(--primary);
         }
+
+
         .card p {
+
             font-size: 15px;
+
             color: var(--text-gray);
         }
 
-        /* --- Admin Upload Button (Hidden by default) --- */
-        #adminUploadCard { display: none; }
+
+        /* =========================================================
+           ADMIN UPLOAD CARD
+        ========================================================= */
+
+        #adminUploadCard {
+            display: none;
+        }
+
+
         .admin-card {
-            background: linear-gradient(135deg, var(--dark), #1e293b);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--dark),
+                    #1e293b
+                );
+
             color: var(--white) !important;
         }
-        .admin-card h3 { color: var(--gold-light); }
-        .admin-card p { color: #cbd5e1; }
 
-        /* --- Footer --- */
+
+        .admin-card h3 {
+            color: var(--gold-light);
+        }
+
+
+        .admin-card p {
+            color: #cbd5e1;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
         footer {
+
             text-align: center;
+
             padding: 30px;
+
             background: var(--white);
+
             color: var(--text-gray);
-            border-top: 1px solid #e2e8f0;
+
+            border-top:
+                1px solid #e2e8f0;
+
             margin-top: 40px;
         }
 
-        /* --- Responsive Design --- */
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
         @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .hero { padding: 60px 5% 80px 5%; }
-            .nav-links a.hide-mobile { display: none; }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+
+            .hero {
+
+                padding:
+                    60px 5% 80px 5%;
+            }
+
+
+            .nav-links a.hide-mobile {
+
+                display: none;
+            }
+
+
+            .logo {
+
+                font-size: 22px;
+            }
+
+
+            .ai-search-section {
+
+                padding:
+                    25px 5%;
+            }
+
+
+            .ai-search-section h2 {
+
+                font-size: 24px;
+            }
         }
+
+
+        @media (max-width: 480px) {
+
+            nav {
+
+                padding:
+                    12px 4%;
+            }
+
+
+            .hero h1 {
+
+                font-size: 28px;
+            }
+
+
+            .hero p {
+
+                font-size: 16px;
+            }
+
+
+            .category-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+        }
+
     </style>
 </head>
+
+
 <body>
 
-    <!-- Navigation -->
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================= -->
+
     <nav>
-        <a href="index.html" class="logo">🕌 Yaseenis<span>.com</span></a>
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            🕌 Yaseenis<span>.com</span>
+        </a>
+
+
         <div class="nav-links">
-            <a href="index.html" class="hide-mobile">முகப்பு</a>
-            <!-- Auth Button toggles dynamically -->
-            <a href="portal.html" id="loginBtn" class="auth-btn">உள்நுழைய (Login)</a>
-            <a href="#" id="logoutBtn" class="auth-btn" style="display: none; background: #dc2626;">வெளியேறு (Logout)</a>
+
+            <a
+                href="index.html"
+                class="hide-mobile"
+            >
+                முகப்பு
+            </a>
+
+
+            <!-- Login -->
+            <a
+                href="portal.html"
+                id="loginBtn"
+                class="auth-btn"
+            >
+                உள்நுழைய (Login)
+            </a>
+
+
+            <!-- Logout -->
+            <a
+                href="#"
+                id="logoutBtn"
+                class="auth-btn"
+                style="
+                    display:none;
+                    background:#dc2626;
+                "
+            >
+                வெளியேறு (Logout)
+            </a>
+
         </div>
+
     </nav>
-<script
-  type="module"
-  src="https://a8c67a81-ebf0-444b-b7cf-f38e4fa789c5.search.ai.cloudflare.com/assets/v0.0.25/search-snippet.es.js">
-</script>
-    <!-- Hero Section -->
+
+
+
+    <!-- =========================================================
+         HERO SECTION
+    ========================================================= -->
+
     <header class="hero">
-        <h1>அஸ்ஸலாமு அலைக்கும்</h1>
-        <p>யாசீனிஸ் இஸ்லாமிய வலைத்தளத்திற்கு அன்புடன் வரவேற்கிறோம். திருக்குர்ஆன், ஹதீஸ்கள், பயான்கள் மற்றும் பல இஸ்லாமியப் பொக்கிஷங்களை ஒரே இடத்தில் பெறுங்கள்.</p>
+
+        <h1>
+            அஸ்ஸலாமு அலைக்கும்
+        </h1>
+
+
+        <p>
+            யாசீனிஸ் இஸ்லாமிய வலைத்தளத்திற்கு
+            அன்புடன் வரவேற்கிறோம்.
+            திருக்குர்ஆன், ஹதீஸ்கள், பயான்கள்
+            மற்றும் பல இஸ்லாமியப் பொக்கிஷங்களை
+            ஒரே இடத்தில் பெறுங்கள்.
+        </p>
+
     </header>
-<search-bar-snippet
-  api-url="https://ask.yaseenis.com/"
-  placeholder="Yaseenis-ல் தேடுங்கள்..."
-  max-results="10">
-</search-bar-snippet>
-    <!-- Main Categories -->
+
+
+
+    <!-- =========================================================
+         CLOUDFLARE AI SEARCH
+    ========================================================= -->
+
+    <section class="ai-search-section">
+
+        <h2>
+            🔎 Yaseenis AI Search
+        </h2>
+
+
+        <p>
+            திருக்குர்ஆன், ஹதீஸ், புத்தகங்கள்
+            மற்றும் இஸ்லாமிய தகவல்களைத் தேடுங்கள்.
+        </p>
+
+
+        <search-bar-snippet
+            api-url="https://ask.yaseenis.com/"
+            placeholder="Yaseenis-ல் தேடுங்கள்..."
+            max-results="10">
+        </search-bar-snippet>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         MAIN CATEGORIES
+    ========================================================= -->
+
     <main class="container">
+
         <div class="category-grid">
-            
-            <!-- Card 1: Audio -->
-            <a href="audio-payan.html" class="card">
-                <div class="card-icon">🎙️</div>
-                <h3>ஆடியோ பயான்</h3>
-                <p>சிறந்த அறிஞர்களின் இஸ்லாமிய சொற்பொழிவுகளைக் கேளுங்கள்.</p>
-            </a>
-<chat-bubble-snippet
-  api-url="https://ask.yaseenis.com/"
-  placeholder="Yaseenis AI-யிடம் கேளுங்கள்...">
-</chat-bubble-snippet>
-            <!-- Card 2: Hadith -->
-            <a href="hadith.html" class="card">
-                <div class="card-icon">📜</div>
-                <h3>ஹதீஸ்கள்</h3>
-                <p>நபி (ஸல்) அவர்களின் பொன்மொழிகள் மற்றும் வழிமுறைகள்.</p>
+
+
+            <!-- AUDIO -->
+
+            <a
+                href="audio-payan.html"
+                class="card"
+            >
+
+                <div class="card-icon">
+                    🎙️
+                </div>
+
+                <h3>
+                    ஆடியோ பயான்
+                </h3>
+
+                <p>
+                    சிறந்த அறிஞர்களின்
+                    இஸ்லாமிய சொற்பொழிவுகளைக்
+                    கேளுங்கள்.
+                </p>
+
             </a>
 
-            <!-- Card 3: Video -->
-            <a href="video.html" class="card">
-                <div class="card-icon">🎥</div>
-                <h3>வீடியோக்கள்</h3>
-                <p>பயனுள்ள இஸ்லாமிய வீடியோக்கள் மற்றும் விளக்கங்கள்.</p>
+
+
+            <!-- HADITH -->
+
+            <a
+                href="hadith.html"
+                class="card"
+            >
+
+                <div class="card-icon">
+                    📜
+                </div>
+
+                <h3>
+                    ஹதீஸ்கள்
+                </h3>
+
+                <p>
+                    நபி (ஸல்) அவர்களின்
+                    பொன்மொழிகள் மற்றும்
+                    வழிமுறைகள்.
+                </p>
+
             </a>
 
-            <!-- Card 4: Books -->
-            <a href="pdf.html" class="card">
-                <div class="card-icon">📚</div>
-                <h3>PDF புத்தகங்கள்</h3>
-                <p>இஸ்லாமிய நூல்கள், வரலாற்றுப் புத்தகங்கள் மற்றும் கட்டுரைகள்.</p>
+
+
+            <!-- VIDEO -->
+
+            <a
+                href="video.html"
+                class="card"
+            >
+
+                <div class="card-icon">
+                    🎥
+                </div>
+
+                <h3>
+                    வீடியோக்கள்
+                </h3>
+
+                <p>
+                    பயனுள்ள இஸ்லாமிய
+                    வீடியோக்கள் மற்றும்
+                    விளக்கங்கள்.
+                </p>
+
             </a>
 
-            <!-- Card 5: Articles -->
-            <a href="katturai.html" class="card">
-                <div class="card-icon">📝</div>
-                <h3>கட்டுரைகள்</h3>
-                <p>அன்றாட வாழ்விற்கான இஸ்லாமிய சிந்தனைகள் மற்றும் குறிப்புகள்.</p>
+
+
+            <!-- PDF -->
+
+            <a
+                href="pdf.html"
+                class="card"
+            >
+
+                <div class="card-icon">
+                    📚
+                </div>
+
+                <h3>
+                    PDF புத்தகங்கள்
+                </h3>
+
+                <p>
+                    இஸ்லாமிய நூல்கள்,
+                    வரலாற்றுப் புத்தகங்கள்
+                    மற்றும் கட்டுரைகள்.
+                </p>
+
             </a>
 
-            <!-- Card 6: Admin Master Upload (Visible only to logged-in users) -->
-            <a href="upload.html" class="card admin-card" id="adminUploadCard">
-                <div class="card-icon">🚀</div>
-                <h3>Upload Portal</h3>
-                <p>புதிய ஆடியோ, வீடியோ மற்றும் கட்டுரைகளைப் பதிவேற்ற.</p>
+
+
+            <!-- ARTICLES -->
+
+            <a
+                href="katturai.html"
+                class="card"
+            >
+
+                <div class="card-icon">
+                    📝
+                </div>
+
+                <h3>
+                    கட்டுரைகள்
+                </h3>
+
+                <p>
+                    அன்றாட வாழ்விற்கான
+                    இஸ்லாமிய சிந்தனைகள்
+                    மற்றும் குறிப்புகள்.
+                </p>
+
             </a>
+
+
+
+            <!-- ADMIN UPLOAD -->
+
+            <a
+                href="upload.html"
+                class="card admin-card"
+                id="adminUploadCard"
+            >
+
+                <div class="card-icon">
+                    🚀
+                </div>
+
+                <h3>
+                    Upload Portal
+                </h3>
+
+                <p>
+                    புதிய ஆடியோ, வீடியோ
+                    மற்றும் கட்டுரைகளைப்
+                    பதிவேற்ற.
+                </p>
+
+            </a>
+
 
         </div>
+
     </main>
 
-    <!-- Footer -->
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
     <footer>
-        <p>&copy; <span id="year"></span> Yaseenis.com. All Rights Reserved.</p>
+
+        <p>
+            &copy;
+            <span id="year"></span>
+            Yaseenis.com.
+            All Rights Reserved.
+        </p>
+
     </footer>
 
-    <!-- Firebase Logic for Dynamic Navbar & Admin Portal Access -->
+
+
+    <!-- =========================================================
+         FIREBASE AUTHENTICATION
+    ========================================================= -->
+
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        import {
+            initializeApp
+        }
+        from
+        "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+
+
+        import {
+            getAuth,
+            onAuthStateChanged,
+            signOut
+        }
+        from
+        "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+
+
+        /* ---------------------------------------------------------
+           FIREBASE CONFIG
+        --------------------------------------------------------- */
 
         const firebaseConfig = {
-            apiKey: "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
-            authDomain: "yaseenis-user.firebaseapp.com",
-            projectId: "yaseenis-user",
-            storageBucket: "yaseenis-user.firebasestorage.app",
-            messagingSenderId: "337971140829",
-            appId: "1:337971140829:web:c30a126aac465ded12e334"
+
+            apiKey:
+                "AIzaSyA58LsyYjrJuZDChB9TaM5FUnHE-UMFl5o",
+
+            authDomain:
+                "yaseenis-user.firebaseapp.com",
+
+            projectId:
+                "yaseenis-user",
+
+            storageBucket:
+                "yaseenis-user.firebasestorage.app",
+
+            messagingSenderId:
+                "337971140829",
+
+            appId:
+                "1:337971140829:web:c30a126aac465ded12e334"
         };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
 
-        const loginBtn = document.getElementById("loginBtn");
-        const logoutBtn = document.getElementById("logoutBtn");
-        const adminUploadCard = document.getElementById("adminUploadCard");
 
-        // Set dynamic year in footer
-        document.getElementById("year").innerText = new Date().getFullYear();
+        /* ---------------------------------------------------------
+           INITIALIZE FIREBASE
+        --------------------------------------------------------- */
 
-        // Listen for Authentication State Changes
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // User is logged in: Show Logout & Admin Upload Card
-                loginBtn.style.display = "none";
-                logoutBtn.style.display = "inline-block";
-                adminUploadCard.style.display = "block"; // Only show upload portal to admins
-            } else {
-                // User is NOT logged in: Show Login, Hide Upload Card
-                loginBtn.style.display = "inline-block";
-                logoutBtn.style.display = "none";
-                adminUploadCard.style.display = "none";
+        const app =
+            initializeApp(firebaseConfig);
+
+
+        const auth =
+            getAuth(app);
+
+
+
+        /* ---------------------------------------------------------
+           ELEMENTS
+        --------------------------------------------------------- */
+
+        const loginBtn =
+            document.getElementById("loginBtn");
+
+
+        const logoutBtn =
+            document.getElementById("logoutBtn");
+
+
+        const adminUploadCard =
+            document.getElementById(
+                "adminUploadCard"
+            );
+
+
+
+        /* ---------------------------------------------------------
+           YEAR
+        --------------------------------------------------------- */
+
+        document.getElementById("year").innerText =
+            new Date().getFullYear();
+
+
+
+        /* ---------------------------------------------------------
+           AUTH STATE
+        --------------------------------------------------------- */
+
+        onAuthStateChanged(
+            auth,
+            (user) => {
+
+                if (user) {
+
+                    /*
+                     * USER LOGGED IN
+                     */
+
+                    loginBtn.style.display =
+                        "none";
+
+
+                    logoutBtn.style.display =
+                        "inline-block";
+
+
+                    adminUploadCard.style.display =
+                        "block";
+
+                }
+
+                else {
+
+                    /*
+                     * USER NOT LOGGED IN
+                     */
+
+                    loginBtn.style.display =
+                        "inline-block";
+
+
+                    logoutBtn.style.display =
+                        "none";
+
+
+                    adminUploadCard.style.display =
+                        "none";
+                }
+
             }
-        });
+        );
 
-        // Logout Function
-        logoutBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            signOut(auth).then(() => {
-                alert("நீங்கள் வெற்றிகரமாக வெளியேறிவிட்டீர்கள் (Logged out).");
-                window.location.reload(); // Refresh page to update UI
-            }).catch((error) => {
-                console.error("Logout Error:", error);
-            });
-        });
+
+
+        /* ---------------------------------------------------------
+           LOGOUT
+        --------------------------------------------------------- */
+
+        logoutBtn.addEventListener(
+            "click",
+            (e) => {
+
+                e.preventDefault();
+
+
+                signOut(auth)
+
+                    .then(() => {
+
+                        alert(
+                            "நீங்கள் வெற்றிகரமாக வெளியேறிவிட்டீர்கள் (Logged out)."
+                        );
+
+
+                        window.location.reload();
+
+                    })
+
+                    .catch((error) => {
+
+                        console.error(
+                            "Logout Error:",
+                            error
+                        );
+
+                    });
+
+            }
+        );
+
     </script>
+
+
+
+    <!-- =========================================================
+         CLOUDFLARE AI CHAT BUBBLE
+    ========================================================= -->
+
+    <chat-bubble-snippet
+        api-url="https://ask.yaseenis.com/"
+        placeholder="Yaseenis AI-யிடம் கேளுங்கள்..."
+        theme="light">
+    </chat-bubble-snippet>
+
+
 </body>
 </html>
