@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Yaseenis AI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #111;
+    }
+
+    .header {
+      background: #ffffff;
+      padding: 18px 20px;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .header p {
+      margin: 5px 0 0;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .chat {
+      max-width: 850px;
+      margin: auto;
+      padding: 20px;
+      padding-bottom: 120px;
+    }
+
+    .welcome {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .welcome h2 {
+      margin-top: 0;
+    }
+
+    .message {
+      margin: 15px 0;
+      display: flex;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .bubble {
+      max-width: 85%;
+      padding: 13px 16px;
+      border-radius: 16px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .user .bubble {
+      background: #2563eb;
+      color: white;
+      border-bottom-right-radius: 5px;
+    }
+
+    .assistant .bubble {
+      background: white;
+      color: #111;
+      border-bottom-left-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .input-area {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      border-top: 1px solid #ddd;
+      padding: 12px;
+      z-index: 20;
+    }
+
+    .input-box {
+      max-width: 850px;
+      margin: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    #question {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 14px;
+      padding: 13px 15px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    #send {
+      border: none;
+      background: #2563eb;
+      color: white;
+      border-radius: 14px;
+      padding: 0 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #send:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .typing {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .error {
+      color: #b91c1c;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>Yaseenis AI</h1>
+    <p>உங்கள் source files-ல் இருந்து மட்டும் பதில் பெறுங்கள்</p>
+  </div>
+
+  <main class="chat" id="chat">
+
+    <div class="welcome">
+      <h2>السلام عليكم</h2>
+
+      <p>
+        Yaseenis AI-க்கு வரவேற்கிறோம்.
+      </p>
+
+      <p>
+        PDF மற்றும் Word source files-ல்
+        உள்ள தகவல்களின் அடிப்படையில் மட்டும்
+        பதில் வழங்கப்படும்.
+      </p>
+    </div>
+
+  </main>
+
+  <div class="input-area">
+
+    <div class="input-box">
+
+      <input
+        id="question"
+        type="text"
+        placeholder="உங்கள் கேள்வியை எழுதுங்கள்..."
+        autocomplete="off"
+      >
+
+      <button id="send">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+
+<script>
+
+const API_URL =
+  "https://ask.yaseenis.com/chat/completions";
+
+const chat =
+  document.getElementById("chat");
+
+const question =
+  document.getElementById("question");
+
+const send =
+  document.getElementById("send");
+
+
+// =====================================
+// Add message
+// =====================================
+
+function addMessage(
+  text,
+  type
+) {
+
+  const message =
+    document.createElement("div");
+
+  message.className =
+    "message " + type;
+
+  const bubble =
+    document.createElement("div");
+
+  bubble.className =
+    "bubble";
+
+  bubble.textContent =
+    text;
+
+  message.appendChild(bubble);
+
+  chat.appendChild(message);
+
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
+
+  return message;
+}
+
+
+// =====================================
+// Ask AI
+// =====================================
+
+async function askAI(
+  userQuestion
+) {
+
+  const response =
+    await fetch(
+      API_URL,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body: JSON.stringify({
+
+          messages: [
+
+            {
+              role: "system",
+
+              content:
+                `
+You are Yaseenis AI.
+
+Answer ONLY from the indexed
+Yaseenis source files.
+
+The source files may contain
+PDF and Word documents.
+
+Never invent information.
+
+If the answer is not available
+in the source files, reply:
+
+மன்னிக்கவும், இந்த தகவல் என்
+source files-ல் கிடைக்கவில்லை.
+
+Answer in the same language
+as the user's question.
+`
+            },
+
+            {
+              role: "user",
+
+              content:
+                userQuestion
+            }
+
+          ]
+
+        })
+
+      }
+    );
+
+
+  const data =
+    await response.json();
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      data?.error?.message ||
+      "AI Search error"
+    );
+
+  }
+
+
+  const answer =
+    data?.choices?.[0]
+      ?.message
+      ?.content;
+
+
+  if (!answer) {
+
+    throw new Error(
+      "No answer returned"
+    );
+
+  }
+
+
+  return answer;
+
+}
+
+
+// =====================================
+// Send
+// =====================================
+
+async function sendQuestion() {
+
+  const text =
+    question.value.trim();
+
+
+  if (!text) {
+    return;
+  }
+
+
+  addMessage(
+    text,
+    "user"
+  );
+
+
+  question.value = "";
+
+  send.disabled = true;
+
+
+  const typing =
+    addMessage(
+      "பதில் தேடப்படுகிறது...",
+      "assistant"
+    );
+
+
+  try {
+
+    const answer =
+      await askAI(text);
+
+
+    typing
+      .querySelector(".bubble")
+      .textContent =
+      answer;
+
+
+  } catch (error) {
+
+    console.error(error);
+
+
+    typing
+      .querySelector(".bubble")
+      .innerHTML =
+      "மன்னிக்கவும், தற்போது பதிலை பெற முடியவில்லை.";
+
+
+    typing
+      .querySelector(".bubble")
+      .classList.add("error");
+
+  }
+
+
+  send.disabled = false;
+
+  question.focus();
+
+}
+
+
+// =====================================
+// Button
+// =====================================
+
+send.addEventListener(
+  "click",
+  sendQuestion
+);
+
+
+// =====================================
+// Enter key
+// =====================================
+
+question.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      event.preventDefault();
+
+      sendQuestion();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
