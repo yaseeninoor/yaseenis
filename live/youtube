@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Stream</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="left-section">
+      <button class="menu-btn" aria-label="Menu">☰</button>
+
+      <div class="logo">
+        <span class="youtube-icon">▶</span>
+        <span>YouTube</span>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <input type="text" placeholder="Search">
+      <button>🔍</button>
+    </div>
+
+    <div class="right-section">
+      <button>🎥</button>
+      <button>🔔</button>
+      <div class="profile">N</div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+
+    <!-- Video -->
+    <section class="video-section">
+
+      <div class="video-wrapper">
+
+        <iframe
+          src="https://www.youtube.com/embed/AE2qSGXVb38?autoplay=1&mute=0&rel=0"
+          title="Live Stream"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+
+        <div class="live-badge">
+          🔴 LIVE
+        </div>
+
+      </div>
+
+      <!-- Title -->
+      <h1>🔴 Live Stream</h1>
+
+      <!-- Channel -->
+      <div class="channel-row">
+
+        <div class="channel-info">
+          <div class="channel-avatar">N</div>
+
+          <div>
+            <h3>Live Channel</h3>
+            <p>Live Streaming</p>
+          </div>
+        </div>
+
+        <button class="subscribe-btn">
+          SUBSCRIBE
+        </button>
+
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+
+        <button onclick="likeVideo()">
+          👍 <span id="likeCount">Like</span>
+        </button>
+
+        <button onclick="shareVideo()">
+          ↗ Share
+        </button>
+
+        <button>
+          💾 Save
+        </button>
+
+        <button>
+          ⋯
+        </button>
+
+      </div>
+
+      <!-- Description -->
+      <div class="description">
+
+        <strong>🔴 LIVE NOW</strong>
+
+        <p>
+          Welcome to our live stream.
+          Watch the live broadcast here.
+        </p>
+
+        <p>
+          Don't forget to like, share and subscribe.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- Right Sidebar -->
+    <aside class="sidebar">
+
+      <h2>Live Chat</h2>
+
+      <div class="chat-box">
+
+        <div class="chat-message">
+          <b>Welcome!</b>
+          <p>Enjoy the live stream 🔴</p>
+        </div>
+
+        <div class="chat-message">
+          <b>Live Viewer</b>
+          <p>Watching live ❤️</p>
+        </div>
+
+        <div class="chat-message">
+          <b>Viewer</b>
+          <p>Assalamu Alaikum 🤍</p>
+        </div>
+
+      </div>
+
+      <div class="chat-input">
+        <input
+          type="text"
+          id="chatInput"
+          placeholder="Say something..."
+        >
+
+        <button onclick="sendMessage()">
+          ➤
+        </button>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Live Channel • Powered by YouTube</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
