@@ -6,196 +6,244 @@
     <title>முகப்பு | Yaseenis Islamic Portal</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mukta+Malar:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mukta+Malar:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Cloudflare AI Search -->
     <script type="module" src="https://a8c67a81-ebf0-444b-b7cf-f38e4fa789c5.search.ai.cloudflare.com/assets/v0.0.25/search-snippet.es.js"></script>
 
     <style>
         :root {
-            --primary: #064e3b;
-            --primary-light: #059669;
-            --gold: #d97706;
-            --gold-light: #fbbf24;
-            --dark: #0f172a;
-            --text-gray: #475569;
-            --bg-main: #f8fafc;
+            --bg-color: #f8f9fa;
             --white: #ffffff;
-            --youtube-red: #ef4444;
+            --primary: #064e3b;
+            --text-dark: #0f0f0f;
+            --text-muted: #606060;
+            --border: #e5e5e5;
+            --hover-bg: #f2f2f2;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Mukta Malar', 'Inter', sans-serif; background-color: var(--bg-main); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+        body { font-family: 'Mukta Malar', 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-dark); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
 
-        /* Navbar */
-        nav {
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            position: fixed; top: 0; left: 0; right: 0;
-            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); z-index: 1000;
+        /* --- Header (Top Navbar) --- */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%; height: 60px;
+            background: var(--white); display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
-        .logo { font-size: 26px; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .logo span { color: var(--gold); }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 16px; transition: color 0.3s ease; }
-        .nav-links a:hover { color: var(--primary-light); }
+        .logo-area { display: flex; align-items: center; gap: 15px; }
+        .menu-icon { font-size: 24px; cursor: pointer; color: var(--text-dark); }
+        .logo { font-size: 22px; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 5px; }
+        .logo span { color: #d97706; }
 
-        /* Hero with Madinah Background */
-        .hero {
-            margin-top: 70px; padding: 110px 5% 90px;
-            background: linear-gradient(rgba(6, 78, 59, 0.82), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-            color: var(--white); text-align: center; position: relative;
-            border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
-            box-shadow: 0 10px 30px rgba(6, 78, 59, 0.25);
+        .search-area { flex: 1; max-width: 600px; margin: 0 20px; }
+        search-bar-snippet { width: 100%; --search-snippet-primary-color: #064e3b; --search-snippet-border-radius: 20px; }
+
+        .profile-area { display: flex; align-items: center; gap: 15px; font-size: 20px; }
+
+        /* --- Sidebar (Left Menu) --- */
+        .sidebar {
+            position: fixed; top: 60px; left: 0; width: 240px; height: calc(100vh - 60px);
+            background: var(--white); padding-top: 10px; overflow-y: auto; border-right: 1px solid var(--border);
         }
-        .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 15px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
-        .hero p { font-size: 18px; max-width: 650px; margin: 0 auto 30px auto; opacity: 0.95; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+        .nav-item {
+            display: flex; align-items: center; gap: 15px; padding: 12px 20px;
+            font-size: 15px; font-weight: 500; color: var(--text-dark); transition: 0.2s;
+            border-radius: 10px; margin: 0 10px 5px; cursor: pointer;
+        }
+        .nav-item:hover, .nav-item.active { background: var(--hover-bg); }
+        .nav-item i { font-size: 20px; width: 24px; text-align: center; }
+        .divider { height: 1px; background: var(--border); margin: 15px 0; }
 
-        /* AI Search Section */
-        .ai-search-section { max-width: 900px; margin: 40px auto 20px; padding: 0 5%; text-align: center; }
-        .ai-search-section h2 { color: var(--primary); font-size: 28px; font-weight: 700; margin-bottom: 8px; }
-        .ai-search-section p { color: var(--text-gray); font-size: 16px; margin-bottom: 20px; }
-        search-bar-snippet { display: block; width: 100%; --search-snippet-primary-color: #064e3b; --search-snippet-border-radius: 14px; }
+        /* --- Main Content --- */
+        .main-content {
+            margin-left: 240px; margin-top: 60px; padding: 20px;
+        }
 
-        /* Main Content */
-        .container { max-width: 1200px; margin: 20px auto 50px; padding: 0 5%; }
-        .section-heading { font-size: 24px; font-weight: 700; color: var(--primary); margin: 40px 0 20px; display: flex; align-items: center; gap: 10px; }
-        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        /* --- Category Chips (Like YouTube Filter Tags) --- */
+        .chips-container {
+            display: flex; gap: 12px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 15px;
+            scrollbar-width: none; /* Firefox */
+        }
+        .chips-container::-webkit-scrollbar { display: none; } /* Chrome */
+        .chip {
+            background: rgba(0,0,0,0.05); padding: 8px 16px; border-radius: 8px;
+            font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer; transition: 0.2s;
+        }
+        .chip.active { background: var(--text-dark); color: var(--white); }
+        .chip:hover:not(.active) { background: rgba(0,0,0,0.1); }
 
-        /* Cards */
-        .card { background: var(--white); border-radius: 20px; padding: 30px; text-align: center; text-decoration: none; color: var(--dark); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(0,0,0,0.02); position: relative; overflow: hidden; }
-        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(6, 78, 59, 0.1); border-color: rgba(6, 78, 59, 0.1); }
-        .card:hover::before { transform: scaleX(1); }
-        .card-icon { font-size: 45px; margin-bottom: 15px; display: inline-block; transition: transform 0.3s ease; }
-        .card:hover .card-icon { transform: scale(1.1); }
-        .card h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; color: var(--primary); }
-        .card p { font-size: 15px; color: var(--text-gray); }
+        /* --- Content Grid (Like YouTube Thumbnails) --- */
+        .content-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;
+        }
 
-        /* YouTube Videos Grid */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 15px; }
-        .video-card { background: var(--white); border-radius: 18px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; display: flex; flex-direction: column; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        .video-info { padding: 18px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
-        .video-title { font-size: 17px; font-weight: 700; color: var(--dark); line-height: 1.4; }
-        .yt-app-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #fef2f2; color: var(--youtube-red); border: 1px solid #fecaca; padding: 10px 16px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; cursor: pointer; transition: all 0.3s ease; margin-top: auto; }
-        .yt-app-btn:hover { background: var(--youtube-red); color: var(--white); }
+        .video-card { cursor: pointer; display: flex; flex-direction: column; gap: 12px; }
+        .thumbnail {
+            width: 100%; aspect-ratio: 16/9; background: #ddd; border-radius: 12px;
+            position: relative; overflow: hidden;
+        }
+        .thumbnail img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .video-card:hover .thumbnail img { transform: scale(1.05); }
+        .duration {
+            position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8);
+            color: white; padding: 3px 6px; border-radius: 6px; font-size: 12px; font-weight: 500;
+        }
 
-        /* Admin Upload Card */
-        .admin-card { background: linear-gradient(135deg, var(--dark), #1e293b); color: var(--white) !important; }
-        .admin-card h3 { color: var(--gold-light); }
-        .admin-card p { color: #cbd5e1; }
+        .video-details { display: flex; gap: 12px; }
+        .channel-icon {
+            width: 36px; height: 36px; border-radius: 50%; background: var(--primary);
+            color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;
+        }
+        .video-info { display: flex; flex-direction: column; }
+        .video-title { font-size: 16px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .channel-name { font-size: 13px; color: var(--text-muted); margin-bottom: 2px; }
+        .video-meta { font-size: 13px; color: var(--text-muted); }
 
-        footer { text-align: center; padding: 30px; background: var(--white); color: var(--text-gray); border-top: 1px solid #e2e8f0; margin-top: 40px; }
-
-        @media (max-width: 768px) { .hero h1 { font-size: 32px; } .hero { padding: 80px 5% 60px; } .nav-links a.hide-mobile { display: none; } .logo { font-size: 22px; } }
-        @media (max-width: 480px) { nav { padding: 12px 4%; } .hero h1 { font-size: 26px; } .hero p { font-size: 15px; } .category-grid, .video-grid { grid-template-columns: 1fr; } }
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .sidebar { display: none; } /* Hide sidebar on mobile */
+            .main-content { margin-left: 0; }
+            .header { padding: 0 10px; }
+            .search-area { display: none; } /* Hide search bar in header on mobile */
+        }
+        
+        @media (max-width: 480px) {
+            .content-grid { grid-template-columns: 1fr; gap: 25px; }
+            .thumbnail { border-radius: 0; } /* Edge-to-edge thumbnails on small mobile */
+            .video-card { gap: 10px; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR (Login Removed) -->
-    <nav>
-        <a href="index.html" class="logo">
-            🕌 Yaseenis<span>.com</span>
-        </a>
-        <div class="nav-links">
-            <a href="index.html" class="hide-mobile">முகப்பு</a>
-            <a href="audio-payan.html">ஆடியோ</a>
-            <a href="video.html">வீடியோ</a>
+    <!-- HEADER (Top Nav) -->
+    <header class="header">
+        <div class="logo-area">
+            <div class="menu-icon">☰</div>
+            <a href="index.html" class="logo">🕌 Yaseenis<span>.com</span></a>
         </div>
-    </nav>
+        
+        <div class="search-area">
+            <search-bar-snippet api-url="https://ask.yaseenis.com/" placeholder="தேடுங்கள்..." max-results="5"></search-bar-snippet>
+        </div>
 
-    <!-- HERO WITH MADINAH BACKGROUND -->
-    <header class="hero">
-        <h1>அஸ்ஸலாமு அலைக்கும்</h1>
-        <p>யாசீனிஸ் இஸ்லாமிய வலைத்தளத்திற்கு அன்புடன் வரவேற்கிறோம். திருக்குர்ஆன், ஹதீஸ்கள், பயான்கள் மற்றும் பல இஸ்லாமியப் பொக்கிஷங்களை ஒரே இடத்தில் பெறுங்கள்.</p>
+        <div class="profile-area">
+            <div style="cursor:pointer;" title="Upload">🚀</div>
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: #064e3b; color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold;">NY</div>
+        </div>
     </header>
 
-    <!-- AI SEARCH -->
-    <section class="ai-search-section">
-        <h2>🔎 Yaseenis AI Search</h2>
-        <p>திருக்குர்ஆன், ஹதீஸ், புத்தகங்கள் மற்றும் இஸ்லாமிய தகவல்களைத் தேடுங்கள்.</p>
-        <search-bar-snippet api-url="https://ask.yaseenis.com/" placeholder="Yaseenis-ல் தேடுங்கள்..." max-results="10"></search-bar-snippet>
-    </section>
+    <!-- SIDEBAR (Left Menu) -->
+    <aside class="sidebar">
+        <a href="index.html" class="nav-item active"><i>🏠</i> முகப்பு</a>
+        <a href="video.html" class="nav-item"><i>🎥</i> வீடியோக்கள்</a>
+        <a href="audio-payan.html" class="nav-item"><i>🎙️</i> ஆடியோ பயான்</a>
+        <div class="divider"></div>
+        <a href="hadith.html" class="nav-item"><i>📜</i> ஹதீஸ்கள்</a>
+        <a href="pdf.html" class="nav-item"><i>📚</i> PDF புத்தகங்கள்</a>
+        <a href="katturai.html" class="nav-item"><i>📝</i> கட்டுரைகள்</a>
+        <div class="divider"></div>
+        <a href="upload.html" class="nav-item"><i>⚙️</i> அட்மின் Upload</a>
+    </aside>
 
-    <main class="container">
-
-        <!-- YOUTUBE VIDEO SECTION -->
-        <div class="section-heading">
-            🎥 சிறப்பு இஸ்லாமிய வீடியோக்கள்
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        
+        <!-- Mobile Search (Visible only on small screens) -->
+        <div style="margin-bottom: 15px;" class="mobile-search">
+            <style> @media (min-width: 901px) { .mobile-search { display: none; } } </style>
+            <search-bar-snippet api-url="https://ask.yaseenis.com/" placeholder="Yaseenis-ல் தேடுங்கள்..."></search-bar-snippet>
         </div>
 
-        <div class="video-grid">
-            <!-- மீலாதுன்நபி பெருவிழா Video Card -->
-            <div class="video-card">
-                <div class="video-wrapper">
-                    <!-- YOUR_VIDEO_ID என்பதை மாற்றி உங்கள் யூடியூப் ஐடியைக் கொடுக்கவும் -->
-                    <iframe src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID" title="மீலாதுன்நபி பெருவிழா 2026" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- Filter Chips -->
+        <div class="chips-container">
+            <div class="chip active">அனைத்தும்</div>
+            <div class="chip">மீலாதுன்நபி</div>
+            <div class="chip">பயான்கள்</div>
+            <div class="chip">வரலாறு</div>
+            <div class="chip">பொன்மொழிகள்</div>
+            <div class="chip">அமுத மொழிகள்</div>
+        </div>
+
+        <!-- Video Grid -->
+        <div class="content-grid">
+            
+            <!-- Card 1: Milad Un Nabi (Clicking opens YouTube App) -->
+            <!-- 'YOUR_VIDEO_ID' என்பதை உங்கள் யூடியூப் ID-ஆக மாற்றவும் -->
+            <div class="video-card" onclick="openInYouTubeApp('YOUR_VIDEO_ID')">
+                <div class="thumbnail">
+                    <!-- YouTube Thumbnail தானாகவே வரக் கீழே உள்ள லிங்க்கில் ID-ஐ மாற்றவும் -->
+                    <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80" alt="Milad Thumbnail">
+                    <div class="duration">பயான்</div>
                 </div>
-                <div class="video-info">
-                    <div class="video-title">மீலாதுன்நபி பெருவிழா 2026 | சிறப்புப் பேருரை: Dr. M. ஷைகு அப்துல்லாஹ் ஜமாலி</div>
-                    
-                    <button class="yt-app-btn" onclick="openInYouTubeApp('YOUR_VIDEO_ID')">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        YouTube App-ல் திறக்க
-                    </button>
+                <div class="video-details">
+                    <div class="channel-icon">Y</div>
+                    <div class="video-info">
+                        <div class="video-title">மீலாதுன்நபி பெருவிழா 2026 | சிறப்புப் பேருரை: Dr. M. ஷைகு அப்துல்லாஹ் ஜமாலி</div>
+                        <div class="channel-name">ஏகத்துவ மெய்ஞ்ஞான சபை</div>
+                        <div class="video-meta">சுன்னத் வல் ஜமாஅத் உலமாக்கள்</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- MAIN CATEGORIES -->
-        <div class="section-heading" style="margin-top: 50px;">
-            📚 பிற பிரிவுகள்
-        </div>
-        <div class="category-grid">
-            <a href="audio-payan.html" class="card">
-                <div class="card-icon">🎙️</div>
-                <h3>ஆடியோ பயான்</h3>
-                <p>சிறந்த அறிஞர்களின் இஸ்லாமிய சொற்பொழிவுகளைக் கேளுங்கள்.</p>
+            <!-- Card 2: Placeholder for another content -->
+            <a href="audio-payan.html" class="video-card">
+                <div class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&w=600&q=80" alt="Islamic Art">
+                    <div class="duration">ஆடியோ</div>
+                </div>
+                <div class="video-details">
+                    <div class="channel-icon">🎙️</div>
+                    <div class="video-info">
+                        <div class="video-title">மன அமைதிக்கான சிறப்பு ஆடியோ பயான் தொகுப்பு</div>
+                        <div class="channel-name">Yaseenis Islamic Portal</div>
+                        <div class="video-meta">புதிதாக சேர்க்கப்பட்டது</div>
+                    </div>
+                </div>
             </a>
-            <a href="hadith.html" class="card">
-                <div class="card-icon">📜</div>
-                <h3>ஹதீஸ்கள்</h3>
-                <p>நபி (ஸல்) அவர்களின் பொன்மொழிகள் மற்றும் வழிமுறைகள்.</p>
-            </a>
-            <a href="video.html" class="card">
-                <div class="card-icon">🎥</div>
-                <h3>வீடியோக்கள்</h3>
-                <p>பயனுள்ள இஸ்லாமிய வீடியோக்கள் மற்றும் விளக்கங்கள்.</p>
-            </a>
-            <a href="pdf.html" class="card">
-                <div class="card-icon">📚</div>
-                <h3>PDF புத்தகங்கள்</h3>
-                <p>இஸ்லாமிய நூல்கள், வரலாற்றுப் புத்தகங்கள் மற்றும் கட்டுரைகள்.</p>
-            </a>
-            <a href="katturai.html" class="card">
-                <div class="card-icon">📝</div>
-                <h3>கட்டுரைகள்</h3>
-                <p>அன்றாட வாழ்விற்கான இஸ்லாமிய சிந்தனைகள் மற்றும் குறிப்புகள்.</p>
-            </a>
-            <!-- Admin Upload Card (Now visible to everyone/admin) -->
-            <a href="upload.html" class="card admin-card">
-                <div class="card-icon">🚀</div>
-                <h3>Upload Portal</h3>
-                <p>புதிய ஆடியோ, வீடியோ மற்றும் கட்டுரைகளைப் பதிவேற்ற.</p>
-            </a>
-        </div>
 
+            <!-- Card 3: Placeholder -->
+            <a href="hadith.html" class="video-card">
+                <div class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=600&q=80" alt="Quran">
+                    <div class="duration">வாசிக்க</div>
+                </div>
+                <div class="video-details">
+                    <div class="channel-icon">📜</div>
+                    <div class="video-info">
+                        <div class="video-title">நபி (ஸல்) அவர்களின் முக்கிய ஹதீஸ்கள் - பாகம் 1</div>
+                        <div class="channel-name">Yaseenis Library</div>
+                        <div class="video-meta">கட்டுரைகள் பகுதி</div>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Card 4: Placeholder -->
+            <a href="katturai.html" class="video-card">
+                <div class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1564769661685-6184518a24ee?auto=format&fit=crop&w=600&q=80" alt="Mosque">
+                    <div class="duration">புதியது</div>
+                </div>
+                <div class="video-details">
+                    <div class="channel-icon">📝</div>
+                    <div class="video-info">
+                        <div class="video-title">அமுத மொழிகள்: வாப்பா நாயகம் அவர்களின் பொன்மொழிகள்</div>
+                        <div class="channel-name">ஜமாலிய்யா தரீக்கா</div>
+                        <div class="video-meta">ஆன்மீகத் தேடல்</div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; <span id="year"></span> Yaseenis.com. All Rights Reserved.</p>
-    </footer>
+    <!-- Cloudflare AI Chat Bubble -->
+    <chat-bubble-snippet api-url="https://ask.yaseenis.com/" placeholder="Yaseenis AI-யிடம் கேளுங்கள்..." theme="light"></chat-bubble-snippet>
 
-    <!-- JAVASCRIPT FOR YOUTUBE APP & FOOTER YEAR (Firebase Removed) -->
+    <!-- YouTube App Launcher Script -->
     <script>
-        // Set dynamic year
-        document.getElementById("year").innerText = new Date().getFullYear();
-
-        // Direct YouTube App Launch Function
         function openInYouTubeApp(videoId) {
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
             const isAndroid = /Android/.test(navigator.userAgent);
@@ -211,8 +259,6 @@
             }
         }
     </script>
-
-    <chat-bubble-snippet api-url="https://ask.yaseenis.com/" placeholder="Yaseenis AI-யிடம் கேளுங்கள்..." theme="light"></chat-bubble-snippet>
 
 </body>
 </html>
