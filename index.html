@@ -94,6 +94,14 @@
         .admin-card p { color: #cbd5e1; }
 
         footer { text-align: center; padding: 30px; background: var(--white); color: var(--text-gray); border-top: 1px solid #e2e8f0; margin-top: 40px; }
+        .visitor-stats { max-width: 900px; margin: 0 auto 18px; padding: 18px; background: #f8fafc; border: 1px solid #dbe5df; border-radius: 16px; text-align: left; }
+        .visitor-stats h3 { color: var(--primary); text-align: center; margin: 0 0 12px; font-size: 19px; }
+        .visitor-total { text-align: center; font-size: 32px; font-weight: 800; color: var(--primary); }
+        .visitor-label { text-align: center; color: var(--text-gray); font-size: 13px; margin-bottom: 14px; }
+        .visitor-locations { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+        .visitor-location { display: flex; justify-content: space-between; gap: 12px; padding: 9px 11px; background: white; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 13px; }
+        .visitor-location strong { color: var(--primary); white-space: nowrap; }
+        .visitor-note { text-align: center; color: #64748b; font-size: 11px; margin-top: 10px; }
 
         @media (max-width: 768px) { .hero h1 { font-size: 32px; } .hero { padding: 80px 5% 60px; } .nav-links a.hide-mobile { display: none; } .logo { font-size: 22px; } }
         @media (max-width: 480px) { nav { padding: 12px 4%; } .hero h1 { font-size: 26px; } .hero p { font-size: 15px; } .category-grid, .video-grid { grid-template-columns: 1fr; } }
@@ -200,6 +208,13 @@
     </main>
 
     <footer>
+        <section class="visitor-stats" aria-label="Website visitor statistics">
+            <h3>🌍 இணையதள பார்வையாளர் கணக்கு</h3>
+            <div class="visitor-total" id="visitorTotal">—</div>
+            <div class="visitor-label">மொத்த பார்வையாளர்கள் · Total Visitors</div>
+            <div class="visitor-locations" id="visitorLocations"><div class="visitor-location">இட விவரங்கள் ஏற்றப்படுகின்றன…</div></div>
+            <div class="visitor-note">நாடு / நகரம் விவரங்கள் தோராயமானவை. ஒரே browser/device ஒரு பார்வையாளராகக் கணக்கிடப்படும்.</div>
+        </section>
         <p>&copy; <span id="year"></span> Yaseenis.com. All Rights Reserved.</p>
     </footer>
 
@@ -207,6 +222,62 @@
     <script>
         // Set dynamic year
         document.getElementById("year").innerText = new Date().getFullYear();
+
+        // Independent visitor analytics service. Set this after deploying visitor-analytics/worker.js.
+        const VISITOR_STATS_API = "SET_WORKER_URL_HERE";
+        async function loadVisitorStats() {
+            const totalEl = document.getElementById("visitorTotal");
+            const locationsEl = document.getElementById("visitorLocations");
+            if (!VISITOR_STATS_API || VISITOR_STATS_API.includes("SET_WORKER_URL_HERE")) {
+                totalEl.textContent = "அமைப்பு நிலுவையில் உள்ளது";
+                locationsEl.innerHTML = '<div class="visitor-location">Cloudflare Worker URL இணைக்கப்பட வேண்டும்.</div>';
+                return;
+            }
+            try {
+                let visitorId = localStorage.getItem("yaseenis_visitor_stats_id");
+                if (!visitorId) {
+                    visitorId = (crypto.randomUUID ? crypto.randomUUID() : "visitor-" + Date.now() + "-" + Math.random().toString(16).slice(2));
+                    localStorage.setItem("yaseenis_visitor_stats_id", visitorId);
+                }
+                await fetch(VISITOR_STATS_API + "/visit", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ visitorId })
+                });
+                const response = await fetch(VISITOR_STATS_API + "/stats", { cache: "no-store" });
+                if (!response.ok) throw new Error("Stats unavailable");
+                const data = await response.json();
+                totalEl.textContent = Number(data.totalVisitors || 0).toLocaleString("en-US");
+                const rows = Array.isArray(data.locations) ? data.locations : [];
+                locationsEl.replaceChildren();
+                if (!rows.length) {
+                    const empty = document.createElement("div");
+                    empty.className = "visitor-location";
+                    empty.textContent = "இன்னும் பார்வையாளர் விவரங்கள் இல்லை";
+                    locationsEl.appendChild(empty);
+                } else {
+                    rows.forEach(item => {
+                        const row = document.createElement("div");
+                        row.className = "visitor-location";
+                        const label = document.createElement("span");
+                        label.textContent = [item.city, item.country].filter(Boolean).join(", ");
+                        const count = document.createElement("strong");
+                        count.textContent = Number(item.visitors || 0).toLocaleString("en-US");
+                        row.append(label, count);
+                        locationsEl.appendChild(row);
+                    });
+                }
+            } catch (error) {
+                totalEl.textContent = "தற்காலிகமாக கிடைக்கவில்லை";
+                locationsEl.replaceChildren();
+                const message = document.createElement("div");
+                message.className = "visitor-location";
+                message.textContent = "Visitor analytics சேவையைச் சரிபார்க்கவும்.";
+                locationsEl.appendChild(message);
+                console.error("Visitor analytics:", error);
+            }
+        }
+        loadVisitorStats();
 
         // Direct YouTube App Launch Function
         function openInYouTubeApp(videoId) {
