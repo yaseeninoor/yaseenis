@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#064b2c">
+<title>பொது ஸலவாத்து Live Counter | Yaseenis</title>
+<style>
+:root{--green:#064b2c;--deep:#032c1b;--gold:#e8c66b;--cream:#fff8e7}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Noto Sans Tamil",Arial,sans-serif;color:var(--cream);background:radial-gradient(ellipse at top,#176941,transparent 65%),linear-gradient(160deg,var(--deep),var(--green));display:flex;justify-content:center;padding:20px 12px}
+main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--gold);border-radius:24px;padding:24px 18px;background:#002313b8;box-shadow:0 12px 40px #0005}.logo{font-size:38px;color:var(--gold);margin:0 0 8px}h1{color:var(--gold);font-size:clamp(25px,6vw,34px);margin:8px 0}.subtitle{line-height:1.8;color:#fff0c5}.arabic{font-family:"Times New Roman",serif;font-size:clamp(23px,6vw,32px);line-height:1.9;color:var(--gold);margin:18px 0;direction:rtl}.eyebrow{margin-top:22px;font-size:13px;color:#e7dfc6;letter-spacing:1px}.total{font-size:clamp(42px,12vw,66px);font-weight:800;color:var(--gold);margin:7px 0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.caption,.muted{color:#e7dfc6;font-size:14px}.track{background:#ffffff25;height:13px;border-radius:30px;overflow:hidden;margin:15px 0 8px}.fill{height:100%;width:0;background:linear-gradient(90deg,#b38a31,#ffe9a2);border-radius:inherit;transition:width .2s}.progress-text{font-size:13px;color:#f5e5b6}.tap{margin:25px auto 14px;width:175px;height:175px;max-width:55vw;max-height:55vw;border-radius:50%;border:4px solid var(--gold);background:radial-gradient(circle,#16834b,#07502d);color:white;font-size:23px;font-weight:700;cursor:pointer;box-shadow:0 0 0 8px #e8c66b20,0 8px 20px #0005;touch-action:manipulation}.tap:active{transform:scale(.96)}.tap:disabled{opacity:.6;cursor:wait}.tap span{display:block;font-size:14px;margin-top:8px;color:#ffe9a2}.personal{font-size:17px;margin:10px 0}.personal strong{color:var(--gold)}.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:17px 0}.small{padding:11px 16px;border:1px solid var(--gold);border-radius:22px;color:var(--cream);background:#ffffff10;cursor:pointer;font-size:14px}.notice{margin-top:20px;font-size:12px;color:#c8d9cc;line-height:1.8}.status{min-height:22px;font-size:13px;color:#ffe9a2;margin:8px 0}.footer{margin-top:18px;font-size:12px;color:#d4c59b}
+</style>
+</head>
+<body><main><section class="card">
+<div class="logo">☾ ✦</div><h1>பொது ஸலவாத்து கணக்கெடுப்பு</h1><div class="subtitle">உரூஸ் முபாரக்<br>மாபெரும் ஸலவாத்து மஜ்லிஸ்</div>
+<div class="arabic">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ</div>
+<div class="eyebrow">மொத்த இலக்கு · PUBLIC TARGET</div><div class="total" id="total" aria-live="polite">—</div><div class="caption">மொத்த ஸலவாத்துகள் · Total Salawath</div>
+<div class="track"><div class="fill" id="fill"></div></div><div class="progress-text" id="progressText">கணக்கை ஏற்றுகிறது…</div>
+<button class="tap" id="tap" type="button">☾<br>ஸலவாத்<span>TAP +1</span></button>
+<div class="personal">உங்கள் எண்ணிக்கை: <strong id="mine">—</strong></div><div class="status" id="status" role="status"></div>
+<div class="actions"><button class="small" id="refresh" type="button">எண்ணிக்கையைப் புதுப்பி</button><button class="small" id="share" type="button">WhatsApp / Share</button></div>
+<div class="notice">ஒவ்வொரு முறை ஸலவாத் ஓதியதும் பட்டனை ஒருமுறை தட்டவும்.<br>பொது எண்ணிக்கை அனைவருக்கும் ஒரே Database-ல் சேமிக்கப்படும். இணைய இணைப்பு தேவை.</div>
+</section><div class="footer">Yaseenis.com · Salawath Mubarak</div></main>
+<script>
+(() => {
+"use strict";
+// IMPORTANT: Worker URL இன்னும் சேர்க்கப்படவில்லை. உங்கள் Worker URL-ஐ இங்கே இட வேண்டும்.
+const API_BASE = "https://REPLACE-WITH-YOUR-WORKER.workers.dev";
+const TARGET = 700000;
+const $ = id => document.getElementById(id);
+const fmt = n => Number(n || 0).toLocaleString("en-US");
+let visitorId = localStorage.getItem("yaseeni_salawath_visitor_id");
+if (!visitorId) {
+ visitorId = crypto.randomUUID ? crypto.randomUUID() : "v-" + Date.now() + "-" + Math.random().toString(16).slice(2);
+ localStorage.setItem("yaseeni_salawath_visitor_id", visitorId);
+}
+let busy = false;
+function render(data) {
+ const total = Number(data.total || 0);
+ $("total").textContent = fmt(total);
+ $("mine").textContent = fmt(data.personal || 0);
+ const pct = Math.min(100, total / TARGET * 100);
+ $("fill").style.width = pct + "%";
+ $("progressText").textContent = pct.toFixed(2) + "% நிறைவு · " + fmt(Math.max(0, TARGET-total)) + " மீதம்";
+ document.title = fmt(total) + " ஸலவாத்துகள் | Yaseenis";
+}
+async function api(path, body) {
+ const options = {method: body ? "POST" : "GET", headers: {"Accept":"application/json"}};
+ if (body) { options.headers["Content-Type"]="application/json"; options.body=JSON.stringify(body); }
+ const response = await fetch(API_BASE + path, options);
+ const data = await response.json().catch(()=>({}));
+ if (!response.ok) throw new Error(data.error || "API error");
+ return data;
+}
+async function refresh() {
+ if (API_BASE.includes("REPLACE-WITH-YOUR-WORKER")) {
+  $("status").textContent = "Worker URL சேர்க்கப்படவில்லை. Yaseenis நிர்வாகி இதை இணைக்க வேண்டும்.";
+  $("total").textContent = "—"; $("progressText").textContent = "Live கணக்கு அமைப்பு நிலுவையில் உள்ளது";
+  return;
+ }
+ try { render(await api("/api/stats?visitorId="+encodeURIComponent(visitorId))); $("status").textContent="Live கணக்கு இணைக்கப்பட்டுள்ளது"; }
+ catch(e) { $("status").textContent="இணைப்பு தோல்வி. Worker URL / D1 அமைப்பைச் சரிபார்க்கவும்."; console.error(e); }
+}
+$("tap").addEventListener("click", async()=>{
+ if(busy)return; busy=true; $("tap").disabled=true; $("status").textContent="சேமிக்கிறது…";
+ try { render(await api("/api/tap",{visitorId})); $("status").textContent="ஸலவாத் பொதுக் கணக்கில் சேர்க்கப்பட்டது ✓"; if("vibrate" in navigator)navigator.vibrate(15); }
+ catch(e){$("status").textContent="சேமிக்க முடியவில்லை. Worker URL இணைக்கப்பட்டுள்ளதா எனச் சரிபார்க்கவும்.";console.error(e);}
+ finally{busy=false;$("tap").disabled=false;}
+});
+$("refresh").addEventListener("click",refresh);
+$("share").addEventListener("click",async()=>{
+ const d={title:"பொது ஸலவாத்து கணக்கெடுப்பு",text:"பொது ஸலவாத்து மஜ்லிஸில் இணையுங்கள்",url:location.href};
+ try{if(navigator.share)await navigator.share(d);else{await navigator.clipboard.writeText(d.text+"\n"+d.url);$("status").textContent="இணைப்பு நகலெடுக்கப்பட்டது";}}
+ catch(e){if(e.name!=="AbortError")$("status").textContent="பகிர முடியவில்லை";}
+});
+refresh(); setInterval(refresh,10000);
+})();
+</script></body></html>
