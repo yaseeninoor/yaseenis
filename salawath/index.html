@@ -8,7 +8,16 @@
 <style>
 :root{--green:#064b2c;--deep:#032c1b;--gold:#e8c66b;--cream:#fff8e7}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Noto Sans Tamil",Arial,sans-serif;color:var(--cream);background:radial-gradient(ellipse at top,#176941,transparent 65%),linear-gradient(160deg,var(--deep),var(--green));display:flex;justify-content:center;padding:20px 12px}
-main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--gold);border-radius:24px;padding:24px 18px;background:#002313b8;box-shadow:0 12px 40px #0005}.event-poster{display:block;width:100%;height:auto;max-height:680px;object-fit:contain;border-radius:16px;margin:0 auto 22px;box-shadow:0 8px 24px #0004}.logo{font-size:38px;color:var(--gold);margin:0 0 8px}h1{color:var(--gold);font-size:clamp(25px,6vw,34px);margin:8px 0}.subtitle{line-height:1.8;color:#fff0c5}.arabic{font-family:"Times New Roman",serif;font-size:clamp(23px,6vw,32px);line-height:1.9;color:var(--gold);margin:18px 0;direction:rtl}.eyebrow{margin-top:22px;font-size:13px;color:#e7dfc6;letter-spacing:1px}.total{font-size:clamp(42px,12vw,66px);font-weight:800;color:var(--gold);margin:7px 0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.caption,.muted{color:#e7dfc6;font-size:14px}.track{background:#ffffff25;height:13px;border-radius:30px;overflow:hidden;margin:15px 0 8px}.fill{height:100%;width:0;background:linear-gradient(90deg,#b38a31,#ffe9a2);border-radius:inherit;transition:width .2s}.progress-text{font-size:13px;color:#f5e5b6}.tap{margin:25px auto 14px;width:175px;height:175px;max-width:55vw;max-height:55vw;border-radius:50%;border:4px solid var(--gold);background:radial-gradient(circle,#16834b,#07502d);color:white;font-size:23px;font-weight:700;cursor:pointer;box-shadow:0 0 0 8px #e8c66b20,0 8px 20px #0005;touch-action:manipulation}.tap:active{transform:scale(.96)}.tap:disabled{opacity:.6;cursor:wait}.tap span{display:block;font-size:14px;margin-top:8px;color:#ffe9a2}.batch-tools{margin:12px 0;padding:14px;border:1px solid #e8c66b66;border-radius:16px;background:#ffffff08}.batch-title{font-weight:700;color:var(--gold);margin-bottom:10px}.batch-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.batch-btn{padding:11px 4px;border:1px solid var(--gold);border-radius:12px;color:var(--cream);background:#ffffff10;cursor:pointer;font-weight:700}.custom-row{display:flex;gap:8px;margin-top:10px}.custom-row input{min-width:0;flex:1;padding:12px;border:1px solid #e8c66b;border-radius:10px;background:#fff;color:#123;font-size:16px}.custom-row button{padding:10px 12px;border:0;border-radius:10px;background:var(--gold);color:#14251b;font-weight:800}.batch-btn:disabled,.custom-row button:disabled{opacity:.5}.personal{font-size:17px;margin:10px 0}.personal strong{color:var(--gold)}.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:17px 0}.small{padding:11px 16px;border:1px solid var(--gold);border-radius:22px;color:var(--cream);background:#ffffff10;cursor:pointer;font-size:14px}.notice{margin-top:20px;font-size:12px;color:#c8d9cc;line-height:1.8}.status{min-height:22px;font-size:13px;color:#ffe9a2;margin:8px 0}.footer{margin-top:18px;font-size:12px;color:#d4c59b}
+main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--gold);border-radius:24px;padding:24px 18px;background:#002313b8;box-shadow:0 12px 40px #0005}.event-poster{display:block;width:100%;height:auto;max-height:680px;object-fit:contain;border-radius:16px;margin:0 auto 22px;box-shadow:0 8px 24px #0004}.logo{font-size:38px;color:var(--gold);margin:0 0 8px}h1{color:var(--gold);font-size:clamp(25px,6vw,34px);margin:8px 0}.subtitle{line-height:1.8;color:#fff0c5}.arabic{font-family:"Times New Roman",serif;font-size:clamp(23px,6vw,32px);line-height:1.9;color:var(--gold);margin:18px 0;direction:rtl}.eyebrow{margin-top:22px;font-size:13px;color:#e7dfc6;letter-spacing:1px}.total{font-size:clamp(42px,12vw,66px);font-weight:800;color:var(--gold);margin:7px 0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.caption,.muted{color:#e7dfc6;font-size:14px}.track{background:#ffffff25;height:13px;border-radius:30px;overflow:hidden;margin:15px 0 8px}.fill{height:100%;width:0;background:linear-gradient(90deg,#b38a31,#ffe9a2);border-radius:inherit;transition:width .2s}.progress-text{font-size:13px;color:#f5e5b6}.tap{margin:25px auto 14px;width:175px;height:175px;max-width:55vw;max-height:55vw;border-radius:50%;border:4px solid var(--gold);background:radial-gradient(circle,#16834b,#07502d);color:white;font-size:23px;font-weight:700;cursor:pointer;box-shadow:0 0 0 8px #e8c66b20,0 8px 20px #0005;touch-action:manipulation}.tap:active{transform:scale(.96)}.tap:disabled{opacity:.6;cursor:wait}.tap span{display:block;font-size:14px;margin-top:8px;color:#ffe9a2}.batch-tools{margin:12px 0;padding:14px;border:1px solid #e8c66b66;border-radius:16px;background:#ffffff08}.batch-title{font-weight:700;color:var(--gold);margin-bottom:10px}.batch-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.batch-btn{padding:11px 4px;border:1px solid var(--gold);border-radius:12px;color:var(--cream);background:#ffffff10;cursor:pointer;font-weight:700}.custom-row{display:flex;gap:8px;margin-top:10px}.custom-row input{min-width:0;flex:1;padding:12px;border:1px solid #e8c66b;border-radius:10px;background:#fff;color:#123;font-size:16px}.custom-row button{padding:10px 12px;border:0;border-radius:10px;background:var(--gold);color:#14251b;font-weight:800}.batch-btn:disabled,.custom-row button:disabled{opacity:.5}.personal{font-size:17px;margin:10px 0}.personal strong{color:var(--gold)}
+.name-panel{margin:18px 0;padding:14px;border:1px solid #e8c66b66;border-radius:16px;text-align:left;background:#ffffff08}
+.name-panel h2,.leaderboard h2{font-size:18px;color:var(--gold);margin:0 0 10px;text-align:center}
+.name-row{display:flex;gap:8px}
+.name-row input{min-width:0;flex:1;padding:12px;border:1px solid var(--gold);border-radius:10px;background:#fff;color:#123;font-size:16px}
+.name-row button{padding:10px 14px;border:0;border-radius:10px;background:var(--gold);color:#14251b;font-weight:800}
+.leaderboard{margin:18px 0;padding:14px;border:1px solid #e8c66b66;border-radius:16px;text-align:left;background:#ffffff08}
+.lb-row{display:flex;justify-content:space-between;gap:12px;padding:9px 4px;border-bottom:1px solid #ffffff20}
+.lb-row:last-child{border-bottom:0}.lb-name{overflow-wrap:anywhere}.lb-count{font-weight:800;color:var(--gold);white-space:nowrap}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:17px 0}.small{padding:11px 16px;border:1px solid var(--gold);border-radius:22px;color:var(--cream);background:#ffffff10;cursor:pointer;font-size:14px}.notice{margin-top:20px;font-size:12px;color:#c8d9cc;line-height:1.8}.status{min-height:22px;font-size:13px;color:#ffe9a2;margin:8px 0}.footer{margin-top:18px;font-size:12px;color:#d4c59b}
 </style>
 </head>
 <body><main><section class="card">
@@ -19,7 +28,17 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 <div class="eyebrow">மொத்த இலக்கு · PUBLIC TARGET</div><div class="total" id="total" aria-live="polite">—</div><div class="caption">மொத்த ஸலவாத்துகள் · Total Salawath</div>
 <div class="track"><div class="fill" id="fill"></div></div><div class="progress-text" id="progressText">கணக்கை ஏற்றுகிறது…</div>
 <button class="tap" id="tap" type="button">☾<br>ஸலவாத்<span>TAP +1</span></button>
-<div class="personal">உங்கள் எண்ணிக்கை: <strong id="mine">—</strong></div><div class="status" id="status" role="status"></div>
+<div class="personal">உங்கள் எண்ணிக்கை: <strong id="mine">—</strong></div>
+<div class="name-panel">
+  <h2>👤 உங்கள் பெயரைப் பதிவு செய்யுங்கள்</h2>
+  <div class="name-row"><input id="registerName" maxlength="60" autocomplete="name" placeholder="உங்கள் பெயர் / Your name"><button id="registerBtn" type="button">பதிவு</button></div>
+  <div class="muted" id="nameStatus" style="margin-top:8px;text-align:center">பெயர் பதிவு செய்தால் Leaderboard-ல் காட்டப்படும்.</div>
+</div>
+<div class="leaderboard">
+  <h2>🏆 ஸலவாத்து Leaderboard</h2>
+  <div id="leaderboardList" class="muted">பட்டியலை ஏற்றுகிறது…</div>
+  <div style="text-align:center;margin-top:10px"><button class="small" id="leaderboardRefresh" type="button">பட்டியலைப் புதுப்பி</button></div>
+</div><div class="status" id="status" role="status"></div>
 <div class="actions"><button class="small" id="refresh" type="button">எண்ணிக்கையைப் புதுப்பி</button><button class="small" id="share" type="button">WhatsApp / Share</button><a class="small" href="members.html" style="text-decoration:none;display:inline-block">👤 உறுப்பினர் கணக்கு / Daily History</a></div>
 <div class="notice">ஒவ்வொரு முறை ஸலவாத் ஓதியதும் பட்டனை ஒருமுறை தட்டவும்.<br>பொது எண்ணிக்கை அனைவருக்கும் ஒரே Database-ல் சேமிக்கப்படும். இணைய இணைப்பு தேவை.</div>
 </section><div class="footer">Yaseenis.com · Salawath Mubarak</div></main>
@@ -121,6 +140,45 @@ $("tap").addEventListener("click", async (event)=>{
  tapInFlight = true;
  try { await addCount(1); } finally { tapInFlight = false; }
 });
+
+async function registerName() {
+ const name = $("registerName").value.trim();
+ if (name.length < 2) { $("nameStatus").textContent = "குறைந்தது 2 எழுத்துகள் உள்ள பெயரை உள்ளிடவும்."; return; }
+ $("registerBtn").disabled = true;
+ $("nameStatus").textContent = "பெயரைச் சேமிக்கிறது…";
+ try {
+  const result = await api("/api/register", {visitorId, name});
+  $("registerName").value = result.name || name;
+  $("nameStatus").textContent = "பெயர் வெற்றிகரமாகப் பதிவு செய்யப்பட்டது ✓";
+  await loadLeaderboard();
+ } catch(e) {
+  $("nameStatus").textContent = "பெயரைப் பதிவு செய்ய முடியவில்லை. Worker புதுப்பிக்கப்பட்டுள்ளதா எனச் சரிபார்க்கவும்.";
+  console.error(e);
+ } finally { $("registerBtn").disabled = false; }
+}
+async function loadLeaderboard() {
+ const list = $("leaderboardList");
+ try {
+  const data = await api("/api/leaderboard");
+  const users = Array.isArray(data.users) ? data.users : [];
+  if (!users.length) { list.textContent = "இன்னும் பெயர் பதிவு செய்தவர்கள் இல்லை."; return; }
+  list.replaceChildren();
+  users.forEach((user, index) => {
+   const row = document.createElement("div"); row.className = "lb-row";
+   const name = document.createElement("span"); name.className = "lb-name";
+   name.textContent = (index + 1) + ". " + user.name;
+   const count = document.createElement("span"); count.className = "lb-count";
+   count.textContent = fmt(user.count);
+   row.append(name, count); list.append(row);
+  });
+ } catch(e) {
+  list.textContent = "Leaderboard ஏற்ற முடியவில்லை. Worker-ல் /api/leaderboard வசதி Deploy செய்யப்பட்டுள்ளதா எனச் சரிபார்க்கவும்.";
+  console.error(e);
+ }
+}
+$("registerBtn").addEventListener("click", registerName);
+$("registerName").addEventListener("keydown", e => { if (e.key === "Enter") registerName(); });
+$("leaderboardRefresh").addEventListener("click", loadLeaderboard);
 $("refresh").addEventListener("click",()=>refresh(true));
 $("share").addEventListener("click",async()=>{
  const d={title:"உரூஸ் முபாரக் — மாபெரும் ஸலவாத்து மஜ்லிஸ்",text:"மாபெரும் ஸலவாத்து மஜ்லிஸில் இணையுங்கள்",url:location.href};
@@ -128,6 +186,7 @@ $("share").addEventListener("click",async()=>{
  catch(e) { if(e.name!=="AbortError") $("status").textContent="பகிர முடியவில்லை"; }
 });
 refresh();
-setInterval(()=>{if(navigator.onLine)refresh(false);},30000);
+loadLeaderboard();
+setInterval(()=>{if(navigator.onLine){refresh(false);loadLeaderboard();}},30000);
 })();
 </script></body></html>
