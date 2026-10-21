@@ -33,8 +33,13 @@ main{max-width:560px;margin:auto}.card{border:1px solid var(--gold);border-radiu
  const $ = id => document.getElementById(id);
  const show = (id, yes) => $(id).classList.toggle("hidden", !yes);
  const setStatus = text => $("status").textContent = text;
- let deviceId = localStorage.getItem("yaseeni_salawath_member_device");
- if (!deviceId) { deviceId = crypto.randomUUID ? crypto.randomUUID() + crypto.randomUUID() : "device-" + Date.now() + "-" + Math.random().toString(16).slice(2) + "-" + Math.random().toString(16).slice(2); localStorage.setItem("yaseeni_salawath_member_device", deviceId); }
+ // Reuse the public counter's Visitor ID so the existing record can be linked.
+ let deviceId = localStorage.getItem("yaseeni_salawath_visitor_id");
+ if (!deviceId) {
+   deviceId = crypto.randomUUID ? crypto.randomUUID() : "visitor-" + Date.now() + "-" + Math.random().toString(16).slice(2);
+   localStorage.setItem("yaseeni_salawath_visitor_id", deviceId);
+ }
+ localStorage.setItem("yaseeni_salawath_member_device", deviceId);
  let token = sessionStorage.getItem("yaseeni_salawath_member_token") || localStorage.getItem("yaseeni_salawath_member_token") || "";
  async function api(path, method = "GET", body = null) {
    if (API.includes("SET_MEMBER_WORKER_URL_HERE")) throw new Error("Cloudflare Worker URL இன்னும் இணைக்கப்படவில்லை. Setup வழிகாட்டியைப் பின்பற்றவும்.");
@@ -66,7 +71,7 @@ main{max-width:560px;margin:auto}.card{border:1px solid var(--gold);border-radiu
    const name = $("name").value.trim();
    if (name.length < 2) { setStatus("தயவுசெய்து உங்கள் பெயரை உள்ளிடவும்."); return; }
    $("register").disabled = true;
-   try { const data = await api("/register", "POST", { name, deviceId }); await enterAccount(data); setStatus("உங்கள் பெயர் பதிவு செய்யப்பட்டது."); }
+   try { const data = await api("/register", "POST", { name, deviceId, visitorId: deviceId }); await enterAccount(data); setStatus("உங்கள் பெயர் பதிவு செய்யப்பட்டது."); }
    catch(e) { setStatus(e.message); }
    finally { $("register").disabled = false; }
  });
