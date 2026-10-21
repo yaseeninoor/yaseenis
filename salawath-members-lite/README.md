@@ -5,10 +5,11 @@ Independent service for name-only registration. It does not replace the existing
 ## Deploy
 1. Create Cloudflare D1 database `yaseenis-salawath-name-members`.
 2. Run `schema.sql` in its SQL console.
-3. Create a separate Worker named `yaseenis-salawath-name-members`, paste `worker.js`, and add D1 binding `MEMBER_DB` to that database.
-4. Set Worker variable `ALLOWED_ORIGINS` to `https://yaseenis.com,https://www.yaseenis.com`; optional `APP_TIMEZONE` is `Asia/Kolkata`.
-5. Deploy and copy the Worker URL.
-6. In `salawath/members.html`, replace `SET_MEMBER_WORKER_URL_HERE` with the Worker URL. Commit and test.
+3. In Cloudflare Workers & Pages, create a Worker named `yaseenis-salawath-name-members` and deploy the contents of `worker.js`, or use Wrangler from this folder.
+4. If using Wrangler, replace `REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID` in `wrangler.toml` with the D1 database ID, then run `npx wrangler deploy --config wrangler.toml` from this folder.
+5. Confirm the D1 binding is named exactly `MEMBER_DB`. Set `ALLOWED_ORIGINS` to `https://yaseenis.com,https://www.yaseenis.com`; use `Asia/Kolkata` for `APP_TIMEZONE`.
+6. Copy the deployed Worker URL. In `salawath/members.html`, replace `SET_MEMBER_WORKER_URL_HERE` with that URL and commit the change.
+7. Test name registration, +1 count, refresh, daily history, and re-opening the page in the same browser.
 
 ## API
 - POST /register {name, deviceId}; one account per stored browser/device ID.
