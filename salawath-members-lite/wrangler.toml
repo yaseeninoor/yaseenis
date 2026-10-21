@@ -1,0 +1,13 @@
+name = "yaseenis-salawath-name-members"
+main = "worker.js"
+compatibility_date = "2026-10-21"
+workers_dev = true
+
+[[d1_databases]]
+binding = "MEMBER_DB"
+database_name = "yaseenis-salawath-name-members"
+database_id = "REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID"
+
+[vars]
+ALLOWED_ORIGINS = "https://yaseenis.com,https://www.yaseenis.com"
+APP_TIMEZONE = "Asia/Kolkata"
