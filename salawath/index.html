@@ -136,11 +136,15 @@ async function addCount(amount) {
   if ("vibrate" in navigator) navigator.vibrate(20);
  } catch(e) {
   const remaining = amount-succeeded;
-  if (remaining>0) {
+  if (remaining>0 && !navigator.onLine) {
+   // Queue only when the browser confirms it is offline. An online network/API error may
+   // happen after the server committed the request, so queueing here can double-count later.
    setPending(getPending()+remaining);
    setLocalPersonal(getLocalPersonal()+remaining);
   }
-  $("status").textContent = succeeded ? fmt(succeeded)+" சேர்க்கப்பட்டன; மீதமுள்ள "+fmt(remaining)+" எண்ணிக்கை ஒத்திசைவுக்காகச் சேமிக்கப்பட்டது." : "சேவை கிடைக்கவில்லை. "+fmt(amount)+" எண்ணிக்கை offline-ல் சேமிக்கப்பட்டது.";
+  $("status").textContent = succeeded
+   ? fmt(succeeded)+" சேர்க்கப்பட்டன; "+(navigator.onLine ? "மீதமுள்ள எண்ணிக்கை உறுதிப்படுத்தப்படவில்லை. எண்ணிக்கையைப் புதுப்பித்து சரிபார்க்கவும்." : "மீதமுள்ள "+fmt(remaining)+" offline-ல் சேமிக்கப்பட்டது.")
+   : (navigator.onLine ? "சேவை பதில் உறுதியாகவில்லை. இரட்டை எண்ணிக்கையைத் தவிர்க்க மீண்டும் தானாகச் சேர்க்கவில்லை; மொத்தத்தைப் புதுப்பித்துச் சரிபார்க்கவும்." : "இணையம் இல்லை. "+fmt(amount)+" எண்ணிக்கை offline-ல் சேமிக்கப்பட்டது.");
   console.error("Batch add:",e);
  } finally {
   busy = false;
