@@ -10,6 +10,12 @@
 *{box-sizing:border-box}
 /* Name registration is popup-only; never show the old inline registration box. */
 #namePanel,.name-panel{display:none!important}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Noto Sans Tamil",Arial,sans-serif;color:var(--cream);background:radial-gradient(ellipse at top,#176941,transparent 65%),linear-gradient(160deg,var(--deep),var(--green));display:flex;justify-content:center;padding:20px 12px}
+
+/* Gentle, continuous ﷺ rain animation across the full page */
+.salat-rain{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:2;contain:strict;mask-image:linear-gradient(to bottom,transparent 0%,#000 8%,#000 92%,transparent 100%)}
+.salat-rain span{position:absolute;top:-12vh;left:var(--x);font-family:serif;font-size:var(--size);line-height:1;color:#f5d77a;opacity:0;white-space:nowrap;text-shadow:0 0 10px #f5d77a45;animation:salatFall var(--duration) linear var(--delay) infinite;will-change:transform,opacity}
+@keyframes salatFall{0%{transform:translate3d(0,-8vh,0) rotate(-8deg);opacity:0}8%{opacity:var(--opacity)}88%{opacity:var(--opacity)}100%{transform:translate3d(var(--drift),115vh,0) rotate(10deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.salat-rain span{animation:none;display:none}}
 body::before{content:"☾  ✦  ۞  ✧  ☪";position:fixed;inset:0;pointer-events:none;z-index:0;display:flex;align-items:center;justify-content:space-around;white-space:pre;color:#f6d77a;opacity:.045;font-size:clamp(28px,8vw,72px);letter-spacing:clamp(14px,4vw,48px);transform:rotate(-12deg);animation:ornamentDrift 24s linear infinite}
 main{position:relative;z-index:1}
 @keyframes ornamentDrift{0%{translate:0 0;rotate:0deg}50%{translate:0 -12px;rotate:3deg}100%{translate:0 0;rotate:0deg}}
@@ -33,7 +39,7 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:17px 0}.small{padding:11px 16px;border:1px solid var(--gold);border-radius:22px;color:var(--cream);background:#ffffff10;cursor:pointer;font-size:14px}.notice{margin-top:20px;font-size:12px;color:#c8d9cc;line-height:1.8}.status{min-height:22px;font-size:13px;color:#ffe9a2;margin:8px 0}.footer{margin-top:18px;font-size:12px;color:#d4c59b}
 </style>
 </head>
-<body><main><section class="card">
+<body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
 <img class="event-poster" src="https://raw.githubusercontent.com/yaseeninoor/yaseenis/main/yaseenis/uroos-mubarak-poster.jpg" alt="உரூஸ் முபாரக் — 3-ஆம் ஆண்டு கந்தூரி விழா" loading="eager">
 <div class="logo">☾ ✦</div><h1>உரூஸ் முபாரக்</h1><div class="subtitle" style="font-size:clamp(20px,5vw,27px);font-weight:700">மாபெரும் ஸலவாத்து மஜ்லிஸ்</div>
 <div class="arabic" lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَالْآلِ وَالصَّحْبِ وَسَلِّمْ</div>
@@ -58,6 +64,22 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 const API_BASE = "https://yaseenis-salawath-api.yaseeninoor.workers.dev";
 const TARGET = 700000;
 const $ = id => document.getElementById(id);
+// Decorative ﷺ rain: distributed across the viewport; never intercepts taps.
+const rainLayer = $("salatRain");
+if (rainLayer && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+ const rainCount = window.innerWidth < 600 ? 17 : 29;
+ for (let i = 0; i < rainCount; i++) {
+  const glyph = document.createElement("span");
+  glyph.textContent = "ﷺ";
+  glyph.style.setProperty("--x", (Math.random() * 96 + 1) + "%");
+  glyph.style.setProperty("--size", (Math.random() * 13 + 15) + "px");
+  glyph.style.setProperty("--duration", (Math.random() * 7 + 9) + "s");
+  glyph.style.setProperty("--delay", (-Math.random() * 16) + "s");
+  glyph.style.setProperty("--drift", (Math.random() * 70 - 35) + "px");
+  glyph.style.setProperty("--opacity", (Math.random() * .20 + .10).toFixed(2));
+  rainLayer.appendChild(glyph);
+ }
+}
 const fmt = n => Number(n || 0).toLocaleString("en-US");
 let visitorId = localStorage.getItem("yaseeni_salawath_visitor_id");
 if (!visitorId) {
