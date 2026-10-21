@@ -46,15 +46,13 @@ if (!visitorId) {
  localStorage.setItem("yaseeni_salawath_visitor_id", visitorId);
 }
 const PENDING_KEY = "yaseeni_salawath_pending_v1";
-const MINE_KEY = "yaseeni_salawath_local_mine_v1";
 const getPending = () => Math.max(0, Number(localStorage.getItem(PENDING_KEY) || 0));
 const setPending = n => localStorage.setItem(PENDING_KEY, String(Math.max(0, n)));
-let localMine = Math.max(0, Number(localStorage.getItem(MINE_KEY) || 0));
 let busy = false;
 function render(data) {
  const total = Number(data.total || 0);
  $("total").textContent = fmt(total);
- $("mine").textContent = fmt(Number(data.personal || 0) + localMine + getPending());
+ $("mine").textContent = fmt(Number(data.personal || 0) + getPending());
  const pct = Math.min(100, total / TARGET * 100);
  $("fill").style.width = pct + "%";
  $("progressText").textContent = pct.toFixed(2) + "% நிறைவு · " + fmt(Math.max(0, TARGET-total)) + " மீதம்";
@@ -101,7 +99,7 @@ async function refresh(showStatus=true) {
   if (showStatus) $("status").textContent = getPending() ? "இணைக்கப்பட்டுள்ளது · ஒத்திசைக்க வேண்டிய எண்ணிக்கை: " + fmt(getPending()) : "Live கணக்கு இணைக்கப்பட்டுள்ளது";
  } catch(e) {
   $("status").textContent = navigator.onLine ? "Live கணக்கை ஏற்ற முடியவில்லை. உங்கள் offline எண்ணிக்கை இந்த browser-ல் சேமிக்கப்படும்." : "Offline mode · சேமித்த எண்ணிக்கை: " + fmt(getPending());
-  $("mine").textContent = fmt(localMine + getPending());
+  $("mine").textContent = fmt(getPending());
   console.error(e);
  }
 }
@@ -115,7 +113,7 @@ async function addCount(amount) {
  if (!navigator.onLine) {
   setPending(getPending()+amount);
   $("status").textContent = fmt(amount) + " offline எண்ணிக்கை சேமிக்கப்பட்டது. இணையம் வந்ததும் ஒத்திசைக்கப்படும்.";
-  $("mine").textContent = fmt(localMine+getPending());
+  $("mine").textContent = fmt(getPending());
   return;
  }
  busy = true;
@@ -127,15 +125,11 @@ async function addCount(amount) {
    await api("/api/tap",{visitorId});
    succeeded++;
   }
-  localMine += succeeded;
-  localStorage.setItem(MINE_KEY,String(localMine));
   $("status").textContent = fmt(succeeded) + " ஸலவாத்துகள் பொதுக் கணக்கில் சேர்க்கப்பட்டன ✓";
   if ("vibrate" in navigator) navigator.vibrate(20);
  } catch(e) {
   const remaining = amount-succeeded;
   if (remaining>0) setPending(getPending()+remaining);
-  localMine += succeeded;
-  localStorage.setItem(MINE_KEY,String(localMine));
   $("status").textContent = succeeded ? fmt(succeeded)+" சேர்க்கப்பட்டன; மீதமுள்ள "+fmt(remaining)+" எண்ணிக்கை ஒத்திசைவுக்காகச் சேமிக்கப்பட்டது." : "சேவை கிடைக்கவில்லை. "+fmt(amount)+" எண்ணிக்கை offline-ல் சேமிக்கப்பட்டது.";
   console.error("Batch add:",e);
  } finally {
