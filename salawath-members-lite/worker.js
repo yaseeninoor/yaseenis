@@ -34,22 +34,23 @@ export default {
         const deviceId = String(body.deviceId || "");
         if (name.length < 2) return json({ error: "Please enter a name with at least 2 characters." }, 400, headers);
         if (!validDeviceId(deviceId)) return json({ error: "Invalid device ID. Refresh the page and try again." }, 400, headers);
-        let member = await env.MEMBER_DB.prepare("SELECT id, display_name, session_hash FROM members WHERE device_id = ?").bind(deviceId).first();
+        let member = await env.MEMBER_DB.prepare("SELECT id, display_name FROM members WHERE device_id = ?").bind(deviceId).first();
+        const token = crypto.randomUUID() + crypto.randomUUID();
+        const sessionHash = await hashToken(token);
         if (!member) {
           const id = crypto.randomUUID();
-          const token = crypto.randomUUID() + crypto.randomUUID();
-          const sessionHash = await hashToken(token);
           try {
             await env.MEMBER_DB.prepare("INSERT INTO members (id, display_name, device_id, session_hash, session_expires_at, created_at) VALUES (?, ?, ?, ?, datetime('now', '+30 days'), datetime('now'))").bind(id, name, deviceId, sessionHash).run();
+            member = { id, display_name: name };
           } catch (e) {
-            // Unique device_id prevents concurrent duplicate registrations.
+            // Another request may have registered this device at the same time.
             member = await env.MEMBER_DB.prepare("SELECT id, display_name FROM members WHERE device_id = ?").bind(deviceId).first();
             if (!member) throw e;
           }
-          if (!member) return json({ ok: true, token, user: { id, name } }, 200, headers);
         }
-        // Existing device keeps its original profile and session; do not silently switch identity.
-        return json({ error: "This device is already registered. Continue with the saved account on this browser." }, 409, headers);
+        // Name-only flow: re-issuing a session on this browser avoids a separate login screen.
+        await env.MEMBER_DB.prepare("UPDATE members SET session_hash = ?, session_expires_at = datetime('now', '+30 days') WHERE id = ?").bind(sessionHash, member.id).run();
+        return json({ ok: true, token, user: { id: member.id, name: member.display_name } }, 200, headers);
       }
       if (request.method === "POST" && url.pathname === "/login") {
         const body = await request.json();
