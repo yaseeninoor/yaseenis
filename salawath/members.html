@@ -20,6 +20,7 @@ main{max-width:560px;margin:auto}.card{border:1px solid var(--gold);border-radiu
 <p id="welcome" class="intro"></p>
 <div class="stats"><div class="stat"><small>இன்று · Today</small><div class="num" id="today">0</div></div><div class="stat"><small>மொத்தம் · Total</small><div class="num" id="total">0</div></div></div>
 <button id="tap" class="primary">ஸலவாத் ஓதினேன் · +1</button>
+<div style="margin-top:12px"><label for="customAmount">Custom Count · விருப்ப எண்ணிக்கை (1–10,000)</label><input id="customAmount" type="number" min="1" max="10000" step="1" inputmode="numeric" placeholder="எண்ணிக்கையை உள்ளிடவும்"><button id="customAdd" class="primary">எண்ணிக்கையைச் சேர்க்கவும்</button></div>
 <div class="actions"><button id="refresh" class="secondary">புதுப்பி</button><button id="logout" class="secondary">இந்த browser-ல் வெளியேறு</button></div>
 <h3>📅 தினசரி வரலாறு</h3><table class="history"><thead><tr><th>தேதி</th><th>எண்ணிக்கை</th></tr></thead><tbody id="history"></tbody></table>
 </div>
@@ -28,7 +29,7 @@ main{max-width:560px;margin:auto}.card{border:1px solid var(--gold);border-radiu
 </section><a class="back" href="./">← பொது Live Counter-க்கு திரும்பவும்</a></main>
 <script>
 (() => {
- const API = "SET_MEMBER_WORKER_URL_HERE";
+ const API = "https://yaseenis-salawath-name-members.yaseeninoor.workers.dev";
  const $ = id => document.getElementById(id);
  const show = (id, yes) => $(id).classList.toggle("hidden", !yes);
  const setStatus = text => $("status").textContent = text;
@@ -69,11 +70,18 @@ main{max-width:560px;margin:auto}.card{border:1px solid var(--gold);border-radiu
    catch(e) { setStatus(e.message); }
    finally { $("register").disabled = false; }
  });
- $("tap").addEventListener("click", async () => {
-   $("tap").disabled = true;
-   try { await api("/count", "POST", {}); await refresh(); setStatus("உங்கள் எண்ணிக்கை சேமிக்கப்பட்டது ✓"); }
-   catch(e) { setStatus(e.message); }
-   finally { $("tap").disabled = false; }
+ async function addMemberCount(amount) {
+  if (!Number.isSafeInteger(amount) || amount < 1 || amount > 10000) { setStatus("1 முதல் 10,000 வரை எண்ணிக்கையை உள்ளிடவும்."); return; }
+  $("tap").disabled = true; $("customAdd").disabled = true;
+  try { await api("/count", "POST", { amount }); await refresh(); setStatus(amount + " ஸலவாத்துகள் சேமிக்கப்பட்டன ✓"); }
+  catch(e) { setStatus(e.message); }
+  finally { $("tap").disabled = false; $("customAdd").disabled = false; }
+}
+$("customAdd").addEventListener("click", async () => { const input = $("customAmount"); const amount = Number(input.value); await addMemberCount(amount); if (amount >= 1 && amount <= 10000) input.value = ""; });
+$("customAmount").addEventListener("keydown", e => { if (e.key === "Enter") $("customAdd").click(); });
+
+$("tap").addEventListener("click", async () => {
+   await addMemberCount(1);
  });
  $("refresh").addEventListener("click", async () => { try { await refresh(); setStatus("புதுப்பிக்கப்பட்டது."); } catch(e) { setStatus(e.message); } });
  $("logout").addEventListener("click", () => { localStorage.removeItem("yaseeni_salawath_member_token"); sessionStorage.removeItem("yaseeni_salawath_member_token"); token=""; show("accountPanel", false); show("registerPanel", true); setStatus("இந்த browser-ல் வெளியேறிவிட்டீர்கள். பதிவு செய்யப்பட்ட device ID இன்னும் இந்த browser-ல் உள்ளது."); });
