@@ -15,7 +15,6 @@ main{max-width:560px;margin:auto}.card{border:1px solid var(--gold);border-radiu
 <div id="registerPanel">
 <label for="name">உங்கள் பெயர்</label><input id="name" maxlength="60" autocomplete="name" placeholder="எ.கா. Noor Yaseeni">
 <button id="register" class="primary">இலவசமாக பதிவு செய்யவும்</button>
-<button id="login" class="primary secondary">இந்த சாதனத்தில் ஏற்கெனவே பதிவு செய்துள்ளேன்</button>
 </div>
 <div id="accountPanel" class="hidden">
 <p id="welcome" class="intro"></p>
@@ -66,15 +65,9 @@ main{max-width:560px;margin:auto}.card{border:1px solid var(--gold);border-radiu
    const name = $("name").value.trim();
    if (name.length < 2) { setStatus("தயவுசெய்து உங்கள் பெயரை உள்ளிடவும்."); return; }
    $("register").disabled = true;
-   try { const data = await api("/register", "POST", { name, deviceId }); await enterAccount(data); setStatus("கணக்கு உருவாக்கப்பட்டது."); }
+   try { const data = await api("/register", "POST", { name, deviceId }); await enterAccount(data); setStatus("உங்கள் பெயர் பதிவு செய்யப்பட்டது."); }
    catch(e) { setStatus(e.message); }
    finally { $("register").disabled = false; }
- });
- $("login").addEventListener("click", async () => {
-   $("login").disabled = true;
-   try { const data = await api("/login", "POST", { deviceId }); await enterAccount(data); setStatus("மீண்டும் வரவேற்கிறோம்."); }
-   catch(e) { setStatus(e.message); }
-   finally { $("login").disabled = false; }
  });
  $("tap").addEventListener("click", async () => {
    $("tap").disabled = true;
