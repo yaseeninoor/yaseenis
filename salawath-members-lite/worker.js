@@ -34,6 +34,11 @@ export default {
         const deviceId = String(body.deviceId || "");
         if (name.length < 2) return json({ error: "Please enter a name with at least 2 characters." }, 400, headers);
         if (!validDeviceId(deviceId)) return json({ error: "Invalid device ID. Refresh the page and try again." }, 400, headers);
+        const visitorId = String(body.visitorId || deviceId);
+        if (!validDeviceId(visitorId)) return json({ error: "Invalid Visitor ID. Refresh the page and try again." }, 400, headers);
+        if (!env.DB) return json({ error: "Public Salawath D1 binding DB is missing on this Worker. Add DB binding to the same database used by the public counter." }, 503, headers);
+        const oldVisitor = await env.DB.prepare("SELECT visitor_id FROM salawath_visitors WHERE visitor_id = ?").bind(visitorId).first();
+        if (!oldVisitor) return json({ error: "This Visitor ID has no existing public Salawath record yet. Open the public counter and tap Salawath once, then retry." }, 404, headers);
         let member = await env.MEMBER_DB.prepare("SELECT id, display_name FROM members WHERE device_id = ?").bind(deviceId).first();
         const token = crypto.randomUUID() + crypto.randomUUID();
         const sessionHash = await hashToken(token);
@@ -48,9 +53,12 @@ export default {
             if (!member) throw e;
           }
         }
+        // Link the existing public Visitor ID to the name without changing its historical count.
+        await env.DB.prepare("UPDATE salawath_visitors SET display_name = ?, updated_at = datetime('now') WHERE visitor_id = ?").bind(name, visitorId).run();
+        await env.MEMBER_DB.prepare("UPDATE members SET display_name = ? WHERE id = ?").bind(name, member.id).run();
         // Name-only flow: re-issuing a session on this browser avoids a separate login screen.
         await env.MEMBER_DB.prepare("UPDATE members SET session_hash = ?, session_expires_at = datetime('now', '+30 days') WHERE id = ?").bind(sessionHash, member.id).run();
-        return json({ ok: true, token, user: { id: member.id, name: member.display_name } }, 200, headers);
+        return json({ ok: true, token, user: { id: member.id, name } }, 200, headers);
       }
       if (request.method === "POST" && url.pathname === "/login") {
         const body = await request.json();
