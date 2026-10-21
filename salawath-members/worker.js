@@ -4,8 +4,8 @@ const SESSION_TTL_SECONDS = 60 * 60 * 24 * 30;
 const MAX_OTP_ATTEMPTS = 5;
 const MIN_RESEND_SECONDS = 60;
 
-function json(data, status = 200) {
-  return new Response(JSON.stringify(data), { status, headers: JSON_HEADERS });
+function json(data, status = 200, extraHeaders = JSON_HEADERS) {
+  return new Response(JSON.stringify(data), { status, headers: extraHeaders });
 }
 function randomDigits(length = 6) {
   const values = new Uint32Array(length);
