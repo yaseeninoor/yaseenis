@@ -49,10 +49,14 @@ const PENDING_KEY = "yaseeni_salawath_pending_v1";
 const getPending = () => Math.max(0, Number(localStorage.getItem(PENDING_KEY) || 0));
 const setPending = n => localStorage.setItem(PENDING_KEY, String(Math.max(0, n)));
 let busy = false;
+const LOCAL_PERSONAL_KEY = "yaseeni_salawath_personal_v1";
+const getLocalPersonal = () => Math.max(0, Number(localStorage.getItem(LOCAL_PERSONAL_KEY) || 0));
+const setLocalPersonal = n => localStorage.setItem(LOCAL_PERSONAL_KEY, String(Math.max(0, n)));
 function render(data) {
  const total = Number(data.total || 0);
  $("total").textContent = fmt(total);
- $("mine").textContent = fmt(Number(data.personal || 0) + getPending());
+ // Show this browser's own tap count, rather than the server's potentially duplicated personal aggregate.
+ $("mine").textContent = fmt(getLocalPersonal());
  const pct = Math.min(100, total / TARGET * 100);
  $("fill").style.width = pct + "%";
  $("progressText").textContent = pct.toFixed(2) + "% நிறைவு · " + fmt(Math.max(0, TARGET-total)) + " மீதம்";
@@ -99,7 +103,7 @@ async function refresh(showStatus=true) {
   if (showStatus) $("status").textContent = getPending() ? "இணைக்கப்பட்டுள்ளது · ஒத்திசைக்க வேண்டிய எண்ணிக்கை: " + fmt(getPending()) : "Live கணக்கு இணைக்கப்பட்டுள்ளது";
  } catch(e) {
   $("status").textContent = navigator.onLine ? "Live கணக்கை ஏற்ற முடியவில்லை. உங்கள் offline எண்ணிக்கை இந்த browser-ல் சேமிக்கப்படும்." : "Offline mode · சேமித்த எண்ணிக்கை: " + fmt(getPending());
-  $("mine").textContent = fmt(getPending());
+  $("mine").textContent = fmt(getLocalPersonal());
   console.error(e);
  }
 }
@@ -112,8 +116,9 @@ async function addCount(amount) {
  if (busy) return;
  if (!navigator.onLine) {
   setPending(getPending()+amount);
+  setLocalPersonal(getLocalPersonal()+amount);
   $("status").textContent = fmt(amount) + " offline எண்ணிக்கை சேமிக்கப்பட்டது. இணையம் வந்ததும் ஒத்திசைக்கப்படும்.";
-  $("mine").textContent = fmt(getPending());
+  $("mine").textContent = fmt(getLocalPersonal());
   return;
  }
  busy = true;
@@ -124,12 +129,17 @@ async function addCount(amount) {
   for (let i=0;i<amount;i++) {
    await api("/api/tap",{visitorId});
    succeeded++;
+   setLocalPersonal(getLocalPersonal()+1);
+   $("mine").textContent = fmt(getLocalPersonal());
   }
   $("status").textContent = fmt(succeeded) + " ஸலவாத்துகள் பொதுக் கணக்கில் சேர்க்கப்பட்டன ✓";
   if ("vibrate" in navigator) navigator.vibrate(20);
  } catch(e) {
   const remaining = amount-succeeded;
-  if (remaining>0) setPending(getPending()+remaining);
+  if (remaining>0) {
+   setPending(getPending()+remaining);
+   setLocalPersonal(getLocalPersonal()+remaining);
+  }
   $("status").textContent = succeeded ? fmt(succeeded)+" சேர்க்கப்பட்டன; மீதமுள்ள "+fmt(remaining)+" எண்ணிக்கை ஒத்திசைவுக்காகச் சேமிக்கப்பட்டது." : "சேவை கிடைக்கவில்லை. "+fmt(amount)+" எண்ணிக்கை offline-ல் சேமிக்கப்பட்டது.";
   console.error("Batch add:",e);
  } finally {
