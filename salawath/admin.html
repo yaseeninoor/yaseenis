@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#064b2c">
+<title>Salawath Admin | Yaseenis</title>
+<style>
+:root{--green:#064b2c;--deep:#032c1b;--gold:#e8c66b;--cream:#fff8e7}
+*{box-sizing:border-box}body{margin:0;padding:18px 12px;background:linear-gradient(160deg,var(--deep),var(--green));color:var(--cream);font-family:system-ui,-apple-system,"Noto Sans Tamil",Arial,sans-serif}
+main{max-width:760px;margin:auto}.card{background:#002313d9;border:1px solid var(--gold);border-radius:18px;padding:18px;margin-bottom:16px}
+h1,h2{color:var(--gold)}h1{font-size:25px}h2{font-size:19px}
+input,button{font:inherit;border-radius:10px;padding:12px;width:100%;margin:5px 0}
+input{border:1px solid var(--gold);background:#fff;color:#123}button{border:0;background:var(--gold);color:#14251b;font-weight:700}
+.small{font-size:13px;color:#e8dfc5;line-height:1.7}.user{padding:12px 0;border-bottom:1px solid #ffffff30;overflow-wrap:anywhere}.user:last-child{border:0}.user strong{color:var(--gold)}
+.row{display:grid;grid-template-columns:1fr;gap:6px}@media(min-width:520px){.row{grid-template-columns:1fr 1fr}}
+a{color:#ffe9a2}
+</style>
+</head>
+<body><main>
+<section class="card">
+<h1>🔐 Yaseenis Salawath Admin</h1>
+<p class="small">ADMIN_TOKEN-ஐ Worker Secret ஆக அமைத்த அதே token-ஐ இங்கே உள்ளிடவும். இது இந்தப் பக்கத்தில் சேமிக்கப்படாது. Token-ஐ யாரிடமும் பகிர வேண்டாம்.</p>
+<input id="token" type="password" autocomplete="off" placeholder="Admin token">
+<button id="load">பழைய பயனர்களைப் பெறுக</button>
+<div id="status" class="small" role="status"></div>
+</section>
+<section class="card">
+<h2>பழைய Visitor ID-க்கு பெயர் இணைக்கவும்</h2>
+<p class="small">கீழே உள்ள பட்டியலில் இருந்து Visitor ID-ஐத் தேர்வு செய்து, சரியான பெயரை உள்ளிட்டு இணைக்கவும். எண்ணிக்கை மாற்றப்படாது.</p>
+<input id="visitorId" placeholder="Visitor ID">
+<input id="name" maxlength="60" placeholder="பெயர் (எ.கா. Noor Yaseeni)">
+<button id="link">பெயரை இணைக்கவும்</button>
+</section>
+<section class="card">
+<h2>பழைய பயனர்கள் · எண்ணிக்கைகள்</h2>
+<div id="users" class="small">முதலில் Admin token கொண்டு பட்டியலை ஏற்றவும்.</div>
+</section>
+<p class="small"><a href="index.html">← பொது ஸலவாத்து கவுண்டருக்குத் திரும்பவும்</a></p>
+</main>
+<script>
+(() => {
+"use strict";
+const API = "https://yaseenis-salawath-api.yaseeninoor.workers.dev";
+const $ = id => document.getElementById(id);
+const fmt = n => Number(n || 0).toLocaleString("en-US");
+async function call(path, method = "GET", body) {
+ const headers = {"Accept":"application/json","X-Admin-Token":$("token").value.trim()};
+ if (body) headers["Content-Type"] = "application/json";
+ const res = await fetch(API + path, {method, headers, body: body ? JSON.stringify(body) : undefined});
+ const data = await res.json().catch(()=>({}));
+ if (!res.ok) throw new Error(data.error || "Request failed");
+ return data;
+}
+async function loadUsers() {
+ $("status").textContent = "பட்டியலை ஏற்றுகிறது…";
+ try {
+  const data = await call("/api/admin/users");
+  const users = data.users || [];
+  $("users").replaceChildren();
+  if (!users.length) $("users").textContent = "பயனர்கள் கிடைக்கவில்லை.";
+  users.forEach(user => {
+   const row = document.createElement("div"); row.className = "user";
+   const name = document.createElement("div");
+   name.textContent = (user.name || "பெயர் பதிவு செய்யப்படவில்லை") + " · " + fmt(user.count);
+   const id = document.createElement("div"); id.textContent = "ID: " + user.visitorId;
+   const choose = document.createElement("button"); choose.textContent = "இந்த ID-ஐத் தேர்வு செய்";
+   choose.addEventListener("click", () => { $("visitorId").value = user.visitorId; $("name").value = user.name || ""; window.scrollTo({top:0,behavior:"smooth"}); });
+   row.append(name,id,choose); $("users").append(row);
+  });
+  $("status").textContent = "பயனர்கள் ஏற்றப்பட்டனர்: " + users.length;
+ } catch(e) {
+  $("status").textContent = "பிழை: " + e.message + " — ADMIN_TOKEN மற்றும் Worker Deploy-ஐச் சரிபார்க்கவும்.";
+ }
+}
+async function linkName() {
+ const visitorId = $("visitorId").value.trim();
+ const name = $("name").value.trim();
+ if (!visitorId || name.length < 2) { $("status").textContent = "Visitor ID மற்றும் சரியான பெயரை உள்ளிடவும்."; return; }
+ $("link").disabled = true;
+ try {
+  const result = await call("/api/admin/link","POST",{visitorId,name});
+  $("status").textContent = "பெயர் இணைக்கப்பட்டது: " + result.user.name + " · எண்ணிக்கை " + fmt(result.user.count) + " (மாற்றப்படவில்லை)";
+  await loadUsers();
+ } catch(e) { $("status").textContent = "பெயரை இணைக்க முடியவில்லை: " + e.message; }
+ finally { $("link").disabled = false; }
+}
+$("load").addEventListener("click",loadUsers);
+$("link").addEventListener("click",linkName);
+})();
+</script></body></html>
