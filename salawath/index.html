@@ -138,7 +138,13 @@ async function addCount(amount) {
   await refresh(false);
  }
 }
-$("tap").addEventListener("click",()=>addCount(1));
+let lastTapClickAt = 0;
+$("tap").addEventListener("click",()=>{
+ const now = Date.now();
+ if (now - lastTapClickAt < 350) return; // Ignore duplicate click events from one physical tap.
+ lastTapClickAt = now;
+ addCount(1);
+});
 document.querySelectorAll("[data-add]").forEach(btn=>btn.addEventListener("click",()=>addCount(Number(btn.dataset.add))));
 $("customAdd").addEventListener("click",()=>{
  const input=$("customCount");
