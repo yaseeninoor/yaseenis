@@ -144,23 +144,6 @@ $("tap").addEventListener("click", async (event)=>{
  try { await addCount(1); } finally { tapInFlight = false; }
 });
 
-async function registerName() {
- const name = $("registerName").value.trim();
- if (name.length < 2) { $("nameStatus").textContent = "குறைந்தது 2 எழுத்துகள் உள்ள பெயரை உள்ளிடவும்."; return; }
- $("registerBtn").disabled = true;
- $("nameStatus").textContent = "பெயரைச் சேமிக்கிறது…";
- try {
-  const result = await api("/api/register", {visitorId, name});
-  $("registerName").value = result.name || name;
-  localStorage.setItem("yaseeni_salawath_registered_name_v1", result.name || name);
-  $("nameModal").classList.remove("show");
-  $("nameStatus").textContent = "பெயர் வெற்றிகரமாகப் பதிவு செய்யப்பட்டது ✓";
-  await loadLeaderboard();
- } catch(e) {
-  $("nameStatus").textContent = "பெயரைப் பதிவு செய்ய முடியவில்லை. Worker புதுப்பிக்கப்பட்டுள்ளதா எனச் சரிபார்க்கவும்.";
-  console.error(e);
- } finally { $("registerBtn").disabled = false; }
-}
 async function loadLeaderboard() {
  const list = $("leaderboardList");
  try {
@@ -189,9 +172,7 @@ async function registerPopupName() {
   const result = await api("/api/register", {visitorId, name});
   const savedName = result.name || name;
   localStorage.setItem("yaseeni_salawath_registered_name_v1", savedName);
-  $("registerName").value = savedName;
   $("nameModal").classList.remove("show");
-  $("nameStatus").textContent = "பெயர் வெற்றிகரமாகப் பதிவு செய்யப்பட்டது ✓";
   $("popupNameStatus").textContent = "பெயர் பதிவு செய்யப்பட்டது ✓";
   await loadLeaderboard();
  } catch(e) { $("popupNameStatus").textContent = "பதிவு செய்ய முடியவில்லை. மீண்டும் முயற்சிக்கவும்."; console.error(e); }
@@ -200,8 +181,6 @@ async function registerPopupName() {
 $("popupRegisterBtn").addEventListener("click", registerPopupName);
 $("popupRegisterName").addEventListener("keydown", e => { if(e.key === "Enter") registerPopupName(); });
 $("popupLaterBtn").addEventListener("click", () => { $("nameModal").classList.remove("show"); });
-$("registerBtn").addEventListener("click", registerName);
-$("registerName").addEventListener("keydown", e => { if (e.key === "Enter") registerName(); });
 $("leaderboardRefresh").addEventListener("click", loadLeaderboard);
 $("refresh").addEventListener("click",()=>refresh(true));
 $("share").addEventListener("click",async()=>{
