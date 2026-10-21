@@ -211,9 +211,18 @@ $("share").addEventListener("click",async()=>{
 });
 refresh();
 loadLeaderboard();
-// Remind each browser until its own Visitor ID has a locally confirmed name.
-if (!localStorage.getItem("yaseeni_salawath_registered_name_v1")) {
- setTimeout(() => { if (!localStorage.getItem("yaseeni_salawath_registered_name_v1")) { $("nameModal").classList.add("show"); $("popupRegisterName").focus({preventScroll:true}); } }, 900);
+// Show the name-registration popup only once per browser.
+const NAME_POPUP_SEEN_KEY = "yaseeni_salawath_name_popup_seen_v1";
+if (!localStorage.getItem("yaseeni_salawath_registered_name_v1") &&
+    !localStorage.getItem(NAME_POPUP_SEEN_KEY)) {
+ setTimeout(() => {
+  if (!localStorage.getItem("yaseeni_salawath_registered_name_v1") &&
+      !localStorage.getItem(NAME_POPUP_SEEN_KEY)) {
+   localStorage.setItem(NAME_POPUP_SEEN_KEY, "1");
+   $("nameModal").classList.add("show");
+   $("popupRegisterName").focus({preventScroll:true});
+  }
+ }, 900);
 }
 setInterval(()=>{if(navigator.onLine){refresh(false);loadLeaderboard();}},30000);
 })();
