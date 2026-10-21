@@ -73,11 +73,14 @@ export default {
       if (request.method === "POST" && url.pathname === "/count") {
         const user = await sessionUser(request, env);
         if (!user) return json({ error: "Sign in required" }, 401, headers);
+        const body = await request.json().catch(() => ({}));
+        const amount = body.amount === undefined ? 1 : Number(body.amount);
+        if (!Number.isSafeInteger(amount) || amount < 1 || amount > 10000) return json({ error: "Count amount must be an integer from 1 to 10000." }, 400, headers);
         const date = localDate(env);
-        await env.MEMBER_DB.prepare("INSERT INTO daily_counts (member_id, count_date, count) VALUES (?, ?, 1) ON CONFLICT(member_id, count_date) DO UPDATE SET count = count + 1").bind(user.id, date).run();
+        await env.MEMBER_DB.prepare("INSERT INTO daily_counts (member_id, count_date, count) VALUES (?, ?, ?) ON CONFLICT(member_id, count_date) DO UPDATE SET count = count + excluded.count").bind(user.id, date, amount).run();
         const day = await env.MEMBER_DB.prepare("SELECT count FROM daily_counts WHERE member_id = ? AND count_date = ?").bind(user.id, date).first();
         const total = await env.MEMBER_DB.prepare("SELECT COALESCE(SUM(count),0) AS total FROM daily_counts WHERE member_id = ?").bind(user.id).first();
-        return json({ ok: true, date, today: Number(day.count), total: Number(total.total) }, 200, headers);
+        return json({ ok: true, date, added: amount, today: Number(day.count), total: Number(total.total) }, 200, headers);
       }
       if (request.method === "GET" && url.pathname === "/history") {
         const user = await sessionUser(request, env);
