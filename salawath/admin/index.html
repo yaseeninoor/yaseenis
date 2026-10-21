@@ -33,6 +33,14 @@ a{color:#ffe9a2}
 <button id="link">பெயரை இணைக்கவும்</button>
 </section>
 <section class="card">
+<h2>பயனரின் எண்ணிக்கையை மாற்றவும் · Admin Only</h2>
+<p class="small">பயனரை மேலுள்ள பட்டியலில் தேர்வு செய்து Visitor ID-ஐ நிரப்பவும். புதிய எண்ணிக்கையை உள்ளிட்டு சேமிக்கவும். Public total-லும் வித்தியாசம் சரிசெய்யப்படும்.</p>
+<input id="editVisitorId" placeholder="Visitor ID">
+<input id="newCount" type="number" min="0" max="1000000000" step="1" inputmode="numeric" placeholder="புதிய எண்ணிக்கை (எ.கா. 86)">
+<button id="saveCount">எண்ணிக்கையை மாற்றவும்</button>
+<div id="editStatus" class="small" role="status"></div>
+</section>
+<section class="card">
 <h2>பழைய பயனர்கள் · எண்ணிக்கைகள்</h2>
 <div id="users" class="small">முதலில் Admin token கொண்டு பட்டியலை ஏற்றவும்.</div>
 </section>
@@ -65,7 +73,7 @@ async function loadUsers() {
    name.textContent = (user.name || "பெயர் பதிவு செய்யப்படவில்லை") + " · " + fmt(user.count);
    const id = document.createElement("div"); id.textContent = "ID: " + user.visitorId;
    const choose = document.createElement("button"); choose.textContent = "இந்த ID-ஐத் தேர்வு செய்";
-   choose.addEventListener("click", () => { $("visitorId").value = user.visitorId; $("name").value = user.name || ""; window.scrollTo({top:0,behavior:"smooth"}); });
+   choose.addEventListener("click", () => { $("visitorId").value = user.visitorId; $("name").value = user.name || ""; $("editVisitorId").value = user.visitorId; $("newCount").value = Number(user.count || 0); window.scrollTo({top:0,behavior:"smooth"}); });
    row.append(name,id,choose); $("users").append(row);
   });
   $("status").textContent = "பயனர்கள் ஏற்றப்பட்டனர்: " + users.length;
@@ -85,6 +93,26 @@ async function linkName() {
  } catch(e) { $("status").textContent = "பெயரை இணைக்க முடியவில்லை: " + e.message; }
  finally { $("link").disabled = false; }
 }
+async function saveCount() {
+ const visitorId = $("editVisitorId").value.trim();
+ const raw = $("newCount").value;
+ const count = Number(raw);
+ if (!visitorId || raw === "" || !Number.isSafeInteger(count) || count < 0 || count > 1000000000) {
+  $("editStatus").textContent = "Visitor ID மற்றும் 0 அல்லது அதற்கு மேற்பட்ட சரியான முழு எண்ணிக்கையை உள்ளிடவும்.";
+  return;
+ }
+ if (!confirm("இந்த Visitor ID-யின் எண்ணிக்கையை " + count.toLocaleString("en-US") + " ஆக மாற்றவா? பொது மொத்தமும் வித்தியாசத்துக்கு ஏற்ப மாறும்.")) return;
+ $("saveCount").disabled = true; $("editStatus").textContent = "சேமிக்கிறது…";
+ try {
+  const result = await call("/api/admin/set-count","POST",{visitorId,count});
+  $("editStatus").textContent = "மாற்றப்பட்டது ✓ பழைய எண்ணிக்கை: " + fmt(result.oldCount) + " · புதியது: " + fmt(result.count) + " · பொது மொத்தம்: " + fmt(result.total);
+  await loadUsers();
+ } catch(e) {
+  $("editStatus").textContent = "மாற்ற முடியவில்லை: " + e.message + ". Worker-ல் /api/admin/set-count endpoint deploy செய்யப்பட்டுள்ளதா எனச் சரிபார்க்கவும்.";
+ }
+ finally { $("saveCount").disabled = false; }
+}
+$("saveCount").addEventListener("click",saveCount);
 $("load").addEventListener("click",loadUsers);
 $("link").addEventListener("click",linkName);
 })();
