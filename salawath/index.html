@@ -40,7 +40,25 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 
 
 
-</style>
+
+/* Compact Daily Report — responsive, screenshot-inspired emerald & gold */
+.daily-report{margin:20px 0 4px;padding:18px 14px;border:1px solid #e8c66b88;border-radius:22px;text-align:left;background:linear-gradient(150deg,#06392fe8,#011e19f2);box-shadow:inset 0 1px 0 #ffffff12}
+.daily-report h2{margin:0 0 15px;color:var(--gold);font-size:clamp(22px,5.5vw,29px)}
+.report-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.report-stat{min-width:0;min-height:104px;padding:14px 13px;border:1px solid #e8c66b70;border-radius:18px;background:#ffffff09;display:flex;flex-direction:column;justify-content:space-between}
+.report-label{font-size:clamp(13px,3.7vw,17px);line-height:1.55;color:#f6ecd1;overflow-wrap:anywhere}
+.report-value{font-size:clamp(30px,8vw,43px);line-height:1.1;font-weight:850;color:var(--gold);font-variant-numeric:tabular-nums}
+.report-subcard{margin-top:13px;padding:14px 13px;border:1px solid #e8c66b60;border-radius:18px;background:#ffffff06}
+.report-subcard h3{margin:0 0 10px;font-size:clamp(18px,4.6vw,23px);color:var(--gold)}
+.report-person{padding:10px 0;border-bottom:1px solid #ffffff20;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;font-size:14px;line-height:1.7}
+.report-person:last-child{border-bottom:0}
+.report-person-name{min-width:0;overflow-wrap:anywhere;color:#f6ecd1}
+.report-person-count{flex-shrink:0;color:var(--gold);font-weight:850}
+.report-time{display:block;color:#e4d6ad;font-size:12px;margin-top:3px}
+.report-status{text-align:center;color:#e4d6ad;font-size:12px;line-height:1.7;margin:12px 0 0;overflow-wrap:anywhere}
+.report-refresh{display:block;margin:10px auto 0}
+@media(min-width:480px){.daily-report{padding:22px 18px}.report-stat{min-height:116px;padding:16px}.report-person{font-size:15px}}
+\n</style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
 <img class="event-poster" src="https://raw.githubusercontent.com/yaseeninoor/yaseenis/main/yaseenis/uroos-mubarak-poster.jpg" alt="உரூஸ் முபாரக் — 3-ஆம் ஆண்டு கந்தூரி விழா" loading="eager">
@@ -56,7 +74,27 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
   <h2>🏆 ஸலவாத்து Leaderboard</h2>
   <div id="leaderboardList" class="muted">பட்டியலை ஏற்றுகிறது…</div>
   <div style="text-align:center;margin-top:10px"><button class="small" id="leaderboardRefresh" type="button">பட்டியலைப் புதுப்பி</button></div>
-</div><div class="status" id="status" role="status"></div>
+</div>
+<section class="daily-report" id="dailyReport" aria-labelledby="dailyReportTitle">
+ <h2 id="dailyReportTitle">📊 Daily Report · தினசரி அறிக்கை</h2>
+ <div class="report-grid">
+  <div class="report-stat"><div class="report-label">இன்றைய ஸலவாத்து</div><div class="report-value" id="reportTotal">—</div></div>
+  <div class="report-stat"><div class="report-label">தனிப்பட்ட Visitors</div><div class="report-value" id="reportVisitors">—</div></div>
+  <div class="report-stat"><div class="report-label">🟢 Online இப்போது</div><div class="report-value" id="reportOnline">—</div></div>
+  <div class="report-stat"><div class="report-label">Tap Events</div><div class="report-value" id="reportTaps">—</div></div>
+ </div>
+ <div class="report-subcard">
+  <h3>🟢 Online Visitors</h3>
+  <div id="reportOnlineList" class="muted">அறிக்கை ஏற்றப்படுகிறது…</div>
+ </div>
+ <div class="report-subcard">
+  <h3>🏆 Daily Top Users</h3>
+  <div id="reportTopUsers" class="muted">பட்டியலை ஏற்றுகிறது…</div>
+ </div>
+ <div class="report-status" id="reportStatus" role="status">தானாகப் புதுப்பிக்கப்படுகிறது…</div>
+ <button class="small report-refresh" id="reportRefresh" type="button">↻ அறிக்கையைப் புதுப்பி</button>
+</section>
+<div class="status" id="status" role="status"></div>
 <div class="notice">ஒவ்வொரு முறை ஸலவாத் ஓதியதும் பட்டனை ஒருமுறை தட்டவும்.<br>பொது எண்ணிக்கை அனைவருக்கும் ஒரே Database-ல் சேமிக்கப்படும். இணைய இணைப்பு தேவை.</div>
 </section>
 
@@ -196,7 +234,58 @@ $("tap").addEventListener("click", async (event)=>{
  try { await addCount(1); } finally { tapInFlight = false; }
 });
 
-async function loadLeaderboard() {
+
+async function loadDailyReport() {
+ const status = $("reportStatus");
+ const reportUrl = ANALYTICS_API_BASE.replace(/\\/+$/,"") + "/api/public/report";
+ try {
+  const response = await fetch(reportUrl, {headers:{"Accept":"application/json"}, cache:"no-store"});
+  const data = await response.json().catch(()=>({}));
+  if (!response.ok) throw new Error(data.error || ("HTTP " + response.status));
+  $("reportTotal").textContent = fmt(data.totalSalawath);
+  $("reportVisitors").textContent = fmt(data.uniqueVisitors);
+  $("reportOnline").textContent = fmt(data.onlineNow);
+  $("reportTaps").textContent = fmt(data.tapEvents);
+  const onlineList = $("reportOnlineList");
+  onlineList.replaceChildren();
+  const visitors = Array.isArray(data.onlineVisitors) ? data.onlineVisitors : [];
+  if (!visitors.length) {
+   onlineList.textContent = "இப்போது யாரும் Online இல்லை.";
+  } else {
+   visitors.slice(0,5).forEach((person, index) => {
+    const row = document.createElement("div"); row.className = "report-person";
+    const nameWrap = document.createElement("span"); nameWrap.className = "report-person-name";
+    nameWrap.textContent = person.name || "பெயர் பதிவு செய்யவில்லை";
+    const time = document.createElement("span"); time.className = "report-time";
+    const date = person.lastSeen ? new Date(person.lastSeen) : null;
+    time.textContent = date && !Number.isNaN(date.getTime()) ? date.toLocaleTimeString("ta-IN",{hour:"numeric",minute:"2-digit",second:"2-digit"}) : "";
+    nameWrap.append(time);
+    const mark = document.createElement("span"); mark.className = "report-person-count"; mark.textContent = "🟢";
+    row.append(nameWrap, mark); onlineList.append(row);
+   });
+  }
+  const topList = $("reportTopUsers");
+  topList.replaceChildren();
+  const users = Array.isArray(data.topUsers) ? data.topUsers : [];
+  if (!users.length) {
+   topList.textContent = "இன்று இன்னும் ஸலவாத்து பதிவு இல்லை.";
+  } else {
+   users.slice(0,5).forEach((person,index) => {
+    const row = document.createElement("div"); row.className = "report-person";
+    const name = document.createElement("span"); name.className = "report-person-name";
+    name.textContent = (index+1) + ". " + (person.name || "பெயர் பதிவு செய்யவில்லை");
+    const count = document.createElement("span"); count.className = "report-person-count"; count.textContent = fmt(person.count);
+    row.append(name,count); topList.append(row);
+   });
+  }
+  const stamp = new Date().toLocaleTimeString("ta-IN",{hour:"numeric",minute:"2-digit",second:"2-digit"});
+  status.textContent = "புதுப்பிக்கப்பட்டது ✓ " + stamp + " · 30 விநாடிகளுக்கு ஒருமுறை தானாகப் புதுப்பிக்கும்";
+ } catch (error) {
+  status.textContent = "அறிக்கை ஏற்ற முடியவில்லை. Analytics Worker /api/public/report endpoint-ஐச் சரிபார்க்கவும்.";
+  console.error("Daily report:",error);
+ }
+}
+\nasync function loadLeaderboard() {
  const list = $("leaderboardList");
  try {
   const data = await api("/api/leaderboard");
@@ -234,7 +323,7 @@ async function registerPopupName() {
 $("popupRegisterBtn").addEventListener("click", registerPopupName);
 $("popupRegisterName").addEventListener("keydown", e => { if(e.key === "Enter") registerPopupName(); });
 $("popupLaterBtn").addEventListener("click", () => { $("nameModal").classList.remove("show"); });
-$("leaderboardRefresh").addEventListener("click", loadLeaderboard);
+$("leaderboardRefresh").addEventListener("click", loadLeaderboard);\n$("reportRefresh").addEventListener("click", loadDailyReport);
 
 refresh();
 loadLeaderboard();
@@ -251,6 +340,6 @@ if (!localStorage.getItem("yaseeni_salawath_registered_name_v1")) {
  }, 900);
 }
 
-setInterval(()=>{if(navigator.onLine){refresh(false);loadLeaderboard();analyticsHeartbeat();}},30000);
+setInterval(()=>{if(navigator.onLine){refresh(false);loadLeaderboard();loadDailyReport();analyticsHeartbeat();}},30000);
 })();
 </script></body></html>
