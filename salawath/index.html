@@ -40,6 +40,24 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 
 .report-muted{font-size:13px;color:#e7dfc6;line-height:1.7}
 
+
+/* Public live Salawath report - refreshes automatically every 30 seconds */
+.public-live-report{margin:22px 0 0;text-align:left;border:1px solid #e8c66b88;border-radius:20px;padding:18px;background:linear-gradient(155deg,#063c2fdf,#011d19ed);box-shadow:0 12px 35px #0004}
+.public-live-report h2{color:var(--gold);font-size:clamp(22px,5vw,29px);margin:0 0 16px}
+.public-report-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.public-report-stat{border:1px solid #e8c66b55;border-radius:13px;padding:13px;background:#ffffff0b;min-width:0}
+.public-report-stat .label{font-size:14px;color:#e7dfc6;line-height:1.5}
+.public-report-stat .value{font-size:30px;font-weight:800;color:var(--gold);overflow-wrap:anywhere}
+.public-report-columns{display:grid;grid-template-columns:1fr;gap:12px}
+.public-report-list{border:1px solid #e8c66b55;border-radius:14px;padding:14px;min-width:0}
+.public-report-list h3{font-size:20px;color:var(--gold);margin:0 0 12px}
+.public-report-row{padding:10px 0;border-bottom:1px solid #ffffff20;overflow-wrap:anywhere}
+.public-report-row:last-child{border-bottom:0}
+.public-report-row-title{font-size:14px;line-height:1.6}
+.public-report-row-sub{font-size:12px;color:#cfc8ad;margin-top:3px;line-height:1.5}
+.public-report-row-count{float:right;color:var(--gold);font-weight:800;margin-left:8px}
+.public-report-status{font-size:12px;color:#d7d0b9;margin-top:12px;text-align:center}
+@media(min-width:700px){.public-report-columns{grid-template-columns:1fr 1fr}.public-report-stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
@@ -59,6 +77,22 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 </div><div class="status" id="status" role="status"></div>
 <div class="actions"><button class="small" id="refresh" type="button">எண்ணிக்கையைப் புதுப்பி</button><button class="small" id="share" type="button">WhatsApp / Share</button><a class="small" href="admin/" style="text-decoration:none;display:inline-block">🔐 நிர்வாகி</a><a class="small" href="analytics.html" style="text-decoration:none;display:inline-block">🟢 Online Visitors / Daily Report</a><a class="small" href="members.html" style="text-decoration:none;display:inline-block">👤 உறுப்பினர் கணக்கு / Daily History</a></div>
 <div class="notice">ஒவ்வொரு முறை ஸலவாத் ஓதியதும் பட்டனை ஒருமுறை தட்டவும்.<br>பொது எண்ணிக்கை அனைவருக்கும் ஒரே Database-ல் சேமிக்கப்படும். இணைய இணைப்பு தேவை.</div>
+</section>
+
+
+<section class="public-live-report" id="publicLiveReport" aria-live="polite">
+ <h2>📊 Daily Report</h2>
+ <div class="public-report-stats">
+  <div class="public-report-stat"><div class="label">இன்றைய ஸலவாத்து</div><div class="value" id="pubReportTotal">—</div></div>
+  <div class="public-report-stat"><div class="label">தனிப்பட்ட Visitors</div><div class="value" id="pubReportUnique">—</div></div>
+  <div class="public-report-stat"><div class="label">Online இப்போது</div><div class="value" id="pubReportOnline">—</div></div>
+  <div class="public-report-stat"><div class="label">Tap Events</div><div class="value" id="pubReportEvents">—</div></div>
+ </div>
+ <div class="public-report-columns">
+  <div class="public-report-list"><h3>🟢 Online Visitors</h3><div class="report-muted" id="pubReportOnlineList">அறிக்கை ஏற்றப்படுகிறது…</div></div>
+  <div class="public-report-list"><h3>🏆 Daily Top Users</h3><div class="report-muted" id="pubReportTopList">அறிக்கை ஏற்றப்படுகிறது…</div></div>
+ </div>
+ <div class="public-report-status" id="pubReportStatus">30 விநாடிகளுக்கு ஒருமுறை தானாகப் புதுப்பிக்கப்படும்.</div>
 </section>
 
 <div class="footer">Yaseenis.com · Salawath Mubarak</div></main>
@@ -256,6 +290,43 @@ if (!localStorage.getItem("yaseeni_salawath_registered_name_v1")) {
   }
  }, 900);
 }
+
+async function refreshPublicLiveReport() {
+ const status = $("pubReportStatus");
+ try {
+  const date = new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Dubai",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+  const response = await fetch(ANALYTICS_API_BASE.replace(/\\/$/,"")+"/api/public/report?date="+encodeURIComponent(date),{cache:"no-store"});
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || "HTTP "+response.status);
+  const fmt = n => Number(n || 0).toLocaleString("en-US");
+  $("pubReportTotal").textContent = fmt(data.totalSalawath);
+  $("pubReportUnique").textContent = fmt(data.uniqueVisitors);
+  $("pubReportOnline").textContent = fmt(data.onlineNow);
+  $("pubReportEvents").textContent = fmt(data.tapEvents);
+  const renderRows = (id, rows, mode) => {
+   const container = $(id); container.replaceChildren();
+   if (!rows || !rows.length) { container.textContent = mode === "online" ? "கடைசி 60 விநாடிகளில் online visitor இல்லை." : "இன்றைக்கு இன்னும் பதிவு இல்லை."; return; }
+   rows.forEach((item,index) => {
+    const row=document.createElement("div"); row.className="public-report-row";
+    const title=document.createElement("div"); title.className="public-report-row-title";
+    const count=document.createElement("span"); count.className="public-report-row-count";
+    if(mode==="top"){title.textContent=(index+1)+". "+(item.name||"பெயர் பதிவு செய்யவில்லை");count.textContent=fmt(item.count);}
+    else {title.textContent=item.name||"பெயர் பதிவு செய்யவில்லை";count.textContent=item.lastSeen?new Date(item.lastSeen).toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit",second:"2-digit",timeZone:"Asia/Dubai"}):"";}
+    title.append(count);row.append(title);
+    if(mode==="online"){const sub=document.createElement("div");sub.className="public-report-row-sub";sub.textContent="கடைசி 60 விநாடிகளில் செயல்பட்டவர்";row.append(sub);}
+    container.append(row);
+   });
+  };
+  renderRows("pubReportOnlineList",data.onlineVisitors,"online");
+  renderRows("pubReportTopList",data.topUsers,"top");
+  status.textContent="புதுப்பிக்கப்பட்டது ✓ "+new Date().toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit",second:"2-digit",timeZone:"Asia/Dubai"})+" · 30 விநாடிகளுக்கு ஒருமுறை புதுப்பிப்பு";
+ } catch(error) {
+  status.textContent="அறிக்கை ஏற்ற முடியவில்லை: "+error.message;
+ }
+}
+refreshPublicLiveReport();
+setInterval(()=>{if(navigator.onLine) refreshPublicLiveReport();},30000);
+
 setInterval(()=>{if(navigator.onLine){refresh(false);loadLeaderboard();analyticsHeartbeat();}},30000);
 })();
 </script></body></html>
