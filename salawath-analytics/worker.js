@@ -55,7 +55,7 @@ export default {
         return json({ asOf: new Date().toISOString(), onlineWindowSeconds: 60, users: rows.results || [] }, 200, headers);
       }
       if (request.method === "GET" && url.pathname === "/api/admin/report") {
-        if (!authorized(request, env)) return json({ error: "Unauthorized. Check ADMIN_TOKEN." }, 401, headers);
+        const tokenError = adminTokenStatus(request, env); if (tokenError) return json({ error: tokenError }, 401, headers);
         const date = /^\d{4}-\d{2}-\d{2}$/.test(url.searchParams.get("date") || "") ? url.searchParams.get("date") : dateInZone(new Date(), env.APP_TIMEZONE || "Asia/Dubai");
         const summary = await env.DB.prepare("SELECT COALESCE(SUM(amount),0) AS totalSalawath, COUNT(*) AS tapEvents, COUNT(DISTINCT visitor_id) AS uniqueVisitors FROM salawath_events WHERE event_date = ?").bind(date).first();
         const top = await env.DB.prepare("SELECT e.visitor_id AS visitorId, COALESCE(NULLIF(MAX(p.display_name),''), 'பெயர் பதிவு செய்யவில்லை') AS name, SUM(e.amount) AS count FROM salawath_events e LEFT JOIN salawath_presence p ON p.visitor_id=e.visitor_id WHERE e.event_date=? GROUP BY e.visitor_id ORDER BY count DESC LIMIT 20").bind(date).all();
