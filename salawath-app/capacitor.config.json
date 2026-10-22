@@ -1,0 +1,15 @@
+{
+  "appId": "com.yaseenis.salawath",
+  "appName": "Salawath Mubarak",
+  "webDir": "www",
+  "server": {
+    "url": "https://yaseenis.com/salawath/",
+    "cleartext": false
+  },
+  "android": {
+    "allowMixedContent": false
+  },
+  "ios": {
+    "contentInset": "automatic"
+  }
+}
