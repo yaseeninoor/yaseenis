@@ -237,7 +237,8 @@ $("tap").addEventListener("click", async (event)=>{
 
 async function loadDailyReport() {
  const status = $("reportStatus");
- const reportUrl = ANALYTICS_API_BASE.replace(/\\/+$/,"") + "/api/public/report";
+ const reportBase = ANALYTICS_API_BASE.endsWith("/") ? ANALYTICS_API_BASE.slice(0,-1) : ANALYTICS_API_BASE;
+ const reportUrl = reportBase + "/api/public/report";
  try {
   const response = await fetch(reportUrl, {headers:{"Accept":"application/json"}, cache:"no-store"});
   const data = await response.json().catch(()=>({}));
