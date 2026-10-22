@@ -63,7 +63,7 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 "use strict";
 const API_BASE = "https://yaseenis-salawath-api.yaseeninoor.workers.dev";
 // Replace with the deployed analytics Worker URL from Cloudflare before expecting live analytics.
-const ANALYTICS_API_BASE = "https://yaseenis-salawath-analytics.yaseeninoor.workers.dev";
+const ANALYTICS_API_BASE = "https://live.yaseenis.com";
 async function analyticsPost(path, body) {
  if (ANALYTICS_API_BASE.includes("YOUR-SUBDOMAIN")) return;
  const name = localStorage.getItem("yaseeni_salawath_registered_name_v1") || "";
