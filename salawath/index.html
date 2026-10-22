@@ -295,7 +295,7 @@ async function refreshPublicLiveReport() {
  const status = $("pubReportStatus");
  try {
   const date = new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Dubai",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
-  const response = await fetch(ANALYTICS_API_BASE.replace(/\\/$/,"")+"/api/public/report?date="+encodeURIComponent(date),{cache:"no-store"});
+  const response = await fetch(ANALYTICS_API_BASE.replace(/\/+$/,"")+"/api/public/report?date="+encodeURIComponent(date),{cache:"no-store"});
   const data = await response.json();
   if (!response.ok) throw new Error(data.error || "HTTP "+response.status);
   const fmt = n => Number(n || 0).toLocaleString("en-US");
