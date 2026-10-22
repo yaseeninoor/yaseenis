@@ -39,3 +39,11 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: wrangler deploy --config=salawath-analytics/wrangler.toml
+      - name: Set analytics admin token
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ADMIN_TOKEN: ${{ secrets.SALAWATH_ANALYTICS_ADMIN_TOKEN }}
+        run: |
+          if [ -z "$ADMIN_TOKEN" ]; then echo "Missing SALAWATH_ANALYTICS_ADMIN_TOKEN repository secret"; exit 1; fi
+          printf '%s' "$ADMIN_TOKEN" | wrangler secret put ADMIN_TOKEN --config=salawath-analytics/wrangler.toml
