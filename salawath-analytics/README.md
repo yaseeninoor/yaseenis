@@ -9,7 +9,7 @@ This service is intentionally separate from the existing public Salawath counter
 - Admin endpoints protected by the Cloudflare Worker secret `ADMIN_TOKEN`.
 
 ## One-time Cloudflare setup
-1. In Cloudflare Dashboard, create a D1 database named `yaseenis-salawath-analytics`.
+1. In Cloudflare Dashboard, create a D1 database named `yaseenissalawathanalytics`.
 2. Copy the D1 database ID.
 3. In GitHub repository Settings → Secrets and variables → Actions, add:
    - `CLOUDFLARE_API_TOKEN` — token allowed to deploy Workers and manage D1.
