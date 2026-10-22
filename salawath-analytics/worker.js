@@ -23,6 +23,7 @@ export default {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers });
     const url = new URL(request.url);
     try {
+      if (request.method === "GET" && url.pathname === "/") return json({ service: "Yaseenis Salawath Analytics", status: "ok", endpoints: ["/api/heartbeat", "/api/event", "/api/admin/online", "/api/admin/report"] }, 200, headers);
       if (!env.DB) return json({ error: "D1 binding DB is missing." }, 503, headers);
       if (request.method === "POST" && ["/api/heartbeat", "/api/event"].includes(url.pathname)) {
         const body = await request.json().catch(() => ({}));
