@@ -4,7 +4,7 @@ compatibility_date = "2026-10-22"
 
 [vars]
 APP_TIMEZONE = "Asia/Dubai"
-ALLOWED_ORIGINS = "https://yaseenis.com,https://www.yaseenis.com"
+ALLOWED_ORIGINS = "https://yaseenis.com,https://www.yaseenis.com,https://live.yaseenis.com"
 
 [[d1_databases]]
 binding = "DB"
