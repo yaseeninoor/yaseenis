@@ -286,7 +286,8 @@ async function loadDailyReport() {
   console.error("Daily report:",error);
  }
 }
-\nasync function loadLeaderboard() {
+
+async function loadLeaderboard() {
  const list = $("leaderboardList");
  try {
   const data = await api("/api/leaderboard");
@@ -324,7 +325,8 @@ async function registerPopupName() {
 $("popupRegisterBtn").addEventListener("click", registerPopupName);
 $("popupRegisterName").addEventListener("keydown", e => { if(e.key === "Enter") registerPopupName(); });
 $("popupLaterBtn").addEventListener("click", () => { $("nameModal").classList.remove("show"); });
-$("leaderboardRefresh").addEventListener("click", loadLeaderboard);\n$("reportRefresh").addEventListener("click", loadDailyReport);
+$("leaderboardRefresh").addEventListener("click", loadLeaderboard);
+$("reportRefresh").addEventListener("click", loadDailyReport);
 
 refresh();
 loadLeaderboard();
