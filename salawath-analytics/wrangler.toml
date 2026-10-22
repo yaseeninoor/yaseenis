@@ -8,5 +8,5 @@ ALLOWED_ORIGINS = "https://yaseenis.com,https://www.yaseenis.com"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "yaseenis-salawath-analytics"
+database_name = "yaseenissalawathanalytics"
 database_id = "REPLACE_WITH_SALAWATH_ANALYTICS_D1_ID"
