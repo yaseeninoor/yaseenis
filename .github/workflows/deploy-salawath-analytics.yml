@@ -1,0 +1,41 @@
+name: Deploy Salawath Analytics Worker
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "salawath-analytics/**"
+      - ".github/workflows/deploy-salawath-analytics.yml"
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Wrangler
+        run: npm install --global wrangler
+      - name: Inject D1 database ID
+        env:
+          D1_ID: ${{ secrets.SALAWATH_ANALYTICS_D1_ID }}
+        run: |
+          if [ -z "$D1_ID" ]; then echo "Missing SALAWATH_ANALYTICS_D1_ID repository secret"; exit 1; fi
+          python3 - <<'PY'
+          import os
+          p = "salawath-analytics/wrangler.toml"
+          s = open(p, encoding="utf-8").read().replace("REPLACE_WITH_SALAWATH_ANALYTICS_D1_ID", os.environ["D1_ID"])
+          open(p, "w", encoding="utf-8").write(s)
+          PY
+      - name: Apply D1 schema
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: wrangler d1 execute yaseenis-salawath-analytics --remote --file=salawath-analytics/schema.sql --config=salawath-analytics/wrangler.toml
+      - name: Deploy Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: wrangler deploy --config=salawath-analytics/wrangler.toml
