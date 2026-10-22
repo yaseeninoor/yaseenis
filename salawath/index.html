@@ -37,17 +37,7 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 .lb-row{display:flex;justify-content:space-between;gap:12px;padding:9px 4px;border-bottom:1px solid #ffffff20}
 .lb-row:last-child{border-bottom:0}.lb-name{overflow-wrap:anywhere}.lb-count{font-weight:800;color:var(--gold);white-space:nowrap}
 .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:17px 0}.small{padding:11px 16px;border:1px solid var(--gold);border-radius:22px;color:var(--cream);background:#ffffff10;cursor:pointer;font-size:14px}.notice{margin-top:20px;font-size:12px;color:#c8d9cc;line-height:1.8}.status{min-height:22px;font-size:13px;color:#ffe9a2;margin:8px 0}.footer{margin-top:18px;font-size:12px;color:#d4c59b}
-.report-panel{margin:18px 0 0;padding:16px;border:1px solid #e8c66b99;border-radius:18px;background:#002313d9;text-align:left}
-.report-panel h2{color:var(--gold);font-size:24px;margin:4px 0 12px}
-.report-admin-row{display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0}
-.report-admin-row input{width:100%;min-width:0;padding:12px;border:1px solid var(--gold);border-radius:10px;background:#fff;color:#123;font-size:16px}
-.report-admin-row button{padding:12px;border:0;border-radius:10px;background:var(--gold);color:#14251b;font-weight:800}
-.report-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0}
-.report-stat{padding:12px;border:1px solid #e8c66b55;border-radius:12px;background:#ffffff0d;min-width:0}
-.report-stat .label{font-size:13px;color:#e7dfc6}
-.report-stat .value{font-size:30px;font-weight:800;color:var(--gold);overflow-wrap:anywhere}
-.report-list{padding:8px 0;border-bottom:1px solid #ffffff25;overflow-wrap:anywhere}
-.report-list:last-child{border-bottom:0}
+
 .report-muted{font-size:13px;color:#e7dfc6;line-height:1.7}
 
 </style>
@@ -70,25 +60,7 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 <div class="actions"><button class="small" id="refresh" type="button">எண்ணிக்கையைப் புதுப்பி</button><button class="small" id="share" type="button">WhatsApp / Share</button><a class="small" href="admin/" style="text-decoration:none;display:inline-block">🔐 நிர்வாகி</a><a class="small" href="analytics.html" style="text-decoration:none;display:inline-block">🟢 Online Visitors / Daily Report</a><a class="small" href="members.html" style="text-decoration:none;display:inline-block">👤 உறுப்பினர் கணக்கு / Daily History</a></div>
 <div class="notice">ஒவ்வொரு முறை ஸலவாத் ஓதியதும் பட்டனை ஒருமுறை தட்டவும்.<br>பொது எண்ணிக்கை அனைவருக்கும் ஒரே Database-ல் சேமிக்கப்படும். இணைய இணைப்பு தேவை.</div>
 </section>
-<section class="report-panel" id="salawathDailyReport">
- <h2>📊 Daily Report & Live Visitors</h2>
- <div class="report-muted">நிர்வாகி மட்டும் பார்க்க: உங்கள் Admin Token-ஐ உள்ளிடவும். பாதுகாப்பிற்காக இந்தப் பக்கத்தில் சேமிக்கப்படாது.</div>
- <div class="report-admin-row">
-  <input id="publicReportToken" type="password" autocomplete="off" placeholder="Admin Token" aria-label="Admin Token">
-  <button id="publicReportLoad" type="button">Daily Report ஏற்றவும்</button>
- </div>
- <div class="report-muted" id="publicReportStatus" role="status">இன்றைய அறிக்கை ஏற்றப்படவில்லை.</div>
- <div class="report-stats">
-  <div class="report-stat"><div class="label">இன்றைய ஸலவாத்து</div><div class="value" id="publicReportTotal">—</div></div>
-  <div class="report-stat"><div class="label">தனிப்பட்ட Visitors</div><div class="value" id="publicReportUnique">—</div></div>
-  <div class="report-stat"><div class="label">Online இப்போது</div><div class="value" id="publicReportOnline">—</div></div>
-  <div class="report-stat"><div class="label">Tap Events</div><div class="value" id="publicReportEvents">—</div></div>
- </div>
- <h3 style="color:var(--gold);margin-bottom:6px">🟢 Online Visitors</h3>
- <div class="report-muted" id="publicReportOnlineList">Token உள்ளிட்டு அறிக்கையை ஏற்றவும்.</div>
- <h3 style="color:var(--gold);margin-bottom:6px">🏆 Daily Top Users</h3>
- <div class="report-muted" id="publicReportTopList">Token உள்ளிட்டு அறிக்கையை ஏற்றவும்.</div>
-</section>
+
 <div class="footer">Yaseenis.com · Salawath Mubarak</div></main>
 <div class="name-modal" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle"><div class="name-modal-card"><div style="font-size:38px">👤</div><h2 id="nameModalTitle">உங்கள் பெயரைப் பதிவு செய்யுங்கள்</h2><p>உங்கள் Visitor ID-க்கு பெயரை இணைத்தால் Leaderboard-ல் உங்கள் பெயரும் ஸலவாத்து எண்ணிக்கையும் காட்டப்படும். உங்கள் எண்ணிக்கை மாறாது.</p><input id="popupRegisterName" maxlength="60" autocomplete="name" placeholder="உங்கள் பெயர் / Your name"><div class="name-modal-actions"><button class="name-modal-save" id="popupRegisterBtn" type="button">பெயரைப் பதிவு செய்யவும்</button><button class="name-modal-later" id="popupLaterBtn" type="button">பிறகு நினைவூட்டு</button></div><div class="name-modal-status" id="popupNameStatus" role="status"></div></div></div>
 <script>
@@ -263,52 +235,6 @@ $("popupRegisterBtn").addEventListener("click", registerPopupName);
 $("popupRegisterName").addEventListener("keydown", e => { if(e.key === "Enter") registerPopupName(); });
 $("popupLaterBtn").addEventListener("click", () => { $("nameModal").classList.remove("show"); });
 $("leaderboardRefresh").addEventListener("click", loadLeaderboard);
-
-async function loadEmbeddedDailyReport() {
- const token = $("publicReportToken").value.trim();
- if (!token) { $("publicReportStatus").textContent = "Admin Token-ஐ உள்ளிடவும்."; return; }
- const button = $("publicReportLoad");
- button.disabled = true;
- $("publicReportStatus").textContent = "Daily report ஏற்றப்படுகிறது…";
- const base = ANALYTICS_API_BASE.replace(/\\/$/, "");
- const callReport = async path => {
-  const response = await fetch(base + path, {headers:{"Accept":"application/json","X-Admin-Token":token}});
-  const data = await response.json().catch(()=>({}));
-  if (!response.ok) throw new Error(data.error || ("HTTP " + response.status));
-  return data;
- };
- const fmtReport = n => Number(n || 0).toLocaleString("en-US");
- const appendReportRow = (container, label, value, sub) => {
-  const row = document.createElement("div"); row.className = "report-list";
-  const strong = document.createElement("strong"); strong.textContent = label;
-  const valueNode = document.createElement("span"); valueNode.style.cssText = "float:right;color:var(--gold);font-weight:800"; valueNode.textContent = value;
-  row.append(strong, valueNode);
-  if (sub) { const detail = document.createElement("div"); detail.className = "report-muted"; detail.textContent = sub; row.append(detail); }
-  container.append(row);
- };
- try {
-  const date = new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Dubai",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
-  const [live, report] = await Promise.all([
-   callReport("/api/admin/online"),
-   callReport("/api/admin/report?date=" + encodeURIComponent(date))
-  ]);
-  $("publicReportTotal").textContent = fmtReport(report.totalSalawath);
-  $("publicReportUnique").textContent = fmtReport(report.uniqueVisitors);
-  $("publicReportOnline").textContent = fmtReport(live.users.length);
-  $("publicReportEvents").textContent = fmtReport(report.tapEvents);
-  const onlineList = $("publicReportOnlineList"); onlineList.replaceChildren();
-  if (!live.users.length) onlineList.textContent = "கடைசி 60 விநாடிகளில் online visitor இல்லை.";
-  live.users.forEach(u => appendReportRow(onlineList, u.name || "பெயர் இல்லை", u.lastSeen ? new Date(u.lastSeen).toLocaleTimeString() : "", "Last seen recently"));
-  const topList = $("publicReportTopList"); topList.replaceChildren();
-  if (!report.topUsers.length) topList.textContent = "இந்த நாளுக்கான பதிவு இன்னும் இல்லை.";
-  report.topUsers.forEach((u,i) => appendReportRow(topList, (i+1)+". "+u.name, fmtReport(u.count), ""));
-  $("publicReportStatus").textContent = "புதுப்பிக்கப்பட்டது ✓ " + date + " · " + (report.timezone || "Asia/Dubai");
- } catch (error) {
-  $("publicReportStatus").textContent = "பிழை: " + error.message;
- } finally { button.disabled = false; }
-}
-$("publicReportLoad").addEventListener("click", loadEmbeddedDailyReport);
-$("publicReportToken").addEventListener("keydown", e => { if (e.key === "Enter") loadEmbeddedDailyReport(); });
 
 $("refresh").addEventListener("click",()=>refresh(true));
 $("share").addEventListener("click",async()=>{
