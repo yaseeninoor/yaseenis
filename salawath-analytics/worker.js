@@ -12,10 +12,13 @@ function dateInZone(date, zone) {
   const get = type => parts.find(p => p.type === type)?.value;
   return `${get("year")}-${get("month")}-${get("day")}`;
 }
-function authorized(request, env) {
-  const expected = String(env.ADMIN_TOKEN || "");
-  const actual = String(request.headers.get("X-Admin-Token") || "");
-  return expected.length >= 24 && actual.length === expected.length && actual === expected;
+function adminTokenStatus(request, env) {
+  const expected = String(env.ADMIN_TOKEN || "").trim();
+  const actual = String(request.headers.get("X-Admin-Token") || "").trim();
+  if (expected.length < 24) return "ADMIN_TOKEN is missing or shorter than 24 characters in this Worker. Re-run the deploy workflow and verify its Set analytics admin token step.";
+  if (!actual) return "Enter the ADMIN_TOKEN value from GitHub Secret SALAWATH_ANALYTICS_ADMIN_TOKEN.";
+  if (actual.length !== expected.length || actual !== expected) return "Token mismatch: the dashboard token does not match this Worker ADMIN_TOKEN. Re-run the latest deploy workflow and use the exact GitHub Secret value.";
+  return "";
 }
 export default {
   async fetch(request, env) {
@@ -46,7 +49,7 @@ export default {
         return json({ ok: true, lastSeen: now }, 200, headers);
       }
       if (request.method === "GET" && url.pathname === "/api/admin/online") {
-        if (!authorized(request, env)) return json({ error: "Unauthorized. Check ADMIN_TOKEN." }, 401, headers);
+        const tokenError = adminTokenStatus(request, env); if (tokenError) return json({ error: tokenError }, 401, headers);
         const cutoff = new Date(Date.now() - 60_000).toISOString();
         const rows = await env.DB.prepare("SELECT visitor_id AS visitorId, display_name AS name, last_seen AS lastSeen FROM salawath_presence WHERE last_seen >= ? ORDER BY last_seen DESC LIMIT 500").bind(cutoff).all();
         return json({ asOf: new Date().toISOString(), onlineWindowSeconds: 60, users: rows.results || [] }, 200, headers);
