@@ -49,7 +49,7 @@ export default {
         return json({ ok: true, lastSeen: now }, 200, headers);
       }
       if (request.method === "GET" && url.pathname === "/api/public/report") {
-        const date = /^\\d{4}-\\d{2}-\\d{2}$/.test(url.searchParams.get("date") || "") ? url.searchParams.get("date") : dateInZone(new Date(), env.APP_TIMEZONE || "Asia/Dubai");
+        const date = /^\d{4}-\d{2}-\d{2}$/.test(url.searchParams.get("date") || "") ? url.searchParams.get("date") : dateInZone(new Date(), env.APP_TIMEZONE || "Asia/Dubai");
         const summary = await env.DB.prepare("SELECT COALESCE(SUM(amount),0) AS totalSalawath, COUNT(*) AS tapEvents, COUNT(DISTINCT visitor_id) AS uniqueVisitors FROM salawath_events WHERE event_date = ?").bind(date).first();
         const top = await env.DB.prepare("SELECT COALESCE(NULLIF(MAX(p.display_name),''), 'பெயர் பதிவு செய்யவில்லை') AS name, SUM(e.amount) AS count FROM salawath_events e LEFT JOIN salawath_presence p ON p.visitor_id=e.visitor_id WHERE e.event_date=? GROUP BY e.visitor_id ORDER BY count DESC LIMIT 10").bind(date).all();
         const onlineCutoff = new Date(Date.now() - 60_000).toISOString();
