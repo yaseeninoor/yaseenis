@@ -54,7 +54,7 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
   <div id="leaderboardList" class="muted">பட்டியலை ஏற்றுகிறது…</div>
   <div style="text-align:center;margin-top:10px"><button class="small" id="leaderboardRefresh" type="button">பட்டியலைப் புதுப்பி</button></div>
 </div><div class="status" id="status" role="status"></div>
-<div class="actions"><button class="small" id="refresh" type="button">எண்ணிக்கையைப் புதுப்பி</button><button class="small" id="share" type="button">WhatsApp / Share</button><a class="small" href="admin/" style="text-decoration:none;display:inline-block">🔐 நிர்வாகி</a><a class="small" href="members.html" style="text-decoration:none;display:inline-block">👤 உறுப்பினர் கணக்கு / Daily History</a></div>
+<div class="actions"><button class="small" id="refresh" type="button">எண்ணிக்கையைப் புதுப்பி</button><button class="small" id="share" type="button">WhatsApp / Share</button><a class="small" href="admin/" style="text-decoration:none;display:inline-block">🔐 நிர்வாகி</a><a class="small" href="analytics.html" style="text-decoration:none;display:inline-block">🟢 Online Visitors / Daily Report</a><a class="small" href="members.html" style="text-decoration:none;display:inline-block">👤 உறுப்பினர் கணக்கு / Daily History</a></div>
 <div class="notice">ஒவ்வொரு முறை ஸலவாத் ஓதியதும் பட்டனை ஒருமுறை தட்டவும்.<br>பொது எண்ணிக்கை அனைவருக்கும் ஒரே Database-ல் சேமிக்கப்படும். இணைய இணைப்பு தேவை.</div>
 </section><div class="footer">Yaseenis.com · Salawath Mubarak</div></main>
 <div class="name-modal" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle"><div class="name-modal-card"><div style="font-size:38px">👤</div><h2 id="nameModalTitle">உங்கள் பெயரைப் பதிவு செய்யுங்கள்</h2><p>உங்கள் Visitor ID-க்கு பெயரை இணைத்தால் Leaderboard-ல் உங்கள் பெயரும் ஸலவாத்து எண்ணிக்கையும் காட்டப்படும். உங்கள் எண்ணிக்கை மாறாது.</p><input id="popupRegisterName" maxlength="60" autocomplete="name" placeholder="உங்கள் பெயர் / Your name"><div class="name-modal-actions"><button class="name-modal-save" id="popupRegisterBtn" type="button">பெயரைப் பதிவு செய்யவும்</button><button class="name-modal-later" id="popupLaterBtn" type="button">பிறகு நினைவூட்டு</button></div><div class="name-modal-status" id="popupNameStatus" role="status"></div></div></div>
@@ -62,6 +62,18 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 (() => {
 "use strict";
 const API_BASE = "https://yaseenis-salawath-api.yaseeninoor.workers.dev";
+// Replace with the deployed analytics Worker URL from Cloudflare before expecting live analytics.
+const ANALYTICS_API_BASE = "https://yaseenis-salawath-analytics.YOUR-SUBDOMAIN.workers.dev";
+async function analyticsPost(path, body) {
+ if (ANALYTICS_API_BASE.includes("YOUR-SUBDOMAIN")) return;
+ const name = localStorage.getItem("yaseeni_salawath_registered_name_v1") || "";
+ try {
+  await fetch(ANALYTICS_API_BASE + path, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({...body, visitorId, name}), keepalive:true});
+ } catch (_) { /* Analytics must never interrupt the public counter. */ }
+}
+function analyticsHeartbeat() {
+ void analyticsPost("/api/heartbeat", {visitorId});
+}
 const TARGET = 700000;
 const $ = id => document.getElementById(id);
 // Decorative ﷺ rain: distributed across the viewport; never intercepts taps.
@@ -144,6 +156,8 @@ async function addCount(amount) {
   for (let i=0;i<amount;i++) {
    await api("/api/tap",{visitorId});
    succeeded++;
+   // Log the successful public tap to the separate analytics service without blocking the counter.
+   void analyticsPost("/api/event", {visitorId, amount:1});
    setLocalPersonal(getLocalPersonal()+1);
    $("mine").textContent = fmt(getLocalPersonal());
   }
@@ -224,6 +238,8 @@ $("share").addEventListener("click",async()=>{
 });
 refresh();
 loadLeaderboard();
+analyticsHeartbeat();
+setInterval(analyticsHeartbeat, 20000);
 // Keep prompting on future visits until registration succeeds.
 // "Later" hides it for this page view only.
 if (!localStorage.getItem("yaseeni_salawath_registered_name_v1")) {
@@ -234,6 +250,6 @@ if (!localStorage.getItem("yaseeni_salawath_registered_name_v1")) {
   }
  }, 900);
 }
-setInterval(()=>{if(navigator.onLine){refresh(false);loadLeaderboard();}},30000);
+setInterval(()=>{if(navigator.onLine){refresh(false);loadLeaderboard();analyticsHeartbeat();}},30000);
 })();
 </script></body></html>
