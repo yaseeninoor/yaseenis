@@ -1,0 +1,12 @@
+name = "yaseenis-salawath-analytics"
+main = "worker.js"
+compatibility_date = "2026-10-22"
+
+[vars]
+APP_TIMEZONE = "Asia/Dubai"
+ALLOWED_ORIGINS = "https://yaseenis.com,https://www.yaseenis.com"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "yaseenis-salawath-analytics"
+database_id = "REPLACE_WITH_SALAWATH_ANALYTICS_D1_ID"
