@@ -14,7 +14,7 @@ This service is intentionally separate from the existing public Salawath counter
 3. In GitHub repository Settings → Secrets and variables → Actions, add:
    - `CLOUDFLARE_API_TOKEN` — token allowed to deploy Workers and manage D1.
    - `CLOUDFLARE_ACCOUNT_ID` — your Cloudflare account ID.
-   - `SALAWATH_ANALYTICS_D1_ID` — the D1 database ID from step 2.
+   - `SALAWATH_ANALYTICS_D1_ID` — the D1 database ID from step 2.\n   - `SALAWATH_ANALYTICS_ADMIN_TOKEN` — a strong random secret, at least 24 characters; this becomes the Worker secret used by the dashboard.
 4. Deploy the workflow **Deploy Salawath Analytics Worker** from Actions.
 5. In Cloudflare Worker settings for `yaseenis-salawath-analytics`, add secret `ADMIN_TOKEN` (use a strong random value at least 24 characters). Keep it private.
 6. The Worker URL will be `https://yaseenis-salawath-analytics.<your-workers-subdomain>.workers.dev`. Update `ANALYTICS_API_BASE` in `salawath/index.html` to that exact URL, commit, and wait for the website deploy.
