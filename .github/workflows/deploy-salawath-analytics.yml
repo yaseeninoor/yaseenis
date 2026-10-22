@@ -18,11 +18,18 @@ jobs:
           node-version: 22
       - name: Install Wrangler
         run: npm install --global wrangler
-      - name: Inject D1 database ID
+      - name: Validate and inject D1 database ID
         env:
           D1_ID: ${{ secrets.SALAWATH_ANALYTICS_D1_ID }}
         run: |
-          if [ -z "$D1_ID" ]; then echo "Missing SALAWATH_ANALYTICS_D1_ID repository secret"; exit 1; fi
+          if [ -z "$D1_ID" ]; then
+            echo "::error::Missing SALAWATH_ANALYTICS_D1_ID repository secret."
+            exit 1
+          fi
+          if ! printf '%s' "$D1_ID" | grep -Eq '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'; then
+            echo "::error::SALAWATH_ANALYTICS_D1_ID is not a valid UUID. Set it to the D1 Database ID shown in Cloudflare, not the database name."
+            exit 1
+          fi
           python3 - <<'PY'
           import os
           p = "salawath-analytics/wrangler.toml"
