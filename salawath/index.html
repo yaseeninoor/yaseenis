@@ -57,7 +57,6 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
   <div id="leaderboardList" class="muted">பட்டியலை ஏற்றுகிறது…</div>
   <div style="text-align:center;margin-top:10px"><button class="small" id="leaderboardRefresh" type="button">பட்டியலைப் புதுப்பி</button></div>
 </div><div class="status" id="status" role="status"></div>
-<div class="actions"><button class="small" id="refresh" type="button">எண்ணிக்கையைப் புதுப்பி</button><button class="small" id="share" type="button">WhatsApp / Share</button><a class="small" href="admin/" style="text-decoration:none;display:inline-block">🔐 நிர்வாகி</a><a class="small" href="members.html" style="text-decoration:none;display:inline-block">👤 உறுப்பினர் கணக்கு / Daily History</a></div>
 <div class="notice">ஒவ்வொரு முறை ஸலவாத் ஓதியதும் பட்டனை ஒருமுறை தட்டவும்.<br>பொது எண்ணிக்கை அனைவருக்கும் ஒரே Database-ல் சேமிக்கப்படும். இணைய இணைப்பு தேவை.</div>
 </section>
 
@@ -237,12 +236,6 @@ $("popupRegisterName").addEventListener("keydown", e => { if(e.key === "Enter") 
 $("popupLaterBtn").addEventListener("click", () => { $("nameModal").classList.remove("show"); });
 $("leaderboardRefresh").addEventListener("click", loadLeaderboard);
 
-$("refresh").addEventListener("click",()=>refresh(true));
-$("share").addEventListener("click",async()=>{
- const d={title:"உரூஸ் முபாரக் — மாபெரும் ஸலவாத்து மஜ்லிஸ்",text:"மாபெரும் ஸலவாத்து மஜ்லிஸில் இணையுங்கள்",url:location.href};
- try { if(navigator.share) await navigator.share(d); else { await navigator.clipboard.writeText(d.text+"\n"+d.url); $("status").textContent="இணைப்பு நகலெடுக்கப்பட்டது"; } }
- catch(e) { if(e.name!=="AbortError") $("status").textContent="பகிர முடியவில்லை"; }
-});
 refresh();
 loadLeaderboard();
 analyticsHeartbeat();
