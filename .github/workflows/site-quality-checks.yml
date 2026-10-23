@@ -1,0 +1,27 @@
+name: Yaseenis Site Quality Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    name: Validate site files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate service worker JavaScript
+        run: node --check sw.js
+      - name: Validate manifest, sitemap and required pages
+        run: python3 scripts/site-smoke-test.py
