@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#30206d">
+<title>Islamic PDF Library | Files Hub</title>
+<meta name="description" content="Search Arabic, Urdu and Tamil Islamic books and PDF records available through Internet Archive.">
+<style>
+:root{--ink:#211a3d;--muted:#77718d;--line:#e8e2f4;--paper:#fff;--purple:#6941c6;--pink:#d946a6;--gold:#e7ad48;--shadow:0 18px 55px #39216d16}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 0% 0%,#f6d9f0 0,transparent 35%),radial-gradient(ellipse at 100% 12%,#d8eaff 0,transparent 32%),#faf8ff;min-height:100vh}a{color:inherit;text-decoration:none}.wrap{width:min(1150px,calc(100% - 32px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:#ffffffdb;backdrop-filter:blur(18px);border-bottom:1px solid #fff}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.04em}.logo{width:42px;height:42px;display:grid;place-items:center;border-radius:15px;color:#fff;background:linear-gradient(135deg,#6d45cf,#d94ca5);font-size:22px;box-shadow:0 8px 20px #6941c633}.brand small{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.1em}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:13px;padding:12px 16px;font:inherit;font-weight:800;cursor:pointer}.primary{color:white;background:linear-gradient(110deg,#6941c6,#c34ab7);box-shadow:0 8px 20px #6941c622}.secondary{background:#fff;border:1px solid var(--line)}.hero{padding:52px 0 28px;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}.eyebrow{display:inline-block;padding:8px 12px;background:#fff;border:1px solid var(--line);border-radius:99px;color:var(--purple);font-size:.78rem;font-weight:850}.hero h1{font-size:clamp(2.5rem,6vw,4.8rem);line-height:1;letter-spacing:-.07em;margin:18px 0}.gradient{background:linear-gradient(105deg,#6941c6,#d946a6,#e3a239);background-clip:text;color:transparent}.hero p{max-width:630px;color:var(--muted);line-height:1.75;font-size:1.04rem}.hero-art{padding:24px;border-radius:30px;background:linear-gradient(140deg,#6d48cb,#b84ab6 60%,#f0a35c);box-shadow:0 28px 65px #6941c633;min-height:245px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;transform:rotate(1deg)}.book{background:#ffffffdf;border:1px solid #fff;border-radius:18px;padding:18px;min-height:90px;display:flex;flex-direction:column;justify-content:space-between}.book b{font-size:1.1rem}.book span{font-size:1.8rem}.controls{padding:24px;border:1px solid #fff;border-radius:25px;background:#ffffffd9;box-shadow:var(--shadow);margin:18px 0 28px}.controls h2{margin:0 0 6px;letter-spacing:-.04em}.sub{color:var(--muted);margin:0;line-height:1.6}.searchrow{display:grid;grid-template-columns:1fr auto;gap:10px;margin:18px 0 14px}.searchrow input{min-width:0;width:100%;padding:15px;border:1px solid var(--line);border-radius:13px;font:inherit;outline-color:#9a7be9;background:#fff}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:#fff;color:#5d5575;border-radius:99px;padding:9px 13px;font-weight:800;cursor:pointer}.filter.active{background:#302052;color:#fff;border-color:#302052}.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:28px 0 16px}.sectionhead h2{margin:0;letter-spacing:-.04em}.sectionhead p{margin:5px 0 0;color:var(--muted)}.quick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 30px}.quickcard{border:1px solid #fff;background:#ffffffd9;border-radius:21px;padding:19px;box-shadow:var(--shadow)}.quickcard .emoji{font-size:1.7rem}.quickcard h3{margin:10px 0 5px}.quickcard p{color:var(--muted);font-size:.88rem;line-height:1.5;margin:0 0 13px}.quickcard button{width:100%}.results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.result{padding:18px;border:1px solid #fff;background:#ffffffed;border-radius:20px;box-shadow:var(--shadow);overflow-wrap:anywhere;display:flex;flex-direction:column;min-height:220px}.cover{width:100%;height:100px;border-radius:13px;background:linear-gradient(135deg,#f3e8ff,#ffe4f3,#fff1d5);display:grid;place-items:center;font-size:2.4rem;margin-bottom:14px}.result h3{font-size:1rem;line-height:1.45;margin:0 0 8px}.meta{font-size:.8rem;color:var(--muted);line-height:1.55}.result .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:14px}.result .actions a{font-size:.8rem;font-weight:850;padding:9px 11px;border-radius:10px;background:#f0eaff;color:#5b36ad}.result .actions a.download{background:#e6f8ee;color:#1d754b}.status{padding:16px 0;color:var(--muted);line-height:1.6}.notice{margin:28px 0;padding:16px 18px;background:#fff8e7;border:1px solid #f3dfac;border-radius:16px;color:#6b5421;line-height:1.65;font-size:.88rem}.empty{grid-column:1/-1;padding:30px;text-align:center;background:#ffffffbb;border:1px dashed #c8b9e9;border-radius:18px;color:var(--muted)}footer{margin-top:44px;border-top:1px solid #fff;padding:25px 0 35px;color:var(--muted);font-size:.88rem}.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:35px}.hero-art{min-height:210px}.results{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.wrap{width:calc(100% - 22px)}.nav{height:64px}.hero h1{font-size:clamp(2.5rem,13vw,3.8rem)}.hero{gap:20px}.controls{padding:17px}.searchrow{grid-template-columns:1fr}.quick{grid-template-columns:1fr}.results{grid-template-columns:1fr}.result{min-height:190px}.foot{flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="./index.html"><span class="logo">☾</span><span>Islamic PDF Library<small>FILES HUB · YASEENIS</small></span></a><a class="btn secondary" href="./index.html">← Main Files Hub</a></div></header>
+<main class="wrap">
+<section class="hero"><div><span class="eyebrow">📚 ARABIC · اردو · தமிழ்</span><h1>Knowledge for<br><span class="gradient">every reader.</span></h1><p>Discover Islamic books, classical texts, study notes and PDF records from Internet Archive. Search in Arabic, Urdu, Tamil or English and open each original record to check its available formats.</p></div><div class="hero-art"><div class="book"><span>📜</span><b>Arabic</b><small>العربية</small></div><div class="book"><span>📗</span><b>Urdu</b><small>اردو</small></div><div class="book"><span>📘</span><b>Tamil</b><small>தமிழ்</small></div><div class="book"><span>📖</span><b>PDF & texts</b><small>Read · Explore</small></div></div></section>
+<section class="controls"><h2>Find a book</h2><p class="sub">Search the Internet Archive catalogue. Use the language buttons for helpful starter searches.</p><form class="searchrow" id="searchForm"><input id="query" type="search" placeholder="Enter title, author or keyword — e.g. تفسير القرآن, اسلامی کتابیں, இஸ்லாமிய நூல்கள்" aria-label="Book search" required><button class="btn primary" type="submit">🔎 Search books</button></form><div class="filters" id="filters"><button class="filter active" data-kind="all">All languages</button><button class="filter" data-kind="arabic">العربية · Arabic</button><button class="filter" data-kind="urdu">اردو · Urdu</button><button class="filter" data-kind="tamil">தமிழ் · Tamil</button><button class="filter" data-kind="pdf">PDF records</button></div></section>
+<div class="sectionhead"><div><h2>Start exploring</h2><p>Choose a collection to load matching catalogue records.</p></div></div>
+<section class="quick">
+<article class="quickcard"><div class="emoji">🕌</div><h3>Arabic Islamic Books</h3><p>Quran, tafsir, hadith, fiqh and classical Arabic texts.</p><button class="btn secondary" data-query="Islamic books Arabic PDF" data-kind="arabic">Explore Arabic</button></article>
+<article class="quickcard"><div class="emoji">📗</div><h3>Urdu Islamic Books</h3><p>Urdu religious books, explanations and study material.</p><button class="btn secondary" data-query="اسلامی کتابیں اردو PDF" data-kind="urdu">Explore Urdu</button></article>
+<article class="quickcard"><div class="emoji">📘</div><h3>Tamil Islamic Books</h3><p>Tamil Islamic literature, translations and learning resources.</p><button class="btn secondary" data-query="இஸ்லாமிய நூல்கள் தமிழ் PDF" data-kind="tamil">Explore Tamil</button></article>
+</section>
+<div class="sectionhead"><div><h2>Search results</h2><p>Items are hosted and managed by Internet Archive.</p></div></div>
+<div class="status" id="status" aria-live="polite">Choose a language above or enter a search term to find books.</div>
+<section class="results" id="results"></section>
+<div class="notice"><strong>Copyright & access:</strong> This hub searches the public Internet Archive catalogue; it does not claim ownership of the books and does not copy the entire library. Access and download options vary. Please check the record's rights, licence and access terms. Some books may be borrow-only or restricted. Use only materials you are permitted to access and reuse.</div>
+</main>
+<footer><div class="wrap foot"><span>© <span id="year"></span> Files Hub · Yaseenis</span><span><a href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a> · <a href="https://yaseenis.com">yaseenis.com</a></span></div></footer>
+<script>
+const form=document.getElementById('searchForm'), query=document.getElementById('query'), status=document.getElementById('status'), results=document.getElementById('results'), filters=[...document.querySelectorAll('.filter')];
+let currentKind='all', requestNo=0;
+const langTerms={arabic:'language:ara',urdu:'language:urd',tamil:'language:tam',all:''};
+function makeQuery(q,kind){
+ const safe=q.trim();
+ let queryText='('+safe+') AND mediatype:texts';
+ if(kind==='arabic') queryText+=' AND (language:ara OR language:ar)';
+ if(kind==='urdu') queryText+=' AND (language:urd OR language:ur)';
+ if(kind==='tamil') queryText+=' AND (language:tam OR language:ta)';
+ if(kind==='pdf') queryText+=' AND format:"PDF"';
+ return queryText;
+}
+function setKind(kind){currentKind=kind;filters.forEach(b=>b.classList.toggle('active',b.dataset.kind===kind));}
+async function searchBooks(q,kind=currentKind){
+ if(!q.trim())return;
+ const thisRequest=++requestNo;status.textContent='Searching Internet Archive…';results.replaceChildren();
+ try{
+  const params=new URLSearchParams();params.set('q',makeQuery(q,kind));['identifier','title','creator','date','language','description','licenseurl','format'].forEach(f=>params.append('fl[]',f));params.set('rows','18');params.set('page','1');params.set('output','json');params.set('sort[]','downloads desc');
+  const response=await fetch('https://archive.org/advancedsearch.php?'+params.toString());
+  if(!response.ok)throw new Error('Search service unavailable');
+  const data=await response.json();if(thisRequest!==requestNo)return;
+  const docs=data.response?.docs||[];
+  if(!docs.length){status.textContent='No matching records found. Try a different spelling or broader keyword.';results.innerHTML='<div class="empty">No books found for this search. Try another language or search term.</div>';return;}
+  status.textContent='Found '+(data.response.numFound||docs.length).toLocaleString()+' catalogue records. Showing the first '+docs.length+'.';
+  docs.forEach(item=>{
+   if(!item.identifier)return;
+   const card=document.createElement('article');card.className='result';
+   const cover=document.createElement('div');cover.className='cover';cover.textContent='📚';card.append(cover);
+   const title=document.createElement('h3');title.textContent=item.title||item.identifier;card.append(title);
+   const meta=document.createElement('p');meta.className='meta';meta.textContent=[item.creator, item.date, item.language].flat().filter(Boolean).join(' · ');card.append(meta);
+   let desc=Array.isArray(item.description)?item.description.join(' '):(item.description||'');if(desc){const p=document.createElement('p');p.className='meta';p.textContent=desc.slice(0,160)+(desc.length>160?'…':'');card.append(p);}
+   const actions=document.createElement('div');actions.className='actions';
+   const details=document.createElement('a');details.href='https://archive.org/details/'+encodeURIComponent(item.identifier);details.target='_blank';details.rel='noopener noreferrer';details.textContent='Open book';actions.append(details);
+   const files=document.createElement('a');files.href='https://archive.org/metadata/'+encodeURIComponent(item.identifier);files.target='_blank';files.rel='noopener noreferrer';files.textContent='Formats & files';actions.append(files);
+   if(item.licenseurl){const lic=document.createElement('a');lic.href=item.licenseurl;lic.target='_blank';lic.rel='noopener noreferrer';lic.textContent='Licence';actions.append(lic);}
+   card.append(actions);results.append(card);
+  });
+ }catch(e){if(thisRequest!==requestNo)return;status.textContent='Could not connect to Archive.org right now. Please try again shortly.';results.innerHTML='<div class="empty">Search is temporarily unavailable. You can also browse <a href="https://archive.org/details/texts" target="_blank" rel="noopener noreferrer"><strong>Internet Archive texts</strong></a> directly.</div>';}
+}
+form.addEventListener('submit',e=>{e.preventDefault();searchBooks(query.value);});
+filters.forEach(b=>b.addEventListener('click',()=>{setKind(b.dataset.kind);if(query.value.trim())searchBooks(query.value,currentKind);else{const defaults={arabic:'Islamic books Arabic PDF',urdu:'اسلامی کتابیں اردو PDF',tamil:'இஸ்லாமிய நூல்கள் தமிழ் PDF',pdf:'Islamic books PDF',all:'Islamic books'};query.value=defaults[currentKind];searchBooks(query.value,currentKind);}}));
+document.querySelectorAll('[data-query]').forEach(b=>b.addEventListener('click',()=>{query.value=b.dataset.query;setKind(b.dataset.kind);searchBooks(query.value,currentKind);document.getElementById('status').scrollIntoView({behavior:'smooth',block:'center'});}));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
