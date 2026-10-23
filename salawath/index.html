@@ -60,13 +60,17 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 @media(min-width:480px){.daily-report{padding:22px 18px}.report-stat{min-height:116px;padding:16px}.report-person{font-size:15px}}
 \n
 /* Minute-by-minute report */
-.minute-row{display:grid;grid-template-columns:minmax(70px,.7fr) minmax(0,1fr) auto;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #ffffff20;font-size:14px}
-.minute-row:last-child{border-bottom:0}
-.minute-time{color:#f6ecd1;font-variant-numeric:tabular-nums;white-space:nowrap}
-.minute-bar-wrap{height:9px;border-radius:20px;background:#ffffff1b;overflow:hidden}
-.minute-bar{height:100%;border-radius:20px;background:linear-gradient(90deg,#b38a31,#ffe9a2);min-width:2px}
-.minute-count{color:var(--gold);font-weight:850;white-space:nowrap;font-variant-numeric:tabular-nums}
-.minute-empty{padding:8px 0;color:#e4d6ad;line-height:1.7}
+.minute-user-row{padding:11px 0;border-bottom:1px solid #b7def4}
+.minute-user-row:last-child{border-bottom:0}
+.minute-user-heading{display:grid;grid-template-columns:58px minmax(0,1fr) auto;align-items:start;gap:8px;font-size:14px}
+.minute-time{color:#365f79;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:750}
+.minute-user-details{min-width:0;display:flex;flex-direction:column;gap:3px}
+.minute-user-name{font-weight:750;color:#123b59;overflow-wrap:anywhere;line-height:1.4}
+.minute-visitor-id{font-size:10px;color:#557b93;overflow-wrap:anywhere;line-height:1.4}
+.minute-bar-wrap{height:7px;border-radius:20px;background:#c8e6f8;overflow:hidden;margin-top:8px}
+.minute-bar{height:100%;border-radius:20px;background:linear-gradient(90deg,#55b5eb,#1676b8);min-width:2px}
+.minute-count{color:#1676b8;font-weight:850;white-space:nowrap;font-variant-numeric:tabular-nums}
+.minute-empty{padding:8px 0;color:#365f79;line-height:1.7}
 
 
 /* SKY BLUE + WHITE THEME — clean, airy and mobile friendly */
@@ -350,16 +354,24 @@ async function loadDailyReport() {
    minuteList.append(empty);
   } else {
    const peak = Math.max(1, ...minuteRows.map(item => Number(item.count || 0)));
-   // Most recent minute first, so the live activity is visible at the top.
-   minuteRows.slice().reverse().forEach(item => {
-    const row = document.createElement("div"); row.className = "minute-row";
+   // Each row is one visitor's count within a specific UAE minute.
+   minuteRows.forEach(item => {
+    const row = document.createElement("div"); row.className = "minute-user-row";
+    const heading = document.createElement("div"); heading.className = "minute-user-heading";
+    const details = document.createElement("div"); details.className = "minute-user-details";
     const time = document.createElement("span"); time.className = "minute-time"; time.textContent = item.minute || "--:--";
+    const name = document.createElement("span"); name.className = "minute-user-name"; name.textContent = item.name || "பெயர் பதிவு செய்யவில்லை";
+    const id = document.createElement("span"); id.className = "minute-visitor-id";
+    const visitorId = String(item.visitorId || "");
+    id.textContent = visitorId ? "Visitor ID: " + visitorId : "Visitor ID: கிடைக்கவில்லை";
+    details.append(name, id);
+    const count = document.createElement("span"); count.className = "minute-count"; count.textContent = fmt(item.count);
+    heading.append(time, details, count);
     const barWrap = document.createElement("div"); barWrap.className = "minute-bar-wrap";
     const bar = document.createElement("div"); bar.className = "minute-bar";
     bar.style.width = Math.max(1, Number(item.count || 0) / peak * 100) + "%";
     barWrap.append(bar);
-    const count = document.createElement("span"); count.className = "minute-count"; count.textContent = fmt(item.count);
-    row.append(time, barWrap, count); minuteList.append(row);
+    row.append(heading, barWrap); minuteList.append(row);
    });
   }
   const stamp = new Date().toLocaleTimeString("ta-IN",{hour:"numeric",minute:"2-digit",second:"2-digit"});
