@@ -52,9 +52,12 @@ export default {
         const date = /^\d{4}-\d{2}-\d{2}$/.test(url.searchParams.get("date") || "") ? url.searchParams.get("date") : dateInZone(new Date(), env.APP_TIMEZONE || "Asia/Dubai");
         const summary = await env.DB.prepare("SELECT COALESCE(SUM(amount),0) AS totalSalawath, COUNT(*) AS tapEvents, COUNT(DISTINCT visitor_id) AS uniqueVisitors FROM salawath_events WHERE event_date = ?").bind(date).first();
         const top = await env.DB.prepare("SELECT COALESCE(NULLIF(MAX(p.display_name),''), 'பெயர் பதிவு செய்யவில்லை') AS name, SUM(e.amount) AS count FROM salawath_events e LEFT JOIN salawath_presence p ON p.visitor_id=e.visitor_id WHERE e.event_date=? GROUP BY e.visitor_id ORDER BY count DESC LIMIT 10").bind(date).all();
+        // created_at is stored as UTC ISO time; UAE has a fixed UTC+4 offset.
+        // Group events by the minute they were recorded in Asia/Dubai.
+        const minuteBreakdown = await env.DB.prepare("SELECT strftime('%H:%M', created_at, '+4 hours') AS minute, SUM(amount) AS count FROM salawath_events WHERE event_date = ? GROUP BY strftime('%H:%M', created_at, '+4 hours') ORDER BY minute ASC").bind(date).all();
         const onlineCutoff = new Date(Date.now() - 60_000).toISOString();
         const online = await env.DB.prepare("SELECT COALESCE(NULLIF(display_name,''), 'பெயர் பதிவு செய்யவில்லை') AS name, last_seen AS lastSeen FROM salawath_presence WHERE last_seen >= ? ORDER BY last_seen DESC LIMIT 100").bind(onlineCutoff).all();
-        return json({ date, timezone: env.APP_TIMEZONE || "Asia/Dubai", totalSalawath: Number(summary?.totalSalawath || 0), tapEvents: Number(summary?.tapEvents || 0), uniqueVisitors: Number(summary?.uniqueVisitors || 0), onlineNow: (online.results || []).length, onlineVisitors: online.results || [], topUsers: top.results || [] }, 200, headers);
+        return json({ date, timezone: env.APP_TIMEZONE || "Asia/Dubai", totalSalawath: Number(summary?.totalSalawath || 0), tapEvents: Number(summary?.tapEvents || 0), uniqueVisitors: Number(summary?.uniqueVisitors || 0), onlineNow: (online.results || []).length, onlineVisitors: online.results || [], topUsers: top.results || [], minuteBreakdown: minuteBreakdown.results || [] }, 200, headers);
       }
       if (request.method === "GET" && url.pathname === "/api/admin/online") {
         const tokenError = adminTokenStatus(request, env); if (tokenError) return json({ error: tokenError }, 401, headers);
