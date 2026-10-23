@@ -4,3 +4,9 @@
 **/.wrangler
 .env
 .env.*
+.github/**
+scripts/**
+wrangler.jsonc
+.gitignore
+.assetsignore
+.wranglerignore
