@@ -14,3 +14,4 @@ CREATE TABLE IF NOT EXISTS salawath_events (
 );
 CREATE INDEX IF NOT EXISTS idx_salawath_events_date ON salawath_events(event_date);
 CREATE INDEX IF NOT EXISTS idx_salawath_events_visitor_date ON salawath_events(visitor_id, event_date);
+CREATE INDEX IF NOT EXISTS idx_salawath_events_date_created ON salawath_events(event_date, created_at);
