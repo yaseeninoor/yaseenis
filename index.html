@@ -9,6 +9,9 @@
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="canonical" href="https://yaseenis.com/">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/assets/yaseenis-icon.svg" type="image/svg+xml">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Yaseenis.com">
     <meta property="og:title" content="Yaseenis.com | தமிழ் இஸ்லாமிய அறிவுக் களஞ்சியம்">
@@ -180,6 +183,9 @@
         @media(max-width:420px) { .quick-link { padding:12px 10px; font-size:14px; } .quick-link span { font-size:20px; } .logo { font-size:19px; gap:7px; } .logo::before { width:32px;height:32px;font-size:21px; } .nav-links { gap:10px; } .nav-links a { font-size:14px; } }
 
     
+        .skip-link { position:fixed;top:10px;left:10px;z-index:2000;padding:12px 16px;border-radius:12px;background:#f3d98b;color:#102b25;font-weight:800;transform:translateY(-160%); }
+        .skip-link:focus { transform:translateY(0); }
+        a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline:3px solid #c79a3b;outline-offset:3px; }
         /* Immersive 3D layer — lightweight CSS, no external 3D library */
         .hero { perspective:1100px; transform-style:preserve-3d; }
         .hero-3d-scene { position:absolute; inset:0; z-index:-1; overflow:hidden; pointer-events:none; transform-style:preserve-3d; }
@@ -225,9 +231,10 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">உள்ளடக்கத்திற்குச் செல்லுங்கள்</a>
 
     <!-- NAVBAR (Login Removed) -->
-    <nav>
+    <nav aria-label="முதன்மை வழிசெலுத்தல்">
         <a href="/" class="logo" aria-label="Yaseenis.com முகப்பு">
             🕌 Yaseenis<span>.com</span>
         </a>
@@ -271,7 +278,7 @@
         <search-bar-snippet api-url="https://ask.yaseenis.com/" placeholder="Yaseenis-ல் தேடுங்கள்..." max-results="10"></search-bar-snippet>
     </section>
 
-    <main class="container">
+    <main id="main-content" class="container">
 
         <!-- YOUTUBE VIDEO SECTION -->
         <div class="section-heading">
@@ -347,7 +354,7 @@
             <div class="visitor-locations" id="visitorLocations"><div class="visitor-location">இட விவரங்கள் ஏற்றப்படுகின்றன…</div></div>
             <div class="visitor-note">நாடு / நகரம் விவரங்கள் தோராயமானவை. ஒரே browser/device ஒரு பார்வையாளராகக் கணக்கிடப்படும்.</div>
         </section>
-        <p>&copy; <span id="year"></span> Yaseenis.com. All Rights Reserved.</p>
+        <p>&copy; <span id="year"></span> Yaseenis.com. All Rights Reserved. · <a href="/privacy-policy.html" style="color:#f3d98b;text-decoration:underline;">தனியுரிமைக் கொள்கை</a></p>
     </footer>
 
     <!-- JAVASCRIPT FOR YOUTUBE APP & FOOTER YEAR (Firebase Removed) -->
@@ -463,6 +470,12 @@
           });
         }
       })();
+    </script>
+
+    <script>
+      if ("serviceWorker" in navigator && location.protocol === "https:") {
+        window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch((error) => console.warn("Offline support unavailable:", error)));
+      }
     </script>
 
     <chat-bubble-snippet api-url="https://ask.yaseenis.com/" placeholder="Yaseenis AI-யிடம் கேளுங்கள்..." theme="light"></chat-bubble-snippet>
