@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yaseenis.com | தமிழ் இஸ்லாமிய அறிவுக் களஞ்சியம்</title>
     <meta name="description" content="Yaseenis.com — திருக்குர்ஆன், ஹதீஸ், இஸ்லாமிய நூல்கள், கட்டுரைகள், ஆடியோ பயான்கள் மற்றும் வீடியோக்களை ஒரே இடத்தில் அணுகுங்கள்.">
-    <meta name="theme-color" content="#064e3b">
+    <meta name="theme-color" content="#123b8a">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="canonical" href="https://yaseenis.com/">
     <link rel="manifest" href="/site.webmanifest">
@@ -244,6 +244,77 @@
         @media(max-width:900px){.site-nav{align-items:flex-start}.site-nav .nav-links{gap:8px;flex-wrap:wrap;justify-content:flex-end}.site-nav .logo{font-size:18px}.brand-word small{display:none}.site-nav .nav-quran{padding:9px 10px}.dropdown-panel{right:-90px}}
         @media(max-width:620px){.site-nav{position:sticky;align-items:center;padding:9px 12px;gap:8px}.site-nav .logo{font-size:16px;gap:6px}.brand-mark{width:33px;height:33px;font-size:22px;border-radius:11px}.site-nav .nav-links{gap:6px}.site-nav .nav-links>a.hide-mobile{display:none}.nav-dropdown summary{font-size:13px;padding:8px 9px}.site-nav .nav-search{font-size:13px;padding:8px}.site-nav .nav-search span{display:none}.site-nav .nav-quran{font-size:12px;padding:8px}.dropdown-panel{position:fixed;top:62px;left:10px;right:10px;width:auto;max-height:75vh;overflow:auto;padding:14px;gap:14px;grid-template-columns:1fr 1fr}.dropdown-group a{font-size:13px;padding:7px 5px}.quran-feature-card{grid-template-columns:1fr;gap:10px}.quran-feature-ayah{font-size:30px}.quran-feature-ayah small{text-align:center}}
         @media(max-width:380px){.site-nav .nav-quran{font-size:0;padding:9px}.site-nav .nav-quran:first-letter{font-size:17px}.site-nav .logo{font-size:14px}.dropdown-panel{grid-template-columns:1fr}}
+
+        /* ROYAL BLUE + ICE BLUE 3D THEME — site-wide homepage refresh */
+        :root {
+          --primary:#123b8a; --primary-light:#2563eb; --gold:#d6a84f; --gold-light:#f5d98a;
+          --dark:#101b34; --text-gray:#53627a; --bg-main:#f2f6ff; --white:#ffffff;
+        }
+        body { background:radial-gradient(ellipse at 8% 5%,#dceaff 0,transparent 32%),var(--bg-main); color:var(--dark); }
+        nav,.site-nav { background:rgba(255,255,255,.92); border-bottom:1px solid #c9d9f8; box-shadow:0 10px 30px #102f7020; }
+        .logo,.site-nav .logo { color:#123b8a; }
+        .logo::before,.brand-mark { background:linear-gradient(145deg,#3478ed,#102d78); color:#fff0b5; box-shadow:0 7px 0 #0a2258,0 14px 24px #123b8a38; }
+        .brand-word>span { color:#d6a84f; }
+        .brand-word small { color:#62708a; }
+        .nav-links a:hover { color:#2563eb; }
+        .nav-dropdown summary { background:linear-gradient(145deg,#fff,#eaf1ff); border-color:#c6d7fa; color:#163b80; box-shadow:0 4px 0 #d5e2fb,0 8px 18px #173d8610; transition:transform .18s,box-shadow .18s; }
+        .nav-dropdown summary:hover { transform:translateY(-2px); box-shadow:0 6px 0 #c5d7fa,0 12px 22px #173d8620; }
+        .nav-dropdown[open] summary { background:linear-gradient(145deg,#e8f0ff,#d9e7ff); border-color:#8eaff2; }
+        .dropdown-panel { background:linear-gradient(145deg,#fff 0%,#f4f7ff 100%); border-color:#c9d9f8; box-shadow:0 18px 0 #173d8610,0 30px 65px #071b4930; }
+        .dropdown-group strong { color:#b1842c; border-color:#dce6fb; }
+        .dropdown-group a { color:#2c4168; transition:background .18s,transform .18s,box-shadow .18s; }
+        .dropdown-group a:hover { background:linear-gradient(100deg,#e6efff,#f7faff); color:#123b8a; transform:translateX(3px); box-shadow:inset 3px 0 #3478ed; }
+        .site-nav .nav-quran { background:linear-gradient(145deg,#3478ed,#123b8a 68%,#0b245d); color:#fff; border:1px solid #75a2fa; box-shadow:0 5px 0 #091e53,0 12px 22px #123b8a30; transition:transform .18s,box-shadow .18s; }
+        .site-nav .nav-quran:active { transform:translateY(3px); box-shadow:0 2px 0 #091e53,0 5px 10px #123b8a25; }
+        .hero { background:radial-gradient(circle at 15% 20%,#7dd3fc30,transparent 28%),radial-gradient(circle at 85% 70%,#8baeff35,transparent 30%),linear-gradient(125deg,#071b49 0%,#123b8a 48%,#071c46 100%); box-shadow:0 18px 0 #123b8a12,0 28px 55px #102f7030; }
+        .hero::after { border-color:#f5d98a45; }
+        .hero-orb.orb-one { background:radial-gradient(circle at 32% 28%,#fff 0%,#9ddcff 9%,#428be8 28%,#1749a6 56%,#071b49 76%); box-shadow:inset -18px -20px 36px #00113aaa,0 25px 65px #0005; }
+        .hero-orb.orb-two { background:radial-gradient(circle at 30% 25%,#fff0bc,#d6a84f 28%,#3478ed 68%,#0b245d); }
+        .hero-ring { border-color:#b9d7ff66; box-shadow:0 0 30px #8ec5ff18; }
+        .hero-ring::before,.hero-ring::after { border-color:#dceaff38; }
+        .hero .hero-kicker { color:#f5d98a; }
+        .hero-action.primary { background:linear-gradient(145deg,#fff0b8,#d6a84f); color:#102a61; border:1px solid #fff0bc; box-shadow:0 7px 0 #98712a,0 15px 28px #0003; }
+        .hero-action.secondary { border:1px solid #d5e4ff88; color:#fff; background:linear-gradient(145deg,#ffffff20,#ffffff08); box-shadow:0 6px 0 #06194566,0 12px 25px #0002; }
+        .hero-action:active { transform:translateY(3px); }
+        .ai-search-section { border-color:#d7e3fb; background:linear-gradient(145deg,#fff,#f5f8ff); box-shadow:0 8px 0 #dbe6fb,0 18px 38px #153d8514; }
+        .ai-search-section h2,.section-heading,.card h3,.quran-feature h2 { color:#123b8a; }
+        search-bar-snippet { --search-snippet-primary-color:#2563eb; }
+        .section-heading::after { background:linear-gradient(90deg,#d6a84f,#d9e6ff 55%,transparent); }
+        .quick-link,.card { background:linear-gradient(145deg,#fff 0%,#fff 55%,#eaf1ff 100%); border-color:#d6e2f8; box-shadow:0 6px 0 #d9e5fb,0 12px 24px #102f7010; transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease; }
+        .quick-link { color:#1b315b; }
+        .quick-link span { filter:drop-shadow(0 4px 3px #123b8a20); }
+        .quick-link:hover,.card:hover { border-color:#91b4f7; box-shadow:0 9px 0 #c8daf9,0 24px 36px #123b8a24; }
+        .card::before { background:linear-gradient(90deg,#2563eb,#7dd3fc,#d6a84f); }
+        .card-icon { background:linear-gradient(145deg,#e5efff,#cbdcff); color:#123b8a; box-shadow:inset 0 2px 0 #fff,0 7px 0 #b6cdf9,0 12px 20px #123b8a18; }
+        .card h3 { text-shadow:0 1px #fff; }
+        .video-card { border-color:#d5e1f7; box-shadow:0 7px 0 #dce7fb,0 18px 32px #102f7014; }
+        .yt-app-btn { box-shadow:0 4px 0 #f4caca; }
+        .admin-card { background:linear-gradient(145deg,#132c67,#0a1b45 75%); border-color:#416bc1; box-shadow:0 7px 0 #071638,0 18px 34px #071b4930; }
+        .admin-card h3 { color:#f5d98a; }
+        .admin-card .card-icon { background:linear-gradient(145deg,#3478ed,#123b8a); }
+        .quran-feature-card { background:radial-gradient(circle at 88% 18%,#3478ed20,transparent 28%),linear-gradient(120deg,#fff,#edf3ff); border-color:#c4d7fa; box-shadow:0 8px 0 #d9e5fb,0 20px 40px #102f7014; }
+        .quran-feature h2 { color:#123b8a; }
+        .quran-feature-ayah { color:#1749a6; }
+        .quran-feature-actions .read { background:linear-gradient(145deg,#3478ed,#123b8a); color:white; box-shadow:0 5px 0 #091e53,0 10px 18px #123b8a20; }
+        .quran-feature-actions .browse { background:linear-gradient(145deg,#fff,#eaf1ff); border-color:#c8d9f8; color:#123b8a; box-shadow:0 4px 0 #d3e0f8; }
+        .trust-note { background:linear-gradient(100deg,#eaf1ff,#f7faff); border-left-color:#d6a84f; color:#465a7c; }
+        footer { background:linear-gradient(135deg,#071b49,#123b8a 60%,#081b45); color:#e0ebff; }
+        footer .visitor-stats { color:#17284b; }
+        .visitor-stats { background:linear-gradient(145deg,#fff,#eaf1ff); border-color:#c8d9f8; box-shadow:0 7px 0 #09235755,0 18px 34px #00113b30; }
+        .visitor-stats h3,.visitor-total,.visitor-location strong { color:#123b8a; }
+        .visitor-total { font-size:clamp(32px,5vw,46px); text-shadow:0 2px 0 #d6e5ff; }
+        .visitor-location { background:linear-gradient(145deg,#fff,#f3f7ff); border-color:#d8e4fb; box-shadow:0 3px 0 #dce7fb; }
+        .poster-link { box-shadow:0 8px 0 #d9e5fb,0 20px 42px #102f7020; }
+        .poster-counter-link { background:linear-gradient(145deg,#3478ed,#123b8a); box-shadow:0 5px 0 #091e53,0 12px 22px #123b8a24; }
+        a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline-color:#3478ed; }
+        @media(max-width:620px) {
+          .dropdown-panel { background:linear-gradient(145deg,#fff,#eef4ff); box-shadow:0 12px 0 #123b8a12,0 25px 55px #071b4938; }
+          .site-nav .nav-quran { box-shadow:0 3px 0 #091e53,0 8px 14px #123b8a20; }
+        }
+        @media(prefers-reduced-motion:reduce) {
+          .quick-link,.card,.video-card,.nav-dropdown summary,.dropdown-group a { transition:none!important; }
+        }
+
 </style>
 </head>
 <body>
