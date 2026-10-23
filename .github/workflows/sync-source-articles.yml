@@ -32,7 +32,7 @@ jobs:
         run: python scripts/sync-source-articles.py
       - name: Commit updated source feed
         run: |
-          if git diff --quiet -- article/source-feed.json; then
+          if [ -z "$(git status --porcelain -- article/source-feed.json)" ]; then
             echo "No source feed changes to commit."
             exit 0
           fi
