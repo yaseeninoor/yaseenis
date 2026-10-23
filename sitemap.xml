@@ -8,4 +8,6 @@
   <url><loc>https://yaseenis.com/article/index.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://yaseenis.com/audio/list.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://yaseenis.com/Videos/list.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yaseenis.com/search.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://yaseenis.com/privacy-policy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
