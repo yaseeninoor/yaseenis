@@ -2,11 +2,58 @@
   "id": "/",
   "name": "Yaseenis.com - Tamil Islamic Knowledge",
   "short_name": "Yaseenis",
-  "description": "Tamil Islamic library for Quran, Hadith, books, audio and videos.",
+  "description": "தமிழ் இஸ்லாமிய அறிவுக் களஞ்சியம் — குர்ஆன், ஹதீஸ், நூல்கள், ஆடியோ மற்றும் வீடியோக்கள்.",
   "lang": "ta",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#f7f8f3",
-  "theme_color": "#064e3b"
+  "theme_color": "#064e3b",
+  "icons": [
+    {
+      "src": "/assets/yaseenis-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "PDF நூலகம்",
+      "short_name": "நூலகம்",
+      "url": "/pdfs/index.html",
+      "icons": [
+        {
+          "src": "/assets/yaseenis-icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "திருக்குர்ஆன்",
+      "short_name": "குர்ஆன்",
+      "url": "/Quran/Index.html",
+      "icons": [
+        {
+          "src": "/assets/yaseenis-icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "ஹதீஸ்",
+      "short_name": "ஹதீஸ்",
+      "url": "/hadith/hadith.html",
+      "icons": [
+        {
+          "src": "/assets/yaseenis-icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
 }
