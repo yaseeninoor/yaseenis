@@ -118,9 +118,93 @@ body::before{color:#369ad8;opacity:.045}
 .name-modal-later{border-color:#8dcdf4!important;color:#155d8a;background:#f2faff}
 .salat-rain span{color:#eaf8ff;background:radial-gradient(ellipse at 28% 18%,#ffffff 0%,#c9edffcf 12%,#63b7e899 35%,#1676b880 70%,#0b4b77a8 100%);border-color:#ffffffc0;box-shadow:inset 2px 3px 5px #ffffffaa,inset -3px -5px 8px #1a5c7a24,0 5px 12px #0a5a8830,0 0 13px #b5e7ff66;text-shadow:0 1px 2px #164866,0 0 7px #ffffff55}
 
+
+/* Appearance selector: Light, Night (black), and Auto (device setting) */
+.theme-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:0 auto 18px}
+.theme-label{width:100%;font-size:13px;font-weight:750;color:#365f79}
+.theme-btn{border:1px solid #82c6ed;border-radius:999px;padding:9px 13px;background:#f2faff;color:#155d8a;font-size:13px;font-weight:750;cursor:pointer;touch-action:manipulation}
+.theme-btn[aria-pressed="true"]{background:#1676b8;color:#fff;border-color:#1676b8;box-shadow:0 3px 10px #1676b833}
+.theme-btn:focus-visible{outline:3px solid #55b5eb;outline-offset:3px}
+body[data-theme="night"],body[data-theme="auto"].system-dark{
+ color:#f1f5f9;
+ background:radial-gradient(ellipse at 50% 0%,#1c2938 0%,#090d13 48%,#000000 100%);
+}
+body[data-theme="night"]::before,body[data-theme="auto"].system-dark::before{color:#9acdf5;opacity:.045}
+body[data-theme="night"] .card,body[data-theme="auto"].system-dark .card{
+ border-color:#334155;background:linear-gradient(155deg,#111827f5,#030609fa);
+ box-shadow:0 12px 40px #000b,inset 0 1px 0 #ffffff10;
+}
+body[data-theme="night"] .logo,body[data-theme="night"] h1,body[data-theme="night"] .arabic,
+body[data-theme="night"] .eyebrow,body[data-theme="night"] .total,body[data-theme="night"] .progress-text,
+body[data-theme="night"] .batch-title,body[data-theme="night"] .report-value,body[data-theme="night"] .report-subcard h3,
+body[data-theme="night"] .minute-count,body[data-theme="night"] .lb-count,
+body[data-theme="auto"].system-dark .logo,body[data-theme="auto"].system-dark h1,body[data-theme="auto"].system-dark .arabic,
+body[data-theme="auto"].system-dark .eyebrow,body[data-theme="auto"].system-dark .total,body[data-theme="auto"].system-dark .progress-text,
+body[data-theme="auto"].system-dark .batch-title,body[data-theme="auto"].system-dark .report-value,body[data-theme="auto"].system-dark .report-subcard h3,
+body[data-theme="auto"].system-dark .minute-count,body[data-theme="auto"].system-dark .lb-count{color:#93cfff}
+body[data-theme="night"] .subtitle,body[data-theme="night"] .caption,body[data-theme="night"] .muted,
+body[data-theme="night"] .report-label,body[data-theme="night"] .report-person-name,body[data-theme="night"] .report-time,
+body[data-theme="night"] .minute-time,body[data-theme="night"] .minute-empty,body[data-theme="night"] .report-status,
+body[data-theme="night"] .notice,body[data-theme="night"] .footer,
+body[data-theme="auto"].system-dark .subtitle,body[data-theme="auto"].system-dark .caption,body[data-theme="auto"].system-dark .muted,
+body[data-theme="auto"].system-dark .report-label,body[data-theme="auto"].system-dark .report-person-name,body[data-theme="auto"].system-dark .report-time,
+body[data-theme="auto"].system-dark .minute-time,body[data-theme="auto"].system-dark .minute-empty,body[data-theme="auto"].system-dark .report-status,
+body[data-theme="auto"].system-dark .notice,body[data-theme="auto"].system-dark .footer{color:#cbd5e1}
+body[data-theme="night"] .track,body[data-theme="auto"].system-dark .track,
+body[data-theme="night"] .minute-bar-wrap,body[data-theme="auto"].system-dark .minute-bar-wrap{background:#263241}
+body[data-theme="night"] .batch-tools,body[data-theme="night"] .leaderboard,body[data-theme="night"] .daily-report,
+body[data-theme="night"] .report-subcard,body[data-theme="auto"].system-dark .batch-tools,body[data-theme="auto"].system-dark .leaderboard,
+body[data-theme="auto"].system-dark .daily-report,body[data-theme="auto"].system-dark .report-subcard{
+ border-color:#334155;background:linear-gradient(150deg,#111827f2,#080b10f8);box-shadow:0 8px 24px #0004;
+}
+body[data-theme="night"] .report-stat,body[data-theme="auto"].system-dark .report-stat{border-color:#334155;background:#0b1018}
+body[data-theme="night"] .batch-btn,body[data-theme="night"] .small,body[data-theme="auto"].system-dark .batch-btn,body[data-theme="auto"].system-dark .small{
+ border-color:#475569;color:#dbeafe;background:#111827
+}
+body[data-theme="night"] .custom-row input,body[data-theme="auto"].system-dark .custom-row input,
+body[data-theme="night"] .name-modal-card input,body[data-theme="auto"].system-dark .name-modal-card input{
+ border-color:#475569;background:#111827;color:#f8fafc
+}
+body[data-theme="night"] .custom-row button,body[data-theme="night"] .name-modal-save,
+body[data-theme="auto"].system-dark .custom-row button,body[data-theme="auto"].system-dark .name-modal-save{background:#1676b8;color:#fff}
+body[data-theme="night"] .name-modal,body[data-theme="auto"].system-dark .name-modal{background:#000d}
+body[data-theme="night"] .name-modal-card,body[data-theme="auto"].system-dark .name-modal-card{
+ border-color:#334155;background:linear-gradient(160deg,#111827,#030609)
+}
+body[data-theme="night"] .name-modal-card h2,body[data-theme="auto"].system-dark .name-modal-card h2{color:#93cfff}
+body[data-theme="night"] .name-modal-card p,body[data-theme="auto"].system-dark .name-modal-card p{color:#cbd5e1}
+body[data-theme="night"] .name-modal-later,body[data-theme="auto"].system-dark .name-modal-later{
+ border-color:#475569!important;color:#dbeafe;background:#111827
+}
+body[data-theme="night"] .tap,body[data-theme="auto"].system-dark .tap{
+ border-color:#93cfff;color:#f8fafc;
+ background:radial-gradient(circle at 30% 20%,#3d536d 0%,#18283b 42%,#070b12 78%,#000 100%);
+ box-shadow:inset 0 5px 9px #ffffff18,inset 0 -12px 18px #000c,0 5px 0 #334155,0 10px 0 #080b10,0 18px 28px #000b,0 0 0 9px #60a5fa18;
+}
+body[data-theme="night"] .tap span,body[data-theme="auto"].system-dark .tap span{color:#bfdbfe}
+body[data-theme="night"] .tap::before,body[data-theme="auto"].system-dark .tap::before{border-color:#60a5fa80;box-shadow:0 0 0 5px #60a5fa17}
+body[data-theme="night"] .tap:hover,body[data-theme="auto"].system-dark .tap:hover{filter:brightness(1.15)}
+body[data-theme="night"] .theme-label,body[data-theme="auto"].system-dark .theme-label{color:#cbd5e1}
+body[data-theme="night"] .theme-btn,body[data-theme="auto"].system-dark .theme-btn{border-color:#475569;background:#111827;color:#dbeafe}
+body[data-theme="night"] .theme-btn[aria-pressed="true"],body[data-theme="auto"].system-dark .theme-btn[aria-pressed="true"]{background:#1676b8;color:#fff;border-color:#60a5fa}
+body[data-theme="night"] .salat-rain span,body[data-theme="auto"].system-dark .salat-rain span{
+ color:#dbeafe;background:radial-gradient(ellipse at 28% 18%,#dbeafe30 0%,#60a5fa20 25%,#17255480 58%,#020617c9 100%);
+ border-color:#93cfff50;box-shadow:inset 2px 3px 5px #ffffff15,0 5px 12px #0008,0 0 13px #60a5fa20;
+}
+@media(prefers-color-scheme:dark){
+ body[data-theme="auto"] .theme-label{color:#cbd5e1}
+}
+
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
+
+<div class="theme-controls" role="group" aria-label="Appearance">
+ <span class="theme-label">🎨 Theme / தோற்றம்</span>
+ <button type="button" class="theme-btn" data-theme-choice="auto" aria-pressed="false">⚙️ Auto</button>
+ <button type="button" class="theme-btn" data-theme-choice="light" aria-pressed="false">☀️ Light</button>
+ <button type="button" class="theme-btn" data-theme-choice="night" aria-pressed="false">🌙 Night</button>
+</div>
 <div class="logo">☾ ✦</div><h1>உரூஸ் முபாரக்</h1><div class="subtitle" style="font-size:clamp(20px,5vw,27px);font-weight:700">மாபெரும் ஸலவாத்து மஜ்லிஸ்</div>
 <div class="arabic" lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَالْآلِ وَالصَّحْبِ وَسَلِّمْ</div>
 <div class="subtitle" lang="ta">அல்லாஹும்ம ஸல்லி அலா முஹம்மதின் வல் ஆலி வஸ்ஸஹ்பி வஸல்லிம்.</div>
@@ -199,6 +283,33 @@ if (rainLayer && !window.matchMedia("(prefers-reduced-motion: reduce)").matches)
   rainLayer.appendChild(glyph);
  }
 }
+// Persisted appearance mode. Auto follows the device's light/dark setting.
+const THEME_KEY = "yaseeni_salawath_theme_v1";
+const themeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+function applyTheme(mode) {
+ const allowed = ["auto","light","night"];
+ const selected = allowed.includes(mode) ? mode : "auto";
+ document.body.dataset.theme = selected;
+ document.body.classList.toggle("system-dark", selected === "night" || (selected === "auto" && themeMedia.matches));
+ document.querySelector('meta[name="theme-color"]')?.setAttribute("content",
+  (selected === "night" || (selected === "auto" && themeMedia.matches)) ? "#05080d" : "#eaf7ff");
+ document.querySelectorAll("[data-theme-choice]").forEach(button => {
+  const active = button.dataset.themeChoice === selected;
+  button.setAttribute("aria-pressed", String(active));
+ });
+}
+let selectedTheme = localStorage.getItem(THEME_KEY) || "auto";
+applyTheme(selectedTheme);
+document.querySelectorAll("[data-theme-choice]").forEach(button => {
+ button.addEventListener("click", () => {
+  selectedTheme = button.dataset.themeChoice;
+  localStorage.setItem(THEME_KEY, selectedTheme);
+  applyTheme(selectedTheme);
+ });
+});
+const onThemeSystemChange = () => { if ((localStorage.getItem(THEME_KEY) || "auto") === "auto") applyTheme("auto"); };
+if (themeMedia.addEventListener) themeMedia.addEventListener("change", onThemeSystemChange);
+else if (themeMedia.addListener) themeMedia.addListener(onThemeSystemChange);
 const fmt = n => Number(n || 0).toLocaleString("en-US");
 let visitorId = localStorage.getItem("yaseeni_salawath_visitor_id");
 if (!visitorId) {
