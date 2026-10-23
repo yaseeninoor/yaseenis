@@ -10,4 +10,8 @@
   <url><loc>https://yaseenis.com/Videos/list.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://yaseenis.com/search.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://yaseenis.com/privacy-policy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://yaseenis.com/article/peace-and-prophetic-character.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://yaseenis.com/article/halal-earnings-and-dua.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://yaseenis.com/article/quran-connection-daily-life.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://yaseenis.com/article/compassion-for-people-in-hardship.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
