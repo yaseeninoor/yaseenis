@@ -30,9 +30,9 @@ def local_text(node, tag):
     return "" if item is None else "".join(item.itertext()).strip()
 
 def plain_text(raw):
-    raw = re.sub(r"(?is)<(script|style).*?>.*?</\\1>", " ", raw or "")
+    raw = re.sub(r"(?is)<(script|style).*?>.*?</\1>", " ", raw or "")
     raw = re.sub(r"(?s)<[^>]+>", " ", raw)
-    return html.unescape(re.sub(r"\\s+", " ", raw)).strip()
+    return html.unescape(re.sub(r"\s+", " ", raw)).strip()
 
 def categorise(text):
     t = text.lower()
@@ -149,7 +149,7 @@ def main():
         "items": list(unique.values()),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    new_text = json.dumps(payload, ensure_ascii=False, indent=2) + "\\n"
+    new_text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
     if not OUT.exists() or OUT.read_text(encoding="utf-8") != new_text:
         OUT.write_text(new_text, encoding="utf-8")
         print(f"Wrote {len(unique)} source cards to {OUT}")
