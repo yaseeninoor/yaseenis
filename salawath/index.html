@@ -58,7 +58,17 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 .report-status{text-align:center;color:#e4d6ad;font-size:12px;line-height:1.7;margin:12px 0 0;overflow-wrap:anywhere}
 .report-refresh{display:block;margin:10px auto 0}
 @media(min-width:480px){.daily-report{padding:22px 18px}.report-stat{min-height:116px;padding:16px}.report-person{font-size:15px}}
-\n</style>
+\n
+/* Minute-by-minute report */
+.minute-row{display:grid;grid-template-columns:minmax(70px,.7fr) minmax(0,1fr) auto;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #ffffff20;font-size:14px}
+.minute-row:last-child{border-bottom:0}
+.minute-time{color:#f6ecd1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.minute-bar-wrap{height:9px;border-radius:20px;background:#ffffff1b;overflow:hidden}
+.minute-bar{height:100%;border-radius:20px;background:linear-gradient(90deg,#b38a31,#ffe9a2);min-width:2px}
+.minute-count{color:var(--gold);font-weight:850;white-space:nowrap;font-variant-numeric:tabular-nums}
+.minute-empty{padding:8px 0;color:#e4d6ad;line-height:1.7}
+
+</style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
 <img class="event-poster" src="https://raw.githubusercontent.com/yaseeninoor/yaseenis/main/yaseenis/uroos-mubarak-poster.jpg" alt="உரூஸ் முபாரக் — 3-ஆம் ஆண்டு கந்தூரி விழா" loading="eager">
@@ -90,6 +100,11 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
  <div class="report-subcard">
   <h3>🏆 Daily Top Users</h3>
   <div id="reportTopUsers" class="muted">பட்டியலை ஏற்றுகிறது…</div>
+ </div>
+ <div class="report-subcard">
+  <h3>⏱️ Minute-by-Minute · நிமிடவாரி ஸலவாத்து</h3>
+  <div id="reportMinuteBreakdown" class="muted">நிமிடவாரி அறிக்கை ஏற்றப்படுகிறது…</div>
+  <div class="report-status">UAE நேரம் · ஒவ்வொரு நிமிடத்திலும் பதிவான ஸலவாத்துகள்</div>
  </div>
  <div class="report-status" id="reportStatus" role="status">தானாகப் புதுப்பிக்கப்படுகிறது…</div>
  <button class="small report-refresh" id="reportRefresh" type="button">↻ அறிக்கையைப் புதுப்பி</button>
@@ -277,6 +292,28 @@ async function loadDailyReport() {
     name.textContent = (index+1) + ". " + (person.name || "பெயர் பதிவு செய்யவில்லை");
     const count = document.createElement("span"); count.className = "report-person-count"; count.textContent = fmt(person.count);
     row.append(name,count); topList.append(row);
+   });
+  }
+  const minuteList = $("reportMinuteBreakdown");
+  minuteList.replaceChildren();
+  const minuteRows = Array.isArray(data.minuteBreakdown) ? data.minuteBreakdown : [];
+  if (!minuteRows.length) {
+   const empty = document.createElement("div");
+   empty.className = "minute-empty";
+   empty.textContent = "இன்று இன்னும் நிமிடவாரியான ஸலவாத்து பதிவுகள் இல்லை.";
+   minuteList.append(empty);
+  } else {
+   const peak = Math.max(1, ...minuteRows.map(item => Number(item.count || 0)));
+   // Most recent minute first, so the live activity is visible at the top.
+   minuteRows.slice().reverse().forEach(item => {
+    const row = document.createElement("div"); row.className = "minute-row";
+    const time = document.createElement("span"); time.className = "minute-time"; time.textContent = item.minute || "--:--";
+    const barWrap = document.createElement("div"); barWrap.className = "minute-bar-wrap";
+    const bar = document.createElement("div"); bar.className = "minute-bar";
+    bar.style.width = Math.max(1, Number(item.count || 0) / peak * 100) + "%";
+    barWrap.append(bar);
+    const count = document.createElement("span"); count.className = "minute-count"; count.textContent = fmt(item.count);
+    row.append(time, barWrap, count); minuteList.append(row);
    });
   }
   const stamp = new Date().toLocaleTimeString("ta-IN",{hour:"numeric",minute:"2-digit",second:"2-digit"});
