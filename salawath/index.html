@@ -59,7 +59,7 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 .report-refresh{display:block;margin:10px auto 0}
 @media(min-width:480px){.daily-report{padding:22px 18px}.report-stat{min-height:116px;padding:16px}.report-person{font-size:15px}}
 \n
-/* Minute-by-minute report */
+/* Minute-by-minute report with visitor identity */
 .minute-user-row{padding:11px 0;border-bottom:1px solid #b7def4}
 .minute-user-row:last-child{border-bottom:0}
 .minute-user-heading{display:grid;grid-template-columns:58px minmax(0,1fr) auto;align-items:start;gap:8px;font-size:14px}
@@ -71,7 +71,6 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 .minute-bar{height:100%;border-radius:20px;background:linear-gradient(90deg,#55b5eb,#1676b8);min-width:2px}
 .minute-count{color:#1676b8;font-weight:850;white-space:nowrap;font-variant-numeric:tabular-nums}
 .minute-empty{padding:8px 0;color:#365f79;line-height:1.7}
-
 
 /* SKY BLUE + WHITE THEME — clean, airy and mobile friendly */
 :root{--green:#1676b8;--deep:#eaf7ff;--gold:#2f91d0;--cream:#123b59}
@@ -354,7 +353,6 @@ async function loadDailyReport() {
    minuteList.append(empty);
   } else {
    const peak = Math.max(1, ...minuteRows.map(item => Number(item.count || 0)));
-   // Each row is one visitor's count within a specific UAE minute.
    minuteRows.forEach(item => {
     const row = document.createElement("div"); row.className = "minute-user-row";
     const heading = document.createElement("div"); heading.className = "minute-user-heading";
