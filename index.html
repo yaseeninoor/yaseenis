@@ -179,6 +179,49 @@
         @media(max-width:760px) { nav { padding:11px 4%; } .nav-links { gap:13px; } .quick-links { grid-template-columns:repeat(2,minmax(0,1fr)); } .hero { min-height:380px; padding:70px 6% 76px; } .hero::after { inset:10px; } .hero::before { font-size:300px; top:-55px; } .card { padding:22px; } }
         @media(max-width:420px) { .quick-link { padding:12px 10px; font-size:14px; } .quick-link span { font-size:20px; } .logo { font-size:19px; gap:7px; } .logo::before { width:32px;height:32px;font-size:21px; } .nav-links { gap:10px; } .nav-links a { font-size:14px; } }
 
+    
+        /* Immersive 3D layer — lightweight CSS, no external 3D library */
+        .hero { perspective:1100px; transform-style:preserve-3d; }
+        .hero-3d-scene { position:absolute; inset:0; z-index:-1; overflow:hidden; pointer-events:none; transform-style:preserve-3d; }
+        .hero-orb { position:absolute; border-radius:50%; filter:blur(.2px); transform-style:preserve-3d; }
+        .hero-orb.orb-one { width:190px;height:190px;right:9%;top:15%; background:radial-gradient(circle at 32% 28%,#fff7d6 0%,#d9b765 9%,#96702a 28%,#0b5b43 56%,#062d24 72%); box-shadow:inset -18px -20px 36px #001d17aa,0 25px 65px #0005; animation:orbFloat 9s ease-in-out infinite; }
+        .hero-orb.orb-two { width:92px;height:92px;left:12%;bottom:12%; background:radial-gradient(circle at 30% 25%,#f9e8ae,#c59b43 28%,#23674f 68%,#07372b); box-shadow:inset -10px -12px 20px #001d1766,0 18px 36px #0004; animation:orbFloat 7s ease-in-out infinite reverse; }
+        .hero-ring { position:absolute; width:280px;height:280px;right:5%;top:3%; border:1px solid #e8cc7b55;border-radius:50%; transform:rotateX(67deg) rotateZ(-24deg); box-shadow:0 0 30px #d7b45b12; animation:ringDrift 18s linear infinite; }
+        .hero-ring::before,.hero-ring::after { content:"";position:absolute;inset:20px;border:1px solid #f3d98b30;border-radius:50%; }
+        .hero-ring::after { inset:48px; }
+        .hero .hero-kicker,.hero h1,.hero p,.hero-actions { transform:translateZ(30px); }
+        .hero h1 { text-wrap:balance; }
+        .hero-actions { position:relative;z-index:2; }
+        .hero-action { box-shadow:0 8px 0 #001e1740,0 15px 30px #0002; }
+        .hero-action:active { transform:translateY(3px);box-shadow:0 3px 0 #001e1740,0 7px 14px #0002; }
+        .quick-link,.card,.video-card,.ai-search-section,.poster-link { transform-style:preserve-3d; backface-visibility:hidden; }
+        .quick-link,.card { will-change:transform; }
+        .card { background:linear-gradient(145deg,#fffefa 0%,#fffefa 64%,#f1f5ec 100%); }
+        .card::after { content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 15%,#ffffffa8 48%,transparent 65%);transform:translateX(-130%);transition:transform .7s ease;pointer-events:none; }
+        .card:hover::after { transform:translateX(130%); }
+        .card-icon { box-shadow:inset 0 1px 0 #ffffff,0 8px 16px #0b5b4310; transform:translateZ(20px); }
+        .quick-link { transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease; }
+        .quick-link:hover { box-shadow:0 14px 28px #10231d16; }
+        .video-card { transition:transform .25s ease,box-shadow .25s ease; }
+        .video-card:hover { transform:translateY(-5px);box-shadow:0 22px 44px #10231d18; }
+        .ai-search-section { position:relative;overflow:hidden; }
+        .ai-search-section::before { content:"";position:absolute;width:180px;height:180px;right:-90px;top:-100px;border-radius:50%;background:radial-gradient(circle,#d8c17a35,transparent 70%);pointer-events:none; }
+        .section-heading { text-shadow:0 1px 0 #fff; }
+        .reveal-on-scroll { opacity:0; transform:translateY(22px) scale(.985); transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1); }
+        .reveal-on-scroll.is-visible { opacity:1;transform:translateY(0) scale(1); }
+        @keyframes orbFloat { 0%,100%{translate:0 0;rotate:0deg} 50%{translate:0 -18px;rotate:5deg} }
+        @keyframes ringDrift { from{rotate:0deg} to{rotate:360deg} }
+        @media(max-width:760px) {
+          .hero-orb.orb-one { width:105px;height:105px;right:5%;top:8%;opacity:.72; }
+          .hero-orb.orb-two { width:58px;height:58px;left:5%;bottom:8%;opacity:.75; }
+          .hero-ring { width:160px;height:160px;right:-20px;top:8%;opacity:.6; }
+          .card::after { display:none; }
+        }
+        @media(prefers-reduced-motion:reduce) {
+          *,*::before,*::after { animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important; }
+          .reveal-on-scroll { opacity:1;transform:none; }
+        }
+
     </style>
 </head>
 <body>
@@ -196,7 +239,7 @@
     </nav>
 
     <!-- HERO WITH MADINAH BACKGROUND -->
-    <header class="hero">
+    <header class="hero">\n        <div class="hero-3d-scene" aria-hidden="true"><span class="hero-orb orb-one"></span><span class="hero-orb orb-two"></span><span class="hero-ring"></span></div>
         <div class="hero-kicker">YASEENIS ISLAMIC KNOWLEDGE</div>
         <h1>அஸ்ஸலாமு அலைக்கும்</h1>
         <p>யாசீனிஸ் இஸ்லாமிய அறிவுக் களஞ்சியத்திற்கு அன்புடன் வரவேற்கிறோம். திருக்குர்ஆன், ஹதீஸ்கள், பயான்கள், நூல்கள் மற்றும் பயனுள்ள இஸ்லாமிய வளங்களை ஒரே இடத்தில் தேடி அறிந்துகொள்ளுங்கள்.</p>
@@ -382,6 +425,43 @@
                 window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
             }
         }
+    </script>
+
+
+    <script>
+      // Lightweight 3D tilt and scroll reveal; respects reduced-motion settings.
+      (() => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const cards = document.querySelectorAll('.card, .quick-link, .video-card');
+        if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          cards.forEach((card) => {
+            card.addEventListener('pointermove', (event) => {
+              const rect = card.getBoundingClientRect();
+              const x = (event.clientX - rect.left) / rect.width;
+              const y = (event.clientY - rect.top) / rect.height;
+              const max = card.classList.contains('card') ? 5 : 3;
+              card.style.transform = `perspective(900px) rotateX(${(0.5-y)*max}deg) rotateY(${(x-0.5)*max}deg) translateY(-3px)`;
+            });
+            card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+          });
+        }
+        if (!reduceMotion && 'IntersectionObserver' in window) {
+          const targets = document.querySelectorAll('.section-heading, .category-grid .card, .quick-link, .video-card, .ai-search-section, .poster-section');
+          targets.forEach((el) => el.classList.add('reveal-on-scroll'));
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+          targets.forEach((el, index) => {
+            el.style.transitionDelay = `${Math.min(index % 4, 3) * 55}ms`;
+            observer.observe(el);
+          });
+        }
+      })();
     </script>
 
     <chat-bubble-snippet api-url="https://ask.yaseenis.com/" placeholder="Yaseenis AI-யிடம் கேளுங்கள்..." theme="light"></chat-bubble-snippet>
