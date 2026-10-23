@@ -144,6 +144,9 @@
 
         @media (min-width: 769px) { .bottom-nav { display: none; } body { padding-bottom: 0; } }
     </style>
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/assets/yaseenis-icon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#064e3b">
 </head>
 <body>
 
@@ -245,5 +248,10 @@
         </a>
     </nav>
 
+    <script>
+      if ("serviceWorker" in navigator && location.protocol === "https:") {
+        window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch((error) => console.warn("Offline support unavailable:", error)));
+      }
+    </script>
 </body>
 </html>
