@@ -105,6 +105,56 @@
 
         @media (max-width: 768px) { .hero h1 { font-size: 32px; } .hero { padding: 80px 5% 60px; } .nav-links a.hide-mobile { display: none; } .logo { font-size: 22px; } }
         @media (max-width: 480px) { nav { padding: 12px 4%; } .hero h1 { font-size: 26px; } .hero p { font-size: 15px; } .category-grid, .video-grid { grid-template-columns: 1fr; } }
+    
+        /* YASEENIS SIGNATURE REDESIGN — emerald, ivory & warm gold */
+        :root { --primary:#064e3b; --primary-light:#0f9f75; --gold:#c79a3b; --gold-light:#f3d98b; --dark:#10231d; --text-gray:#5d6c66; --bg-main:#f7f8f3; --white:#fffefa; }
+        body { background:var(--bg-main); color:var(--dark); }
+        nav { padding:12px clamp(16px,5vw,72px); border-bottom:1px solid rgba(6,78,59,.09); box-shadow:0 8px 28px rgba(16,35,29,.06); }
+        .logo { letter-spacing:-.6px; }
+        .logo::before { content:"۞"; display:grid; place-items:center; width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#075c45,#0e7a5b);color:#f4d98b;font-size:25px;box-shadow:0 5px 14px #064e3b2b; }
+        .hero { margin-top:68px; min-height:420px; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:88px 5% 96px; border-radius:0 0 34px 34px; background: radial-gradient(circle at 15% 20%,rgba(218,184,104,.2),transparent 27%), radial-gradient(circle at 85% 70%,rgba(22,163,112,.22),transparent 28%), linear-gradient(125deg,#052f25 0%,#075640 48%,#102b25 100%); isolation:isolate; overflow:hidden; }
+        .hero::before { content:"۞"; position:absolute; z-index:-1; right:-25px; top:-130px; font-size:440px; line-height:1; color:rgba(255,255,255,.035); transform:rotate(12deg); }
+        .hero::after { content:""; position:absolute; inset:18px; border:1px solid rgba(243,217,139,.24); border-radius:24px; pointer-events:none; }
+        .hero h1 { font-size:clamp(32px,5vw,56px); line-height:1.35; letter-spacing:-.6px; text-shadow:none; }
+        .hero p { max-width:720px; line-height:1.95; font-size:clamp(16px,2vw,19px); color:#e4eee8; text-shadow:none; }
+        .hero .hero-kicker { display:inline-flex; align-items:center; gap:9px; margin-bottom:18px; color:#f3d98b; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+        .hero .hero-kicker::before,.hero .hero-kicker::after { content:""; width:28px;height:1px;background:#c79a3b; }
+        .hero-actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:5px; }
+        .hero-action { display:inline-flex; align-items:center; justify-content:center; padding:13px 21px; border-radius:999px; font-weight:700; text-decoration:none; transition:.2s ease; }
+        .hero-action.primary { background:#f3d98b;color:#18372b; box-shadow:0 8px 20px #0002; }
+        .hero-action.secondary { border:1px solid #ffffff75;color:white;background:#ffffff0c; }
+        .hero-action:hover { transform:translateY(-2px); }
+        .poster-section { margin-top:32px; }
+        .poster-link { border:1px solid #e7dfc9; box-shadow:0 16px 40px rgba(16,35,29,.12); }
+        .ai-search-section { margin-top:34px; padding:26px clamp(16px,4vw,36px); border:1px solid #e2e9df; border-radius:24px; background:var(--white); box-shadow:0 12px 34px rgba(16,35,29,.045); }
+        .ai-search-section h2 { font-size:clamp(22px,3vw,30px); }
+        search-bar-snippet { --search-snippet-border-radius:999px; }
+        .container { max-width:1240px; }
+        .section-heading { gap:12px; margin-top:44px; font-size:clamp(22px,3vw,28px); letter-spacing:-.3px; }
+        .section-heading::after { content:""; height:1px; flex:1; background:linear-gradient(90deg,#d9c58c,transparent); margin-left:8px; }
+        .category-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr)); gap:18px; }
+        .card { padding:27px 23px; border:1px solid #e5e9df; border-radius:22px; box-shadow:0 8px 24px rgba(16,35,29,.035); text-align:left; }
+        .card::before { height:3px; background:linear-gradient(90deg,#0a7656,#d2ad58); }
+        .card:hover { transform:translateY(-5px); box-shadow:0 18px 34px rgba(6,78,59,.10); }
+        .card-icon { display:grid; place-items:center; width:58px;height:58px; margin:0 0 18px; border-radius:18px; background:#edf5ee; font-size:30px; }
+        .card h3 { font-size:20px; }
+        .card p { line-height:1.8; }
+        .video-card { border-radius:22px; border-color:#e3e8df; box-shadow:0 12px 30px rgba(16,35,29,.06); }
+        .yt-app-btn { border-radius:999px; }
+        .admin-card { background:linear-gradient(135deg,#102b25,#064e3b); }
+        .visitor-stats { border-radius:20px; background:#f2f5ed; border-color:#dce5d9; }
+        footer { padding:34px 5% 28px; background:#102b25; color:#d4e2da; border:0; }
+        footer .visitor-stats { color:var(--dark); }
+        footer > p { margin-top:22px; font-size:13px; }
+        .quick-links { max-width:1120px; margin:26px auto 0; padding:0 5%; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+        .quick-link { display:flex; align-items:center; gap:11px; padding:15px 16px; min-height:72px; background:#fffefa; border:1px solid #e4e9df; border-radius:16px; color:var(--dark); text-decoration:none; font-weight:700; box-shadow:0 6px 18px rgba(16,35,29,.035); transition:.2s; }
+        .quick-link span { font-size:23px; }
+        .quick-link:hover { border-color:#c8b16e; transform:translateY(-2px); }
+        .section-intro { margin:-8px 0 20px; color:var(--text-gray); }
+        .trust-note { margin:26px 0 0; padding:17px 20px; border-left:3px solid var(--gold); background:#f1f5ed; border-radius:0 14px 14px 0; color:#52645b; font-size:14px; line-height:1.8; }
+        @media(max-width:760px) { nav { padding:11px 4%; } .nav-links { gap:13px; } .quick-links { grid-template-columns:repeat(2,minmax(0,1fr)); } .hero { min-height:380px; padding:70px 6% 76px; } .hero::after { inset:10px; } .hero::before { font-size:300px; top:-55px; } .card { padding:22px; } }
+        @media(max-width:420px) { .quick-link { padding:12px 10px; font-size:14px; } .quick-link span { font-size:20px; } .logo { font-size:19px; gap:7px; } .logo::before { width:32px;height:32px;font-size:21px; } .nav-links { gap:10px; } .nav-links a { font-size:14px; } }
+
     </style>
 </head>
 <body>
@@ -123,9 +173,20 @@
 
     <!-- HERO WITH MADINAH BACKGROUND -->
     <header class="hero">
+        <div class="hero-kicker">YASEENIS ISLAMIC KNOWLEDGE</div>
         <h1>அஸ்ஸலாமு அலைக்கும்</h1>
-        <p>யாசீனிஸ் இஸ்லாமிய வலைத்தளத்திற்கு அன்புடன் வரவேற்கிறோம். திருக்குர்ஆன், ஹதீஸ்கள், பயான்கள் மற்றும் பல இஸ்லாமியப் பொக்கிஷங்களை ஒரே இடத்தில் பெறுங்கள்.</p>
+        <p>யாசீனிஸ் இஸ்லாமிய அறிவுக் களஞ்சியத்திற்கு அன்புடன் வரவேற்கிறோம். திருக்குர்ஆன், ஹதீஸ்கள், பயான்கள், நூல்கள் மற்றும் பயனுள்ள இஸ்லாமிய வளங்களை ஒரே இடத்தில் தேடி அறிந்துகொள்ளுங்கள்.</p>
+        <div class="hero-actions">
+            <a class="hero-action primary" href="pdfs/">📚 நூல்களைப் படிக்க</a>
+            <a class="hero-action secondary" href="#islamic-library">✦ அறிவுக் களஞ்சியத்தைப் பார்க்க</a>
+        </div>
     </header>
+    <section class="quick-links" aria-label="விரைவு அணுகல்">
+        <a class="quick-link" href="Quran/"><span>📖</span> திருக்குர்ஆன்</a>
+        <a class="quick-link" href="hadith/"><span>📜</span> ஹதீஸ் தொகுப்பு</a>
+        <a class="quick-link" href="audio/"><span>🎧</span> ஆடியோ பயான்கள்</a>
+        <a class="quick-link" href="pdfs/"><span>📚</span> PDF நூலகம்</a>
+    </section>
 
     <!-- UROOS MUBARAK POSTER -->
     <section class="poster-section" aria-label="உரூஸ் முபாரக் போஸ்டர்">
@@ -168,9 +229,10 @@
         </div>
 
         <!-- MAIN CATEGORIES -->
-        <div class="section-heading" style="margin-top: 50px;">
-            📚 பிற பிரிவுகள்
+        <div id="islamic-library" class="section-heading" style="margin-top: 50px;">
+            ✦ இஸ்லாமிய அறிவுக் களஞ்சியம்
         </div>
+        <p class="section-intro">உங்களுக்குத் தேவையான உள்ளடக்கத்தைத் தேர்ந்தெடுத்து எளிதாக அணுகுங்கள்.</p>
         <div class="category-grid">
             <a href="audio-payan.html" class="card">
                 <div class="card-icon">🎙️</div>
@@ -204,6 +266,7 @@
                 <p>புதிய ஆடியோ, வீடியோ மற்றும் கட்டுரைகளைப் பதிவேற்ற.</p>
             </a>
         </div>
+        <div class="trust-note">📌 <strong>அறிவுப் பகிர்வுக்கான குறிப்பு:</strong> மார்க்கத் தகவல்களைப் படிக்கும்போது அசல் ஆதாரம், நூல் பெயர் மற்றும் ஹதீஸ் தரம் போன்ற விவரங்களையும் சரிபார்த்து அறிந்துகொள்ளுங்கள். இந்தத் தளம் கல்வி மற்றும் பயனுள்ள அறிவுப் பகிர்வுக்காக உருவாக்கப்பட்டுள்ளது.</div>
 
     </main>
 
