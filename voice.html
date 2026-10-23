@@ -51,40 +51,14 @@ $('share-btn').addEventListener('click',async()=>{
  try{await navigator.clipboard.writeText(link);$('share-btn').textContent='✅ இணைப்பு நகலெடுக்கப்பட்டது';}
  catch(e){prompt('இந்த இணைப்பைப் பகிரவும்:',link);}
 });
-let api=null;
 $('join-btn').addEventListener('click',()=>{
- if(api)return;
  const name=$('display-name').value.trim().slice(0,40);
  const room=cleanRoom($('room-name').value);
  if(!name){$('display-name').focus();alert('தயவுசெய்து உங்கள் பெயரை உள்ளிடவும்.');return;}
  $('room-name').value=room;
- $('join-btn').disabled=true;$('join-btn').textContent='இணைக்கப்படுகிறது…';
- $('meeting-wrap').style.display='block';$('active-room').textContent=room;
- if(!window.JitsiMeetExternalAPI){alert('Voice service ஏற்றப்படவில்லை. இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.');$('join-btn').disabled=false;$('join-btn').textContent='🎙️ Voice Room-ல் இணையுங்கள்';return;}
- api=new JitsiMeetExternalAPI('meet.jit.si',{
-  roomName:room,
-  parentNode:$('meeting'),
-  width:'100%',
-  height:'100%',
-  userInfo:{displayName:name},
-  configOverwrite:{
-   startWithAudioMuted:false,
-   startAudioOnly:true,
-   startWithVideoMuted:true,
-   disableDeepLinking:true,
-   prejoinConfig:{enabled:true},
-   enableWelcomePage:false,
-   toolbarButtons:['microphone','hangup','chat','raisehand','tileview']
-  },
-  interfaceConfigOverwrite:{MOBILE_APP_PROMO:false,SHOW_JITSI_WATERMARK:true,SHOW_WATERMARK_FOR_GUESTS:true}
- });
- api.addListener('videoConferenceJoined',()=>{$('join-btn').textContent='✅ Voice Room-ல் இணைந்துள்ளீர்கள்';});
- api.addListener('participantJoined',updateCount);
- api.addListener('participantLeft',updateCount);
- api.addListener('videoConferenceLeft',()=>{api=null;$('join-btn').disabled=false;$('join-btn').textContent='🎙️ மீண்டும் இணையுங்கள்';$('participant-count').textContent='0';});
- function updateCount(){if(api)api.getNumberOfParticipants().then(n=>$('participant-count').textContent=String(n)).catch(()=>{});}
+ const meetingUrl='https://meet.jit.si/'+encodeURIComponent(room)+'#userInfo.displayName='+encodeURIComponent(name);
+ window.open(meetingUrl,'_blank','noopener');
 });
-const script=document.createElement('script');script.src='https://meet.jit.si/external_api.js';script.async=true;document.head.appendChild(script);
 </script>
 </body>
 </html>
