@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#064b2c">
+<meta name="theme-color" content="#eaf7ff">
 <title>பொது ஸலவாத்து Live Counter | Yaseenis</title>
 <style>
 :root{--green:#064b2c;--deep:#032c1b;--gold:#e8c66b;--cream:#fff8e7}
@@ -68,16 +68,62 @@ main{width:100%;max-width:560px;text-align:center}.card{border:1px solid var(--g
 .minute-count{color:var(--gold);font-weight:850;white-space:nowrap;font-variant-numeric:tabular-nums}
 .minute-empty{padding:8px 0;color:#e4d6ad;line-height:1.7}
 
+
+/* SKY BLUE + WHITE THEME — clean, airy and mobile friendly */
+:root{--green:#1676b8;--deep:#eaf7ff;--gold:#2f91d0;--cream:#123b59}
+body{
+ color:#123b59;
+ background:radial-gradient(ellipse at 50% 0%,#ffffff 0%,#eaf7ff 44%,#d8efff 100%);
+}
+body::before{color:#369ad8;opacity:.045}
+.card{
+ border:1px solid #8dcdf4;
+ background:linear-gradient(155deg,#ffffffef,#eff9fffa);
+ box-shadow:0 12px 40px #2d83b51c,inset 0 1px 0 #ffffff;
+}
+.logo,h1,.arabic,.eyebrow,.total,.progress-text,.batch-title,
+.report-value,.report-subcard h3,.minute-count,.lb-count{color:#1676b8}
+.subtitle,.caption,.muted,.report-label,.report-person-name,.report-time,
+.minute-time,.minute-empty,.report-status,.notice,.footer{color:#365f79}
+.track{background:#c8e6f8}
+.fill,.minute-bar{background:linear-gradient(90deg,#55b5eb,#1676b8)}
+.tap{
+ border-color:#ffffff;
+ color:#ffffff;
+ background:radial-gradient(circle at 30% 20%,#8cdbff 0%,#279bdf 38%,#1676b8 72%,#10558a 100%);
+ text-shadow:0 2px 2px #10558a;
+ box-shadow:inset 0 5px 9px #ffffff80,inset 0 -12px 18px #0a477477,0 5px 0 #0f5b90,0 10px 0 #c8e9ff,0 18px 28px #176c9d2e,0 0 0 9px #48a9e51a;
+}
+.tap span{color:#f3fbff}
+.tap::before{border-color:#63b7e880;box-shadow:0 0 0 5px #63b7e817}
+.tap:hover{box-shadow:inset 0 5px 9px #ffffff90,inset 0 -12px 18px #0a477477,0 8px 0 #0f5b90,0 13px 0 #c8e9ff,0 22px 32px #176c9d30,0 0 0 11px #48a9e520}
+.tap:focus-visible{outline-color:#1676b8}
+.batch-tools,.leaderboard,.daily-report,.report-subcard{
+ border-color:#b7def4;
+ background:linear-gradient(150deg,#ffffffed,#eff9fffa);
+ box-shadow:0 8px 24px #267caf0d;
+}
+.report-stat{border-color:#c4e5f7;background:#ffffff}
+.batch-btn,.small{border-color:#82c6ed;color:#155d8a;background:#f2faff}
+.custom-row input{border-color:#8dcdf4}
+.custom-row button,.name-modal-save{background:#1676b8;color:#fff}
+.name-modal{background:#dceffcdd}
+.name-modal-card{border-color:#8dcdf4;background:linear-gradient(160deg,#ffffff,#eaf7ff)}
+.name-modal-card h2{color:#1676b8}
+.name-modal-card p{color:#365f79}
+.name-modal-card input{border-color:#8dcdf4}
+.name-modal-later{border-color:#8dcdf4!important;color:#155d8a;background:#f2faff}
+.salat-rain span{color:#eaf8ff;background:radial-gradient(ellipse at 28% 18%,#ffffff 0%,#c9edffcf 12%,#63b7e899 35%,#1676b880 70%,#0b4b77a8 100%);border-color:#ffffffc0;box-shadow:inset 2px 3px 5px #ffffffaa,inset -3px -5px 8px #1a5c7a24,0 5px 12px #0a5a8830,0 0 13px #b5e7ff66;text-shadow:0 1px 2px #164866,0 0 7px #ffffff55}
+
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
-<img class="event-poster" src="https://raw.githubusercontent.com/yaseeninoor/yaseenis/main/yaseenis/uroos-mubarak-poster.jpg" alt="உரூஸ் முபாரக் — 3-ஆம் ஆண்டு கந்தூரி விழா" loading="eager">
 <div class="logo">☾ ✦</div><h1>உரூஸ் முபாரக்</h1><div class="subtitle" style="font-size:clamp(20px,5vw,27px);font-weight:700">மாபெரும் ஸலவாத்து மஜ்லிஸ்</div>
 <div class="arabic" lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَالْآلِ وَالصَّحْبِ وَسَلِّمْ</div>
 <div class="subtitle" lang="ta">அல்லாஹும்ம ஸல்லி அலா முஹம்மதின் வல் ஆலி வஸ்ஸஹ்பி வஸல்லிம்.</div>
+<button class="tap" id="tap" type="button">☾<br>ஸலவாத்<span>TAP +1</span></button>
 <div class="eyebrow">மொத்த இலக்கு · PUBLIC TARGET</div><div class="total" id="total" aria-live="polite">—</div><div class="caption">மொத்த ஸலவாத்துகள் · Total Salawath</div>
 <div class="track"><div class="fill" id="fill"></div></div><div class="progress-text" id="progressText">கணக்கை ஏற்றுகிறது…</div>
-<button class="tap" id="tap" type="button">☾<br>ஸலவாத்<span>TAP +1</span></button>
 <div class="personal">உங்கள் எண்ணிக்கை: <strong id="mine">—</strong></div>
 <div class="batch-tools" aria-label="Custom Salawath count"><div class="batch-title">🔢 Custom Count · விருப்ப எண்ணிக்கை</div><div class="batch-buttons"><button class="batch-btn" type="button" data-count="10">+10</button><button class="batch-btn" type="button" data-count="50">+50</button><button class="batch-btn" type="button" data-count="100">+100</button></div><div class="custom-row"><input id="customCount" type="number" inputmode="numeric" min="1" max="10000" step="1" placeholder="எண்ணிக்கை (1–10,000)" aria-label="Custom count"><button id="customCountBtn" type="button">சேர்</button></div><div class="muted">ஒரே நேரத்தில் 1 முதல் 10,000 வரை சேர்க்கலாம்.</div></div>
 <div class="leaderboard">
