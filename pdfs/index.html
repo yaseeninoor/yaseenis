@@ -16,6 +16,7 @@ header{background:linear-gradient(125deg,#052f25,#075640 65%,#102b25);color:whit
 main{max-width:1150px;margin:28px auto 70px;padding:0 20px}.tools{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}.search{flex:1;min-width:220px;padding:14px 16px;border:1px solid #dce5d9;border-radius:14px;font:inherit;background:white}.count{align-self:center;color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:16px}.book{background:var(--card);border:1px solid #e2e8de;border-radius:18px;padding:22px;box-shadow:0 8px 22px #10231d08;display:flex;flex-direction:column;min-height:205px;transition:.2s}.book:hover{transform:translateY(-3px);border-color:#cbb06b;box-shadow:0 14px 28px #10231d12}.icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#edf5ee;font-size:25px;margin-bottom:13px}.book h2{font-size:19px;margin:0 0 8px;color:var(--green)}.book p{font-size:14px;color:var(--muted);margin:0 0 18px}.open{margin-top:auto;display:inline-flex;align-items:center;gap:8px;color:var(--green2);font-weight:700}.notice{margin-top:26px;padding:16px 18px;border-left:3px solid var(--gold);background:#eff4eb;border-radius:0 12px 12px 0;color:#506359;font-size:14px}footer{text-align:center;background:#102b25;color:#d4e2da;padding:25px}footer a{color:#f3d98b}
 .empty{display:none;padding:25px;text-align:center;color:var(--muted)}@media(max-width:600px){.nav{align-items:flex-start}.hero{margin-top:32px}.book{min-height:180px}}
 </style>
+    <link rel="icon" href="/assets/yaseenis-icon.svg" type="image/svg+xml">
 </head>
 <body>
 <header><div class="nav"><a class="brand" href="/">۞ Yaseenis<span>.com</span></a><a href="/">← முகப்புக்குத் திரும்ப</a></div>
@@ -40,4 +41,9 @@ document.getElementById("year").textContent=new Date().getFullYear();
 const input=document.getElementById("search"),cards=[...document.querySelectorAll(".book")],count=document.getElementById("count"),empty=document.getElementById("empty");
 function filter(){const q=input.value.trim().toLocaleLowerCase();let n=0;cards.forEach(card=>{const match=(card.dataset.title+" "+card.innerText).toLocaleLowerCase().includes(q);card.hidden=!match;if(match)n++;});count.textContent=n+" நூல்கள்";empty.style.display=n?"none":"block";}
 input.addEventListener("input",filter);filter();
-</script></body></html>
+</script>    <script>
+      if ("serviceWorker" in navigator && location.protocol === "https:") {
+        window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch((error) => console.warn("Offline support unavailable:", error)));
+      }
+    </script>
+</body></html>
