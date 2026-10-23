@@ -93,6 +93,9 @@
             }
         }
     </style>
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/assets/yaseenis-icon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#064e3b">
 </head>
 <body>
     <div class="container">
@@ -154,5 +157,10 @@
             <p>&copy; 2026 Yaseenis. All Rights Reserved.</p>
         </div>
     </div>
+    <script>
+      if ("serviceWorker" in navigator && location.protocol === "https:") {
+        window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch((error) => console.warn("Offline support unavailable:", error)));
+      }
+    </script>
 </body>
 </html>
