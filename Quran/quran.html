@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="திருக்குர்ஆனின் 114 சூராக்களையும் அரபி மூலத்துடன் தமிழ் மொழிபெயர்ப்பில் ஆன்லைனில் வாசிக்கவும்.">
+    <meta name="description" content="திருக்குர்ஆனின் 114 சூராக்களையும் அரபி மூலத்தில் ஆன்லைனில் வாசிக்கவும்.">
     <meta name="theme-color" content="#064e3b">
     <link rel="canonical" href="https://yaseenis.com/Quran/quran.html">
     <link rel="manifest" href="/site.webmanifest">
@@ -59,7 +59,7 @@
 
     <div class="page-header">
         <h1>அல்குர்ஆன் (The Noble Quran)</h1>
-        <p>114 சூராக்கள் · அரபி மூலமும் தமிழ் மொழிபெயர்ப்பும் · இலவச ஆன்லைன் வாசிப்பு</p>
+        <p>114 சூராக்கள் · அரபி மூல உரை மட்டும் · இலவச ஆன்லைன் வாசிப்பு</p>
     </div>
 
     <div class="quran-tools"><input id="surahSearch" type="search" placeholder="சூரா பெயர் அல்லது எண் தேடுங்கள்… (எ.கா. Al-Fatihah / 1)" aria-label="சூரா பெயர் அல்லது எண் தேடுங்கள்"><span id="surahCount" aria-live="polite">சூராக்கள் ஏற்றப்படுகின்றன…</span></div>
@@ -79,7 +79,6 @@
             const filtered = allSurahs.filter(surah =>
                 String(surah.number).includes(query) ||
                 (surah.englishName || '').toLocaleLowerCase().includes(query) ||
-                (surah.englishNameTranslation || '').toLocaleLowerCase().includes(query) ||
                 (surah.name || '').toLocaleLowerCase().includes(query)
             );
             grid.replaceChildren();
@@ -103,10 +102,7 @@
                 const en = document.createElement('div');
                 en.className = 'surah-name-en';
                 en.textContent = surah.englishName;
-                const ta = document.createElement('div');
-                ta.className = 'surah-name-ta';
-                ta.textContent = surah.englishNameTranslation;
-                info.append(en, ta);
+                info.append(en);
                 const ar = document.createElement('div');
                 ar.className = 'surah-name-ar';
                 ar.lang = 'ar';
