@@ -228,20 +228,63 @@
           .reveal-on-scroll { opacity:1;transform:none; }
         }
 
-    </style>
+    
+        /* Yaseenis signature navigation: emerald, warm ivory and antique gold */
+        .site-nav{position:sticky;top:0;z-index:1200;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:10px clamp(14px,4vw,64px);background:rgba(255,254,250,.96);border-bottom:1px solid rgba(199,154,59,.32);backdrop-filter:blur(18px)}
+        .site-nav .logo{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:21px;line-height:1.15}
+        .brand-mark{width:40px;height:40px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#0c7254,#052f25);color:#f3d98b;font-size:27px;box-shadow:0 5px 15px #064e3b24}
+        .brand-word{display:flex;flex-direction:column}.brand-word>span{display:inline;color:var(--gold)}.brand-word small{font-size:10px;font-weight:600;color:#6b7c72;letter-spacing:.1px;margin-top:3px}
+        .site-nav .nav-links{gap:clamp(8px,1.6vw,22px);align-items:center}
+        .nav-dropdown{position:relative}.nav-dropdown summary{list-style:none;cursor:pointer;padding:10px 12px;border:1px solid #e7e0cd;border-radius:12px;color:#163d2e;font-weight:700;white-space:nowrap}.nav-dropdown summary::-webkit-details-marker{display:none}.nav-dropdown[open] summary{background:#edf5ee;border-color:#c79a3b}.nav-dropdown summary span{color:#a57c24;margin-left:4px}
+        .dropdown-panel{position:absolute;right:0;top:calc(100% + 12px);width:min(760px,90vw);padding:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;background:#fffefa;border:1px solid #e5dcc6;border-radius:20px;box-shadow:0 24px 60px #0a2d2030}
+        .dropdown-group{display:flex;flex-direction:column;gap:7px;min-width:0}.dropdown-group strong{font-size:14px;color:#9b7528;padding-bottom:7px;border-bottom:1px solid #eee5d1}.dropdown-group a{padding:7px 9px;border-radius:9px;font-size:14px;color:#30483d}.dropdown-group a:hover{background:#edf5ee;color:#064e3b}
+        .site-nav .nav-search{padding:9px 10px;border:1px solid #e7e0cd;border-radius:12px;white-space:nowrap}.nav-search:first-letter{font-size:18px}.site-nav .nav-quran{padding:10px 14px;border-radius:12px;background:linear-gradient(135deg,#0d7656,#064e3b);color:#fffefa;white-space:nowrap;box-shadow:0 6px 16px #064e3b25}.site-nav .nav-quran:hover{color:#f3d98b;transform:translateY(-1px)}
+        .hero-actions .hero-action.primary{background:linear-gradient(135deg,#f2d98c,#c79a3b);color:#173629;border:1px solid #f8e6ac}
+        .quran-feature{max-width:1120px;margin:24px auto 28px;padding:0 18px}.quran-feature-card{position:relative;overflow:hidden;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:24px;padding:clamp(24px,4vw,42px);border:1px solid #d6c18a;border-radius:24px;background:radial-gradient(circle at 88% 18%,#c79a3b20,transparent 28%),linear-gradient(120deg,#fffdf6,#f0f5ed);box-shadow:0 16px 40px #10231d0d}.quran-feature-card:after{content:"۞";position:absolute;right:3%;top:-65px;font-family:serif;font-size:240px;color:#c79a3b0c;pointer-events:none}.quran-feature-kicker{color:#997326;font-size:12px;font-weight:800;letter-spacing:2px}.quran-feature h2{color:#064e3b;font-size:clamp(25px,3vw,36px);margin:7px 0}.quran-feature p{color:#53685c;margin:0 0 18px;max-width:650px}.quran-feature-actions{display:flex;gap:10px;flex-wrap:wrap}.quran-feature-actions a{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:12px;font-weight:800}.quran-feature-actions .read{background:#064e3b;color:#fffefa}.quran-feature-actions .browse{border:1px solid #d7c79e;color:#164432;background:#fffefa}.quran-feature-ayah{direction:rtl;text-align:center;font-family:'Amiri',serif;color:#0b6046;font-size:clamp(28px,4vw,42px);line-height:1.8;position:relative;z-index:1}.quran-feature-ayah small{display:block;direction:ltr;font-family:'Mukta Malar',sans-serif;font-size:12px;color:#8a6b2a;font-weight:700;margin-top:5px}
+        @media(max-width:900px){.site-nav{align-items:flex-start}.site-nav .nav-links{gap:8px;flex-wrap:wrap;justify-content:flex-end}.site-nav .logo{font-size:18px}.brand-word small{display:none}.site-nav .nav-quran{padding:9px 10px}.dropdown-panel{right:-90px}}
+        @media(max-width:620px){.site-nav{position:sticky;align-items:center;padding:9px 12px;gap:8px}.site-nav .logo{font-size:16px;gap:6px}.brand-mark{width:33px;height:33px;font-size:22px;border-radius:11px}.site-nav .nav-links{gap:6px}.site-nav .nav-links>a.hide-mobile{display:none}.nav-dropdown summary{font-size:13px;padding:8px 9px}.site-nav .nav-search{font-size:13px;padding:8px}.site-nav .nav-search span{display:none}.site-nav .nav-quran{font-size:12px;padding:8px}.dropdown-panel{position:fixed;top:62px;left:10px;right:10px;width:auto;max-height:75vh;overflow:auto;padding:14px;gap:14px;grid-template-columns:1fr 1fr}.dropdown-group a{font-size:13px;padding:7px 5px}.quran-feature-card{grid-template-columns:1fr;gap:10px}.quran-feature-ayah{font-size:30px}.quran-feature-ayah small{text-align:center}}
+        @media(max-width:380px){.site-nav .nav-quran{font-size:0;padding:9px}.site-nav .nav-quran:first-letter{font-size:17px}.site-nav .logo{font-size:14px}.dropdown-panel{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
     <a class="skip-link" href="#main-content">உள்ளடக்கத்திற்குச் செல்லுங்கள்</a>
 
     <!-- NAVBAR (Login Removed) -->
-    <nav aria-label="முதன்மை வழிசெலுத்தல்">
-        <a href="/" class="logo" aria-label="Yaseenis.com முகப்பு">
-            🕌 Yaseenis<span>.com</span>
-        </a>
+    <nav class="site-nav" aria-label="முதன்மை வழிசெலுத்தல்">
+        <a href="/" class="logo" aria-label="Yaseenis.com முகப்பு"><span class="brand-mark" aria-hidden="true">۞</span><span class="brand-word">Yaseenis<span>.com</span><small>தமிழ் இஸ்லாமிய அறிவுக் களஞ்சியம்</small></span></a>
         <div class="nav-links">
-            <a href="index.html" class="hide-mobile">முகப்பு</a>
-            <a href="audio/list.html">ஆடியோ</a>
-            <a href="Videos/list.html">வீடியோ</a>
+            <a href="/" class="hide-mobile">முகப்பு</a>
+            <details class="nav-dropdown">
+                <summary>📚 உள்ளடக்கம் <span aria-hidden="true">⌄</span></summary>
+                <div class="dropdown-panel">
+                    <div class="dropdown-group">
+                        <strong>📖 குர்ஆன் & ஹதீஸ்</strong>
+                        <a href="Quran/quran.html">திருக்குர்ஆன் — ஆன்லைனில் வாசிக்க</a>
+                        <a href="Quran/Index.html">குர்ஆன் பகுதி</a>
+                        <a href="hadith/hadith.html">ஹதீஸ் தொகுப்பு</a>
+                    </div>
+                    <div class="dropdown-group">
+                        <strong>📚 வாசிப்பு நூலகம்</strong>
+                        <a href="pdfs/index.html">PDF நூலகம்</a>
+                        <a href="article/index.html">இஸ்லாமிய கட்டுரைகள்</a>
+                        <a href="search.html">தள உள்ளடக்கத்தைத் தேடுங்கள்</a>
+                    </div>
+                    <div class="dropdown-group">
+                        <strong>🎧 கேளுங்கள் & பாருங்கள்</strong>
+                        <a href="audio/list.html">ஆடியோ பயான்கள்</a>
+                        <a href="Videos/list.html">வீடியோக்கள்</a>
+                        <a href="salawath/">ஸலவாத்து Live Counter</a>
+                    </div>
+                    <div class="dropdown-group">
+                        <strong>✨ மேலும்</strong>
+                        <a href="https://ask.yaseenis.com/">Yaseenis AI உதவியாளர் ↗</a>
+                        <a href="privacy-policy.html">தனியுரிமைக் கொள்கை</a>
+                        <a href="upload/index.html">பதிவேற்றப் பகுதி</a>
+                    </div>
+                </div>
+            </details>
+            <a class="nav-search" href="search.html" aria-label="தேடல் பக்கம்">⌕ <span>தேடல்</span></a>
+            <a href="Quran/quran.html" class="nav-quran">📖 குர்ஆன் வாசிக்க</a>
         </div>
     </nav>
 
@@ -252,7 +295,7 @@
         <h1>அஸ்ஸலாமு அலைக்கும்</h1>
         <p>யாசீனிஸ் இஸ்லாமிய அறிவுக் களஞ்சியத்திற்கு அன்புடன் வரவேற்கிறோம். திருக்குர்ஆன், ஹதீஸ்கள், பயான்கள், நூல்கள் மற்றும் பயனுள்ள இஸ்லாமிய வளங்களை ஒரே இடத்தில் தேடி அறிந்துகொள்ளுங்கள்.</p>
         <div class="hero-actions">
-            <a class="hero-action primary" href="pdfs/index.html">📚 நூல்களைப் படிக்க</a>
+            <a class="hero-action primary" href="Quran/quran.html">📖 குர்ஆனை ஆன்லைனில் வாசிக்க</a>
             <a class="hero-action secondary" href="#islamic-library">✦ அறிவுக் களஞ்சியத்தைப் பார்க்க</a>
         </div>
     </header>
@@ -261,6 +304,21 @@
         <a class="quick-link" href="hadith/hadith.html"><span>📜</span> ஹதீஸ் தொகுப்பு</a>
         <a class="quick-link" href="audio/list.html"><span>🎧</span> ஆடியோ பயான்கள்</a>
         <a class="quick-link" href="pdfs/index.html"><span>📚</span> PDF நூலகம்</a>
+    </section>
+
+    <section class="quran-feature" aria-labelledby="quran-feature-title">
+        <div class="quran-feature-card">
+            <div>
+                <div class="quran-feature-kicker">READ • REFLECT • REMEMBER</div>
+                <h2 id="quran-feature-title">திருக்குர்ஆன் — உங்கள் வாசிப்புக்காக</h2>
+                <p>114 சூராக்களையும் தேர்ந்தெடுத்து, அரபி மூலத்துடன் தமிழ் மொழிபெயர்ப்பை வசனவசனமாக ஆன்லைனில் வாசிக்கலாம்.</p>
+                <div class="quran-feature-actions">
+                    <a class="read" href="Quran/quran.html">குர்ஆன் வாசிப்பைத் தொடங்குங்கள் ↗</a>
+                    <a class="browse" href="Quran/Index.html">குர்ஆன் பகுதி</a>
+                </div>
+            </div>
+            <div class="quran-feature-ayah" lang="ar">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ<small>உங்கள் வாசிப்புப் பயணத்தை இங்கே தொடங்குங்கள்</small></div>
+        </div>
     </section>
 
     <!-- UROOS MUBARAK POSTER -->
