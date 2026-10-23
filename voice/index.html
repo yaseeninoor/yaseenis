@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123b8a">
 <meta name="description" content="Yaseenis Voice — இணையத்தில் நேரடியாக குரல் உரையாடுங்கள்.">
-<title>Google Meet Voice Room | Yaseenis.com</title>
+<title>Yaseenis Voice Hub | Google Meet</title>
 <style>
 :root{color-scheme:light;--blue:#155eef;--navy:#102a56;--bg:#f3f7ff;--ink:#15243b;--muted:#64748b}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top right,#dce9ff,transparent 42%),var(--bg);color:var(--ink);min-height:100vh}
@@ -25,18 +25,15 @@ footer{text-align:center;padding:10px 16px 28px;color:var(--muted);font-size:13p
 <body>
 <header><a class="brand" href="/">Yaseenis<span>.com</span></a><a class="back" href="/">← முகப்புக்குத் திரும்பு</a></header>
 <main>
-<section class="hero"><div class="icon">🎙️</div><h1>Yaseenis Voice Room</h1><p>Google Meet மூலம் நண்பர்கள் மற்றும் குழுவினருடன் குரல் உரையாடலைத் தொடங்குங்கள். கூட்டத்தை உருவாக்கிய பிறகு அதன் Meet இணைப்பைப் பகிருங்கள்.</p></section>
+<section class="hero"><div class="icon">🎙️</div><h1>Yaseenis Voice Hub</h1><p>உங்கள் நண்பர்கள், குடும்பம் அல்லது குழுவினருடன் Google Meet-ல் இணையுங்கள். உங்கள் சொந்த கூட்ட இணைப்பை உருவாக்கி பகிரலாம்.</p></section>
 <section class="card" id="join-card">
-<div class="fields">
-<div class="field"><label for="display-name">உங்கள் பெயர் (விருப்பம்)</label><input id="display-name" maxlength="40" autocomplete="name" placeholder="உங்கள் பெயர்"></div>
-<div class="field"><label for="room-name">கூட்டத்தின் பெயர் (உங்கள் குறிப்புக்கு)</label><input id="room-name" maxlength="48" placeholder="எ.கா. yaseenis-friends" value="yaseenis-friends"></div>
-</div>
-<div class="actions"><button class="primary" id="join-btn">📹 Google Meet தொடங்குங்கள்</button><button class="secondary" id="share-btn" type="button">🔗 Yaseenis பக்கத்தைப் பகிரவும்</button></div>
-<div class="status"><span class="dot"></span> Google Meet-ல் கூட்டத்தை உருவாக்கி இணைப்பைப் பகிருங்கள்</div>
-<p class="hint">Google கணக்கில் உள்நுழைய வேண்டியிருக்கலாம். “Google Meet தொடங்குங்கள்” என்பதை அழுத்தினால் Google Meet புதிய பக்கத்தில் திறக்கும். அங்கு புதிய கூட்டத்தை உருவாக்கி, கூட்ட இணைப்பை Copy செய்து பங்கேற்பாளர்களுக்கு அனுப்புங்கள். இலவசக் கணக்கில் குழுக் கூட்டங்களுக்கு நேர வரம்பு இருக்கலாம்; இது வரம்பற்ற நேரத்திற்கான உத்தரவாதம் அல்ல.</p>
+<div class="meeting-intro"><h2 style="margin:0 0 8px;color:var(--navy)">உங்கள் குரல் கூட்டத்தைத் தொடங்குங்கள்</h2><p style="margin:0;color:var(--muted);line-height:1.7">Google Meet-ல் புதிய கூட்டத்தை உருவாக்கி, அதற்கான தனிப்பட்ட இணைப்பைப் பெறுங்கள்.</p></div>
+<div class="actions"><button class="primary" id="join-btn">📹 Google Meet தொடங்குங்கள்</button><button class="secondary" id="share-btn" type="button">🔗 Yaseenis Voice Hub-ஐப் பகிரவும்</button></div>
+<div class="status"><span class="dot"></span> அடுத்த படியில் Google Meet கூட்ட இணைப்பைப் பெறலாம்</div>
+<p class="hint">1) Google Meet தொடங்குங்கள் என்பதை அழுத்தவும். 2) Google Meet-ல் “New meeting” என்பதைத் தேர்ந்தெடுக்கவும். 3) கூட்ட இணைப்பை Copy செய்து WhatsApp குழுவில் பகிரவும். குறிப்பு: இந்தப் பக்கம் உங்கள் Google Meet இணைப்பை தானாக உருவாக்காது; கூட்டத்தை Google Meet-ல் உருவாக்க வேண்டும். இலவசக் கணக்கில் நேர வரம்பு இருக்கலாம்.</p>
 </section>
 <div id="meeting-wrap"><div class="roombar"><strong id="active-room">Voice Room</strong><span class="count">👥 <span id="participant-count">0</span> பேர்</span></div><div id="meeting"></div></div>
-<div class="features"><div class="feature"><span>🎤</span>மைக்ரோஃபோன் கட்டுப்பாடு</div><div class="feature"><span>👥</span>நேரடி உறுப்பினர் எண்ணிக்கை</div><div class="feature"><span>📱</span>மொபைலுக்கு ஏற்ற வடிவமைப்பு</div></div>
+<div class="features"><div class="feature"><span>🔗</span>தனிப்பட்ட Meet இணைப்பு</div><div class="feature"><span>👥</span>உங்கள் பங்கேற்பாளர்களை அழைக்கவும்</div><div class="feature"><span>📱</span>iPhone மற்றும் Android-க்கு ஏற்றது</div></div>
 </main>
 <footer>© <span id="year"></span> Yaseenis.com · Voice service powered by Jitsi Meet</footer>
 <script>
