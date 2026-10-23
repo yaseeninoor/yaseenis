@@ -1,0 +1,12 @@
+{
+  "id": "/",
+  "name": "Yaseenis.com - Tamil Islamic Knowledge",
+  "short_name": "Yaseenis",
+  "description": "Tamil Islamic library for Quran, Hadith, books, audio and videos.",
+  "lang": "ta",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f8f3",
+  "theme_color": "#064e3b"
+}
