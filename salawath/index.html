@@ -130,7 +130,8 @@ h1,.total{color:var(--gold);text-shadow:0 2px 18px #f2d28b22}
 .theme-label{width:100%;font-size:13px;font-weight:750;color:var(--muted)}
 .theme-btn[aria-pressed="true"]{background:linear-gradient(135deg,#e8ce8a,#c6a85a);border-color:#f7e7b3;color:#132744;box-shadow:0 3px 12px #0003}
 button:not(:disabled){transition:transform .18s ease,filter .18s ease}
-button:not(:disabled):active{transform:translateY(1px)}
+button:not(:disabled):active:not(.tap){transform:translateY(1px)}
+.tap:active{transform:translateY(4px) scale(.985)}
 .custom-row input,.name-modal-card input{
  background:#07182b;color:var(--text);border:1px solid #46758c;border-radius:10px;
 }
