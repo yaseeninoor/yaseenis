@@ -289,7 +289,12 @@ try { localStorage.removeItem("yaseeni_salawath_pending_v1"); } catch (_) {}
 const getLocalPersonal = () => Math.max(0, Number(localStorage.getItem(LOCAL_PERSONAL_KEY) || 0));
 const setLocalPersonal = n => localStorage.setItem(LOCAL_PERSONAL_KEY, String(Math.max(0, n)));
 function render(data) {
- const total = Number(data.total || 0);
+ // Accept the counter's known total field aliases so a valid response is not rendered as zero/blank.
+ const rawTotal = data.total ?? data.totalSalawath ?? data.total_count ?? data.count ?? data.totalCount;
+ const total = Number(rawTotal);
+ if (rawTotal === undefined || rawTotal === null || !Number.isFinite(total)) {
+  throw new Error("Stats response-ல் total field இல்லை. API response fields: " + Object.keys(data || {}).join(", "));
+ }
  $("total").textContent = fmt(total);
  // Show this browser's own tap count, rather than the server's potentially duplicated personal aggregate.
  $("mine").textContent = fmt(getLocalPersonal());
@@ -299,11 +304,15 @@ function render(data) {
  document.title = fmt(total) + " ஸலவாத்துகள் | Yaseenis";
 }
 async function api(path, body) {
- const options = {method: body ? "POST" : "GET", headers: {"Accept":"application/json"}};
+ const options = {method: body ? "POST" : "GET", headers: {"Accept":"application/json"}, cache:"no-store"};
  if (body) { options.headers["Content-Type"]="application/json"; options.body=JSON.stringify(body); }
- const response = await fetch(API_BASE + path, options);
+ const separator = path.includes("?") ? "&" : "?";
+ const requestPath = body ? path : path + separator + "_=" + Date.now();
+ let response;
+ try { response = await fetch(API_BASE + requestPath, options); }
+ catch (error) { throw new Error("Counter API-ஐ அணுக முடியவில்லை (network/CORS): " + (error.message || "fetch failed")); }
  const data = await response.json().catch(()=>({}));
- if (!response.ok) throw new Error(data.error || "API error");
+ if (!response.ok) throw new Error(data.error || ("Counter API HTTP " + response.status));
  return data;
 }
 function setControlsDisabled(disabled) {
@@ -314,11 +323,13 @@ async function refresh(showStatus=true) {
  try {
   const data = await api("/api/stats?visitorId="+encodeURIComponent(visitorId));
   render(data);
-  if (showStatus) $("status").textContent = "Live கணக்கு இணைக்கப்பட்டுள்ளது";
+  if (showStatus) $("status").textContent = "Live கணக்கு இணைக்கப்பட்டுள்ளது ✓";
+  return true;
  } catch(e) {
-  $("status").textContent = navigator.onLine ? "Live கணக்கை ஏற்ற முடியவில்லை. மீண்டும் முயற்சிக்கவும்." : "இணையம் இல்லை. எண்ணிக்கை சேர்க்க இணையத்துடன் இணைக்கவும்.";
+  $("status").textContent = navigator.onLine ? "மொத்த எண்ணிக்கையை ஏற்ற முடியவில்லை: " + (e.message || "API error") : "இணையம் இல்லை. எண்ணிக்கை சேர்க்க இணையத்துடன் இணைக்கவும்.";
   $("mine").textContent = fmt(getLocalPersonal());
-  console.error(e);
+  console.error("Counter stats error:",e);
+  return false;
  }
 }
 async function addCount(amount) {
