@@ -305,13 +305,18 @@ function render(data) {
 }
 async function api(path, body) {
  const options = {method: body ? "POST" : "GET", headers: {"Accept":"application/json"}, cache:"no-store"};
- if (body) { options.headers["Content-Type"]="application/json"; options.body=JSON.stringify(body); }
+ // Send JSON as text/plain for POST so browsers do not require an OPTIONS preflight.
+ // The Worker reads request.json(), which parses the JSON body regardless of this content type.
+ if (body) { options.headers["Content-Type"]="text/plain;charset=UTF-8"; options.body=JSON.stringify(body); }
  const separator = path.includes("?") ? "&" : "?";
  const requestPath = body ? path : path + separator + "_=" + Date.now();
  let response;
  try { response = await fetch(API_BASE + requestPath, options); }
- catch (error) { throw new Error("Counter API-ஐ அணுக முடியவில்லை (network/CORS): " + (error.message || "fetch failed")); }
- const data = await response.json().catch(()=>({}));
+ catch (error) { throw new Error("Counter API-ஐ அணுக முடியவில்லை (network/CORS). API URL அல்லது CORS அமைப்பைச் சரிபார்க்கவும்: " + (error.message || "fetch failed")); }
+ const responseText = await response.text();
+ let data = {};
+ try { data = responseText ? JSON.parse(responseText) : {}; }
+ catch (_) { throw new Error("Counter API சரியான JSON பதிலை வழங்கவில்லை (HTTP " + response.status + ")."); }
  if (!response.ok) throw new Error(data.error || ("Counter API HTTP " + response.status));
  return data;
 }
