@@ -385,7 +385,7 @@ async function addCount(amount) {
   const remaining = amount-succeeded;
   $("status").textContent = succeeded
    ? fmt(succeeded)+" சேர்க்கப்பட்டன; மீதமுள்ள எண்ணிக்கை உறுதிப்படுத்தப்படவில்லை. எண்ணிக்கையைப் புதுப்பித்துச் சரிபார்க்கவும்."
-   : "சேவை பதில் உறுதியாகவில்லை. Duplicate count தவிர்க்க மீண்டும் தானாகச் சேர்க்கவில்லை; மொத்தத்தைப் புதுப்பித்துச் சரிபார்க்கவும்.";
+   : "எண்ணிக்கையைச் சேர்க்க முடியவில்லை: " + (e && e.message ? e.message : "API response error") + ". Duplicate count தவிர்க்க மீண்டும் தானாகச் சேர்க்கவில்லை; மொத்தத்தைப் புதுப்பித்துச் சரிபார்க்கவும்.";
   console.error("Batch add:",e);
  } finally {
   busy = false;
