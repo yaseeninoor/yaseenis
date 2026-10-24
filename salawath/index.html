@@ -222,6 +222,18 @@ body[data-theme="light"] .minute-bar,body[data-theme="auto"]:not(.system-dark) .
 @media(min-width:480px){.daily-report{padding:22px 18px}.report-stat{min-height:116px;padding:16px}.report-person{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.tap{animation:none;transition:none}button:not(:disabled){transition:none}}
 
+
+/* Minute-by-minute report: compact, accessible and theme-aware */
+.minute-report summary{cursor:pointer;color:var(--gold);font-size:clamp(17px,4.5vw,21px);font-weight:750;line-height:1.5;outline-offset:5px}
+.minute-report-note{font-size:13px;line-height:1.7;opacity:.82;margin:8px 0}
+.minute-group{padding:10px 0;border-bottom:1px solid var(--report-border,#ffffff20)}
+.minute-group:last-child{border-bottom:0}
+.minute-group-title{display:flex;justify-content:space-between;gap:10px;align-items:center;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+.minute-group-title time{color:var(--report-text,#e4d6ad)}
+.minute-group-users{margin-top:5px;font-size:13px;line-height:1.8;color:var(--report-text,#e4d6ad);overflow-wrap:anywhere}
+body[data-theme="light"] .minute-group{--report-border:#b7def4}
+body[data-theme="light"] .minute-group-title time,body[data-theme="light"] .minute-group-users{--report-text:#365f79}
+
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
@@ -260,6 +272,7 @@ body[data-theme="light"] .minute-bar,body[data-theme="auto"]:not(.system-dark) .
   <div class="report-stat"><span class="report-label">Tap events today</span><strong class="report-value" id="dailyEvents">—</strong></div>
  </div>
  <div class="report-subcard"><h3>🏆 Top users today</h3><div id="dailyTopUsers" class="muted">Loading report…</div></div>
+ <details class="report-subcard minute-report"><summary>⏱ Minute-by-minute report · UAE time</summary><p class="minute-report-note">ஒவ்வொரு நிமிடத்திலும் பதிவான ஸலவாத்துகள் மற்றும் பங்கேற்பாளர்கள்.</p><div id="dailyMinuteBreakdown" class="muted">அறிக்கையை ஏற்றுகிறது…</div></details>
  <p class="report-status" id="dailyReportStatus">Connecting to analytics…</p>
  <button class="small report-refresh" id="dailyReportRefresh" type="button">Refresh report</button>
 </section>
@@ -381,7 +394,31 @@ async function loadDailyReport() {
    const count=document.createElement("strong");count.className="report-person-count";count.textContent=fmt(user.count);
    row.append(name,count);top.append(row);
   });
-  status.textContent="Updated "+new Date().toLocaleTimeString()+" · "+(data.date||"today")+" ("+(data.timezone||"Asia/Dubai")+")";
+  const minuteBox=$("dailyMinuteBreakdown");
+  const minuteRows=Array.isArray(data.minuteBreakdown)?data.minuteBreakdown:[];
+  minuteBox.replaceChildren();
+  if(!minuteRows.length){
+   minuteBox.textContent="இன்று இன்னும் நிமிட வாரியான பதிவுகள் இல்லை.";
+  } else {
+   const groups=new Map();
+   minuteRows.forEach(item=>{
+    const minute=String(item.minute||"--:--");
+    if(!groups.has(minute)) groups.set(minute,[]);
+    groups.get(minute).push(item);
+   });
+   Array.from(groups.entries()).sort((a,b)=>b[0].localeCompare(a[0])).forEach(([minute,items])=>{
+    const group=document.createElement("div");group.className="minute-group";
+    const heading=document.createElement("div");heading.className="minute-group-title";
+    const time=document.createElement("time");time.textContent=minute;
+    const total=document.createElement("strong");total.textContent=fmt(items.reduce((sum,item)=>sum+Number(item.count||0),0))+" ஸலவாத்";
+    heading.append(time,total);
+    const users=document.createElement("div");users.className="minute-group-users";
+    users.textContent=items.map(item=>(item.name||"பெயர் பதிவு செய்யவில்லை")+" · "+fmt(item.count)).join("  |  ");
+    group.append(heading,users);minuteBox.append(group);
+   });
+  }
+  const uaeTime=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Dubai",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:true}).format(new Date());
+  status.textContent="Updated "+uaeTime+" UAE · "+(data.date||"today")+" ("+(data.timezone||"Asia/Dubai")+")";
  } catch(error) {
   status.textContent="Analytics unavailable: "+(error.message||"request failed")+". Check Worker custom domain, D1 binding/schema, and allowed origins.";
   console.error("Daily report:",error);
