@@ -177,18 +177,7 @@ body[data-theme="night"] .salat-rain span,body[data-theme="auto"].system-dark .s
 
 
 
-<section class="daily-report" id="dailyReport" aria-live="polite">
- <h2>📊 Daily Salawath Report · தினசரி அறிக்கை</h2>
- <div class="report-grid">
-  <div class="report-stat"><span class="report-label">Today's Salawath</span><strong class="report-value" id="dailyTotal">—</strong></div>
-  <div class="report-stat"><span class="report-label">Unique visitors today</span><strong class="report-value" id="dailyVisitors">—</strong></div>
-  <div class="report-stat"><span class="report-label">Active in last 60 seconds</span><strong class="report-value" id="onlineVisitors">—</strong></div>
-  <div class="report-stat"><span class="report-label">Tap events today</span><strong class="report-value" id="dailyEvents">—</strong></div>
- </div>
- <div class="report-subcard"><h3>🏆 Top users today</h3><div id="dailyTopUsers" class="muted">Loading report…</div></div>
- <p class="report-status" id="dailyReportStatus">Connecting to analytics…</p>
- <button class="small report-refresh" id="dailyReportRefresh" type="button">Refresh report</button>
-</section>
+
 
 <div class="footer">Yaseenis.com · Salawath Mubarak</div></main>
 <div class="name-modal" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle"><div class="name-modal-card"><div style="font-size:38px">👤</div><h2 id="nameModalTitle">உங்கள் பெயரைப் பதிவு செய்யுங்கள்</h2><p>உங்கள் Visitor ID-க்கு பெயரை இணைத்தால் Leaderboard-ல் உங்கள் பெயரும் ஸலவாத்து எண்ணிக்கையும் காட்டப்படும். உங்கள் எண்ணிக்கை மாறாது.</p><input id="popupRegisterName" maxlength="60" autocomplete="name" placeholder="உங்கள் பெயர் / Your name"><div class="name-modal-actions"><button class="name-modal-save" id="popupRegisterBtn" type="button">பெயரைப் பதிவு செய்யவும்</button><button class="name-modal-later" id="popupLaterBtn" type="button">பிறகு நினைவூட்டு</button></div><div class="name-modal-status" id="popupNameStatus" role="status"></div></div></div>
@@ -302,32 +291,6 @@ function analyticsPost(path, payload) {
 function sendHeartbeat() {
  analyticsPost("/api/heartbeat",{visitorId,name:localStorage.getItem("yaseeni_salawath_registered_name_v1") || ""});
 }
-async function loadDailyReport() {
- const status=$("dailyReportStatus"), top=$("dailyTopUsers");
- try {
-  const response=await fetch(ANALYTICS_API_BASE+"/api/public/report",{headers:{"Accept":"application/json"},cache:"no-store"});
-  const data=await response.json().catch(()=>({}));
-  if(!response.ok) throw new Error(data.error || ("HTTP "+response.status));
-  $("dailyTotal").textContent=fmt(data.totalSalawath);
-  $("dailyVisitors").textContent=fmt(data.uniqueVisitors);
-  $("onlineVisitors").textContent=fmt(data.onlineNow);
-  $("dailyEvents").textContent=fmt(data.tapEvents);
-  const users=Array.isArray(data.topUsers)?data.topUsers:[];
-  top.replaceChildren();
-  if(!users.length){top.textContent="No recorded Salawath events today."; }
-  else users.slice(0,10).forEach((user,index)=>{
-   const row=document.createElement("div");row.className="report-person";
-   const name=document.createElement("span");name.className="report-person-name";name.textContent=(index+1)+". "+(user.name||"Name not registered");
-   const count=document.createElement("strong");count.className="report-person-count";count.textContent=fmt(user.count);
-   row.append(name,count);top.append(row);
-  });
-  status.textContent="Updated "+new Date().toLocaleTimeString()+" · "+(data.date||"today")+" ("+(data.timezone||"Asia/Dubai")+")";
- } catch(error) {
-  status.textContent="Analytics unavailable: "+(error.message||"request failed")+". Check Worker custom domain, D1 binding/schema, and allowed origins.";
-  console.error("Daily report:",error);
- }
-}
-
 async function refresh(showStatus=true) {
  try {
   const data = await api("/api/stats?visitorId="+encodeURIComponent(visitorId));
@@ -436,10 +399,11 @@ $("leaderboardRefresh").addEventListener("click", loadLeaderboard);
 refresh();
 loadLeaderboard();
 sendHeartbeat();
-loadDailyReport();
 $("dailyReportRefresh").addEventListener("click",loadDailyReport);
-setInterval(()=>{if(navigator.onLine){sendHeartbeat();loadDailyReport();}},20000);
-window.addEventListener("online",()=>{sendHeartbeat();loadDailyReport();});
+setInterval(()=>{if(navigator.onLine){sendHeartbeat();
+}},20000);
+window.addEventListener("online",()=>{sendHeartbeat();
+});
 // Keep prompting on future visits until registration succeeds.
 // "Later" hides it for this page view only.
 if (!localStorage.getItem("yaseeni_salawath_registered_name_v1")) {
