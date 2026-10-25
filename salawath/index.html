@@ -298,7 +298,7 @@ async function refresh(showStatus=true) {
   if (showStatus) $("status").textContent = "Live கணக்கு இணைக்கப்பட்டுள்ளது ✓";
   return true;
  } catch(e) {
-  $("status").textContent = navigator.onLine ? "மொத்த எண்ணிக்கையை ஏற்ற முடியவில்லை: " + (e.message || "API error") : "இணையம் இல்லை. எண்ணிக்கை சேர்க்க இணையத்துடன் இணைக்கவும்.";
+  $("status").textContent = "";
   $("mine").textContent = fmt(getLocalPersonal());
   console.error("Counter stats error:",e);
   return false;
