@@ -148,6 +148,25 @@ body[data-theme="night"] .salat-rain span,body[data-theme="auto"].system-dark .s
  body[data-theme="auto"] .theme-label{color:#cbd5e1}
 }
 
+
+/* Islamic tasbeeh-inspired controls: emerald, jade and antique gold */
+:root{--green:#064b38;--deep:#011a17;--gold:#e9ca78;--cream:#fff8e7}
+body:not([data-theme="night"]):not(.system-dark){background:radial-gradient(ellipse at 50% 12%,#146c4e 0%,transparent 42%),radial-gradient(ellipse at 50% 100%,#c7a65320 0%,transparent 48%),linear-gradient(160deg,#03251f,#07523d 48%,#011b17)}
+.card{border-color:#c8a95b;background:linear-gradient(155deg,#064535f5,#01251ff5);box-shadow:0 14px 40px #0008,inset 0 1px 0 #fff3}
+.tap{width:clamp(190px,56vw,224px);height:clamp(190px,56vw,224px);max-width:65vw;max-height:65vw;border:5px solid #f7e6a5;background:radial-gradient(circle at 30% 20%,#66d8a5 0%,#20a66f 22%,#087247 52%,#03432f 76%,#01291f 100%);box-shadow:inset 0 4px 9px #ffffff70,inset 0 -15px 22px #002c1caa,0 5px 0 #9a762e,0 10px 0 #164b35,0 18px 28px #0009,0 0 0 7px #f4d77b20,0 0 0 13px #e9ca7830,0 0 28px #46d39b35}
+.tap::before{inset:-17px;border:2px solid #d9bd6caa;box-shadow:0 0 0 5px #e9ca7818,0 0 0 10px #e9ca780d}
+.tap::after{inset:10px;border:2px solid #fff7d36b;box-shadow:inset 0 0 0 5px #ffffff08}
+.tap span{color:#fff0b7;font-size:15px;letter-spacing:2px}
+.tap:active,.tap.is-pressed{box-shadow:inset 0 8px 18px #00291eaa,0 1px 0 #9a762e,0 3px 0 #164b35,0 6px 12px #0009,0 0 0 7px #f4d77b20}
+.batch-tools{border-color:#bfa257aa;background:linear-gradient(145deg,#ffffff0d,#001d1766);box-shadow:inset 0 1px 0 #ffffff12}
+.batch-btn{border:1px solid #e4cb83;background:radial-gradient(circle at 30% 20%,#238e64,#07533c 70%,#03382b);color:#fff4cf;border-radius:999px;min-height:48px;box-shadow:inset 0 2px 4px #ffffff30,0 3px 0 #8d6c2c,0 5px 8px #0003;transition:transform .12s ease,filter .12s ease}
+.batch-btn:active{transform:translateY(3px);box-shadow:inset 0 2px 6px #001e16,0 1px 0 #8d6c2c}
+.custom-row button{background:linear-gradient(145deg,#f5dfa0,#c49a43);color:#172d20;box-shadow:inset 0 1px 0 #fff9,0 3px 0 #8a692b}
+.theme-label{color:#f0d991}
+.theme-btn{border-color:#c8aa5b;background:#073f31;color:#fff0c2}
+.theme-btn[aria-pressed="true"]{background:linear-gradient(145deg,#e8ce81,#b88d36);color:#173326;border-color:#f5e4a9;box-shadow:0 3px 10px #0003}
+@media(prefers-reduced-motion:reduce){.batch-btn{transition:none}}
+
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
