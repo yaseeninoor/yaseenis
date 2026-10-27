@@ -332,7 +332,10 @@ async function addCount(amount) {
   $("status").textContent = "1 முதல் 10,000 வரை எண்ணிக்கையை உள்ளிடவும்.";
   return false;
  }
- if (busy) return false;
+ if (busy) {
+  $("status").textContent = "முந்தைய எண்ணிக்கை சேர்க்கப்படுகிறது. அது முடிந்ததும் மீண்டும் முயற்சிக்கவும்.";
+  return false;
+ }
  if (!navigator.onLine) {
   $("status").textContent = "இணையம் இல்லை. Duplicate count தவிர்க்க offline எண்ணிக்கை சேமிக்கப்படவில்லை. இணையம் வந்ததும் மீண்டும் முயற்சிக்கவும்.";
   return false;
@@ -382,7 +385,8 @@ document.querySelectorAll("[data-count]").forEach(button => { button.addEventLis
 $("customCountBtn").addEventListener("click", async (event) => {
  event.preventDefault();
  const field = $("customCount");
- const amount = Number(String(field.value || "").trim());
+ // Read the live field value at click time (mobile keyboards can keep an edit pending).
+ const amount = Number(field.valueAsNumber);
  if (!Number.isSafeInteger(amount) || amount < 1 || amount > 10000) {
   $("status").textContent = "1 முதல் 10,000 வரை சரியான எண்ணிக்கையை உள்ளிடவும்.";
   field.focus();
