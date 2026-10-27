@@ -77,5 +77,6 @@ public class MainActivity extends Activity {
   void showSessions(){new AlertDialog.Builder(this).setTitle("Remember Timer · Session").setMessage("Current session: "+formatTime(sessionMillis())+"\nDaily count: "+today+"\nDaily target: "+DAILY_TARGET+"\nLifetime count: "+lifetime).setPositiveButton("OK",null).show();}
   void resetToday(){new AlertDialog.Builder(this).setTitle("Reset today's count?").setMessage("This resets today's count only. Lifetime progress remains saved.").setNegativeButton("Cancel",null).setPositiveButton("Reset",(d,w)->{today=0;sp.edit().putInt("today",0).apply();countText.setText("0");totalTodayText.setText("0");statusText.setText("Today's count reset.");}).show();}
   @Override protected void onPause(){super.onPause();elapsedBefore=sessionMillis();startedAt=0;sp.edit().putLong("elapsed",elapsedBefore).putLong("startedAt",0).putBoolean("running",running).apply();}
-  @Override protected void onResume(){super.onResume();if(running&&startedAt==0)startedAt=System.currentTimeMillis();}\n  @Override protected void onDestroy(){handler.removeCallbacks(clockTick);super.onDestroy();}
+  @Override protected void onResume(){super.onResume();if(running&&startedAt==0)startedAt=System.currentTimeMillis();}
+  @Override protected void onDestroy(){handler.removeCallbacks(clockTick);super.onDestroy();}
 }
