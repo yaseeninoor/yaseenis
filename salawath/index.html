@@ -346,7 +346,16 @@ async function addCount(amount) {
    analyticsPost("/api/event",{visitorId,name:localStorage.getItem("yaseeni_salawath_registered_name_v1") || "",amount:1});
    setLocalPersonal(getLocalPersonal()+1);
    $("mine").textContent = fmt(getLocalPersonal());
-   // Show visible progress while custom/batch counts are being saved.
+   // Update the visible public total immediately after each confirmed server tap,
+   // instead of leaving the total frozen until a large custom batch finishes.
+   const shownTotal = Number(String($("total").textContent).replace(/[^0-9]/g, ""));
+   if (Number.isFinite(shownTotal)) {
+    const nextTotal = shownTotal + 1;
+    $("total").textContent = fmt(nextTotal);
+    const pct = Math.min(100, nextTotal / TARGET * 100);
+    $("fill").style.width = pct + "%";
+    $("progressText").textContent = pct.toFixed(2) + "% நிறைவு · " + fmt(Math.max(0, TARGET-nextTotal)) + " மீதம்";
+   }
    $("status").textContent = fmt(succeeded) + " / " + fmt(amount) + " சேர்க்கப்படுகிறது…";
   }
   $("status").textContent = fmt(succeeded) + " ஸலவாத்துகள் பொதுக் கணக்கில் சேர்க்கப்பட்டன ✓";
@@ -366,21 +375,31 @@ async function addCount(amount) {
 let tapInFlight = false;
 
 document.querySelectorAll("[data-count]").forEach(button => { button.addEventListener("click", () => addCount(Number(button.dataset.count))); });
-$("customCountBtn").addEventListener("click", async () => {
+$("customCountBtn").addEventListener("click", async (event) => {
+ event.preventDefault();
  const field = $("customCount");
- const amount = Number(field.value.trim());
+ const amount = Number(String(field.value || "").trim());
  if (!Number.isSafeInteger(amount) || amount < 1 || amount > 10000) {
   $("status").textContent = "1 முதல் 10,000 வரை சரியான எண்ணிக்கையை உள்ளிடவும்.";
   field.focus();
   return;
  }
- if (busy) return;
- $("customCountBtn").disabled = true;
+ if (busy) {
+  $("status").textContent = "முந்தைய எண்ணிக்கை இன்னும் சேர்க்கப்படுகிறது. தயவுசெய்து காத்திருக்கவும்.";
+  return;
+ }
+ const button = $("customCountBtn");
+ button.disabled = true;
+ button.textContent = "சேர்க்கிறது…";
  try {
   await addCount(amount);
   if (!busy) field.value = "";
+ } catch (error) {
+  $("status").textContent = "எண்ணிக்கையைச் சேர்க்க முடியவில்லை. இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.";
+  console.error("Custom count button:", error);
  } finally {
-  $("customCountBtn").disabled = false;
+  button.disabled = false;
+  button.textContent = "சேர்";
  }
 });
 $("customCount").addEventListener("keydown", event => { if (event.key === "Enter") $("customCountBtn").click(); });
