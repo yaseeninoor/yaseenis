@@ -1,0 +1,6 @@
+{
+  "appId":"com.yaseenis.dhikr",
+  "appName":"Yaseenis Dhikr Counter",
+  "webDir":"www",
+  "android":{"allowMixedContent":false}
+}
