@@ -168,6 +168,56 @@ body:not([data-theme="night"]):not(.system-dark){background:radial-gradient(elli
 .theme-btn[aria-pressed="true"]{background:linear-gradient(145deg,#e8ce81,#b88d36);color:#173326;border-color:#f5e4a9;box-shadow:0 3px 10px #0003}
 @media(prefers-reduced-motion:reduce){.batch-btn{transition:none}}
 
+
+/* Modern Dhikr app-inspired visual refresh — all existing Salawath tools/content remain available */
+:root{--green:#0b2820;--deep:#071710;--gold:#b6a15b;--cream:#edf2eb;--app-blue:#91c9f4}
+body{padding:18px 12px 28px;background:#203b34;color:#edf2eb;font-family:system-ui,-apple-system,"Noto Sans Tamil",sans-serif}
+body::before,.salat-rain{opacity:.16}
+main{max-width:500px;width:100%;padding-bottom:20px}
+.card{padding:clamp(18px,4vw,26px);border:1px solid #ffffff12;border-radius:32px;background:linear-gradient(165deg,#0b1b17 0%,#071710 70%,#0b211b 100%);box-shadow:0 24px 70px #0005,inset 0 1px 0 #ffffff10;text-align:center;overflow:hidden}
+.theme-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:7px;margin:0 0 20px}
+.theme-label{width:100%;font-size:11px;letter-spacing:1px;color:#8eaaa0;text-transform:uppercase}
+.theme-btn{border:1px solid #ffffff17!important;border-radius:20px!important;background:#142820!important;color:#b9c9c0!important;padding:7px 12px!important;font-size:12px}
+.theme-btn[aria-pressed=true]{border-color:#a89a57!important;color:#e5d18a!important;background:#1c3027!important}
+.logo{font-size:26px;color:#a99b5e;margin:4px 0 2px}
+h1{font-size:clamp(22px,5.5vw,29px);color:#f0f3ed;margin:5px 0}
+.subtitle{color:#aab9b1;line-height:1.75}
+.arabic{font-size:clamp(24px,6vw,32px);color:#c9b86e;margin:15px 0 6px}
+#tap.tap{width:190px;height:190px;max-width:58vw;max-height:58vw;margin:24px auto 25px;border:0;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;background:radial-gradient(circle at center,#12291f 0%,#0b2018 64%,#152e23 100%);color:#f0f1df;text-shadow:none;box-shadow:inset 0 0 0 1px #ffffff0c,0 0 0 1px #a99b5e30,0 0 0 8px #b6a15b0c,0 0 0 10px #ffffff04;animation:none;transition:transform .12s,box-shadow .12s}
+#tap.tap::before{inset:12px;border:3px solid #81794a;box-shadow:0 0 0 1px #ffffff0b}
+#tap.tap::after{inset:3px;border:1px solid #ffffff0a}
+#tap.tap:hover{transform:translateY(-1px);box-shadow:inset 0 0 0 1px #ffffff0c,0 0 0 1px #b6a15b55,0 0 0 8px #b6a15b0d}
+#tap.tap:active,#tap.tap.is-pressed{transform:scale(.96);box-shadow:inset 0 0 0 1px #ffffff0c,0 0 0 1px #b6a15b66,0 0 0 8px #b6a15b0d}
+#tap .tap-count{display:block;font-size:clamp(40px,12vw,54px);line-height:1.05;color:#f2f0df;font-weight:650;letter-spacing:-1px;margin:0}
+#tap .tap-target{display:block!important;font-size:14px!important;line-height:1.65;margin-top:3px!important;color:#a9b8ad!important;letter-spacing:0!important;font-weight:500}
+#tap .tap-target small{font-size:9px;letter-spacing:1.5px;color:#91a99a}
+.eyebrow{margin-top:8px;color:#8faec7;letter-spacing:1.4px;font-size:12px}
+.total{color:#91c9f4;font-size:clamp(42px,12vw,60px);margin:5px 0;font-weight:800}
+.caption{color:#bdc9d4;font-size:clamp(14px,3.7vw,17px)}
+.track{height:10px;background:#ffffff13;margin:18px 0 10px}
+.fill{background:linear-gradient(90deg,#7cb6df,#c8b66c);transition:width .3s}
+.progress-text{font-size:13px;color:#91c9f4;line-height:1.7}
+.personal{font-size:clamp(15px,4vw,18px);color:#dfe8e2;margin:16px 0 18px}
+.personal strong{color:#d9c574}
+.batch-tools,.leaderboard,.daily-report{border:1px solid #293c4b;border-radius:24px;background:linear-gradient(145deg,#101a29,#0a121d);box-shadow:inset 0 1px 0 #ffffff05;padding:18px 14px}
+.batch-title{color:#91c9f4;font-size:clamp(17px,4.3vw,21px);line-height:1.5}
+.batch-buttons{gap:10px}
+.batch-btn{min-height:56px;border:1px solid #344357;border-radius:40px;background:linear-gradient(180deg,#1a2535,#101827);color:#e2ebf6;box-shadow:0 4px 0 #75612b;font-size:16px}
+.custom-row input{border:1px solid #3b4c60;border-radius:16px;background:#101827;color:#eef3fa;min-height:56px}
+.custom-row button{border-radius:16px;background:#1976b9;color:#fff;box-shadow:0 4px 0 #796128;min-width:72px}
+.muted{color:#aebdca}
+.leaderboard{margin-top:18px}
+.leaderboard h2,.daily-report h2{color:#e9edf3}
+.lb-row{border-bottom-color:#ffffff12}
+.lb-count{color:#d8c36e}
+.actions .small,.small{border:1px solid #344357;border-radius:18px;background:#121d2a;color:#dce8f2}
+.notice{color:#aabbb2}
+.status{color:#91c9f4}
+.footer{color:#92a79c}
+.name-modal-card{border:1px solid #b6a15b;background:linear-gradient(160deg,#102b22,#071710);color:#edf2eb}
+.name-modal-card h2{color:#d3c477}.name-modal-card p{color:#bdcbc3}
+@media(min-width:480px){.card{padding:26px}.batch-tools{padding:22px}.leaderboard{padding:20px}}
+@media(prefers-reduced-motion:reduce){#tap.tap{animation:none;transition:none}}
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
@@ -181,7 +231,7 @@ body:not([data-theme="night"]):not(.system-dark){background:radial-gradient(elli
 <div class="logo">☾ ✦</div><h1>உரூஸ் முபாரக்</h1><div class="subtitle" style="font-size:clamp(20px,5vw,27px);font-weight:700">மாபெரும் ஸலவாத்து மஜ்லிஸ்</div>
 <div class="arabic" lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَالْآلِ وَالصَّحْبِ وَسَلِّمْ</div>
 <div class="subtitle" lang="ta">அல்லாஹும்ம ஸல்லி அலா முஹம்மதின் வல் ஆலி வஸ்ஸஹ்பி வஸல்லிம்.</div>
-<button class="tap" id="tap" type="button">☾<br>ஸலவாத்<span>TAP +1</span></button>
+<button class="tap" id="tap" type="button" aria-label="ஸலவாத்து எண்ணிக்கையைச் சேர்க்கவும்"><span class="tap-count" id="tapCount">0</span><span class="tap-target">/ 33<br><small>ஸலவாத் · TAP TO COUNT</small></span></button>
 <div class="eyebrow">மொத்த இலக்கு · PUBLIC TARGET</div><div class="total" id="total" aria-live="polite">—</div><div class="caption">மொத்த ஸலவாத்துகள் · Total Salawath</div>
 <div class="track"><div class="fill" id="fill"></div></div><div class="progress-text" id="progressText">கணக்கை ஏற்றுகிறது…</div>
 <div class="personal">உங்கள் எண்ணிக்கை: <strong id="mine">—</strong></div>
@@ -274,6 +324,7 @@ function render(data) {
  $("total").textContent = fmt(total);
  // Show this browser's own tap count, rather than the server's potentially duplicated personal aggregate.
  $("mine").textContent = fmt(getLocalPersonal());
+ if ($("tapCount")) $("tapCount").textContent = fmt(getLocalPersonal());
  const pct = Math.min(100, total / TARGET * 100);
  $("fill").style.width = pct + "%";
  $("progressText").textContent = pct.toFixed(2) + "% நிறைவு · " + fmt(Math.max(0, TARGET-total)) + " மீதம்";
@@ -351,6 +402,7 @@ async function addCount(amount) {
    analyticsPost("/api/event",{visitorId,name:localStorage.getItem("yaseeni_salawath_registered_name_v1") || "",amount:1});
    setLocalPersonal(getLocalPersonal()+1);
    $("mine").textContent = fmt(getLocalPersonal());
+   if ($("tapCount")) $("tapCount").textContent = fmt(getLocalPersonal());
    // Update the visible public total immediately after each confirmed server tap,
    // instead of leaving the total frozen until a large custom batch finishes.
    const shownTotal = Number(String($("total").textContent).replace(/[^0-9]/g, ""));
