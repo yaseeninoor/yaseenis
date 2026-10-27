@@ -1,0 +1,9 @@
+{
+  "name":"yaseenis-dhikr-counter",
+  "version":"1.0.0",
+  "private":true,
+  "description":"Native Dhikr Counter Android app with 700000 Salawath target and daily target of 2000",
+  "scripts":{"android:sync":"npx cap sync android"},
+  "dependencies":{"@capacitor/android":"^7.4.3","@capacitor/core":"^7.4.3"},
+  "devDependencies":{"@capacitor/cli":"^7.4.3"}
+}
