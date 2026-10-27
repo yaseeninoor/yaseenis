@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
   private LinearLayout row(){LinearLayout l=new LinearLayout(this);l.setOrientation(LinearLayout.HORIZONTAL);l.setGravity(Gravity.CENTER);return l;}
   private LinearLayout.LayoutParams lp(int w,int h){return new LinearLayout.LayoutParams(w,h);}
   private void pad(View v,int a,int b,int c,int d){v.setPadding(a,b,c,d);}
-  private TextView button(String label, boolean primary){TextView v=text(label,14,primary?BG:CREAM,true);v.setBackground(shape(primary?GOLD:Color.rgb(10,38,29),primary?GOLD:0x55EBC A77,22));v.setPadding(8,14,8,14);v.setClickable(true);v.setFocusable(true);return v;}
+  private TextView button(String label, boolean primary){TextView v=text(label,14,primary?BG:CREAM,true);v.setBackground(shape(primary?GOLD:Color.rgb(10,38,29),primary?GOLD:0x55EBC877,22));v.setPadding(8,14,8,14);v.setClickable(true);v.setFocusable(true);return v;}
   private void buildUi(){
     ScrollView scroll=new ScrollView(this);scroll.setFillViewport(true);scroll.setBackgroundColor(BG);root=column();pad(root,18,8,18,24);scroll.addView(root);setContentView(scroll);
     LinearLayout header=row();header.setGravity(Gravity.CENTER_VERTICAL);TextView logo=text("✦  YASEENIS",15,GOLD,true);logo.setGravity(Gravity.CENTER_VERTICAL|Gravity.LEFT);header.addView(logo,new LinearLayout.LayoutParams(0,48,1));TextView badge=text("☾  DHIKR MODE",10,MUTED,true);badge.setBackground(shape(PANEL,0x44EBC877,40));pad(badge,12,8,12,8);header.addView(badge);root.addView(header);
