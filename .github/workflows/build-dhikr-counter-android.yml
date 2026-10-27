@@ -1,0 +1,51 @@
+name: Build Yaseenis Dhikr Counter Android App
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'dhikr-counter-app/**'
+      - '.github/workflows/build-dhikr-counter-android.yml'
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
+          accept-android-sdk-licenses: true
+      - name: Accept SDK licenses
+        run: yes | sdkmanager --licenses
+      - name: Install Capacitor
+        working-directory: dhikr-counter-app
+        run: npm install --no-audit --no-fund
+      - name: Generate Android project
+        working-directory: dhikr-counter-app
+        run: npx cap add android
+      - name: Install native Dhikr screen
+        run: |
+          mkdir -p dhikr-counter-app/android/app/src/main/java/com/yaseenis/dhikr
+          cp dhikr-counter-app/native-android/MainActivity.java dhikr-counter-app/android/app/src/main/java/com/yaseenis/dhikr/MainActivity.java
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('dhikr-counter-app/android/app/src/main/AndroidManifest.xml')
+          s=p.read_text()
+          s=s.replace('<uses-permission android:name="android.permission.INTERNET" />','')
+          p.write_text(s)
+          PY
+      - name: Build APK
+        working-directory: dhikr-counter-app/android
+        run: chmod +x gradlew && ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yaseenis-dhikr-counter-apk
+          path: dhikr-counter-app/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
