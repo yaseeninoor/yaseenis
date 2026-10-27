@@ -26,9 +26,9 @@ jobs:
           java-version: '17'
 
       - name: Install Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
         with:
-          cmdline-tools-version: 11076708
+          packages: 'platform-tools'
           accept-android-sdk-licenses: true
 
       - name: Verify Android SDK
