@@ -418,7 +418,7 @@ $("leaderboardRefresh").addEventListener("click", loadLeaderboard);
 refresh();
 loadLeaderboard();
 sendHeartbeat();
-$("dailyReportRefresh").addEventListener("click",loadDailyReport);
+// Daily report UI was removed; do not bind events to the removed element.
 setInterval(()=>{if(navigator.onLine){sendHeartbeat();
 }},20000);
 window.addEventListener("online",()=>{sendHeartbeat();
