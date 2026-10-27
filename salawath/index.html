@@ -218,6 +218,72 @@ h1{font-size:clamp(22px,5.5vw,29px);color:#f0f3ed;margin:5px 0}
 .name-modal-card h2{color:#d3c477}.name-modal-card p{color:#bdcbc3}
 @media(min-width:480px){.card{padding:26px}.batch-tools{padding:22px}.leaderboard{padding:20px}}
 @media(prefers-reduced-motion:reduce){#tap.tap{animation:none;transition:none}}
+
+/* Premium polish pass: clearer hierarchy, stronger touch targets, and mobile-safe layout */
+:root{color-scheme:dark;scroll-behavior:smooth}
+body{background-color:#203b34;background-image:radial-gradient(ellipse at 50% 0%,#315b50 0%,transparent 48%),linear-gradient(145deg,#152a27,#203b34 48%,#132b25);background-attachment:fixed}
+main{position:relative;z-index:3}
+.card{position:relative;isolation:isolate}
+.card:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.22;background-image:radial-gradient(circle at 1px 1px,#8ea99b 1px,transparent 0);background-size:24px 24px;mask-image:linear-gradient(to bottom,black,transparent 52%)}
+.theme-controls{padding:12px 10px;border:1px solid #ffffff0c;border-radius:18px;background:#ffffff04}
+.logo{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:18px;border:1px solid #a99b5e55;background:linear-gradient(145deg,#1c382b,#0a1b14);box-shadow:0 8px 24px #0003;font-size:25px}
+h1{letter-spacing:.1px;line-height:1.35}
+.subtitle{font-size:clamp(14px,3.8vw,17px)}
+.arabic{line-height:1.9;text-shadow:0 2px 18px #b6a15b22}
+#tap.tap{position:relative;isolation:isolate;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;outline:none}
+#tap.tap:focus-visible{outline:3px solid #91c9f4;outline-offset:8px}
+#tap .tap-count{font-variant-numeric:tabular-nums}
+.total{font-variant-numeric:tabular-nums;line-height:1.15;letter-spacing:-1.5px;text-shadow:0 0 26px #91c9f41b;overflow-wrap:anywhere}
+.track{overflow:hidden;border:1px solid #ffffff0b;border-radius:99px}
+.fill{height:100%;border-radius:inherit;box-shadow:0 0 12px #91c9f455}
+.progress-text{font-variant-numeric:tabular-nums}
+.personal{padding:12px 10px;border-radius:16px;background:#ffffff05;border:1px solid #ffffff0a}
+.batch-tools,.leaderboard{position:relative;text-align:center}
+.batch-tools{padding:22px 16px 20px}
+.batch-title{font-weight:750;margin-bottom:14px}
+.batch-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 18px}
+.batch-btn{padding:12px 8px;min-width:0;touch-action:manipulation;transition:transform .14s,border-color .14s,filter .14s}
+.batch-btn:active,.custom-row button:active,.small:active{transform:translateY(2px);filter:brightness(1.1)}
+.batch-btn:focus-visible,.custom-row button:focus-visible,.small:focus-visible,.theme-btn:focus-visible{outline:2px solid #91c9f4;outline-offset:3px}
+.custom-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:stretch}
+.custom-row input{width:100%;min-width:0;padding:12px 15px;font:inherit;font-size:18px;outline:none}
+.custom-row input:focus{border-color:#91c9f4;box-shadow:0 0 0 3px #91c9f422}
+.custom-row button{padding:12px 16px;min-width:78px;font-weight:750;touch-action:manipulation}
+.batch-tools .muted{line-height:1.75;margin-top:10px;font-size:13px}
+.leaderboard{margin-top:20px;text-align:left}
+.leaderboard h2,.daily-report h2{font-size:clamp(20px,5vw,25px);line-height:1.45;margin:4px 0 14px}
+#leaderboardList{line-height:1.8;overflow-wrap:anywhere}
+.lb-row{padding:10px 2px}
+.notice{display:block;line-height:1.9;font-size:13px;margin:18px 4px 4px;padding:14px;border-radius:16px;background:#ffffff04;border:1px solid #ffffff0a}
+.status{min-height:1.5em;line-height:1.6;overflow-wrap:anywhere}
+.footer{padding:18px 10px 0;font-size:12px;letter-spacing:.5px}
+.name-modal{backdrop-filter:blur(12px)}
+.name-modal-card{border-radius:26px;box-shadow:0 24px 80px #0008;padding:24px}
+.name-modal-card input{background:#091a14;color:#fff;border:1px solid #ffffff2b;border-radius:14px;padding:13px}
+.name-modal-save,.name-modal-later{border-radius:14px;min-height:48px}
+@media(max-width:360px){
+ body{padding:10px 7px 22px}
+ .card{padding:16px 12px;border-radius:24px}
+ .theme-controls{gap:5px;padding:10px 6px}
+ .theme-btn{padding:7px 9px!important}
+ #tap.tap{margin:20px auto 22px}
+ .batch-tools,.leaderboard{padding:16px 10px}
+ .batch-buttons{gap:7px}
+ .batch-btn{font-size:14px;min-height:50px}
+ .custom-row{gap:7px}
+ .custom-row button{min-width:66px;padding:10px}
+}
+@media(min-width:700px){
+ body{padding-top:34px}
+ main{max-width:560px}
+ .card{padding:30px}
+ #tap.tap{width:205px;height:205px}
+ .batch-tools{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){
+ :root{scroll-behavior:auto}
+ *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
