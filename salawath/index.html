@@ -188,9 +188,9 @@ h1{font-size:clamp(22px,5.5vw,29px);color:#f0f3ed;margin:5px 0}
 #tap.tap::after{inset:3px;border:1px solid #ffffff0a}
 #tap.tap:hover{transform:translateY(-1px);box-shadow:inset 0 0 0 1px #ffffff0c,0 0 0 1px #b6a15b55,0 0 0 8px #b6a15b0d}
 #tap.tap:active,#tap.tap.is-pressed{transform:scale(.96);box-shadow:inset 0 0 0 1px #ffffff0c,0 0 0 1px #b6a15b66,0 0 0 8px #b6a15b0d}
-#tap .tap-count{display:block;font-size:clamp(40px,12vw,54px);line-height:1.05;color:#f2f0df;font-weight:650;letter-spacing:-1px;margin:0}
-#tap .tap-target{display:block!important;font-size:14px!important;line-height:1.65;margin-top:3px!important;color:#a9b8ad!important;letter-spacing:0!important;font-weight:500}
-#tap .tap-target small{font-size:9px;letter-spacing:1.5px;color:#91a99a}
+#tap .tap-count{display:none!important}
+#tap .tap-target{display:block!important;font-size:clamp(25px,7vw,34px)!important;line-height:1.4;margin:0!important;color:#f2f0df!important;letter-spacing:.5px!important;font-weight:800}
+#tap .tap-target small{display:none!important}
 .eyebrow{margin-top:8px;color:#8faec7;letter-spacing:1.4px;font-size:12px}
 .total{color:#91c9f4;font-size:clamp(42px,12vw,60px);margin:5px 0;font-weight:800}
 .caption{color:#bdc9d4;font-size:clamp(14px,3.7vw,17px)}
@@ -297,7 +297,7 @@ h1{letter-spacing:.1px;line-height:1.35}
 <div class="logo">☾ ✦</div><h1>உரூஸ் முபாரக்</h1><div class="subtitle" style="font-size:clamp(20px,5vw,27px);font-weight:700">மாபெரும் ஸலவாத்து மஜ்லிஸ்</div>
 <div class="arabic" lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَالْآلِ وَالصَّحْبِ وَسَلِّمْ</div>
 <div class="subtitle" lang="ta">அல்லாஹும்ம ஸல்லி அலா முஹம்மதின் வல் ஆலி வஸ்ஸஹ்பி வஸல்லிம்.</div>
-<button class="tap" id="tap" type="button" aria-label="ஸலவாத்து எண்ணிக்கையைச் சேர்க்கவும்"><span class="tap-count" id="tapCount">0</span><span class="tap-target">/ 33<br><small>ஸலவாத் · TAP TO COUNT</small></span></button>
+<button class="tap" id="tap" type="button" aria-label="ஸலவாத்து எண்ணிக்கையைச் சேர்க்கவும்"><span class="tap-count" id="tapCount" aria-hidden="true">0</span><span class="tap-target">ஸலவாத்</span></button>
 <div class="eyebrow">மொத்த இலக்கு · PUBLIC TARGET</div><div class="total" id="total" aria-live="polite">—</div><div class="caption">மொத்த ஸலவாத்துகள் · Total Salawath</div>
 <div class="track"><div class="fill" id="fill"></div></div><div class="progress-text" id="progressText">கணக்கை ஏற்றுகிறது…</div>
 <div class="personal">உங்கள் எண்ணிக்கை: <strong id="mine">—</strong></div>
