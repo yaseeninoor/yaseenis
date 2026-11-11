@@ -284,9 +284,101 @@ h1{letter-spacing:.1px;line-height:1.35}
  :root{scroll-behavior:auto}
  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+/* Refreshed Yaseenis live dashboard */
+main{max-width:680px}
+.card{padding:clamp(18px,4vw,30px);border-radius:28px;background:linear-gradient(155deg,#063d31f2,#01231df5);border:1px solid #e8c66b99;box-shadow:0 18px 55px #0008,inset 0 1px 0 #ffffff20}
+.brand-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 2px 16px;border-bottom:1px solid #e8c66b55;margin-bottom:18px}
+.brand-mark{display:flex;align-items:center;gap:10px;text-align:left}
+.brand-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(145deg,#e8c66b,#987329);color:#082b20;font-size:27px}
+.brand-name{font-size:22px;font-weight:850;color:#ffe5a0;line-height:1.1}
+.brand-tag{font-size:11px;letter-spacing:1.4px;color:#d9d4b8;margin-top:4px}
+.live-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:30px;background:#00a95b24;border:1px solid #28d17a66;color:#a7ffd0;font-size:12px;font-weight:800;white-space:nowrap}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#20e878;box-shadow:0 0 10px #20e878}
+.online-panel{margin:18px 0;padding:17px 15px;border:1px solid #e8c66b88;border-radius:22px;background:linear-gradient(145deg,#0b4939dd,#02261ff2);text-align:left;box-shadow:inset 0 1px 0 #ffffff12}
+.online-panel h2{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 12px;color:#f3d47b;font-size:clamp(18px,4.8vw,23px)}
+.online-count{color:#ffe39a;font-size:25px;font-weight:900}
+.online-person{display:flex;align-items:center;gap:11px;padding:11px 9px;border-radius:14px;background:#ffffff08;margin-top:8px;border:1px solid #ffffff12}
+.online-avatar{width:38px;height:38px;flex:0 0 38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#2bbd7b,#075235);color:white;font-size:18px}
+.online-meta{min-width:0;flex:1}
+.online-name{font-weight:750;overflow-wrap:anywhere;color:#fff7e3}
+.online-place{font-size:12px;color:#e7d7a8;margin-top:3px;overflow-wrap:anywhere}
+.online-last{font-size:11px;color:#b9e6cd;white-space:nowrap}
+.city-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.city-chip{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:10px;border-radius:13px;background:#ffffff0b;border:1px solid #e8c66b44;font-size:13px}
+.city-chip strong{color:#ffe09a}
+.location-note{margin:12px 2px 0;color:#b8d4c5;font-size:10px;line-height:1.7}
+@media(max-width:380px){.brand-name{font-size:19px}.online-panel{padding:14px 11px}.city-list{grid-template-columns:1fr}.online-last{font-size:10px}}
+
+
+/* Two independent Salawath counters — navigation */
+.salawath-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0 20px;text-align:left}
+.salawath-switch a{display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0;padding:13px 12px;border:1px solid #e8c66b;border-radius:16px;background:linear-gradient(145deg,#ffffff16,#ffffff06);color:#fff8e7;text-decoration:none;box-shadow:0 6px 18px #0003;transition:transform .18s,border-color .18s,background .18s}
+.salawath-switch a:active{transform:scale(.98)}
+.salawath-switch a.current{background:linear-gradient(145deg,#e8c66b26,#ffffff0b);border-color:#ffe9a2;box-shadow:inset 0 0 0 1px #e8c66b35,0 7px 18px #0003}
+.salawath-switch strong{font-size:clamp(13px,3.6vw,16px);line-height:1.5;color:#ffe39a}
+.salawath-switch span{font-size:11px;line-height:1.5;color:#f6ecd1;opacity:.9}
+.salawath-switch .switch-tag{align-self:flex-start;padding:2px 8px;border-radius:20px;background:#e8c66b;color:#173629;font-weight:800;font-size:10px}
+@media(max-width:360px){.salawath-switch{gap:7px}.salawath-switch a{padding:10px 8px}}
+
+/* Salawath audio loop player */
+.salawath-audio{margin:16px auto 20px;padding:13px 14px;max-width:520px;border:1px solid #e8c66b88;border-radius:18px;background:linear-gradient(135deg,#e8c66b20,#ffffff0a);box-shadow:0 8px 22px #0002;text-align:left}
+.salawath-audio-title{font-size:13px;font-weight:800;color:#ffe39a;margin-bottom:9px;text-align:center}
+.salawath-audio-controls{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.salawath-audio button{border:0;border-radius:999px;padding:10px 18px;background:linear-gradient(135deg,#f3d47d,#c49a3b);color:#173629;font-weight:800;font-size:14px;cursor:pointer}
+.salawath-audio .audio-state{font-size:11px;color:#f6ecd1;opacity:.9}
+.salawath-audio input[type=range]{width:105px;accent-color:#e8c66b}
+
+
+/* Updated 3D tasbeeh button and participant-name rain */
+#tap.tap{position:relative;transform-style:preserve-3d;isolation:isolate;border:3px solid #f5df91!important;background:radial-gradient(circle at 32% 20%,#75e0a5 0%,#15945b 32%,#08613a 66%,#03351f 100%)!important;color:#fff9df!important;text-shadow:0 2px 3px #00351e!important;box-shadow:inset 0 7px 12px #ffffff65,inset 0 -15px 22px #002d1bba,0 7px 0 #9b7428,0 13px 0 #064027,0 22px 32px #0009,0 0 0 9px #e8c66b20!important;transition:transform .13s ease,filter .15s ease,box-shadow .13s ease!important;animation:tap3dFloat 3.8s ease-in-out infinite!important}
+#tap.tap::before{inset:-11px!important;border:2px solid #e8c66b99!important;box-shadow:0 0 0 5px #e8c66b18,0 0 24px #e8c66b30!important}
+#tap.tap::after{inset:9px!important;border:1px solid #ffffff55!important;box-shadow:inset 0 0 18px #ffffff12!important}
+#tap.tap:hover{filter:brightness(1.1)!important;transform:translateY(-4px) rotateX(5deg)!important;box-shadow:inset 0 7px 12px #ffffff75,inset 0 -15px 22px #002d1bba,0 10px 0 #9b7428,0 16px 0 #064027,0 26px 35px #000a,0 0 0 12px #e8c66b28!important}
+#tap.tap:active,#tap.tap.is-pressed{transform:translateY(9px) scale(.965)!important;animation:none!important;box-shadow:inset 0 8px 18px #002d1bbb,0 1px 0 #9b7428,0 3px 0 #064027,0 7px 12px #0009!important}
+#tap .tap-target{color:#fff7d9!important;text-shadow:0 2px 3px #00351e!important}
+@keyframes tap3dFloat{0%,100%{translate:0 0}50%{translate:0 -3px}}
+.participant-rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9998}
+.participant-rain-name{position:absolute;top:-45px;left:var(--x);padding:7px 12px;border:1px solid #f2d77d99;border-radius:999px;background:linear-gradient(135deg,#0c6a43ed,#143d31ed);color:#fff1b8;font-size:13px;font-weight:800;white-space:nowrap;box-shadow:0 5px 18px #0005;text-shadow:0 1px 2px #000;animation:participantNameFall var(--fall,3.8s) linear forwards}
+@keyframes participantNameFall{to{transform:translate3d(var(--drift,18px),110vh,0) rotate(var(--tilt,8deg));opacity:0}}
+@media(prefers-reduced-motion:reduce){#tap.tap{animation:none!important}.participant-rain-name{animation-duration:1s}}
+
+/* Welcome screen + live scoreboard styling */
+.welcome-screen{position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;padding:22px;background:radial-gradient(circle at 50% 25%,#1c6546f2,#031b16 72%);}
+.welcome-screen[hidden]{display:none!important}.welcome-card{width:100%;max-width:470px;padding:30px 22px;border:1px solid #e8c66b;border-radius:28px;text-align:center;background:linear-gradient(155deg,#0b4934,#031c17);box-shadow:0 25px 80px #000a,inset 0 1px 0 #fff3}.welcome-moon{font-size:54px;color:#f3d47d}.welcome-card h2{color:#f3d47d;font-size:clamp(25px,7vw,34px);margin:10px 0}.welcome-card p{color:#fff2cf;line-height:1.9}.welcome-continue{width:100%;margin-top:14px;padding:16px;border:0;border-radius:999px;background:linear-gradient(135deg,#ffe69a,#c99b3d);color:#163323;font:inherit;font-weight:850;font-size:18px;box-shadow:0 5px 0 #896523;cursor:pointer}.welcome-small{font-size:12px!important;color:#d6c99e!important}.scoreboard-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}.scoreboard-live{font-size:10px;letter-spacing:1px;color:#a8f0c5;border:1px solid #5bc78a88;border-radius:999px;padding:5px 8px;white-space:nowrap}.encourage-toast{margin:12px 0;padding:12px;border:1px solid #e8c66b66;border-radius:14px;background:linear-gradient(90deg,#e8c66b18,#ffffff08);color:#ffe8a8;line-height:1.7;text-align:center;min-height:48px}
+
+/* Scoreboard polish: compact, high-contrast live rankings */
+.online-panel{background:linear-gradient(150deg,#0b302d,#071521)!important;border-color:#31485a!important}
+.online-person{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;background:linear-gradient(120deg,#12283a,#0c1a29)!important;border:1px solid #34485b!important;border-radius:18px!important;padding:13px 12px!important}
+.online-avatar{width:42px!important;height:42px!important;flex-basis:42px!important;box-shadow:0 0 0 4px #25a97920}
+.online-name{font-size:15px;line-height:1.35;color:#f3f6fb!important}
+.online-place{font-size:12px;color:#9fc7db!important}
+.online-last{font-size:11px;color:#b7c8d7!important}
+.city-chip{background:#10263a!important;border-color:#34485b!important;color:#dce8f2}
+.leaderboard{background:linear-gradient(150deg,#111d2e,#08121e)!important;border-color:#34485b!important}
+.lb-row{display:grid;grid-template-columns:32px minmax(0,1fr) auto;align-items:center;gap:10px;padding:13px 8px!important;border-bottom:1px solid #ffffff14!important}
+.lb-rank{font-size:18px;text-align:center;color:#f3d47b}
+.lb-name{font-weight:650;color:#eef4fb;line-height:1.45}
+.lb-count{font-variant-numeric:tabular-nums;color:#91c9f4!important;font-size:16px}
+.scoreboard-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.scoreboard-live{font-size:10px;letter-spacing:1px;color:#a8f0c5;border:1px solid #5bc78a88;border-radius:999px;padding:5px 8px;white-space:nowrap}
+#progressText{min-height:24px}
+@media(max-width:380px){.online-person{grid-template-columns:38px minmax(0,1fr) auto;padding:10px 8px!important}.online-avatar{width:36px!important;height:36px!important;flex-basis:36px!important}.online-last{font-size:10px}}
+
+/* Mobile scoreboard heading fit */
+.scoreboard-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.scoreboard-heading>span:first-child{font-size:clamp(18px,4.4vw,23px);line-height:1.3;flex:1 1 190px}
+.scoreboard-live{flex:0 0 auto}
+
+/* Explicit public goal display */
+.target-value{font-size:clamp(25px,7vw,38px);font-weight:850;letter-spacing:1px;color:#f3d47b;margin:4px 0 0;font-variant-numeric:tabular-nums;text-shadow:0 2px 14px #f3d47b22}.target-caption{font-size:12px;letter-spacing:1.4px;color:#b8c9c4;margin-bottom:5px}
+
+/* Ensure the public goal number remains visible on iPhone Safari */
+.card .target-value{display:block!important;visibility:visible!important;opacity:1!important;min-height:1.35em!important;font-size:clamp(30px,8vw,42px)!important;font-weight:900!important;line-height:1.25!important;color:#ffe29a!important;-webkit-text-fill-color:#ffe29a!important;text-shadow:0 2px 16px #f3d47b44!important;margin:8px auto 2px!important}
+.card .target-caption{display:block!important;visibility:visible!important;opacity:1!important;color:#c7d6d1!important;font-size:12px!important;letter-spacing:1px!important;margin:0 auto 8px!important}
 </style>
 </head>
-<body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
+<body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><div class="participant-rain" id="participantRain" aria-hidden="true"></div><main><section class="card">
 
 <div class="theme-controls" role="group" aria-label="Appearance">
  <span class="theme-label">🎨 Theme / தோற்றம்</span>
@@ -294,16 +386,52 @@ h1{letter-spacing:.1px;line-height:1.35}
  <button type="button" class="theme-btn" data-theme-choice="light" aria-pressed="false">☀️ Light</button>
  <button type="button" class="theme-btn" data-theme-choice="night" aria-pressed="false">🌙 Night</button>
 </div>
+<div class="brand-head"><div class="brand-mark"><div class="brand-icon">☾</div><div><div class="brand-name">Yaseenis</div><div class="brand-tag">SALAWATH · DHIKR · UNITY</div></div></div><div class="live-pill"><span class="live-dot"></span> LIVE</div></div>
+<nav class="salawath-switch" aria-label="Choose Salawath counter">
+ <a class="current" href="/salawath/" aria-current="page">
+  <span class="switch-tag">LIVE · 1</span>
+  <strong>மாபெரும் ஸலவாத்து மஜ்லிஸ்</strong>
+  <span>பொது ஸலவாத்து · முதல் கவுண்டர்</span>
+ </a>
+ <a href="/ya-khaleel-awn-salawath/">
+  <span class="switch-tag">LIVE · 2</span>
+  <strong>யா கலீல் அவ்ன் மௌலானா</strong>
+  <span>700,000 இலக்கு · இரண்டாவது கவுண்டர் →</span>
+ </a>
+</nav>
 <div class="logo">☾ ✦</div><h1>உரூஸ் முபாரக்</h1><div class="subtitle" style="font-size:clamp(20px,5vw,27px);font-weight:700">மாபெரும் ஸலவாத்து மஜ்லிஸ்</div>
 <div class="arabic" lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَالْآلِ وَالصَّحْبِ وَسَلِّمْ</div>
 <div class="subtitle" lang="ta">அல்லாஹும்ம ஸல்லி அலா முஹம்மதின் வல் ஆலி வஸ்ஸஹ்பி வஸல்லிம்.</div>
+
+<div class="salawath-audio" aria-label="Salawath audio player">
+ <div class="salawath-audio-title">♫ ஸலவாத்து ஒலி · தொடர்ச்சியாக கேட்க</div>
+ <div class="salawath-audio-controls">
+  <button type="button" id="salawathAudioToggle">▶ Play</button>
+  <span class="audio-state" id="salawathAudioState" role="status">ஒலியைத் தொடங்க Play அழுத்தவும்</span>
+  <label class="audio-state" for="salawathAudioVolume">Volume</label>
+  <input id="salawathAudioVolume" type="range" min="0" max="1" step="0.01" value="0.1" aria-label="Audio volume">
+ </div>
+ <audio id="salawathAudio" preload="metadata" loop playsinline>
+  <source src="/salawath/salawath_from_allahumma.mp3" type="audio/mpeg">
+ </audio>
+</div>
+
 <button class="tap" id="tap" type="button" aria-label="ஸலவாத்து எண்ணிக்கையைச் சேர்க்கவும்"><span class="tap-count" id="tapCount" aria-hidden="true">0</span><span class="tap-target">ஸலவாத்</span></button>
-<div class="eyebrow">மொத்த இலக்கு · PUBLIC TARGET</div><div class="total" id="total" aria-live="polite">—</div><div class="caption">மொத்த ஸலவாத்துகள் · Total Salawath</div>
+<div class="eyebrow">மொத்த இலக்கு · PUBLIC TARGET</div><div class="target-value" aria-label="மொத்த இலக்கு 700,000">700,000</div><div class="target-caption">ஸலவாத்து இலக்கு · TARGET</div><div class="total" id="total" aria-live="polite">—</div><div class="caption">இதுவரை ஓதப்பட்ட மொத்த ஸலவாத்துகள் · Total Salawath</div>
 <div class="track"><div class="fill" id="fill"></div></div><div class="progress-text" id="progressText">கணக்கை ஏற்றுகிறது…</div>
+<div class="encourage-toast" id="encourageToast" role="status" aria-live="polite">✨ இன்று உங்கள் ஸலவாத்தை அன்புடன் தொடங்குங்கள்.</div>
 <div class="personal">உங்கள் எண்ணிக்கை: <strong id="mine">—</strong></div>
 <div class="batch-tools" aria-label="Custom Salawath count"><div class="batch-title">🔢 Custom Count · விருப்ப எண்ணிக்கை</div><div class="batch-buttons"><button class="batch-btn" type="button" data-count="10">+10</button><button class="batch-btn" type="button" data-count="50">+50</button><button class="batch-btn" type="button" data-count="100">+100</button></div><div class="custom-row"><input id="customCount" type="number" inputmode="numeric" min="1" max="10000" step="1" placeholder="எண்ணிக்கை (1–10,000)" aria-label="Custom count"><button id="customCountBtn" type="button">சேர்</button></div><div class="muted">ஒரே நேரத்தில் 1 முதல் 10,000 வரை சேர்க்கலாம்.</div></div>
+<section class="online-panel" aria-live="polite">
+ <h2><span>🟢 ஆன்லைனில் உள்ளவர்கள்</span><span class="online-count" id="liveOnlineCount">—</span></h2>
+ <div id="liveOnlineList" class="muted">Online விவரங்களை ஏற்றுகிறது…</div>
+ <h2 style="margin-top:17px"><span>📍 ஆன்லைன் இருப்பிடங்கள்</span><span style="font-size:11px;color:#b9e6cd">CITY</span></h2>
+ <div id="liveCityList" class="city-list"><div class="muted">இருப்பிடங்களை ஏற்றுகிறது…</div></div>
+ <p class="location-note">இருப்பிடம் இணைய IP அடிப்படையில் நகர அளவில் மட்டுமே தோராயமாகக் காட்டப்படும். GPS அல்லது துல்லியமான முகவரி சேகரிக்கப்படாது. VPN / Mobile network காரணமாக நகரம் மாறிக் காட்டப்படலாம்.</p>
+ <div style="text-align:center;margin-top:10px"><button class="small" id="liveOnlineRefresh" type="button">🔄 புதுப்பி</button></div>
+</section>
 <div class="leaderboard">
-  <h2>🏆 ஸலவாத்து Leaderboard</h2>
+  <h2 class="scoreboard-heading"><span>🏏 ஸலவாத்து Live Scoreboard</span><span class="scoreboard-live">● LIVE</span></h2>
   <div id="leaderboardList" class="muted">பட்டியலை ஏற்றுகிறது…</div>
   <div style="text-align:center;margin-top:10px"><button class="small" id="leaderboardRefresh" type="button">பட்டியலைப் புதுப்பி</button></div>
 </div>
@@ -322,9 +450,12 @@ h1{letter-spacing:.1px;line-height:1.35}
 "use strict";
 const API_BASE = "https://yaseenis-salawath-api.yaseeninoor.workers.dev";
 // Replace with the deployed analytics Worker URL from Cloudflare before expecting live analytics.
-const ANALYTICS_API_BASE = "https://live.yaseenis.com";
+const ANALYTICS_API_BASE = "https://yaseenis-salawath-analytics.yaseeninoor.workers.dev";
 const TARGET = 700000;
+
+
 const $ = id => document.getElementById(id);
+const encouragements = ["மாஷா அல்லாஹ்! உங்கள் ஸலவாத்தைத் தொடருங்கள். 🤍","அல்லாஹ் உங்கள் நற்செயலை ஏற்றுக்கொள்வானாக. ஆமீன்.","ஸலவாத்து நிறைந்த நிமிடமாக இன்று அமையட்டும். ✨","நபிகள் நாயகம் ﷺ மீது அன்புடன் ஸலவாத்தைத் தொடர்வோம்.","உங்கள் சிறிய முயற்சியும் நன்மைக்கான அழகிய நினைவூட்டல்."];
 // Decorative ﷺ rain: distributed across the viewport; never intercepts taps.
 const rainLayer = $("salatRain");
 if (rainLayer && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -437,7 +568,8 @@ async function refresh(showStatus=true) {
   if (showStatus) $("status").textContent = "Live கணக்கு இணைக்கப்பட்டுள்ளது ✓";
   return true;
  } catch(e) {
-  $("status").textContent = "";
+  $("status").textContent = "பொது எண்ணிக்கை சேவையகத்துடன் இணைக்க முடியவில்லை. " + (e && e.message ? e.message : "இணையத்தைச் சரிபார்க்கவும்");
+  $("progressText").textContent = "எண்ணிக்கையைப் பெற முடியவில்லை · மீண்டும் முயற்சிக்கவும்";
   $("mine").textContent = fmt(getLocalPersonal());
   console.error("Counter stats error:",e);
   return false;
@@ -483,6 +615,7 @@ async function addCount(amount) {
   }
   $("status").textContent = fmt(succeeded) + " ஸலவாத்துகள் பொதுக் கணக்கில் சேர்க்கப்பட்டன ✓";
   if ("vibrate" in navigator) navigator.vibrate(20);
+  if ($("encourageToast")) $("encourageToast").textContent = "✨ " + encouragements[Math.floor(Math.random()*encouragements.length)];
   return true;
  } catch(e) {
   const remaining = amount-succeeded;
@@ -531,32 +664,107 @@ $("customCountBtn").addEventListener("click", async (event) => {
 $("customCount").addEventListener("keydown", event => { if (event.key === "Enter") $("customCountBtn").click(); });
 $("tap").addEventListener("click", async (event)=>{
  event.preventDefault();
- // Do not apply a time-based debounce: it silently drops legitimate quick taps.
- // Ignore only duplicate clicks while the current API request is still running.
+ if (salawathAudio && salawathAudio.paused) {
+  salawathAudio.volume = 0.1;
+  salawathAudio.play().then(()=>{
+   if (salawathAudioToggle) salawathAudioToggle.textContent = "❚❚ Pause";
+   if (salawathAudioState) salawathAudioState.textContent = "ஸலவாத்து ஒலிக்கிறது · Loop ON · 10%";
+  }).catch(()=>{});
+ }
+ showParticipantNameRain();
  if (tapInFlight || busy) return;
  tapInFlight = true;
  try { await addCount(1); } finally { tapInFlight = false; }
 });
 
 
+
+async function showParticipantNameRain() {
+ const layer = document.getElementById('participantRain');
+ if (!layer) return;
+ const registeredName = (localStorage.getItem('yaseeni_salawath_registered_name_v1') || '').trim();
+ const displayName = registeredName || 'ஸலவாத்து பங்கேற்பாளர்';
+ let place = '';
+ try {
+  const base = ANALYTICS_API_BASE.replace(/\\/+$/, '');
+  const response = await fetch(base + '/api/public/report', {headers:{'Accept':'application/json'},cache:'no-store'});
+  if (response.ok) {
+   const data = await response.json();
+   const me = (Array.isArray(data.onlineVisitors) ? data.onlineVisitors : []).find(person => person.visitorId === visitorId);
+   if (me && me.city) place = me.city;
+  }
+ } catch (_) {}
+ const chip = document.createElement('span');
+ chip.className = 'participant-rain-name';
+ chip.textContent = '☾ ' + displayName + (place ? ' · 📍 ' + place : '') + ' · ஸலவாத்';
+ chip.style.setProperty('--x', (4 + Math.random() * 70) + 'vw');
+ chip.style.setProperty('--drift', (Math.random() * 70 - 35) + 'px');
+ chip.style.setProperty('--tilt', (Math.random() * 18 - 9) + 'deg');
+ chip.style.setProperty('--fall', (3.2 + Math.random() * 1.4) + 's');
+ layer.appendChild(chip);
+ window.setTimeout(() => chip.remove(), 5000);
+}
+
+async function loadLiveVisitors() {
+ const list=$("liveOnlineList"), cities=$("liveCityList");
+ try {
+  const base=ANALYTICS_API_BASE.replace(/\/+$/,"");
+  const response=await fetch(base+"/api/public/report",{headers:{"Accept":"application/json"},cache:"no-store"});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok) throw new Error(data.error||("HTTP "+response.status));
+  const people=Array.isArray(data.onlineVisitors)?data.onlineVisitors:[];
+  $("liveOnlineCount").textContent=fmt(data.onlineNow||people.length);
+  list.replaceChildren();
+  if(!people.length){list.textContent="இப்போது யாரும் Online இல்லை."; }
+  people.slice(0,12).forEach(person=>{
+   const row=document.createElement("div");row.className="online-person";
+   const avatar=document.createElement("span");avatar.className="online-avatar";avatar.textContent="●";
+   const meta=document.createElement("div");meta.className="online-meta";
+   const name=document.createElement("div");name.className="online-name";name.textContent=person.name||"பெயர் பதிவு செய்யவில்லை";
+   const place=document.createElement("div");place.className="online-place";place.textContent="📍 "+([person.city,person.region,person.country].filter(Boolean).join(", ")||"இருப்பிடம் தெரியவில்லை");
+   meta.append(name,place);
+   const time=document.createElement("span");time.className="online-last";time.textContent="இப்போது";
+   row.append(avatar,meta,time);list.append(row);
+  });
+  const groups=Array.isArray(data.locationBreakdown)?data.locationBreakdown:[];
+  cities.replaceChildren();
+  if(!groups.length){cities.textContent="இப்போது நகர விவரம் இல்லை.";}
+  groups.forEach(item=>{
+   const chip=document.createElement("div");chip.className="city-chip";
+   const label=document.createElement("span");label.textContent="📍 "+([item.city,item.country].filter(Boolean).join(", ")||"தெரியவில்லை");
+   const count=document.createElement("strong");count.textContent=fmt(item.count);
+   chip.append(label,count);cities.append(chip);
+  });
+ } catch(error) {
+  $("liveOnlineCount").textContent="—";
+  list.textContent="Live இருப்பிடத் தகவலை ஏற்ற முடியவில்லை. Analytics Worker deploy செய்யப்பட்டுள்ளதா எனச் சரிபார்க்கவும்.";
+  cities.textContent="இருப்பிடத் தகவல் கிடைக்கவில்லை.";
+  console.error("Live visitor list:",error);
+ }
+}
 async function loadLeaderboard() {
  const list = $("leaderboardList");
  try {
-  const data = await api("/api/leaderboard");
-  const users = Array.isArray(data.users) ? data.users : [];
-  if (!users.length) { list.textContent = "இன்னும் பெயர் பதிவு செய்தவர்கள் இல்லை."; return; }
+  const base = ANALYTICS_API_BASE.replace(/\\/+$/, "");
+  const response = await fetch(base + "/api/public/report", {headers:{"Accept":"application/json"},cache:"no-store"});
+  const report = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(report.error || ("HTTP " + response.status));
+  const users = Array.isArray(report.topUsers) ? report.topUsers : [];
   list.replaceChildren();
+  if (!users.length) {
+   list.textContent = "இன்றைய ஸலவாத்து பட்டியல் இன்னும் தொடங்கவில்லை. முதலில் ஸலவாத்தைச் சேருங்கள்!";
+   return;
+  }
   users.forEach((user, index) => {
    const row = document.createElement("div"); row.className = "lb-row";
-   const name = document.createElement("span"); name.className = "lb-name";
-   name.textContent = (index + 1) + ". " + user.name;
-   const count = document.createElement("span"); count.className = "lb-count";
-   count.textContent = fmt(user.count);
-   row.append(name, count); list.append(row);
+   const rank = document.createElement("span"); rank.className = "lb-rank"; rank.textContent = ["🥇","🥈","🥉"][index] || String(index + 1).padStart(2,"0");
+   const name = document.createElement("span"); name.className = "lb-name"; name.textContent = user.name || "பெயர் பதிவு செய்யவில்லை";
+   const count = document.createElement("strong"); count.className = "lb-count"; count.textContent = fmt(user.count);
+   row.append(rank,name,count); list.append(row);
   });
  } catch(e) {
-  list.textContent = "Leaderboard ஏற்ற முடியவில்லை. Worker-ல் /api/leaderboard வசதி Deploy செய்யப்பட்டுள்ளதா எனச் சரிபார்க்கவும்.";
-  console.error(e);
+  list.textContent = "இன்றைய Scoreboard ஏற்ற முடியவில்லை. இணைய இணைப்பைச் சரிபார்த்து மீண்டும் புதுப்பிக்கவும்.";
+  console.error("Salawath scoreboard:",e);
  }
 }
 async function registerPopupName() {
@@ -578,12 +786,49 @@ $("popupRegisterBtn").addEventListener("click", registerPopupName);
 $("popupRegisterName").addEventListener("keydown", e => { if(e.key === "Enter") registerPopupName(); });
 $("popupLaterBtn").addEventListener("click", () => { $("nameModal").classList.remove("show"); });
 $("leaderboardRefresh").addEventListener("click", loadLeaderboard);
+$("liveOnlineRefresh").addEventListener("click", loadLiveVisitors);
+
+
+const salawathAudio = document.getElementById("salawathAudio");
+const salawathAudioToggle = document.getElementById("salawathAudioToggle");
+const salawathAudioState = document.getElementById("salawathAudioState");
+const salawathAudioVolume = document.getElementById("salawathAudioVolume");
+if (salawathAudio && salawathAudioToggle) {
+ salawathAudio.volume = 0.1;
+ salawathAudioVolume.value = "0.1";
+ salawathAudioToggle.addEventListener("click", async () => {
+  if (salawathAudio.paused) {
+   try {
+    await salawathAudio.play();
+    salawathAudioToggle.textContent = "❚❚ Pause";
+    salawathAudioState.textContent = "ஸலவாத்து ஒலிக்கிறது · Loop ON";
+   } catch (error) {
+    salawathAudioState.textContent = "ஒலியை இயக்க முடியவில்லை. MP3 கோப்பு பதிவேற்றப்பட்டுள்ளதா எனச் சரிபார்க்கவும்.";
+   }
+  } else {
+   salawathAudio.pause();
+   salawathAudioToggle.textContent = "▶ Play";
+   salawathAudioState.textContent = "இடைநிறுத்தப்பட்டது";
+  }
+ });
+ salawathAudio.addEventListener("ended", () => {
+  salawathAudioToggle.textContent = "▶ Play";
+ });
+ salawathAudio.addEventListener("error", () => {
+  salawathAudioState.textContent = "MP3 கோப்பு இன்னும் இணையதளத்தில் பதிவேற்றப்படவில்லை.";
+ });
+ salawathAudioVolume.addEventListener("input", () => {
+  salawathAudio.volume = Number(salawathAudioVolume.value);
+ });
+}
 
 refresh();
 loadLeaderboard();
+loadLiveVisitors();
 sendHeartbeat();
 // Daily report UI was removed; do not bind events to the removed element.
 setInterval(()=>{if(navigator.onLine){sendHeartbeat();
+ loadLiveVisitors();
 }},20000);
 window.addEventListener("online",()=>{sendHeartbeat();
 });
