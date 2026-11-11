@@ -346,6 +346,24 @@ main{max-width:680px}
 /* Welcome screen + live scoreboard styling */
 .welcome-screen{position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;padding:22px;background:radial-gradient(circle at 50% 25%,#1c6546f2,#031b16 72%);}
 .welcome-screen[hidden]{display:none!important}.welcome-card{width:100%;max-width:470px;padding:30px 22px;border:1px solid #e8c66b;border-radius:28px;text-align:center;background:linear-gradient(155deg,#0b4934,#031c17);box-shadow:0 25px 80px #000a,inset 0 1px 0 #fff3}.welcome-moon{font-size:54px;color:#f3d47d}.welcome-card h2{color:#f3d47d;font-size:clamp(25px,7vw,34px);margin:10px 0}.welcome-card p{color:#fff2cf;line-height:1.9}.welcome-continue{width:100%;margin-top:14px;padding:16px;border:0;border-radius:999px;background:linear-gradient(135deg,#ffe69a,#c99b3d);color:#163323;font:inherit;font-weight:850;font-size:18px;box-shadow:0 5px 0 #896523;cursor:pointer}.welcome-small{font-size:12px!important;color:#d6c99e!important}.scoreboard-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}.scoreboard-live{font-size:10px;letter-spacing:1px;color:#a8f0c5;border:1px solid #5bc78a88;border-radius:999px;padding:5px 8px;white-space:nowrap}.encourage-toast{margin:12px 0;padding:12px;border:1px solid #e8c66b66;border-radius:14px;background:linear-gradient(90deg,#e8c66b18,#ffffff08);color:#ffe8a8;line-height:1.7;text-align:center;min-height:48px}
+
+/* Scoreboard polish: compact, high-contrast live rankings */
+.online-panel{background:linear-gradient(150deg,#0b302d,#071521)!important;border-color:#31485a!important}
+.online-person{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;background:linear-gradient(120deg,#12283a,#0c1a29)!important;border:1px solid #34485b!important;border-radius:18px!important;padding:13px 12px!important}
+.online-avatar{width:42px!important;height:42px!important;flex-basis:42px!important;box-shadow:0 0 0 4px #25a97920}
+.online-name{font-size:15px;line-height:1.35;color:#f3f6fb!important}
+.online-place{font-size:12px;color:#9fc7db!important}
+.online-last{font-size:11px;color:#b7c8d7!important}
+.city-chip{background:#10263a!important;border-color:#34485b!important;color:#dce8f2}
+.leaderboard{background:linear-gradient(150deg,#111d2e,#08121e)!important;border-color:#34485b!important}
+.lb-row{display:grid;grid-template-columns:32px minmax(0,1fr) auto;align-items:center;gap:10px;padding:13px 8px!important;border-bottom:1px solid #ffffff14!important}
+.lb-rank{font-size:18px;text-align:center;color:#f3d47b}
+.lb-name{font-weight:650;color:#eef4fb;line-height:1.45}
+.lb-count{font-variant-numeric:tabular-nums;color:#91c9f4!important;font-size:16px}
+.scoreboard-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.scoreboard-live{font-size:10px;letter-spacing:1px;color:#a8f0c5;border:1px solid #5bc78a88;border-radius:999px;padding:5px 8px;white-space:nowrap}
+#progressText{min-height:24px}
+@media(max-width:380px){.online-person{grid-template-columns:38px minmax(0,1fr) auto;padding:10px 8px!important}.online-avatar{width:36px!important;height:36px!important;flex-basis:36px!important}.online-last{font-size:10px}}
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><div class="participant-rain" id="participantRain" aria-hidden="true"></div><main><section class="card">
@@ -538,7 +556,8 @@ async function refresh(showStatus=true) {
   if (showStatus) $("status").textContent = "Live கணக்கு இணைக்கப்பட்டுள்ளது ✓";
   return true;
  } catch(e) {
-  $("status").textContent = "சேவையக இணைப்பு சிக்கல்: " + (e && e.message ? e.message : "தரவை ஏற்ற முடியவில்லை") + " · மீண்டும் முயற்சிக்கவும்.";
+  $("status").textContent = "பொது எண்ணிக்கை சேவையகத்துடன் இணைக்க முடியவில்லை. " + (e && e.message ? e.message : "இணையத்தைச் சரிபார்க்கவும்");
+  $("progressText").textContent = "எண்ணிக்கையைப் பெற முடியவில்லை · மீண்டும் முயற்சிக்கவும்";
   $("mine").textContent = fmt(getLocalPersonal());
   console.error("Counter stats error:",e);
   return false;
@@ -714,21 +733,26 @@ async function loadLiveVisitors() {
 async function loadLeaderboard() {
  const list = $("leaderboardList");
  try {
-  const data = await api("/api/leaderboard");
-  const users = Array.isArray(data.users) ? data.users : [];
-  if (!users.length) { list.textContent = "இன்னும் பெயர் பதிவு செய்தவர்கள் இல்லை."; return; }
+  const base = ANALYTICS_API_BASE.replace(/\\/+$/, "");
+  const response = await fetch(base + "/api/public/report", {headers:{"Accept":"application/json"},cache:"no-store"});
+  const report = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(report.error || ("HTTP " + response.status));
+  const users = Array.isArray(report.topUsers) ? report.topUsers : [];
   list.replaceChildren();
+  if (!users.length) {
+   list.textContent = "இன்றைய ஸலவாத்து பட்டியல் இன்னும் தொடங்கவில்லை. முதலில் ஸலவாத்தைச் சேருங்கள்!";
+   return;
+  }
   users.forEach((user, index) => {
    const row = document.createElement("div"); row.className = "lb-row";
-   const name = document.createElement("span"); name.className = "lb-name";
-   name.textContent = (index + 1) + ". " + user.name;
-   const count = document.createElement("span"); count.className = "lb-count";
-   count.textContent = fmt(user.count);
-   row.append(name, count); list.append(row);
+   const rank = document.createElement("span"); rank.className = "lb-rank"; rank.textContent = ["🥇","🥈","🥉"][index] || String(index + 1).padStart(2,"0");
+   const name = document.createElement("span"); name.className = "lb-name"; name.textContent = user.name || "பெயர் பதிவு செய்யவில்லை";
+   const count = document.createElement("strong"); count.className = "lb-count"; count.textContent = fmt(user.count);
+   row.append(rank,name,count); list.append(row);
   });
  } catch(e) {
-  list.textContent = "Leaderboard ஏற்ற முடியவில்லை. Worker-ல் /api/leaderboard வசதி Deploy செய்யப்பட்டுள்ளதா எனச் சரிபார்க்கவும்.";
-  console.error(e);
+  list.textContent = "இன்றைய Scoreboard ஏற்ற முடியவில்லை. இணைய இணைப்பைச் சரிபார்த்து மீண்டும் புதுப்பிக்கவும்.";
+  console.error("Salawath scoreboard:",e);
  }
 }
 async function registerPopupName() {
