@@ -320,6 +320,15 @@ main{max-width:680px}
 .salawath-switch span{font-size:11px;line-height:1.5;color:#f6ecd1;opacity:.9}
 .salawath-switch .switch-tag{align-self:flex-start;padding:2px 8px;border-radius:20px;background:#e8c66b;color:#173629;font-weight:800;font-size:10px}
 @media(max-width:360px){.salawath-switch{gap:7px}.salawath-switch a{padding:10px 8px}}
+
+/* Salawath audio loop player */
+.salawath-audio{margin:16px auto 20px;padding:13px 14px;max-width:520px;border:1px solid #e8c66b88;border-radius:18px;background:linear-gradient(135deg,#e8c66b20,#ffffff0a);box-shadow:0 8px 22px #0002;text-align:left}
+.salawath-audio-title{font-size:13px;font-weight:800;color:#ffe39a;margin-bottom:9px;text-align:center}
+.salawath-audio-controls{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.salawath-audio button{border:0;border-radius:999px;padding:10px 18px;background:linear-gradient(135deg,#f3d47d,#c49a3b);color:#173629;font-weight:800;font-size:14px;cursor:pointer}
+.salawath-audio .audio-state{font-size:11px;color:#f6ecd1;opacity:.9}
+.salawath-audio input[type=range]{width:105px;accent-color:#e8c66b}
+
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
@@ -346,6 +355,20 @@ main{max-width:680px}
 <div class="logo">☾ ✦</div><h1>உரூஸ் முபாரக்</h1><div class="subtitle" style="font-size:clamp(20px,5vw,27px);font-weight:700">மாபெரும் ஸலவாத்து மஜ்லிஸ்</div>
 <div class="arabic" lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَالْآلِ وَالصَّحْبِ وَسَلِّمْ</div>
 <div class="subtitle" lang="ta">அல்லாஹும்ம ஸல்லி அலா முஹம்மதின் வல் ஆலி வஸ்ஸஹ்பி வஸல்லிம்.</div>
+
+<div class="salawath-audio" aria-label="Salawath audio player">
+ <div class="salawath-audio-title">♫ ஸலவாத்து ஒலி · தொடர்ச்சியாக கேட்க</div>
+ <div class="salawath-audio-controls">
+  <button type="button" id="salawathAudioToggle">▶ Play</button>
+  <span class="audio-state" id="salawathAudioState" role="status">ஒலியைத் தொடங்க Play அழுத்தவும்</span>
+  <label class="audio-state" for="salawathAudioVolume">Volume</label>
+  <input id="salawathAudioVolume" type="range" min="0" max="1" step="0.05" value="0.8" aria-label="Audio volume">
+ </div>
+ <audio id="salawathAudio" preload="metadata" loop playsinline>
+  <source src="/salawath/salawath_from_allahumma.mp3" type="audio/mpeg">
+ </audio>
+</div>
+
 <button class="tap" id="tap" type="button" aria-label="ஸலவாத்து எண்ணிக்கையைச் சேர்க்கவும்"><span class="tap-count" id="tapCount" aria-hidden="true">0</span><span class="tap-target">ஸலவாத்</span></button>
 <div class="eyebrow">மொத்த இலக்கு · PUBLIC TARGET</div><div class="total" id="total" aria-live="polite">—</div><div class="caption">மொத்த ஸலவாத்துகள் · Total Salawath</div>
 <div class="track"><div class="fill" id="fill"></div></div><div class="progress-text" id="progressText">கணக்கை ஏற்றுகிறது…</div>
@@ -673,6 +696,39 @@ $("popupRegisterName").addEventListener("keydown", e => { if(e.key === "Enter") 
 $("popupLaterBtn").addEventListener("click", () => { $("nameModal").classList.remove("show"); });
 $("leaderboardRefresh").addEventListener("click", loadLeaderboard);
 $("liveOnlineRefresh").addEventListener("click", loadLiveVisitors);
+
+
+const salawathAudio = document.getElementById("salawathAudio");
+const salawathAudioToggle = document.getElementById("salawathAudioToggle");
+const salawathAudioState = document.getElementById("salawathAudioState");
+const salawathAudioVolume = document.getElementById("salawathAudioVolume");
+if (salawathAudio && salawathAudioToggle) {
+ salawathAudio.volume = Number(salawathAudioVolume.value);
+ salawathAudioToggle.addEventListener("click", async () => {
+  if (salawathAudio.paused) {
+   try {
+    await salawathAudio.play();
+    salawathAudioToggle.textContent = "❚❚ Pause";
+    salawathAudioState.textContent = "ஸலவாத்து ஒலிக்கிறது · Loop ON";
+   } catch (error) {
+    salawathAudioState.textContent = "ஒலியை இயக்க முடியவில்லை. MP3 கோப்பு பதிவேற்றப்பட்டுள்ளதா எனச் சரிபார்க்கவும்.";
+   }
+  } else {
+   salawathAudio.pause();
+   salawathAudioToggle.textContent = "▶ Play";
+   salawathAudioState.textContent = "இடைநிறுத்தப்பட்டது";
+  }
+ });
+ salawathAudio.addEventListener("ended", () => {
+  salawathAudioToggle.textContent = "▶ Play";
+ });
+ salawathAudio.addEventListener("error", () => {
+  salawathAudioState.textContent = "MP3 கோப்பு இன்னும் இணையதளத்தில் பதிவேற்றப்படவில்லை.";
+ });
+ salawathAudioVolume.addEventListener("input", () => {
+  salawathAudio.volume = Number(salawathAudioVolume.value);
+ });
+}
 
 refresh();
 loadLeaderboard();
