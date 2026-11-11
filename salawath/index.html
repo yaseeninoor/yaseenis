@@ -422,13 +422,14 @@ const API_BASE = "https://yaseenis-salawath-api.yaseeninoor.workers.dev";
 // Replace with the deployed analytics Worker URL from Cloudflare before expecting live analytics.
 const ANALYTICS_API_BASE = "https://live.yaseenis.com";
 const TARGET = 700000;
+
+
+const $ = id => document.getElementById(id);
 const welcomeScreen = $("welcomeScreen");
 const welcomeName = (localStorage.getItem("yaseeni_salawath_registered_name_v1") || "").trim();
 if ($("welcomeMessage")) $("welcomeMessage").textContent = welcomeName ? "மீண்டும் வரவேற்கிறோம், " + welcomeName + "! ஸலவாத்து மஜ்லிஸில் உங்கள் வருகை மகிழ்ச்சி தருகிறது." : "Yaseenis ஸலவாத்து மஜ்லிஸிற்கு உங்களை அன்புடன் வரவேற்கிறோம்.";
 if ($("welcomeContinue")) $("welcomeContinue").addEventListener("click", () => { if (welcomeScreen) welcomeScreen.hidden = true; });
 const encouragements = ["மாஷா அல்லாஹ்! உங்கள் ஸலவாத்தைத் தொடருங்கள். 🤍","அல்லாஹ் உங்கள் நற்செயலை ஏற்றுக்கொள்வானாக. ஆமீன்.","ஸலவாத்து நிறைந்த நிமிடமாக இன்று அமையட்டும். ✨","நபிகள் நாயகம் ﷺ மீது அன்புடன் ஸலவாத்தைத் தொடர்வோம்.","உங்கள் சிறிய முயற்சியும் நன்மைக்கான அழகிய நினைவூட்டல்."];
-
-const $ = id => document.getElementById(id);
 // Decorative ﷺ rain: distributed across the viewport; never intercepts taps.
 const rainLayer = $("salatRain");
 if (rainLayer && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
