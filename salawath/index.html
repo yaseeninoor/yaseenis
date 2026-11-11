@@ -372,6 +372,10 @@ main{max-width:680px}
 
 /* Explicit public goal display */
 .target-value{font-size:clamp(25px,7vw,38px);font-weight:850;letter-spacing:1px;color:#f3d47b;margin:4px 0 0;font-variant-numeric:tabular-nums;text-shadow:0 2px 14px #f3d47b22}.target-caption{font-size:12px;letter-spacing:1.4px;color:#b8c9c4;margin-bottom:5px}
+
+/* Ensure the public goal number remains visible on iPhone Safari */
+.card .target-value{display:block!important;visibility:visible!important;opacity:1!important;min-height:1.35em!important;font-size:clamp(30px,8vw,42px)!important;font-weight:900!important;line-height:1.25!important;color:#ffe29a!important;-webkit-text-fill-color:#ffe29a!important;text-shadow:0 2px 16px #f3d47b44!important;margin:8px auto 2px!important}
+.card .target-caption{display:block!important;visibility:visible!important;opacity:1!important;color:#c7d6d1!important;font-size:12px!important;letter-spacing:1px!important;margin:0 auto 8px!important}
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><div class="participant-rain" id="participantRain" aria-hidden="true"></div><main><section class="card">
