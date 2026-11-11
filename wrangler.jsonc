@@ -6,7 +6,8 @@
     "enabled": true
   },
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "html_handling": "auto-trailing-slash"
   },
   "compatibility_flags": [
     "nodejs_compat"
