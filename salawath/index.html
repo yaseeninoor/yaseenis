@@ -420,7 +420,7 @@ main{max-width:680px}
 "use strict";
 const API_BASE = "https://yaseenis-salawath-api.yaseeninoor.workers.dev";
 // Replace with the deployed analytics Worker URL from Cloudflare before expecting live analytics.
-const ANALYTICS_API_BASE = "https://live.yaseenis.com";
+const ANALYTICS_API_BASE = "https://yaseenis-salawath-analytics.yaseeninoor.workers.dev";
 const TARGET = 700000;
 
 
@@ -542,7 +542,7 @@ async function refresh(showStatus=true) {
   if (showStatus) $("status").textContent = "Live கணக்கு இணைக்கப்பட்டுள்ளது ✓";
   return true;
  } catch(e) {
-  $("status").textContent = "";
+  $("status").textContent = "சேவையக இணைப்பு சிக்கல்: " + (e && e.message ? e.message : "தரவை ஏற்ற முடியவில்லை") + " · மீண்டும் முயற்சிக்கவும்.";
   $("mine").textContent = fmt(getLocalPersonal());
   console.error("Counter stats error:",e);
   return false;
