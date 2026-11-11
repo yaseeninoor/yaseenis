@@ -639,14 +639,24 @@ $("tap").addEventListener("click", async (event)=>{
 
 
 
-function showParticipantNameRain() {
+async function showParticipantNameRain() {
  const layer = document.getElementById('participantRain');
  if (!layer) return;
  const registeredName = (localStorage.getItem('yaseeni_salawath_registered_name_v1') || '').trim();
  const displayName = registeredName || 'ஸலவாத்து பங்கேற்பாளர்';
+ let place = '';
+ try {
+  const base = ANALYTICS_API_BASE.replace(/\\/+$/, '');
+  const response = await fetch(base + '/api/public/report', {headers:{'Accept':'application/json'},cache:'no-store'});
+  if (response.ok) {
+   const data = await response.json();
+   const me = (Array.isArray(data.onlineVisitors) ? data.onlineVisitors : []).find(person => person.visitorId === visitorId);
+   if (me && me.city) place = me.city;
+  }
+ } catch (_) {}
  const chip = document.createElement('span');
  chip.className = 'participant-rain-name';
- chip.textContent = '☾ ' + displayName + ' · ஸலவாத்';
+ chip.textContent = '☾ ' + displayName + (place ? ' · 📍 ' + place : '') + ' · ஸலவாத்';
  chip.style.setProperty('--x', (4 + Math.random() * 70) + 'vw');
  chip.style.setProperty('--drift', (Math.random() * 70 - 35) + 'px');
  chip.style.setProperty('--tilt', (Math.random() * 18 - 9) + 'deg');
