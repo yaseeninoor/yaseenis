@@ -12,7 +12,7 @@ main{max-width:760px;margin:auto;padding:22px 16px 60px}.hero{text-align:center;
 </style></head>
 <body><main>
 <header class="hero"><div class="eyebrow">YASEENIS • PUBLIC SALAWATH TARGET</div><h1>யா கலீல் அவ்ன் மௌலானா</h1><div class="arabic">يَا خَلِيلَ عَوْن مَوْلَانَا</div><p class="sub">அன்புடன் ஸலவாத் சொல்லி இலக்கை அடைவோம்</p></header>
-<section class="panel target"><div class="muted">மொத்த ஸலவாத் • TOTAL SALAWATH</div><div class="number" id="total">—</div><div class="progress"><span id="bar"></span></div><div class="muted"><span id="percent">0%</span> நிறைவு • இலக்கு 70,000</div></section>
+<section class="panel target"><div class="muted">மொத்த ஸலவாத் • TOTAL SALAWATH</div><div class="number" id="total">—</div><div class="progress"><span id="bar"></span></div><div class="muted"><span id="percent">0%</span> நிறைவு • இலக்கு 700,000</div></section>
 <section class="panel" style="text-align:center"><div class="muted">உங்கள் எண்ணிக்கை</div><div class="number" id="mine">0</div><div class="tap-wrap"><button class="tap" id="tap" aria-label="Add one Salawath">☾<br>ஸலவாத்<small>TAP +1</small></button></div><div class="actions"><button data-add="10">+10</button><button data-add="50">+50</button><button data-add="100">+100</button></div><div class="custom"><input id="custom" type="number" min="1" max="10000" placeholder="விருப்ப எண்ணிக்கை"><button id="addCustom">சேர்</button></div><p class="muted">ஒரே நேரத்தில் அதிகபட்சம் 10,000 சேர்க்கலாம்.</p><div class="status" id="status" role="status">தயார்</div></section>
 <section class="panel"><h2>📊 Daily Report</h2><div class="stats"><div class="stat">இன்றைய ஸலவாத்<strong id="daily">—</strong></div><div class="stat">தனிப்பட்ட Visitors<strong id="visitors">—</strong></div><div class="stat">Online இப்போது<strong id="online">—</strong></div><div class="stat">Tap Events<strong id="events">—</strong></div></div></section>
 <section class="panel"><h2>🟢 Online Visitors</h2><div id="onlineList" class="list muted">தகவல் ஏற்றப்படுகிறது…</div></section>
@@ -21,7 +21,7 @@ main{max-width:760px;margin:auto;padding:22px 16px 60px}.hero{text-align:center;
 <footer>Yaseenis.com · Salawath Mubarak</footer></main>
 <script>
 const API_BASE="https://ya-khaleel-awn-salawath.yaseeninoor.workers.dev";
-const TARGET=70000;const $=id=>document.getElementById(id);
+const TARGET=700000;const $=id=>document.getElementById(id);
 const visitorId=(()=>{let v=localStorage.getItem("ykaw_visitor");if(!v){v=crypto.randomUUID();localStorage.setItem("ykaw_visitor",v)}return v})();
 let myCount=Number(sessionStorage.getItem("ykaw_count")||0);$("mine").textContent=myCount.toLocaleString();
 async function api(path,body){const r=await fetch(API_BASE+path,{method:body?"POST":"GET",headers:body?{"Content-Type":"application/json"}:{},body:body?JSON.stringify(body):undefined,cache:"no-store"});if(!r.ok)throw Error("API "+r.status);return r.json()}
