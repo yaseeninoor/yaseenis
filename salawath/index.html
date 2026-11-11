@@ -348,7 +348,7 @@ main{max-width:680px}
 .welcome-screen[hidden]{display:none!important}.welcome-card{width:100%;max-width:470px;padding:30px 22px;border:1px solid #e8c66b;border-radius:28px;text-align:center;background:linear-gradient(155deg,#0b4934,#031c17);box-shadow:0 25px 80px #000a,inset 0 1px 0 #fff3}.welcome-moon{font-size:54px;color:#f3d47d}.welcome-card h2{color:#f3d47d;font-size:clamp(25px,7vw,34px);margin:10px 0}.welcome-card p{color:#fff2cf;line-height:1.9}.welcome-continue{width:100%;margin-top:14px;padding:16px;border:0;border-radius:999px;background:linear-gradient(135deg,#ffe69a,#c99b3d);color:#163323;font:inherit;font-weight:850;font-size:18px;box-shadow:0 5px 0 #896523;cursor:pointer}.welcome-small{font-size:12px!important;color:#d6c99e!important}.scoreboard-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}.scoreboard-live{font-size:10px;letter-spacing:1px;color:#a8f0c5;border:1px solid #5bc78a88;border-radius:999px;padding:5px 8px;white-space:nowrap}.encourage-toast{margin:12px 0;padding:12px;border:1px solid #e8c66b66;border-radius:14px;background:linear-gradient(90deg,#e8c66b18,#ffffff08);color:#ffe8a8;line-height:1.7;text-align:center;min-height:48px}
 </style>
 </head>
-<body><section class="welcome-screen" id="welcomeScreen" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle"><div class="welcome-card"><div class="welcome-moon">☾ ✦</div><h2 id="welcomeTitle">அஸ்ஸலாமு அலைக்கும்!</h2><p id="welcomeMessage">Yaseenis ஸலவாத்து மஜ்லிஸிற்கு உங்களை அன்புடன் வரவேற்கிறோம்.</p><p>மீண்டும் இணைந்ததற்கு மகிழ்ச்சி. வாருங்கள், நபிகள் நாயகம் ﷺ மீது ஸலவாத்தைத் தொடர்வோம்.</p><button class="welcome-continue" id="welcomeContinue" type="button">ஸலவாத்தில் தொடரவும் →</button><p class="welcome-small">உங்கள் ஒவ்வொரு ஸலவாத்தும் பொதுக் கணக்கில் சேர்க்கப்படும்.</p></div></section><div class="salat-rain" id="salatRain" aria-hidden="true"></div><div class="participant-rain" id="participantRain" aria-hidden="true"></div><main><section class="card">
+<body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><div class="participant-rain" id="participantRain" aria-hidden="true"></div><main><section class="card">
 
 <div class="theme-controls" role="group" aria-label="Appearance">
  <span class="theme-label">🎨 Theme / தோற்றம்</span>
@@ -425,10 +425,6 @@ const TARGET = 700000;
 
 
 const $ = id => document.getElementById(id);
-const welcomeScreen = $("welcomeScreen");
-const welcomeName = (localStorage.getItem("yaseeni_salawath_registered_name_v1") || "").trim();
-if ($("welcomeMessage")) $("welcomeMessage").textContent = welcomeName ? "மீண்டும் வரவேற்கிறோம், " + welcomeName + "! ஸலவாத்து மஜ்லிஸில் உங்கள் வருகை மகிழ்ச்சி தருகிறது." : "Yaseenis ஸலவாத்து மஜ்லிஸிற்கு உங்களை அன்புடன் வரவேற்கிறோம்.";
-if ($("welcomeContinue")) $("welcomeContinue").addEventListener("click", () => { if (welcomeScreen) welcomeScreen.hidden = true; });
 const encouragements = ["மாஷா அல்லாஹ்! உங்கள் ஸலவாத்தைத் தொடருங்கள். 🤍","அல்லாஹ் உங்கள் நற்செயலை ஏற்றுக்கொள்வானாக. ஆமீன்.","ஸலவாத்து நிறைந்த நிமிடமாக இன்று அமையட்டும். ✨","நபிகள் நாயகம் ﷺ மீது அன்புடன் ஸலவாத்தைத் தொடர்வோம்.","உங்கள் சிறிய முயற்சியும் நன்மைக்கான அழகிய நினைவூட்டல்."];
 // Decorative ﷺ rain: distributed across the viewport; never intercepts taps.
 const rainLayer = $("salatRain");
