@@ -369,6 +369,9 @@ main{max-width:680px}
 .scoreboard-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
 .scoreboard-heading>span:first-child{font-size:clamp(18px,4.4vw,23px);line-height:1.3;flex:1 1 190px}
 .scoreboard-live{flex:0 0 auto}
+
+/* Explicit public goal display */
+.target-value{font-size:clamp(25px,7vw,38px);font-weight:850;letter-spacing:1px;color:#f3d47b;margin:4px 0 0;font-variant-numeric:tabular-nums;text-shadow:0 2px 14px #f3d47b22}.target-caption{font-size:12px;letter-spacing:1.4px;color:#b8c9c4;margin-bottom:5px}
 </style>
 </head>
 <body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><div class="participant-rain" id="participantRain" aria-hidden="true"></div><main><section class="card">
@@ -410,7 +413,7 @@ main{max-width:680px}
 </div>
 
 <button class="tap" id="tap" type="button" aria-label="ஸலவாத்து எண்ணிக்கையைச் சேர்க்கவும்"><span class="tap-count" id="tapCount" aria-hidden="true">0</span><span class="tap-target">ஸலவாத்</span></button>
-<div class="eyebrow">மொத்த இலக்கு · PUBLIC TARGET</div><div class="total" id="total" aria-live="polite">—</div><div class="caption">மொத்த ஸலவாத்துகள் · Total Salawath</div>
+<div class="eyebrow">மொத்த இலக்கு · PUBLIC TARGET</div><div class="target-value" aria-label="மொத்த இலக்கு 700,000">700,000</div><div class="target-caption">ஸலவாத்து இலக்கு · TARGET</div><div class="total" id="total" aria-live="polite">—</div><div class="caption">இதுவரை ஓதப்பட்ட மொத்த ஸலவாத்துகள் · Total Salawath</div>
 <div class="track"><div class="fill" id="fill"></div></div><div class="progress-text" id="progressText">கணக்கை ஏற்றுகிறது…</div>
 <div class="encourage-toast" id="encourageToast" role="status" aria-live="polite">✨ இன்று உங்கள் ஸலவாத்தை அன்புடன் தொடங்குங்கள்.</div>
 <div class="personal">உங்கள் எண்ணிக்கை: <strong id="mine">—</strong></div>
