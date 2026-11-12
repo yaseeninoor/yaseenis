@@ -357,6 +357,14 @@ body[data-theme="night"] .theme-btn[aria-pressed="true"],body[data-theme="auto"]
  </div>
  <button class="welcome-toast-close" id="welcomeToastClose" type="button" aria-label="அறிவிப்பை மூடவும்">×</button>
 </div><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main>
+<!-- Site designer and contact credit -->
+<section class="designer-credit" id="designerCredit" aria-label="இணையதள வடிவமைப்பு மற்றும் தொடர்பு">
+  <div class="designer-kicker">✦ YASEENIS · SALAWATH MAJLIS ✦</div>
+  <div class="designer-name">Designed By <strong>Noor Mohammed Yaseeni</strong></div>
+  <div class="designer-contact">மேலும் உங்கள் கருத்துகள் மற்றும் புகார்களுக்கு</div>
+  <a class="designer-whatsapp" href="https://wa.me/919080831302" target="_blank" rel="noopener noreferrer">WhatsApp மூலம் தொடர்பு கொள்ளுங்கள் · +91 90808 31302</a>
+</section>
+
 <!-- Salawath audio player -->
 <section class="audio-player" aria-label="ஸலவாத் ஒலி">
   <div class="audio-title">🎧 ஸலவாத் ஒலி</div>
@@ -814,4 +822,52 @@ if (!localStorage.getItem("yaseeni_salawath_registered_name_v1")) {
 
 setInterval(()=>{if(navigator.onLine){refresh(false);}},60000);
 })();
-</script></body></html>
+</script>
+<style>
+/* Premium Madina Emerald identity and refined alignment */
+.designer-credit{
+ width:100%;margin:0 auto 14px;padding:15px 13px 14px;text-align:center;
+ border:1px solid #d9bd70;border-radius:18px;
+ background:linear-gradient(135deg,rgba(3,48,35,.96),rgba(1,25,21,.97));
+ color:#fff8e7;box-shadow:0 8px 22px #0003,inset 0 1px 0 #ffffff20;
+}
+.designer-kicker{font-size:10px;letter-spacing:2px;font-weight:800;color:#e9ca78;margin-bottom:7px}
+.designer-name{font-size:14px;line-height:1.6;color:#fff8e7}
+.designer-name strong{color:#f0d58d;font-weight:850}
+.designer-contact{font-size:12px;line-height:1.7;margin-top:7px;color:#f4e8c8}
+.designer-whatsapp{display:inline-flex;align-items:center;justify-content:center;margin-top:7px;padding:8px 13px;border-radius:999px;
+ background:linear-gradient(135deg,#d8bd70,#f4df9c);color:#183629;text-decoration:none;font-size:12px;font-weight:850}
+.designer-whatsapp:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.audio-player{border-radius:20px!important;border-color:#d9bd70!important;background:linear-gradient(145deg,rgba(5,69,50,.97),rgba(1,28,22,.98))!important;box-shadow:0 10px 26px #0004,inset 0 1px 0 #ffffff20!important}
+.audio-title{letter-spacing:.3px}
+.audio-play{min-width:138px;box-shadow:0 4px 0 #856524,0 7px 14px #0003;transition:transform .15s,filter .15s}
+.audio-play:active{transform:translateY(3px);box-shadow:0 1px 0 #856524}
+.card{border-radius:28px!important;border-width:1px!important}
+.card h1{letter-spacing:.2px;text-shadow:0 2px 14px #e8c66b25}
+.card .arabic{font-size:clamp(25px,6.5vw,36px);text-shadow:0 2px 16px #e8c66b25}
+.tap{
+ width:clamp(190px,57vw,226px)!important;height:clamp(190px,57vw,226px)!important;
+ max-width:66vw!important;max-height:66vw!important;border:6px double #f4df9c!important;
+ border-radius:50%!important;
+ background:radial-gradient(circle at 32% 20%,#8be0b1 0%,#29a875 20%,#08754c 48%,#03452f 72%,#01271e 100%)!important;
+ box-shadow:inset 0 5px 12px #ffffff75,inset 0 -15px 22px #00291caa,
+ 0 6px 0 #8c6828,0 11px 0 #063b2a,0 20px 32px #0009,0 0 0 8px #e9ca7820,0 0 0 13px #e9ca780c!important;
+}
+.tap::before{inset:-17px!important;border:1px solid #e9ca78a0!important;box-shadow:0 0 0 5px #e9ca7812,0 0 24px #e9ca7820!important}
+.tap::after{inset:12px!important;border:1px solid #fff5!important}
+.tap .tap-count{font-size:clamp(34px,9vw,43px)!important;font-weight:900!important;line-height:1.1!important}
+.tap .tap-target{font-size:16px!important;letter-spacing:1px!important;margin-top:9px!important}
+.tap:hover{filter:brightness(1.08) saturate(1.08)}
+.tap:active,.tap.is-pressed{transform:translateY(5px) scale(.97)!important}
+.theme-controls{margin-bottom:22px!important}
+.theme-btn{border-radius:999px!important;padding:10px 15px!important;font-weight:800!important}
+body[data-theme="light"] .designer-credit{background:linear-gradient(135deg,#fffdf5,#eee5d1);color:#173b30;border-color:#b99a4d}
+body[data-theme="light"] .designer-name{color:#173b30}
+body[data-theme="light"] .designer-name strong{color:#805f1d}
+body[data-theme="light"] .designer-contact{color:#43584b}
+body[data-theme="light"] .audio-player{background:linear-gradient(145deg,#fffdf5,#eee5d1)!important;color:#173b30!important}
+body[data-theme="light"] .audio-help,body[data-theme="light"] .audio-status{color:#43584b}
+body[data-theme="night"] .designer-credit,body[data-theme="auto"].system-dark .designer-credit{background:linear-gradient(135deg,#101d19,#050c0a);border-color:#9b8448}
+@media(max-width:380px){.designer-credit{padding:13px 10px}.designer-name{font-size:13px}.designer-whatsapp{font-size:11px}}
+</style>
+</body></html>
