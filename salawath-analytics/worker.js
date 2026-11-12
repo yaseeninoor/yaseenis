@@ -71,9 +71,15 @@ export default {
           COALESCE(NULLIF(p.display_name,''), 'பெயர் பதிவு செய்யவில்லை') AS name,
           p.last_seen AS lastSeen,
           COALESCE(NULLIF(l.city,''), NULLIF(l.region,''), NULLIF(l.country,''), 'இடம் தெரியவில்லை') AS city,
-          COALESCE(l.country,'') AS country
-          FROM salawath_presence p LEFT JOIN salawath_visitor_locations l ON l.visitor_id=p.visitor_id
-          WHERE p.last_seen >= ? ORDER BY p.last_seen DESC LIMIT 100`).bind(onlineCutoff).all();
+          COALESCE(l.country,'') AS country,
+          COALESCE(t.todayCount,0) AS todayCount
+          FROM salawath_presence p
+          LEFT JOIN salawath_visitor_locations l ON l.visitor_id=p.visitor_id
+          LEFT JOIN (
+            SELECT visitor_id, SUM(amount) AS todayCount
+            FROM salawath_events WHERE event_date=? GROUP BY visitor_id
+          ) t ON t.visitor_id=p.visitor_id
+          WHERE p.last_seen >= ? ORDER BY p.last_seen DESC LIMIT 100`) .bind(date, onlineCutoff).all();
         return json({ date, timezone: env.APP_TIMEZONE || "Asia/Dubai", totalSalawath: Number(summary?.totalSalawath || 0), tapEvents: Number(summary?.tapEvents || 0), uniqueVisitors: Number(summary?.uniqueVisitors || 0), onlineNow: (online.results || []).length, onlineVisitors: online.results || [], topUsers: top.results || [], minuteBreakdown: minuteBreakdown.results || [] }, 200, headers);
       }
       if (request.method === "GET" && url.pathname === "/api/admin/online") {
