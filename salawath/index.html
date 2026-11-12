@@ -302,11 +302,6 @@ h1{letter-spacing:.1px;line-height:1.35}
 <div class="track"><div class="fill" id="fill"></div></div><div class="progress-text" id="progressText">கணக்கை ஏற்றுகிறது…</div>
 <div class="personal">உங்கள் எண்ணிக்கை: <strong id="mine">—</strong></div>
 <div class="batch-tools" aria-label="Custom Salawath count"><div class="batch-title">🔢 Custom Count · விருப்ப எண்ணிக்கை</div><div class="batch-buttons"><button class="batch-btn" type="button" data-count="10">+10</button><button class="batch-btn" type="button" data-count="50">+50</button><button class="batch-btn" type="button" data-count="100">+100</button></div><div class="custom-row"><input id="customCount" type="number" inputmode="numeric" min="1" max="10000" step="1" placeholder="எண்ணிக்கை (1–10,000)" aria-label="Custom count"><button id="customCountBtn" type="button">சேர்</button></div><div class="muted">ஒரே நேரத்தில் 1 முதல் 10,000 வரை சேர்க்கலாம்.</div></div>
-<div class="leaderboard">
-  <h2>🏆 ஸலவாத்து Leaderboard</h2>
-  <div id="leaderboardList" class="muted">பட்டியலை ஏற்றுகிறது…</div>
-  <div style="text-align:center;margin-top:10px"><button class="small" id="leaderboardRefresh" type="button">பட்டியலைப் புதுப்பி</button></div>
-</div>
 <section class="online-panel" aria-live="polite">
   <div class="online-heading"><h2>🟢 யார் Online-ல் உள்ளார்கள்?</h2><span id="liveOnlineCount">—</span></div>
   <p class="online-note">தற்போது இணையத்தில் உள்ள பார்வையாளர்கள் · Approximate city location</p>
@@ -341,6 +336,48 @@ h1{letter-spacing:.1px;line-height:1.35}
  window.setInterval(load,60000);
 })();
 </script>
+<section class="minute-panel" aria-live="polite">
+ <h2>⏱️ ஒவ்வொரு நிமிடமும் எத்தனை ஸலவாத்துகள்?</h2>
+ <p class="minute-note">இன்றைய ஸலவாத்து எண்ணிக்கை · ஒவ்வொரு நிமிடமும் தானாகப் புதுப்பிக்கப்படும்</p>
+ <div id="minuteTotal" class="minute-total">—</div>
+ <div id="minuteList" class="minute-list">நிமிட வாரியான விவரங்களை ஏற்றுகிறது…</div>
+ <div id="minuteUpdated" class="minute-updated"></div>
+</section>
+<style>
+.minute-panel{margin:18px 0;padding:16px 14px;border:1px solid #e8c66b88;border-radius:20px;text-align:left;background:linear-gradient(150deg,#06392fe8,#011e19f2)}
+.minute-panel h2{margin:0;color:#e8c66b;font-size:19px;line-height:1.5}.minute-note,.minute-updated{font-size:12px;color:#e7dfc6;line-height:1.6}
+.minute-total{font-size:36px;font-weight:850;color:#e8c66b;margin:8px 0}.minute-list{margin-top:8px}.minute-row{padding:10px 2px;border-bottom:1px solid #ffffff20}.minute-row:last-child{border:0}
+.minute-row-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.minute-row-time{font-weight:750;color:#fff4d4}.minute-row-count{font-weight:850;color:#e8c66b;white-space:nowrap}.minute-row-names{font-size:12px;color:#e7dfc6;margin-top:4px;overflow-wrap:anywhere}.minute-empty{font-size:13px;color:#e7dfc6;padding:10px 0}
+</style>
+<script>
+(function(){
+ const endpoint="https://live.yaseenis.com/api/public/report";
+ const total=document.getElementById("minuteTotal"),list=document.getElementById("minuteList"),updated=document.getElementById("minuteUpdated");
+ if(!total||!list)return;
+ function esc(v){return String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+ async function loadMinuteReport(){
+  try{
+   const r=await fetch(endpoint,{headers:{Accept:"application/json"},cache:"no-store"});
+   if(!r.ok)throw new Error("HTTP "+r.status);
+   const d=await r.json(),rows=Array.isArray(d.minuteBreakdown)?d.minuteBreakdown:[];
+   const grouped={};
+   rows.forEach(x=>{const key=x.minute||"--:--";if(!grouped[key])grouped[key]={count:0,names:[]};grouped[key].count+=Number(x.count)||0;if(x.name&&!grouped[key].names.includes(x.name))grouped[key].names.push(x.name);});
+   const minutes=Object.entries(grouped).sort((a,b)=>b[0].localeCompare(a[0]));
+   const sum=minutes.reduce((n,x)=>n+x[1].count,0);
+   total.textContent=sum.toLocaleString();
+   list.innerHTML=minutes.length?minutes.slice(0,30).map(([minute,v])=>'<div class="minute-row"><div class="minute-row-head"><span class="minute-row-time">'+esc(minute)+'</span><span class="minute-row-count">'+v.count.toLocaleString()+' ஸலவாத்துகள்</span></div><div class="minute-row-names">'+esc(v.names.join(", "))+'</div></div>').join(''):'<div class="minute-empty">இன்று இன்னும் ஸலவாத்துகள் பதிவு செய்யப்படவில்லை.</div>';
+   updated.textContent="கடைசியாக புதுப்பிக்கப்பட்டது: "+new Date().toLocaleTimeString()+" · முதல் 30 நிமிட பதிவுகள்";
+  }catch(e){total.textContent="—";list.innerHTML='<div class="minute-empty">நிமிட வாரியான விவரங்கள் தற்போது கிடைக்கவில்லை.</div>';updated.textContent="";}
+ }
+ loadMinuteReport();window.setInterval(loadMinuteReport,60000);
+})();
+</script>
+<div class="leaderboard">
+  <h2>🏆 ஸலவாத்து Leaderboard</h2>
+  <div id="leaderboardList" class="muted">பட்டியலை ஏற்றுகிறது…</div>
+  <div style="text-align:center;margin-top:10px"><button class="small" id="leaderboardRefresh" type="button">பட்டியலைப் புதுப்பி</button></div>
+</div>
+
 
 <div class="status" id="status" role="status"></div>
 <div class="notice">ஒவ்வொரு முறை ஸலவாத் ஓதியதும் பட்டனை ஒருமுறை தட்டவும்.<br>பொது எண்ணிக்கை அனைவருக்கும் ஒரே Database-ல் சேமிக்கப்படும். இணைய இணைப்பு தேவை.</div>
