@@ -1339,4 +1339,59 @@ body[data-theme="night"] .subtitle,body[data-theme="night"] .caption,body[data-t
 @media(max-width:520px){body{padding:8px 5px!important}main{margin:8px auto!important;padding:18px 12px 24px 34px!important}main:before{left:5px;width:13px}.tap{max-width:145px!important;max-height:145px!important}}
 </style>
 
+
+<style id="notebook-color-and-3d-counter">
+/* Notebook palette: ink, ruled paper, muted blue and brass */
+:root{--nb-ink:#24435f;--nb-muted:#627b91;--nb-line:#d5e3ef;--nb-blue:#2c6594;--nb-gold:#c49a4c}
+html{background:#e9eef3!important}
+body{color:var(--nb-ink)!important}
+main{color:var(--nb-ink)!important}
+main>.card,main>.batch-tools,main>.leaderboard,main>.daily-report,main>.online-panel,main>.audio-player,main>.premium-settings,main>.designer-credit{color:var(--nb-ink)!important}
+main h1,main h2,main h3,main .logo{color:#244d70!important;text-shadow:none!important}
+main .subtitle,main .caption,main .muted,main .audio-help,main .settings-heading p,main .setting-copy small,main .settings-footnote,main .designer-contact{color:#607b94!important}
+main .arabic{color:#245d87!important}
+main .eyebrow,.settings-kicker,.designer-kicker{color:#557895!important}
+main .total{color:#1d5684!important;text-shadow:0 1px 0 #fff!important}
+main .personal{color:#385a78!important}
+main .personal strong{color:#a87928!important}
+main .progress-text{color:#416f95!important}
+main .track{background:#d5e1eb!important}
+main .fill{background:linear-gradient(90deg,#4e91bd 0%,#8bb7d2 58%,#d0ad62 100%)!important}
+main .batch-tools,main .leaderboard,main .daily-report,main .online-panel{background:rgba(255,253,245,.96)!important;border-color:#c9d8e5!important;color:#24435f!important}
+main .batch-title,main .lb-count{color:#2d6794!important}
+main .lb-row,main .online-person{border-color:#d9e4ed!important}
+main .lb-name,main .online-person-name{color:#294d6b!important}
+main .online-person-place,main .report-label{color:#637d94!important}
+main .report-stat{background:#f7faff!important;border-color:#d2dfeb!important}
+main .report-value{color:#244d70!important}
+main .small,main .batch-btn,main .theme-btn{background:#edf4fa!important;color:#2b5577!important;border:1px solid #c2d4e4!important}
+main .theme-btn[aria-pressed="true"]{background:#2d6794!important;color:#fff!important}
+#tap.tap{
+ width:clamp(168px,48vw,208px)!important;height:clamp(168px,48vw,208px)!important;
+ max-width:60vw!important;max-height:60vw!important;
+ display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;
+ border:7px solid #fff8e7!important;border-radius:50%!important;
+ background:radial-gradient(circle at 31% 23%,#fff2c9 0%,#e8c77e 17%,#c59a4b 48%,#936a2d 78%,#68491f 100%)!important;
+ color:#183b5a!important;text-shadow:0 1px 0 #fff8d9!important;
+ box-shadow:inset 0 7px 12px #ffffffb8,inset 0 -13px 18px #62451d88,0 5px 0 #795522,0 10px 0 #294d6b,0 17px 25px #18334d55,0 0 0 8px #c49a4c22!important;
+ transform:translateY(0) translateZ(0)!important;
+ transition:transform .12s ease,box-shadow .12s ease,filter .12s ease!important;
+ animation:nbCounterFloat 3.8s ease-in-out infinite!important;
+}
+#tap.tap:before{content:"✦";font-size:19px;line-height:1;color:#fff8dd;text-shadow:0 1px 2px #725020}
+#tap .tap-count{display:block!important;order:1;font-family:Georgia,serif!important;font-size:clamp(35px,10vw,48px)!important;line-height:1!important;font-weight:900!important;color:#173b5a!important;text-shadow:0 1px 0 #fff8d9!important}
+#tap .tap-target{display:block!important;order:2;font-size:clamp(18px,5vw,23px)!important;line-height:1.25!important;color:#173b5a!important;font-weight:900!important;letter-spacing:.2px!important}
+#tap.tap:active,#tap.tap.is-pressed{transform:translateY(8px) scale(.97)!important;filter:brightness(.97)!important;box-shadow:inset 0 5px 12px #62451d66,0 1px 0 #795522,0 3px 0 #294d6b,0 7px 12px #18334d44!important;animation:none!important}
+@keyframes nbCounterFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+#tap:focus-visible{outline:4px solid #6d9fc3!important;outline-offset:5px!important}
+body[data-theme="night"] main,body[data-theme="auto"].system-dark main{color:#e9f1f8!important}
+body[data-theme="night"] main h1,body[data-theme="night"] main h2,body[data-theme="night"] main h3,body[data-theme="auto"].system-dark main h1,body[data-theme="auto"].system-dark main h2,body[data-theme="auto"].system-dark main h3{color:#e5eff8!important}
+body[data-theme="night"] main .subtitle,body[data-theme="night"] main .caption,body[data-theme="night"] main .muted,body[data-theme="night"] main .audio-help,body[data-theme="night"] main .settings-heading p,body[data-theme="night"] main .setting-copy small,body[data-theme="night"] main .settings-footnote,body[data-theme="night"] main .designer-contact,body[data-theme="auto"].system-dark main .subtitle,body[data-theme="auto"].system-dark main .caption,body[data-theme="auto"].system-dark main .muted,body[data-theme="auto"].system-dark main .audio-help,body[data-theme="auto"].system-dark main .settings-heading p,body[data-theme="auto"].system-dark main .setting-copy small,body[data-theme="auto"].system-dark main .settings-footnote,body[data-theme="auto"].system-dark main .designer-contact{color:#b8cadd!important}
+body[data-theme="night"] main .total,body[data-theme="auto"].system-dark main .total{color:#f0d18a!important}
+body[data-theme="night"] main .progress-text,body[data-theme="auto"].system-dark main .progress-text{color:#a9cce7!important}
+body[data-theme="night"] main .batch-tools,body[data-theme="night"] main .leaderboard,body[data-theme="night"] main .daily-report,body[data-theme="night"] main .online-panel,body[data-theme="auto"].system-dark main .batch-tools,body[data-theme="auto"].system-dark main .leaderboard,body[data-theme="auto"].system-dark main .daily-report,body[data-theme="auto"].system-dark main .online-panel{background:#24364a!important;border-color:#49647d!important;color:#e7edf4!important}
+body[data-theme="night"] main .lb-name,body[data-theme="night"] main .online-person-name,body[data-theme="night"] main .report-value,body[data-theme="auto"].system-dark main .lb-name,body[data-theme="auto"].system-dark main .online-person-name,body[data-theme="auto"].system-dark main .report-value{color:#e3edf6!important}
+@media(prefers-reduced-motion:reduce){#tap.tap{animation:none!important;transition:none!important}}
+</style>
+
 </body></html>
