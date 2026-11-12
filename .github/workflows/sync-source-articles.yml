@@ -13,6 +13,7 @@ on:
 permissions:
   contents: write
 
+# Prevent overlapping source-feed sync runs.
 concurrency:
   group: sync-source-articles
   cancel-in-progress: false
@@ -24,6 +25,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -40,4 +43,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add article/source-feed.json
           git commit -m "chore: sync latest source articles"
-          git push
+
+          # Integrate commits pushed to main by other workflows/users before pushing.
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
