@@ -285,14 +285,68 @@ h1{letter-spacing:.1px;line-height:1.35}
  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 </style>
-</head>
-<body><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
+<style>
 
-<div class="theme-controls" role="group" aria-label="Appearance">
- <span class="theme-label">🎨 Theme / தோற்றம்</span>
- <button type="button" class="theme-btn" data-theme-choice="auto" aria-pressed="false">⚙️ Auto</button>
- <button type="button" class="theme-btn" data-theme-choice="light" aria-pressed="false">☀️ Light</button>
- <button type="button" class="theme-btn" data-theme-choice="night" aria-pressed="false">🌙 Night</button>
+/* Final Madina Emerald hybrid polish */
+body{
+ background:
+  linear-gradient(180deg,rgba(3,28,23,.58),rgba(3,28,23,.82)),
+  url("madina-background.svg") center top/cover fixed,
+  linear-gradient(160deg,#03251f,#07523d 48%,#011b17)!important;
+ background-color:#03251f;
+}
+body[data-theme="light"]{
+ color:#173b30;
+ background:
+  linear-gradient(180deg,rgba(250,247,237,.66),rgba(245,240,229,.88)),
+  url("madina-background.svg") center top/cover fixed,
+  linear-gradient(160deg,#f8f5ed,#e8dfc9)!important;
+ background-color:#f5f0e5;
+}
+body[data-theme="night"],body[data-theme="auto"].system-dark{
+ background:
+  linear-gradient(180deg,rgba(1,13,12,.66),rgba(1,10,9,.88)),
+  url("madina-background.svg") center top/cover fixed,
+  linear-gradient(160deg,#071d19,#020908)!important;
+ background-color:#020908;
+}
+.welcome-toast{
+ position:fixed;z-index:10000;top:max(12px,env(safe-area-inset-top));left:50%;
+ transform:translate(-50%,-18px);width:min( min(94vw,560px),560px);
+ display:flex;align-items:flex-start;gap:11px;padding:14px 14px 14px 16px;
+ border:1px solid #d8bd70;border-radius:18px;
+ background:linear-gradient(135deg,rgba(7,68,49,.97),rgba(2, thirty, twenty,.97));
+ background:linear-gradient(135deg,rgba(7,68,49,.97),rgba(2,35,27,.97));
+ color:#fff8e7;box-shadow:0 12px 36px #0007, inset 0 1px 0 #ffffff20;
+ opacity:0;visibility:hidden;pointer-events:none;
+ transition:opacity .28s ease,transform .28s ease,visibility .28s;
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.welcome-toast.show{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+.welcome-toast-icon{flex:0 0 34px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#d8bd70;color:#12392d;font-size:22px}
+.welcome-toast-copy{min-width:0;display:grid;gap:4px;text-align:left;line-height:1.55}
+.welcome-toast-copy strong{color:#f2d994;font-size:15px}
+.welcome-toast-copy span{font-size:13px;color:#fff8e7}
+.welcome-toast-close{flex:0 0 28px;width:28px;height:28px;border:0;border-radius:50%;background:#ffffff18;color:#fff;font-size:23px;line-height:1;cursor:pointer}
+.welcome-toast-close:focus-visible{outline:2px solid #f2d994;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.welcome-toast{transition:none}}
+
+</style>
+</head>
+<body><div class="welcome-toast" id="welcomeToast" role="status" aria-live="polite" aria-atomic="true">
+ <div class="welcome-toast-icon" aria-hidden="true">☾</div>
+ <div class="welcome-toast-copy">
+  <strong>அஸ்ஸலாமு அலைக்கும்!</strong>
+  <span>Yaseeni ஸலவாத்து மஜ்லிஸிற்கு உங்களை அன்புடன் வரவேற்கிறோம். வாருங்கள், நபி ﷺ அவர்கள் மீது ஸலவாத்து ஓதி இந்த நற்பணியில் இணையுங்கள்.</span>
+ </div>
+ <button class="welcome-toast-close" id="welcomeToastClose" type="button" aria-label="அறிவிப்பை மூடவும்">×</button>
+</div><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
+
+<div class="theme-controls" role="group" aria-label="தோற்றத்தைத் தேர்வு செய்யவும்">
+ <span class="theme-label">🎨 இணையதளத் தோற்றம்</span>
+ <button type="button" class="theme-btn" data-theme-choice="auto" aria-pressed="false">⚙️ தானியங்கி</button>
+ <button type="button" class="theme-btn" data-theme-choice="light" aria-pressed="false">☀️ வெளிர்</button>
+ <button type="button" class="theme-btn" data-theme-choice="night" aria-pressed="false">🌙 இரவு</button>
 </div>
 <div class="logo">☾ ✦</div><h1>உரூஸ் முபாரக்</h1><div class="subtitle" style="font-size:clamp(20px,5vw,27px);font-weight:700">மாபெரும் ஸலவாத்து மஜ்லிஸ்</div>
 <div class="arabic" lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَالْآلِ وَالصَّحْبِ وَسَلِّمْ</div>
@@ -396,7 +450,24 @@ const API_BASE = "https://yaseenis-salawath-api.yaseeninoor.workers.dev";
 // Replace with the deployed analytics Worker URL from Cloudflare before expecting live analytics.
 const ANALYTICS_API_BASE = "https://live.yaseenis.com";
 const TARGET = 700000;
+
 const $ = id => document.getElementById(id);
+// Show a friendly welcome notification once per browser session.
+const welcomeToast = $("welcomeToast");
+const welcomeToastClose = $("welcomeToastClose");
+let welcomeToastTimer = null;
+function hideWelcomeToast(){
+ if(!welcomeToast)return;
+ welcomeToast.classList.remove("show");
+ if(welcomeToastTimer) window.clearTimeout(welcomeToastTimer);
+}
+if(welcomeToast && !sessionStorage.getItem("yaseeni_salawath_welcome_seen_v1")){
+ requestAnimationFrame(()=>welcomeToast.classList.add("show"));
+ sessionStorage.setItem("yaseeni_salawath_welcome_seen_v1","1");
+ welcomeToastTimer=window.setTimeout(hideWelcomeToast,9000);
+}
+welcomeToastClose?.addEventListener("click",hideWelcomeToast);
+
 // Decorative ﷺ rain: distributed across the viewport; never intercepts taps.
 const rainLayer = $("salatRain");
 if (rainLayer && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
