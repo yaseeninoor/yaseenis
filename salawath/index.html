@@ -537,6 +537,26 @@ body[data-theme="night"] .audio-player,body[data-theme="auto"].system-dark .audi
 })();
 </script>
 
+
+<script id="move-extra-panels-to-bottom">
+(function(){
+ const main=document.querySelector("main");
+ if(!main)return;
+ const footerPanels=["designerCredit","dhikrSettings"].map(id=>document.getElementById(id));
+ const audio=main.querySelector(".audio-player");
+ const panels=[audio,...footerPanels].filter(Boolean);
+ const divider=document.createElement("div");
+ divider.className="bottom-panels-divider";
+ divider.setAttribute("aria-hidden","true");
+ panels.forEach(node=>main.appendChild(node));
+ if(panels.length)main.insertBefore(divider,panels[0]);
+})();
+</script>
+<style id="bottom-panels-layout">
+.bottom-panels-divider{height:1px;margin:30px 0 24px;background:linear-gradient(90deg,transparent,#9bb6cc 18%,#c9a45c 50%,#9bb6cc 82%,transparent);opacity:.75}
+main>.audio-player,main>#dhikrSettings,main>#designerCredit{margin-top:20px!important;margin-bottom:20px!important}
+</style>
+
 </main>
 <div class="name-modal" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle"><div class="name-modal-card"><div style="font-size:38px">👤</div><h2 id="nameModalTitle">உங்கள் பெயரைப் பதிவு செய்யுங்கள்</h2><p>உங்கள் Visitor ID-க்கு பெயரை இணைத்தால் Leaderboard-ல் உங்கள் பெயரும் ஸலவாத்து எண்ணிக்கையும் காட்டப்படும். உங்கள் எண்ணிக்கை மாறாது.</p><input id="popupRegisterName" maxlength="60" autocomplete="name" placeholder="உங்கள் பெயர் / Your name"><div class="name-modal-actions"><button class="name-modal-save" id="popupRegisterBtn" type="button">பெயரைப் பதிவு செய்யவும்</button><button class="name-modal-later" id="popupLaterBtn" type="button">பிறகு நினைவூட்டு</button></div><div class="name-modal-status" id="popupNameStatus" role="status"></div></div></div>
 <script>
