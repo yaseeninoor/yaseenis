@@ -378,6 +378,23 @@ body[data-theme="night"] .theme-btn[aria-pressed="true"],body[data-theme="auto"]
   </div>
   <div class="audio-status" id="audioStatus" role="status">ஒலியை இயக்க Play பொத்தானைத் தொடவும்</div>
 </section>
+<section class="premium-settings" id="dhikrSettings" aria-label="எண்ணிக்கை அமைப்புகள்">
+  <div class="settings-heading">
+    <div><span class="settings-kicker">PERSONAL EXPERIENCE</span><h2>⚙️ எண்ணிக்கை அமைப்புகள்</h2><p>உங்கள் விருப்பத்திற்கு ஏற்ப ஒலியையும் அதிர்வையும் மாற்றலாம்</p></div>
+    <span class="settings-mark" aria-hidden="true">✦</span>
+  </div>
+  <label class="setting-row" for="hapticToggle">
+    <span class="setting-icon" aria-hidden="true">▥</span>
+    <span class="setting-copy"><strong>Haptic Vibration</strong><small>ஒவ்வொரு ஸலவாத் எண்ணிக்கையிலும் அதிர்வு</small></span>
+    <input class="setting-switch" id="hapticToggle" type="checkbox" checked>
+  </label>
+  <label class="setting-row" for="soundToggle">
+    <span class="setting-icon" aria-hidden="true">♫</span>
+    <span class="setting-copy"><strong>Audio Sound Feedback</strong><small>ஒவ்வொரு tap-க்கும் மென்மையான மணி ஒலி</small></span>
+    <input class="setting-switch" id="soundToggle" type="checkbox" checked>
+  </label>
+  <div class="settings-footnote">இந்த அமைப்புகள் இந்தச் சாதனத்தில் மட்டும் சேமிக்கப்படும்.</div>
+</section>
 <section class="card">
 
 <div class="theme-controls" role="group" aria-label="தோற்றத்தைத் தேர்வு செய்யவும்">
@@ -704,7 +721,7 @@ async function addCount(amount) {
    $("status").textContent = fmt(succeeded) + " / " + fmt(amount) + " சேர்க்கப்படுகிறது…";
   }
   $("status").textContent = fmt(succeeded) + " ஸலவாத்துகள் பொதுக் கணக்கில் சேர்க்கப்பட்டன ✓";
-  if ("vibrate" in navigator) navigator.vibrate(20);
+  // Haptic feedback is handled by the user-controlled settings panel.
   return true;
  } catch(e) {
   const remaining = amount-succeeded;
@@ -1179,4 +1196,89 @@ body[data-theme="night"] .audio-player,body[data-theme="auto"].system-dark .audi
 @media(max-width:480px){body{padding:5px!important}.card{padding:9px 7px!important}.online-list{grid-template-columns:1fr!important}.tap{width:126px!important;height:126px!important}.batch-tools,.leaderboard,.online-panel,.daily-report{padding:7px!important}.report-stat{min-height:55px!important}}
 @media(min-width:700px){.card{padding:14px 18px!important}.online-list{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 </style>
+
+<style>
+/* Premium Dhikr experience — final visual layer */
+:root{--premium-ink:#102b46;--premium-blue:#155f9e;--premium-sky:#eaf4ff;--premium-gold:#c9a45d}
+body{padding:clamp(10px,2.5vw,24px)!important;background:radial-gradient(ellipse at 50% 0%,#d8ebff 0%,#eef6ff 45%,#f8fbff 100%)!important;color:var(--premium-ink)!important}
+main{max-width:760px!important;gap:0}
+.card{padding:clamp(18px,4vw,30px)!important;border:1px solid #d3e2f1!important;border-radius:26px!important;background:linear-gradient(155deg,#fff 0%,#f5f9ff 100%)!important;box-shadow:0 16px 42px #17466f16,0 2px 8px #17466f0a!important}
+.card h1{font-size:clamp(23px,5vw,32px)!important;letter-spacing:.01em}
+.card .subtitle{font-size:clamp(13px,3vw,16px)!important;line-height:1.8!important}
+.card .arabic{font-size:clamp(25px,6vw,36px)!important;line-height:1.9!important;color:#155f9e!important}
+.tap{width:clamp(158px,40vw,190px)!important;height:clamp(158px,40vw,190px)!important;max-width:55vw!important;max-height:55vw!important;border:5px solid #f1dfb7!important;background:radial-gradient(circle at 30% 18%,#a9d7ff 0%,#4e9bd7 28%,#1769aa 64%,#0b3156 100%)!important;box-shadow:inset 0 5px 12px #fff9,inset 0 -15px 22px #082f5455,0 7px 0 #9c824f,0 13px 25px #16436b35,0 0 0 9px #398bd018!important}
+.tap:active,.tap.is-pressed{transform:scale(.96)!important}
+.batch-tools,.leaderboard,.online-panel,.daily-report,.minute-panel{border-radius:18px!important;padding:14px!important}
+.batch-btn,.small,.custom-row button,.audio-play,.designer-whatsapp{border-radius:12px!important;min-height:38px!important}
+.designer-credit,.audio-player,.premium-settings{border-radius:20px!important;padding:15px!important;margin:0 auto 12px!important;width:100%!important;max-width:100%!important}
+.designer-credit{background:linear-gradient(135deg,#fff,#edf5ff)!important;border:1px solid #d2e3f4!important}
+.audio-player{background:linear-gradient(135deg,#fff,#edf5ff)!important;border:1px solid #c9dff2!important}
+.audio-title{font-size:15px!important;font-weight:800!important}
+.audio-help,.audio-status{font-size:12px!important}
+.audio-play{font-size:13px!important;padding:10px 17px!important}
+.audio-controls{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.audio-volume{display:flex;align-items:center;gap:7px;font-size:13px}
+.premium-settings{border:1px solid #c9dff2;background:linear-gradient(145deg,#fff,#f0f7ff);box-shadow:0 10px 28px #17466f12;color:#183c5c;text-align:left}
+.settings-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.settings-kicker{font-size:9px;letter-spacing:1.6px;font-weight:850;color:#7c9bb8}
+.settings-heading h2{font-size:17px;margin:3px 0;color:#155f9e}
+.settings-heading p{font-size:11px;line-height:1.6;color:#67839c;margin:0}
+.settings-mark{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:13px;background:#e1effc;color:#1769aa;font-size:20px}
+.setting-row{display:flex;align-items:center;gap:12px;padding:13px 2px;border-top:1px solid #e1ebf5;cursor:pointer}
+.setting-icon{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:12px;background:#e7f2fc;color:#1769aa;font-size:22px;font-weight:800}
+.setting-copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
+.setting-copy strong{font-size:13px;color:#183c5c}
+.setting-copy small{font-size:10px;color:#6c879f;line-height:1.5}
+.setting-switch{appearance:none;-webkit-appearance:none;width:44px;height:25px;flex:none;border-radius:30px;background:#c6d4e1;position:relative;cursor:pointer;transition:background .2s}
+.setting-switch::after{content:"";position:absolute;width:19px;height:19px;left:3px;top:3px;border-radius:50%;background:#fff;box-shadow:0 1px 4px #1234;transition:transform .2s}
+.setting-switch:checked{background:#159b78}
+.setting-switch:checked::after{transform:translateX(19px)}
+.setting-switch:focus-visible{outline:3px solid #6ba8df;outline-offset:3px}
+.settings-footnote{font-size:9px;color:#8298ac;padding-top:9px;border-top:1px solid #e1ebf5}
+body[data-theme="night"] .premium-settings,body[data-theme="auto"].system-dark .premium-settings{background:linear-gradient(145deg,#102b49,#0b2038)!important;border-color:#426b91!important;color:#e9f3ff!important}
+body[data-theme="night"] .settings-heading h2,body[data-theme="auto"].system-dark .settings-heading h2,body[data-theme="night"] .setting-copy strong,body[data-theme="auto"].system-dark .setting-copy strong{color:#e9f3ff!important}
+body[data-theme="night"] .settings-heading p,body[data-theme="auto"].system-dark .settings-heading p,body[data-theme="night"] .setting-copy small,body[data-theme="auto"].system-dark .setting-copy small,body[data-theme="night"] .settings-footnote,body[data-theme="auto"].system-dark .settings-footnote{color:#b6cce0!important}
+body[data-theme="night"] .setting-row,body[data-theme="auto"].system-dark .setting-row,body[data-theme="night"] .settings-footnote,body[data-theme="auto"].system-dark .settings-footnote{border-color:#294866!important}
+@media(max-width:480px){body{padding:8px!important}.premium-settings{padding:13px!important}.card{padding:16px 12px!important}.tap{width:150px!important;height:150px!important}}
+</style>
+<script>
+(function(){
+ const $=id=>document.getElementById(id);
+ const audio=$("salawathAudio"), play=$("audioPlayBtn"), volume=$("audioVolume"), status=$("audioStatus");
+ const haptic=$("hapticToggle"), sound=$("soundToggle");
+ if(!audio||!play||!haptic||!sound)return;
+ const defaults={haptic:true,sound:true};
+ function read(key){try{const v=localStorage.getItem("yaseeni_dhikr_"+key);return v===null?defaults[key]:v==="true"}catch(e){return defaults[key]}}
+ function save(key,value){try{localStorage.setItem("yaseeni_dhikr_"+key,String(value))}catch(e){}}
+ haptic.checked=read("haptic");sound.checked=read("sound");
+ haptic.addEventListener("change",()=>save("haptic",haptic.checked));
+ sound.addEventListener("change",()=>save("sound",sound.checked));
+ let audioContext=null;
+ function feedback(){
+  if(haptic.checked&&navigator.vibrate){try{navigator.vibrate(18)}catch(e){}}
+  if(!sound.checked)return;
+  try{
+   const Ctx=window.AudioContext||window.webkitAudioContext;
+   if(!Ctx)return;
+   audioContext=audioContext||new Ctx();
+   if(audioContext.state==="suspended")audioContext.resume();
+   const osc=audioContext.createOscillator(),gain=audioContext.createGain(),now=audioContext.currentTime;
+   osc.type="sine";osc.frequency.setValueAtTime(920,now);osc.frequency.exponentialRampToValueAtTime(620,now+.045);
+   gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.055,now+.006);gain.gain.exponentialRampToValueAtTime(.0001,now+.065);
+   osc.connect(gain);gain.connect(audioContext.destination);osc.start(now);osc.stop(now+.07);
+  }catch(e){}
+ }
+ const tap=$("tap");
+ if(tap)tap.addEventListener("click",feedback,{capture:true});
+ audio.volume=Number(volume?.value||.7);
+ if(volume)volume.addEventListener("input",()=>{audio.volume=Number(volume.value)});
+ function update(){const playing=!audio.paused;play.textContent=playing?"Ⅱ நிறுத்தவும்":"▶ இயக்கவும்";if(status)status.textContent=playing?"ஸலவாத் ஒலி இயங்குகிறது":"ஒலியை இயக்க Play பொத்தானைத் தொடவும்"}
+ play.addEventListener("click",async()=>{
+  try{if(audio.paused){await audio.play()}else{audio.pause()}update()}
+  catch(e){if(status)status.textContent="ஒலி இயங்கவில்லை. MP3 கோப்பைச் சரிபார்க்கவும்."}
+ });
+ audio.addEventListener("play",update);audio.addEventListener("pause",update);audio.addEventListener("ended",update);
+})();
+</script>
+
 </body></html>
