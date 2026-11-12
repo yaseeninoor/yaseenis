@@ -328,6 +328,23 @@ body[data-theme="night"],body[data-theme="auto"].system-dark{
 .welcome-toast-copy span{font-size:13px;color:#fff8e7}
 .welcome-toast-close{flex:0 0 28px;width:28px;height:28px;border:0;border-radius:50%;background:#ffffff18;color:#fff;font-size:23px;line-height:1;cursor:pointer}
 .welcome-toast-close:focus-visible{outline:2px solid #f2d994;outline-offset:3px}
+
+/* Keep both appearance modes within the same Madina emerald-and-gold identity */
+body[data-theme="night"] .card,body[data-theme="auto"].system-dark .card{
+ border-color:#c8a95b;background:linear-gradient(155deg,#063c2ff5,#011b17f7);
+}
+body[data-theme="night"] .tap,body[data-theme="auto"].system-dark .tap{
+ border-color:#f2d994;color:#fff8e7;
+ background:radial-gradient(circle at 30% 20%,#48bd8b 0%,#087247 48%,#01291f 100%);
+ box-shadow:inset 0 4px 9px #ffffff40,inset 0 -12px 18px #001e16a8,0 5px 0 #8e6a21,0 10px 0 #073b25,0 18px 28px #000b,0 0 0 9px #e8c66b18;
+}
+body[data-theme="night"] .theme-btn,body[data-theme="auto"].system-dark .theme-btn{
+ border-color:#b99b55;background:#082d24;color:#f8edce;
+}
+body[data-theme="night"] .theme-btn[aria-pressed="true"],body[data-theme="auto"].system-dark .theme-btn[aria-pressed="true"]{
+ background:#c9a65a;color:#17392d;border-color:#f2d994;
+}
+
 @media(prefers-reduced-motion:reduce){.welcome-toast{transition:none}}
 
 </style>
