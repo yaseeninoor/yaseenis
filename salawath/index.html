@@ -457,7 +457,60 @@ body[data-theme="night"] .theme-btn[aria-pressed="true"],body[data-theme="auto"]
 
 
 
-<div class="footer">Yaseenis.com · Salawath Mubarak</div></main>
+<div class="footer">Yaseenis.com · Salawath Mubarak</div>
+<!-- Salawath audio player -->
+<section class="audio-player" aria-label="ஸலவாத் ஒலி">
+  <div class="audio-title">🎧 ஸலவாத் ஒலி</div>
+  <p class="audio-help">ஒலியைத் தொடங்கி தொடர்ந்து கேட்கலாம்</p>
+  <audio id="salawathAudio" preload="none" loop playsinline>
+    <source src="salawath_from_allahumma.mp3" type="audio/mpeg">
+  </audio>
+  <div class="audio-controls">
+    <button class="audio-play" id="audioPlayBtn" type="button">▶ இயக்கவும்</button>
+    <label class="audio-volume">🔊 <input id="audioVolume" type="range" min="0" max="1" step="0.05" value="0.7" aria-label="ஒலி அளவு"></label>
+  </div>
+  <div class="audio-status" id="audioStatus" role="status">ஒலியை இயக்க Play பொத்தானைத் தொடவும்</div>
+</section>
+<style>
+.audio-player{margin:18px 0;padding:16px;border:1px solid #d8bd70;border-radius:18px;background:linear-gradient(145deg,#064535f2,#01251ff5);color:#fff8e7;box-shadow:0 8px 24px #0005}
+.audio-title{font-size:19px;font-weight:800;color:#e9ca78}
+.audio-help,.audio-status{font-size:13px;line-height:1.7;color:#f4e8c8}
+.audio-controls{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.audio-play{border:1px solid #f7e6a5;border-radius:999px;padding:12px 22px;background:linear-gradient(135deg,#e9ca78,#b38a35);color:#14251b;font-weight:800;font-size:15px}
+.audio-volume{display:flex;align-items:center;gap:7px;font-size:18px}
+.audio-volume input{width:105px;accent-color:#e9ca78}
+.audio-status{margin:9px 0 0}
+body[data-theme="night"] .audio-player,body[data-theme="auto"].system-dark .audio-player{background:linear-gradient(145deg,#10251f,#050b09);border-color:#607b53}
+</style>
+<script>
+(()=> {
+ const audio=document.getElementById("salawathAudio");
+ const play=document.getElementById("audioPlayBtn");
+ const volume=document.getElementById("audioVolume");
+ const status=document.getElementById("audioStatus");
+ if(!audio||!play||!volume||!status)return;
+ audio.volume=Number(volume.value);
+ const update=()=>{
+   const playing=!audio.paused;
+   play.textContent=playing?"⏸ இடைநிறுத்து":"▶ இயக்கவும்";
+   play.setAttribute("aria-label",playing?"ஸலவாத் ஒலியை இடைநிறுத்து":"ஸலவாத் ஒலியை இயக்கவும்");
+ };
+ play.addEventListener("click",async()=>{
+   if(audio.paused){
+     try{await audio.play();status.textContent="ஸலவாத் ஒலிக்கிறது · Loop இயக்கத்தில் உள்ளது";}
+     catch(e){status.textContent="ஒலியை இயக்க முடியவில்லை. மீண்டும் Play செய்யவும்.";}
+   }else{audio.pause();status.textContent="ஒலி இடைநிறுத்தப்பட்டது";}
+   update();
+ });
+ volume.addEventListener("input",()=>{audio.volume=Number(volume.value);});
+ audio.addEventListener("play",update);
+ audio.addEventListener("pause",update);
+ audio.play().then(()=>{status.textContent="ஸலவாத் தானாக ஒலிக்கிறது · Loop இயக்கத்தில் உள்ளது";update();})
+ .catch(()=>{status.textContent="iPhone/browser தானியங்கி ஒலியைத் தடுத்தது. ஒருமுறை Play-ஐத் தொடவும்.";update();});
+})();
+</script>
+
+</main>
 <div class="name-modal" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle"><div class="name-modal-card"><div style="font-size:38px">👤</div><h2 id="nameModalTitle">உங்கள் பெயரைப் பதிவு செய்யுங்கள்</h2><p>உங்கள் Visitor ID-க்கு பெயரை இணைத்தால் Leaderboard-ல் உங்கள் பெயரும் ஸலவாத்து எண்ணிக்கையும் காட்டப்படும். உங்கள் எண்ணிக்கை மாறாது.</p><input id="popupRegisterName" maxlength="60" autocomplete="name" placeholder="உங்கள் பெயர் / Your name"><div class="name-modal-actions"><button class="name-modal-save" id="popupRegisterBtn" type="button">பெயரைப் பதிவு செய்யவும்</button><button class="name-modal-later" id="popupLaterBtn" type="button">பிறகு நினைவூட்டு</button></div><div class="name-modal-status" id="popupNameStatus" role="status"></div></div></div>
 <script>
 (() => {
