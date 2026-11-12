@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1800" preserveAspectRatio="xMidYMid slice">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#07172e"/><stop offset=".55" stop-color="#493b58"/><stop offset="1" stop-color="#102f2a"/></linearGradient>
+ <linearGradient id="gold" x2="0" y2="1"><stop stop-color="#fff0b1"/><stop offset=".5" stop-color="#d7ad52"/><stop offset="1" stop-color="#8c5b1c"/></linearGradient>
+ <linearGradient id="dome" x2="0" y2="1"><stop stop-color="#4b9a72"/><stop offset="1" stop-color="#063d2c"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#f5d994" stop-opacity=".65"/><stop offset="1" stop-color="#f5d994" stop-opacity="0"/></radialGradient>
+ <pattern id="stars" width="130" height="110" patternUnits="userSpaceOnUse"><circle cx="12" cy="17" r="2" fill="#fff3c2" opacity=".8"/><circle cx="82" cy="57" r="1.5" fill="#fff" opacity=".65"/><path d="M45 80v12m-6-6h12" stroke="#e8c66b" stroke-width="1.5" opacity=".6"/></pattern>
+</defs>
+<rect width="1440" height="1800" fill="url(#sky)"/><rect width="1440" height="1000" fill="url(#stars)"/>
+<ellipse cx="720" cy="570" rx="650" ry="380" fill="url(#glow)"/>
+<path d="M0 850 Q260 800 470 850 T930 850 T1440 830 V1800 H0Z" fill="#031d19" opacity=".62"/>
+<!-- Masjid an-Nabawi inspired skyline -->
+<g fill="#f3e5bd" stroke="#c89b4a" stroke-width="5">
+ <path d="M100 780V410h42V340h26V410h42v370z"/><path d="M118 340l34-105 34 105z" fill="url(#gold)"/><path d="M135 235v-65h34v65z" fill="url(#gold)"/>
+ <path d="M1210 780V390h42V320h26V390h42v390z"/><path d="M1228 320l34-110 34 110z" fill="url(#gold)"/><path d="M1245 210v-65h34v65z" fill="url(#gold)"/>
+ <path d="M360 800V520h35V450h20v70h35v350z"/><path d="M370 450l35-105 35 105z" fill="url(#gold)"/>
+ <path d="M1000 800V500h35V430h20v70h35v300z"/><path d="M1010 430l35-105 35 105z" fill="url(#gold)"/>
+</g>
+<g fill="#fff0bf" opacity=".75"><path d="M0 790h1440v22H0z"/><path d="M0 820h1440v12H0z"/></g>
+<g fill="#f4e8c9" stroke="#c79b4b" stroke-width="5">
+ <path d="M180 820V700q60-100 120 0v120z"/><path d="M530 820V680q70-110 140 0v140z"/><path d="M770 820V680q70-110 140 0v140z"/><path d="M1120 820V700q60-100 120 0v120z"/>
+</g>
+<!-- Green dome -->
+<path d="M470 820 Q480 690 575 620 Q650 560 720 545 Q790 560 865 620 Q960 690 970 820Z" fill="url(#dome)" stroke="#d4ac5b" stroke-width="9"/>
+<path d="M704 545v-58h32v58" fill="url(#gold)"/><path d="M720 486l-18-34 18-38 18 38z" fill="url(#gold)"/>
+<path d="M0 830H1440v140H0z" fill="#e9d9b6" opacity=".18"/>
+<g fill="#f6d987" opacity=".8"><circle cx="152" cy="790" r="9"/><circle cx="405" cy="790" r="9"/><circle cx="1035" cy="790" r="9"/><circle cx="1260" cy="790" r="9"/></g>
+<path d="M0 960 Q720 1040 1440 960 V1800 H0Z" fill="#021b17" opacity=".9"/>
+<path d="M0 1020 Q720 1100 1440 1020" stroke="url(#gold)" stroke-width="5" fill="none" opacity=".7"/>
+<g fill="none" stroke="#d6ad5c" stroke-width="3" opacity=".28"><path d="M0 1280 Q360 1150 720 1280 T1440 1280"/><path d="M0 1400 Q360 1270 720 1400 T1440 1400"/><path d="M0 1520 Q360 1390 720 1520 T1440 1520"/></g>
+<g fill="#e8c66b" opacity=".7"><circle cx="95" cy="1070" r="4"/><circle cx="1320" cy="1130" r="4"/><circle cx="250" cy="1490" r="3"/><circle cx="1190" cy="1580" r="3"/></g>
+</svg>
