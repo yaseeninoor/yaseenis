@@ -695,12 +695,21 @@ try { localStorage.removeItem("yaseeni_salawath_pending_v1"); } catch (_) {}
 const getLocalPersonal = () => Math.max(0, Number(localStorage.getItem(LOCAL_PERSONAL_KEY) || 0));
 const setLocalPersonal = n => localStorage.setItem(LOCAL_PERSONAL_KEY, String(Math.max(0, n)));
 function render(data) {
- // Accept the counter's known total field aliases so a valid response is not rendered as zero/blank.
- const rawTotal = data.total ?? data.totalSalawath ?? data.total_count ?? data.count ?? data.totalCount;
- const total = Number(rawTotal);
- if (rawTotal === undefined || rawTotal === null || !Number.isFinite(total)) {
-  throw new Error("Stats response-ல் total field இல்லை. API response fields: " + Object.keys(data || {}).join(", "));
+ // Accept common flat and nested response shapes from the live counter Worker.
+ const sources = [data, data?.stats, data?.data, data?.result, data?.summary].filter(Boolean);
+ const keys = ["total","totalSalawath","total_count","count","totalCount","grandTotal","publicTotal","totalSalawathCount","total_salawath","allTimeTotal","all_time_total"];
+ let rawTotal;
+ for (const source of sources) {
+  for (const key of keys) {
+   if (source[key] !== undefined && source[key] !== null && source[key] !== "") { rawTotal = source[key]; break; }
+  }
+  if (rawTotal !== undefined) break;
  }
+ const total = Number(rawTotal);
+ if (rawTotal === undefined || !Number.isFinite(total) || total < 0) {
+  throw new Error("Live Counter பதிலில் மொத்த எண்ணிக்கை கிடைக்கவில்லை. மீண்டும் முயற்சிக்கவும்.");
+ }
+ try { localStorage.setItem("yaseeni_salawath_public_total_cache_v1", String(total)); } catch (_) {}
  $("total").textContent = fmt(total);
  // Show this browser's own tap count, rather than the server's potentially duplicated personal aggregate.
  $("mine").textContent = fmt(getLocalPersonal());
@@ -751,8 +760,18 @@ async function refresh(showStatus=true) {
   if (showStatus) $("status").textContent = "Live கணக்கு இணைக்கப்பட்டுள்ளது ✓";
   return true;
  } catch(e) {
-  $("status").textContent = "";
   $("mine").textContent = fmt(getLocalPersonal());
+  if ($("tapCount")) $("tapCount").textContent = fmt(getLocalPersonal());
+  let cached = 0;
+  try { cached = Number(localStorage.getItem("yaseeni_salawath_public_total_cache_v1") || 0); } catch (_) {}
+  if (Number.isFinite(cached) && cached > 0) {
+   $("total").textContent = fmt(cached);
+   $("progressText").textContent = "கடைசியாக சேமிக்கப்பட்ட மொத்தம் · Live இணைப்பு மீண்டும் முயற்சிக்கப்படுகிறது";
+  } else {
+   $("total").textContent = "—";
+   $("progressText").textContent = "Live கணக்கை இணைக்க முடியவில்லை. இணையத்தைச் சரிபார்த்து Refresh செய்யவும்.";
+  }
+  $("status").textContent = "Counter இணைப்பு சிக்கல்: " + (e?.message || "மீண்டும் முயற்சிக்கவும்");
   console.error("Counter stats error:",e);
   return false;
  }
