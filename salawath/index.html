@@ -356,7 +356,21 @@ body[data-theme="night"] .theme-btn[aria-pressed="true"],body[data-theme="auto"]
   <span>Yaseeni ஸலவாத்து மஜ்லிஸிற்கு உங்களை அன்புடன் வரவேற்கிறோம். வாருங்கள், நபி ﷺ அவர்கள் மீது ஸலவாத்து ஓதி இந்த நற்பணியில் இணையுங்கள்.</span>
  </div>
  <button class="welcome-toast-close" id="welcomeToastClose" type="button" aria-label="அறிவிப்பை மூடவும்">×</button>
-</div><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main><section class="card">
+</div><div class="salat-rain" id="salatRain" aria-hidden="true"></div><main>
+<!-- Salawath audio player -->
+<section class="audio-player" aria-label="ஸலவாத் ஒலி">
+  <div class="audio-title">🎧 ஸலவாத் ஒலி</div>
+  <p class="audio-help">ஒலியைத் தொடங்கி தொடர்ந்து கேட்கலாம்</p>
+  <audio id="salawathAudio" preload="none" loop playsinline>
+    <source src="salawath_from_allahumma.mp3" type="audio/mpeg">
+  </audio>
+  <div class="audio-controls">
+    <button class="audio-play" id="audioPlayBtn" type="button">▶ இயக்கவும்</button>
+    <label class="audio-volume">🔊 <input id="audioVolume" type="range" min="0" max="1" step="0.05" value="0.7" aria-label="ஒலி அளவு"></label>
+  </div>
+  <div class="audio-status" id="audioStatus" role="status">ஒலியை இயக்க Play பொத்தானைத் தொடவும்</div>
+</section>
+<section class="card">
 
 <div class="theme-controls" role="group" aria-label="தோற்றத்தைத் தேர்வு செய்யவும்">
  <span class="theme-label">🎨 இணையதளத் தோற்றம்</span>
@@ -458,19 +472,7 @@ body[data-theme="night"] .theme-btn[aria-pressed="true"],body[data-theme="auto"]
 
 
 <div class="footer">Yaseenis.com · Salawath Mubarak</div>
-<!-- Salawath audio player -->
-<section class="audio-player" aria-label="ஸலவாத் ஒலி">
-  <div class="audio-title">🎧 ஸலவாத் ஒலி</div>
-  <p class="audio-help">ஒலியைத் தொடங்கி தொடர்ந்து கேட்கலாம்</p>
-  <audio id="salawathAudio" preload="none" loop playsinline>
-    <source src="salawath_from_allahumma.mp3" type="audio/mpeg">
-  </audio>
-  <div class="audio-controls">
-    <button class="audio-play" id="audioPlayBtn" type="button">▶ இயக்கவும்</button>
-    <label class="audio-volume">🔊 <input id="audioVolume" type="range" min="0" max="1" step="0.05" value="0.7" aria-label="ஒலி அளவு"></label>
-  </div>
-  <div class="audio-status" id="audioStatus" role="status">ஒலியை இயக்க Play பொத்தானைத் தொடவும்</div>
-</section>
+
 <style>
 .audio-player{margin:18px 0;padding:16px;border:1px solid #d8bd70;border-radius:18px;background:linear-gradient(145deg,#064535f2,#01251ff5);color:#fff8e7;box-shadow:0 8px 24px #0005}
 .audio-title{font-size:19px;font-weight:800;color:#e9ca78}
