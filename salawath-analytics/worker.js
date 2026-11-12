@@ -39,6 +39,17 @@ export default {
           ON CONFLICT(visitor_id) DO UPDATE SET
             display_name = CASE WHEN excluded.display_name <> '' THEN excluded.display_name ELSE salawath_presence.display_name END,
             last_seen = excluded.last_seen`).bind(visitorId, name, now, now).run();
+        // Cloudflare provides approximate network city metadata; no GPS is collected.
+        const cf = request.cf || {};
+        const city = String(cf.city || "").slice(0, 80);
+        const region = String(cf.region || "").slice(0, 80);
+        const country = String(cf.country || "").slice(0, 80);
+        await env.DB.prepare(`INSERT INTO salawath_visitor_locations (visitor_id, city, region, country, updated_at)
+          VALUES (?, ?, ?, ?, ?)
+          ON CONFLICT(visitor_id) DO UPDATE SET
+            city = excluded.city, region = excluded.region,
+            country = excluded.country, updated_at = excluded.updated_at`)
+          .bind(visitorId, city, region, country, now).run();
         if (url.pathname === "/api/event") {
           const amount = body.amount === undefined ? 1 : Number(body.amount);
           if (!Number.isSafeInteger(amount) || amount < 1 || amount > 10000) return json({ error: "Invalid count amount." }, 400, headers);
@@ -56,7 +67,13 @@ export default {
         // Group events by the minute they were recorded in Asia/Dubai.
         const minuteBreakdown = await env.DB.prepare("SELECT strftime('%H:%M', e.created_at, '+4 hours') AS minute, e.visitor_id AS visitorId, COALESCE(NULLIF(MAX(p.display_name),''), 'பெயர் பதிவு செய்யவில்லை') AS name, SUM(e.amount) AS count FROM salawath_events e LEFT JOIN salawath_presence p ON p.visitor_id = e.visitor_id WHERE e.event_date = ? GROUP BY strftime('%H:%M', e.created_at, '+4 hours'), e.visitor_id ORDER BY minute DESC, count DESC").bind(date).all();
         const onlineCutoff = new Date(Date.now() - 60_000).toISOString();
-        const online = await env.DB.prepare("SELECT COALESCE(NULLIF(display_name,''), 'பெயர் பதிவு செய்யவில்லை') AS name, last_seen AS lastSeen FROM salawath_presence WHERE last_seen >= ? ORDER BY last_seen DESC LIMIT 100").bind(onlineCutoff).all();
+        const online = await env.DB.prepare(`SELECT p.visitor_id AS visitorId,
+          COALESCE(NULLIF(p.display_name,''), 'பெயர் பதிவு செய்யவில்லை') AS name,
+          p.last_seen AS lastSeen,
+          COALESCE(NULLIF(l.city,''), NULLIF(l.region,''), NULLIF(l.country,''), 'இடம் தெரியவில்லை') AS city,
+          COALESCE(l.country,'') AS country
+          FROM salawath_presence p LEFT JOIN salawath_visitor_locations l ON l.visitor_id=p.visitor_id
+          WHERE p.last_seen >= ? ORDER BY p.last_seen DESC LIMIT 100`).bind(onlineCutoff).all();
         return json({ date, timezone: env.APP_TIMEZONE || "Asia/Dubai", totalSalawath: Number(summary?.totalSalawath || 0), tapEvents: Number(summary?.tapEvents || 0), uniqueVisitors: Number(summary?.uniqueVisitors || 0), onlineNow: (online.results || []).length, onlineVisitors: online.results || [], topUsers: top.results || [], minuteBreakdown: minuteBreakdown.results || [] }, 200, headers);
       }
       if (request.method === "GET" && url.pathname === "/api/admin/online") {
