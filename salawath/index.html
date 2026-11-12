@@ -557,6 +557,61 @@ body[data-theme="night"] .audio-player,body[data-theme="auto"].system-dark .audi
 main>.audio-player,main>#dhikrSettings,main>#designerCredit{margin-top:20px!important;margin-bottom:20px!important}
 </style>
 
+
+<script id="compact-dropdown-sections">
+(function(){
+ const main=document.querySelector("main");
+ if(!main||main.dataset.dropdownSectionsReady==="true")return;
+ main.dataset.dropdownSectionsReady="true";
+ const panels=[
+  [".batch-tools","🔢 விருப்ப எண்ணிக்கை","கூடுதல் எண்ணிக்கையைச் சேர்க்க"],
+  [".online-panel","🟢 Online பார்வையாளர்கள்","தற்போது இணையத்தில் உள்ளவர்கள்"],
+  [".minute-panel","⏱️ நிமிட வாரியான அறிக்கை","ஒவ்வொரு நிமிடத்தின் ஸலவாத்து விவரம்"],
+  [".leaderboard","🏆 ஸலவாத்து Leaderboard","முன்னணி பங்கேற்பாளர்கள்"],
+  [".audio-player","🎧 ஸலவாத் ஒலி","ஒலியை இயக்க / நிறுத்த"],
+  ["#dhikrSettings","⚙️ எண்ணிக்கை அமைப்புகள்","அதிர்வு மற்றும் ஒலி அமைப்புகள்"],
+  ["#designerCredit","✦ இணையதள வடிவமைப்பு & தொடர்பு","Designed by Yaseeni"]
+ ];
+ panels.forEach(([selector,title,description])=>{
+  const node=main.querySelector(selector);
+  if(!node||node.closest("details.fold-panel"))return;
+  const details=document.createElement("details");
+  details.className="fold-panel";
+  const summary=document.createElement("summary");
+  summary.className="fold-summary";
+  const copy=document.createElement("span");
+  copy.className="fold-summary-copy";
+  const strong=document.createElement("strong");strong.textContent=title;
+  const small=document.createElement("small");small.textContent=description;
+  copy.append(strong,small);
+  const chevron=document.createElement("span");chevron.className="fold-chevron";chevron.setAttribute("aria-hidden","true");chevron.textContent="⌄";
+  summary.append(copy,chevron);
+  details.append(summary,node);
+  node.parentNode?.insertBefore(details,node);
+ });
+})();
+</script>
+<style id="compact-dropdown-styles">
+.fold-panel{margin:12px 0!important;border:1px solid #7899b4!important;border-radius:17px!important;overflow:hidden;background:rgba(20,49,76,.82)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 5px 18px #071a2b26!important;text-align:left!important}
+.fold-summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 16px;cursor:pointer;min-height:64px;color:#f0f6fc!important}
+.fold-summary::-webkit-details-marker{display:none}
+.fold-summary-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.fold-summary-copy strong{font-size:16px;font-weight:800;color:#f0f6fc!important}
+.fold-summary-copy small{font-size:11px;line-height:1.45;color:#bfd1e2!important}
+.fold-chevron{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#dceaf6;color:#245577;font-size:22px;font-weight:800;transition:transform .2s}
+.fold-panel[open]>.fold-summary{border-bottom:1px solid #7899b455;background:rgba(255,255,255,.045)}
+.fold-panel[open]>.fold-summary .fold-chevron{transform:rotate(180deg)}
+.fold-panel>*:not(summary){margin:0!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+.fold-panel>.batch-tools,.fold-panel>.online-panel,.fold-panel>.minute-panel,.fold-panel>.leaderboard,.fold-panel>.audio-player,.fold-panel>#dhikrSettings,.fold-panel>#designerCredit{padding:14px 15px!important;background:rgba(12,34,56,.45)!important;color:#edf5fc!important}
+.fold-panel .online-person,.fold-panel .minute-row,.fold-panel .lb-row{border-color:#ffffff24!important}
+.fold-panel .online-person-name,.fold-panel .lb-name,.fold-panel .minute-row-time{color:#edf5fc!important}
+.fold-panel .online-note,.fold-panel .online-updated,.fold-panel .minute-note,.fold-panel .minute-updated,.fold-panel .minute-row-names{color:#c1d2e2!important}
+.fold-panel #dhikrSettings .settings-heading h2,.fold-panel #dhikrSettings .setting-copy strong{color:#edf5fc!important}
+.fold-panel #dhikrSettings .settings-heading p,.fold-panel #dhikrSettings .setting-copy small,.fold-panel #dhikrSettings .settings-footnote{color:#c1d2e2!important}
+.fold-panel #designerCredit .designer-name,.fold-panel #designerCredit .designer-contact{color:#e4eef8!important}
+@media(max-width:520px){.fold-summary{padding:13px 14px;min-height:60px}.fold-summary-copy strong{font-size:14px}}
+</style>
+
 </main>
 <div class="name-modal" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle"><div class="name-modal-card"><div style="font-size:38px">👤</div><h2 id="nameModalTitle">உங்கள் பெயரைப் பதிவு செய்யுங்கள்</h2><p>உங்கள் Visitor ID-க்கு பெயரை இணைத்தால் Leaderboard-ல் உங்கள் பெயரும் ஸலவாத்து எண்ணிக்கையும் காட்டப்படும். உங்கள் எண்ணிக்கை மாறாது.</p><input id="popupRegisterName" maxlength="60" autocomplete="name" placeholder="உங்கள் பெயர் / Your name"><div class="name-modal-actions"><button class="name-modal-save" id="popupRegisterBtn" type="button">பெயரைப் பதிவு செய்யவும்</button><button class="name-modal-later" id="popupLaterBtn" type="button">பிறகு நினைவூட்டு</button></div><div class="name-modal-status" id="popupNameStatus" role="status"></div></div></div>
 <script>
