@@ -813,4 +813,69 @@ body[data-theme="night"] .name-modal-card p,body[data-theme="auto"].system-dark 
 }
 </style>
 
+
+<style id="mobile-first-salawath-2026">
+/* Mobile-first Salawath experience: quiet, focused, thumb-friendly */
+:root{color-scheme:dark;--mobile-gold:#f0d58d;--mobile-emerald:#07513b}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-height:100svh;padding:clamp(10px,3vw,24px) 12px calc(22px + env(safe-area-inset-bottom))!important;overscroll-behavior-y:contain}
+main{width:min(100%,620px)!important;margin-inline:auto}
+.card{width:100%;padding:clamp(18px,5vw,30px) clamp(13px,4vw,24px)!important;border-radius:28px!important;overflow:hidden}
+.theme-controls{position:relative;z-index:5;gap:7px!important;margin:0 auto 17px!important}
+.theme-label{font-size:12px!important;letter-spacing:.08em}
+.theme-btn{min-height:42px;padding:9px 14px!important;font-size:13px!important}
+.logo{font-size:30px!important;margin-bottom:4px!important}
+h1{font-size:clamp(25px,7vw,36px)!important;line-height:1.35}
+.subtitle{line-height:1.9!important}
+.arabic{font-size:clamp(24px,7vw,34px)!important;line-height:1.85!important;margin:16px 0 10px!important}
+.tap{width:min(66vw,230px)!important;height:min(66vw,230px)!important;max-width:230px!important;max-height:230px!important;margin:24px auto 22px!important;font-size:22px!important;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tap span{font-size:15px!important}
+.eyebrow{margin-top:12px!important;font-size:12px!important;letter-spacing:.09em}
+.total{font-size:clamp(42px,12vw,66px)!important;line-height:1.12!important;margin:8px 0!important;overflow-wrap:anywhere}
+.personal{margin:14px 0 18px!important;font-size:16px!important}
+.track{height:12px!important;margin:14px 0 9px!important}
+.progress-text{font-size:13px!important;line-height:1.7}
+.batch-tools{padding:14px 12px!important;margin:18px 0!important;border-radius:20px!important}
+.batch-title{font-size:15px!important;margin-bottom:12px!important}
+.batch-buttons{gap:9px!important}
+.batch-btn{min-height:48px!important;border-radius:14px!important;font-size:16px!important;touch-action:manipulation}
+.custom-row{gap:9px!important}
+.custom-row input{min-height:50px!important;font-size:16px!important;border-radius:13px!important}
+.custom-row button{min-width:76px;min-height:50px!important;border-radius:13px!important;font-size:15px!important}
+.leaderboard{margin:18px 0 12px!important;padding:16px 14px!important;border-radius:20px!important}
+.leaderboard h2{font-size:20px!important;margin:0 0 10px!important}
+.lb-row{padding:12px 4px!important;font-size:14px;align-items:center}
+.small{min-height:44px!important;padding:10px 17px!important}
+.status{min-height:24px!important;line-height:1.7!important}
+.notice{font-size:12px!important;line-height:1.9!important}
+.ykaw-additional-counter{margin:16px auto 0!important;padding:18px 15px!important;border-radius:24px!important;max-width:620px!important}
+.ykaw-heading h2{font-size:clamp(20px,5.5vw,26px)!important;line-height:1.5!important}
+.ykaw-heading p{font-size:14px!important;line-height:1.9!important}
+.ykaw-heading a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;border:1px solid;border-radius:999px;text-decoration:none;font-weight:750}
+.event-poster{max-height:340px!important;object-fit:contain}
+.name-modal{padding:14px!important}
+.name-modal-card{max-height:calc(100svh - 28px);overflow:auto}
+button,input{font:inherit}
+button{-webkit-tap-highlight-color:transparent}
+button:focus-visible,input:focus-visible{outline:3px solid #ffe9a2!important;outline-offset:3px}
+.online-panel,.minute-panel{display:none!important}
+@media(min-width:700px){
+ body{padding-top:28px!important}
+ .card{padding:30px 28px!important}
+ .tap{width:220px!important;height:220px!important}
+}
+@media(max-width:380px){
+ body{padding-inline:8px!important}
+ .card{padding:17px 11px!important;border-radius:22px!important}
+ .theme-btn{padding:8px 11px!important;font-size:12px!important}
+ .batch-tools{padding:12px 9px!important}
+ .batch-btn{font-size:14px!important}
+ .custom-row input{padding:10px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+
 </body></html>
