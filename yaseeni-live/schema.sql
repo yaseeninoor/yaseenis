@@ -1,26 +1,15 @@
 PRAGMA foreign_keys = ON;
-CREATE TABLE IF NOT EXISTS dhikr (
- id TEXT PRIMARY KEY, name TEXT NOT NULL, arabic TEXT DEFAULT '', tamil TEXT DEFAULT '', english TEXT DEFAULT '',
- active INTEGER NOT NULL DEFAULT 1, sort_order INTEGER NOT NULL DEFAULT 0, created_at TEXT NOT NULL DEFAULT (datetime('now'))
-);
-CREATE TABLE IF NOT EXISTS members (
- id TEXT PRIMARY KEY, display_name TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT (datetime('now'))
-);
-CREATE TABLE IF NOT EXISTS dhikr_totals (
- dhikr_id TEXT PRIMARY KEY REFERENCES dhikr(id), total INTEGER NOT NULL DEFAULT 0
-);
-CREATE TABLE IF NOT EXISTS dhikr_counts (
- dhikr_id TEXT NOT NULL REFERENCES dhikr(id), member_id TEXT NOT NULL REFERENCES members(id),
- total INTEGER NOT NULL DEFAULT 0, updated_at TEXT NOT NULL DEFAULT (datetime('now')),
- PRIMARY KEY (dhikr_id, member_id)
-);
-CREATE TABLE IF NOT EXISTS count_events (
- id INTEGER PRIMARY KEY AUTOINCREMENT, dhikr_id TEXT NOT NULL REFERENCES dhikr(id),
- member_id TEXT NOT NULL REFERENCES members(id), amount INTEGER NOT NULL CHECK(amount > 0),
- created_at TEXT NOT NULL DEFAULT (datetime('now'))
-);
-CREATE INDEX IF NOT EXISTS idx_count_events_dhikr_date ON count_events(dhikr_id, created_at);
-CREATE INDEX IF NOT EXISTS idx_count_events_member ON count_events(member_id, dhikr_id);
+CREATE TABLE IF NOT EXISTS members (id TEXT PRIMARY KEY,display_name TEXT NOT NULL,email TEXT UNIQUE,password_salt TEXT,password_hash TEXT,role TEXT NOT NULL DEFAULT 'guest',active INTEGER NOT NULL DEFAULT 1,created_at TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE TABLE IF NOT EXISTS auth_sessions (token_hash TEXT PRIMARY KEY,member_id TEXT NOT NULL REFERENCES members(id) ON DELETE CASCADE,expires_at TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE INDEX IF NOT EXISTS idx_auth_sessions_member ON auth_sessions(member_id);
+CREATE TABLE IF NOT EXISTS dhikr (id TEXT PRIMARY KEY,name TEXT NOT NULL,arabic TEXT DEFAULT '',tamil TEXT DEFAULT '',english TEXT DEFAULT '',active INTEGER NOT NULL DEFAULT 1,sort_order INTEGER NOT NULL DEFAULT 0,created_at TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE TABLE IF NOT EXISTS dhikr_totals (dhikr_id TEXT PRIMARY KEY REFERENCES dhikr(id),total INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS dhikr_counts (dhikr_id TEXT NOT NULL REFERENCES dhikr(id),member_id TEXT NOT NULL REFERENCES members(id),total INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL DEFAULT (datetime('now')),PRIMARY KEY (dhikr_id,member_id));
+CREATE TABLE IF NOT EXISTS count_events (id INTEGER PRIMARY KEY AUTOINCREMENT,dhikr_id TEXT NOT NULL REFERENCES dhikr(id),member_id TEXT NOT NULL REFERENCES members(id),amount INTEGER NOT NULL CHECK(amount>0),created_at TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE INDEX IF NOT EXISTS idx_count_events_dhikr_date ON count_events(dhikr_id,created_at);
+CREATE INDEX IF NOT EXISTS idx_count_events_member ON count_events(member_id,dhikr_id);
+CREATE TABLE IF NOT EXISTS visitor_presence (visitor_id TEXT PRIMARY KEY,member_id TEXT NOT NULL REFERENCES members(id) ON DELETE CASCADE,display_name TEXT NOT NULL,city TEXT DEFAULT '',country TEXT DEFAULT '',first_seen TEXT NOT NULL DEFAULT (datetime('now')),last_seen TEXT NOT NULL DEFAULT (datetime('now')));
+CREATE INDEX IF NOT EXISTS idx_visitor_presence_last_seen ON visitor_presence(last_seen);
 INSERT OR IGNORE INTO dhikr (id,name,arabic,tamil,english,sort_order) VALUES
 ('salawat-main','பொது ஸலவாத்து','اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ','அல்லாஹும்ம ஸல்லி அலா முஹம்மதின்','Allahumma salli ala Muhammad',1),
 ('salawat-khaleel-awn','யா கலீல் அவ்ன் ஸலவாத்து','يَا خَلِيلَ عَوْن','யா கலீல் அவ்ன்','Ya Khaleel Awn Salawath',2),
