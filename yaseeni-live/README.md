@@ -6,7 +6,7 @@ This is a separate app from the existing `/salawath/` website. Keep the original
 Cloudflare Dashboard → Workers & Pages → D1 SQL Database → Create database → `yaseeni-live-db`.
 Open its Console and run all of `schema.sql`.
 
-## 2. Deploy the Worker
+## 2. Update an existing D1 database (important)\nIf you already ran the older `schema.sql`, run `migrate.sql` once in the `yaseeni-live-db` D1 Console before deploying the updated Worker. This adds the missing auth columns/tables and visitor presence without deleting existing rows. For a brand-new database, run the updated `schema.sql` instead.\n\n## 3. Deploy the Worker
 Create a Cloudflare Worker called `yaseeni-live-api`. Paste `worker.js` and deploy.
 Settings → Bindings → Add D1 database:
 - Variable name: `DB`
@@ -14,10 +14,10 @@ Settings → Bindings → Add D1 database:
 
 Settings → Variables and Secrets: create secret `ADMIN_KEY` with a long random value. Never put this key in the website source or GitHub.
 
-## 3. Connect the site
+## 4. Connect the site
 In `index.html`, replace `https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev` with the deployed Worker URL. Commit the change and wait for Pages deployment. Expected URL: `https://yaseenis.com/yaseeni-live/`.
 
-## 4. What the database stores
+## 5. What the database stores
 - `dhikr`: one row per Salawath/Dhikr menu option
 - `dhikr_totals`: shared total for each option
 - `members`: member identity and display name
@@ -26,13 +26,13 @@ In `index.html`, replace `https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev` w
 
 Each dropdown item has its own ID, so its totals and leaderboard are independent. Add new entries through the “Custom Dhikr” panel (the Worker checks the ADMIN_KEY).
 
-## 5. Important launch security
+## 6. Important launch security
 The current starter creates a browser-local member ID and asks for a display name. That is useful for a private test, but it is not strong identity verification: clearing browser data or switching devices creates another member ID. Before a public launch, add OTP/email/phone authentication and rate limits. Keep admin operations behind a server-side secret; never expose it in HTML.
 
-## 6. Import old Salawath records
+## 7. Import old Salawath records
 The existing Salawath page talks to a separate API: `https://yaseenis-salawath-api.yaseeninoor.workers.dev`; the old analytics endpoint is separate too. The screenshot only shows a view, not the complete underlying records. Export the old database (registered members, names, per-person totals, global totals and timestamped events) from the old Cloudflare Worker/D1/KV storage before importing. Map every old counter to a separate `dhikr.id` and import into the corresponding D1 tables. Do not reset, overwrite or point the old site to the new database.
 
-## 7. API routes
+## 8. API routes
 - `GET /api/dhikr`
 - `POST /api/dhikr` (requires `adminKey`)
 - `GET /api/stats?dhikrId=...&memberId=...`
