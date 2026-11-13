@@ -1,40 +1,43 @@
-# Yaseeni Live
+# Yaseeni Live — Cloudflare D1 setup
 
-A separate, mobile-first Dhikr + community voting website.
+This is a separate app from the existing `/salawath/` website. Keep the original Salawath Worker and database untouched.
 
-## Files and hosting
-- Website path: `yaseeni-live/index.html`
-- Intended Pages URL: `https://yaseenis.com/yaseeni-live/`
-- Hosted as a static page by the existing GitHub Pages site. This adds a new folder only; it does not edit `salawath/` or its data.
+## 1. Create a separate D1 database
+Cloudflare Dashboard → Workers & Pages → D1 SQL Database → Create database → `yaseeni-live-db`.
+Open its Console and run all of `schema.sql`.
 
-## Important: separate database setup
-The site currently opens in **Preview mode** until you connect a brand-new Firebase project. Do not reuse the Salawath or LP-Store Firebase project.
+## 2. Deploy the Worker
+Create a Cloudflare Worker called `yaseeni-live-api`. Paste `worker.js` and deploy.
+Settings → Bindings → Add D1 database:
+- Variable name: `DB`
+- Database: `yaseeni-live-db`
 
-1. Open https://console.firebase.google.com/ and create a new project named `yaseeni-live`.
-2. Add a Web App in Project settings and copy its Firebase configuration.
-3. In Authentication → Sign-in method, enable **Anonymous**.
-4. In Realtime Database, create a database and copy its database URL.
-5. Replace the five placeholder values in `yaseeni-live/index.html` under `firebaseConfig` with the new project's `apiKey`, `authDomain`, `databaseURL`, `projectId`, and `appId`.
-6. Set Realtime Database rules to the following starter rules (signed-in anonymous users only):
+Settings → Variables and Secrets: create secret `ADMIN_KEY` with a long random value. Never put this key in the website source or GitHub.
 
-```json
-{
-  "rules": {
-    "yaseeniLive": {
-      ".read": "auth != null",
-      ".write": "auth != null"
-    }
-  }
-}
-```
+## 3. Connect the site
+In `index.html`, replace `https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev` with the deployed Worker URL. Commit the change and wait for Pages deployment. Expected URL: `https://yaseenis.com/yaseeni-live/`.
 
-7. Commit the config change. Reload the site; the header should show **Live connected**.
+## 4. What the database stores
+- `dhikr`: one row per Salawath/Dhikr menu option
+- `dhikr_totals`: shared total for each option
+- `members`: member identity and display name
+- `dhikr_counts`: each member's total for each selected Dhikr
+- `count_events`: every count batch with timestamp, for daily reporting and audit
 
-## Data separation
-All live data is stored under the `yaseeniLive` root in this new Firebase project's Realtime Database. It is independent of the existing Salawath website and its backend.
+Each dropdown item has its own ID, so its totals and leaderboard are independent. Add new entries through the “Custom Dhikr” panel (the Worker checks the ADMIN_KEY).
 
-## Voting security note
-The current front-end uses a per-browser localStorage guard to discourage repeat votes. This is not strong identity verification: users can clear browser storage or switch devices. Before using voting for official decisions, add authenticated voter identities and server-side validation (for example, Firebase Cloud Functions/App Check and stricter rules). The starter rules above are for a private community prototype, not high-stakes elections.
+## 5. Important launch security
+The current starter creates a browser-local member ID and asks for a display name. That is useful for a private test, but it is not strong identity verification: clearing browser data or switching devices creates another member ID. Before a public launch, add OTP/email/phone authentication and rate limits. Keep admin operations behind a server-side secret; never expose it in HTML.
 
-## Preview mode
-Without Firebase configuration, the UI remains usable locally in one browser for a design/demo preview. Data in preview mode is not shared between visitors.
+## 6. Import old Salawath records
+The existing Salawath page talks to a separate API: `https://yaseenis-salawath-api.yaseeninoor.workers.dev`; the old analytics endpoint is separate too. The screenshot only shows a view, not the complete underlying records. Export the old database (registered members, names, per-person totals, global totals and timestamped events) from the old Cloudflare Worker/D1/KV storage before importing. Map every old counter to a separate `dhikr.id` and import into the corresponding D1 tables. Do not reset, overwrite or point the old site to the new database.
+
+## 7. API routes
+- `GET /api/dhikr`
+- `POST /api/dhikr` (requires `adminKey`)
+- `GET /api/stats?dhikrId=...&memberId=...`
+- `POST /api/count`
+- `GET /api/leaderboard?dhikrId=...`
+- `GET /api/daily?dhikrId=...`
+
+The starter voting tab is a placeholder; voting routes and D1 tables can be added in the next phase.
