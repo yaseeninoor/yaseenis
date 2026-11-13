@@ -49,28 +49,42 @@ async function enterApp(u,isNewVisitor=false){authUser=u;memberId=u.id;memberNam
 async function loadAdmin(){if(authUser?.role!=="admin")return;try{const [o,u]=await Promise.all([api("/api/admin/overview"),api("/api/admin/users")]);$("adminMembers").textContent=fmt(o.members);$("adminTotal").textContent=fmt(o.total);$("adminDhikrs").textContent=fmt(o.dhikrs);$("adminUsers").innerHTML=u.users.map(x=>'<div class="person"><span>'+esc(x.name)+'<small style="display:block;color:var(--muted)">'+esc(x.email)+' · '+esc(x.role)+' · '+(x.active?"Active":"Suspended")+' · '+fmt(x.total)+'</small></span><button class="btn" data-member="'+esc(x.id)+'" data-active="'+(x.active?0:1)+'">'+(x.active?"Suspend":"Activate")+'</button></div>').join("");document.querySelectorAll("[data-member]").forEach(b=>b.onclick=async()=>{await api("/api/admin/user",{id:b.dataset.member,active:b.dataset.active==="1"});loadAdmin()});$("adminDhikrSelect").innerHTML=dhikrs.map(d=>'<option value="'+esc(d.id)+'">'+esc(d.name)+'</option>').join("");if(!window.adminDhikrBound){$("adminDhikrSelect").onchange=loadAdminDhikr;$("adminAddDhikrForm").onsubmit=async e=>{e.preventDefault();try{const x=await api("/api/dhikr",{name:$("adminNewName").value.trim(),arabic:$("adminNewArabic").value.trim(),tamil:$("adminNewTamil").value.trim(),english:$("adminNewEnglish").value.trim()});e.target.reset();await init();await loadAdmin();$("adminDhikrSelect").value=x.dhikr.id;await loadAdminDhikr();toast("Custom Dhikr saved")}catch(err){toast(err.message)}};window.adminDhikrBound=true}await loadAdminDhikr()}catch(e){$("adminUsers").textContent=e.message}}\nasync function loadAdminDhikr(){if(authUser?.role!=="admin")return;const did=$("adminDhikrSelect").value;if(!did)return;try{const r=await api("/api/admin/dhikr-report?dhikrId="+encodeURIComponent(did));$("adminDhikrTotal").textContent=fmt(r.total);$("adminDhikrReport").innerHTML=r.users.length?r.users.map(x=>'<div class="person"><span>'+esc(x.name)+'<small style="display:block;color:var(--muted)">'+esc(x.email||"")+(x.updated_at?" · "+esc(x.updated_at):"") +'</small></span><b>'+fmt(x.total)+'</b></div>').join(""):'<p class="muted">இந்த ஸலவாத்திற்கு இன்னும் உறுப்பினர் எண்ணிக்கை இல்லை.</p>'}catch(e){$("adminDhikrReport").textContent=e.message}}
 $("adminRefresh").onclick=loadAdmin;
 async function boot(){
-  // Public, no-login entry: create/reuse a name-only guest session automatically.
-  const savedName=localStorage.getItem("yaseeniLiveName")||"";
-  try{
-    const hasVisited=localStorage.getItem("yaseeniLiveVisited")==="1";
-    if(authToken){
+  // Public no-password entry: recover stale sessions and always create a valid name-only guest.
+  let savedName=localStorage.getItem("yaseeniLiveName")||"";
+  const hasVisited=localStorage.getItem("yaseeniLiveVisited")==="1";
+  if(authToken){
+    try{
       const x=await api("/api/auth/me");
       await enterApp(x.user,!hasVisited);
       return;
+    }catch(err){
+      // An expired/invalid token must not trap returning visitors on the fallback screen.
+      authToken="";
+      localStorage.removeItem("yaseeniLiveToken");
     }
-    const isNewVisitor=!savedName&&!hasVisited;const name=(savedName||prompt("யாசீனி லைவிற்கு வரவேற்கிறோம்! உங்கள் பெயரை உள்ளிடுங்கள் / Welcome! Enter your name","")||"").trim().slice(0,80);
-    if(name.length<2){$("connection").textContent="Name required";$("message").textContent="தொடர உங்கள் பெயரை உள்ளிடவும் / Please refresh and enter your name.";return}
-    localStorage.setItem("yaseeniLiveName",name);
-    const x=await api("/api/auth/guest",{name});
+  }
+  try{
+    const isNewVisitor=!savedName&&!hasVisited;
+    const entered=(savedName||prompt("யாசீனி லைவிற்கு வரவேற்கிறோம்! உங்கள் பெயரை உள்ளிடுங்கள் / Welcome! Enter your name","")||"").trim().replace(/\\s+/g," ").slice(0,80);
+    if(entered.length<2){
+      $("connection").textContent="Name required";
+      $("message").textContent="தொடர உங்கள் பெயரை உள்ளிடவும் / Please refresh and enter your name.";
+      return;
+    }
+    savedName=entered;
+    localStorage.setItem("yaseeniLiveName",entered);
+    const x=await api("/api/auth/guest",{name:entered});
     authToken=x.token;
     localStorage.setItem("yaseeniLiveToken",authToken);
     await enterApp(x.user,isNewVisitor||!hasVisited);
   }catch(err){
     authToken="";
+    localStorage.removeItem("yaseeniLiveToken");
     $("appShell").style.display="block";
     $("profileName").textContent=savedName||"Guest";
     $("connection").textContent="API temporarily unavailable";
-    $("message").textContent="Yaseeni Live page is open, but shared counting needs the Cloudflare API. "+(err?.message||"");
+    $("message").textContent="Yaseeni Live page is open, but live visitor tracking needs the Cloudflare API. "+(err?.message||"");
+    console.error("Yaseeni Live startup:",err);
     dhikrs=[
       {id:"salawat-main",name:"பொது ஸலவாத்து",arabic:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ",tamil:"அல்லாஹும்ம ஸல்லி அலா முஹம்மதின்",english:"Allahumma salli ala Muhammad"},
       {id:"salawat-khaleel-awn",name:"யா கலீல் அவ்ன் ஸலவாத்து",arabic:"يَا خَلِيلَ عَوْن",tamil:"யா கலீல் அவ்ன்",english:"Ya Khaleel Awn"},
