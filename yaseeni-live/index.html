@@ -24,7 +24,25 @@ const $=id=>document.getElementById(id);let authToken=localStorage.getItem("yase
 const demo=API_BASE.includes("YOUR-WORKER");
 function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2200)}
 function fmt(n){return Number(n||0).toLocaleString("en-US")}
-async function api(path,body){const headers={"Content-Type":"application/json"};if(authToken)headers.Authorization="Bearer "+authToken;const r=await fetch(API_BASE+path,{method:body?"POST":"GET",headers,body:body?JSON.stringify(body):undefined,cache:"no-store"});const d=await r.json();if(!r.ok)throw Error(d.error||"API error");return d}
+async function api(path,body,retry=true){
+ const headers={"Content-Type":"application/json"};
+ if(authToken)headers.Authorization="Bearer "+authToken;
+ const r=await fetch(API_BASE+path,{method:body?"POST":"GET",headers,body:body?JSON.stringify(body):undefined,cache:"no-store"});
+ let d={};try{d=await r.json()}catch{throw Error("Cloudflare API returned an invalid response (HTTP "+r.status+").")}
+ if(r.status===401&&retry&&!path.startsWith("/api/auth/")){
+   authToken="";localStorage.removeItem("yaseeniLiveToken");
+   const name=(localStorage.getItem("yaseeniLiveName")||"").trim();
+   if(name.length>=2){
+     const gr=await fetch(API_BASE+"/api/auth/guest",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name}),cache:"no-store"});
+     let gd={};try{gd=await gr.json()}catch{}
+     if(gr.ok&&gd.token){authToken=gd.token;localStorage.setItem("yaseeniLiveToken",authToken);return api(path,body,false)}
+     throw Error(gd.error||"Guest session could not be restored. Reload and enter your name.")
+   }
+   throw Error("Your session expired. Reload the page and enter your name again.")
+ }
+ if(!r.ok)throw Error(d.error||("API error (HTTP "+r.status+")"));
+ return d
+}
 function selected(){return dhikrs.find(x=>x.id===selectedId)}
 function renderSelected(){const d=selected();if(!d)return;$("arabic").textContent=d.arabic||"";$("translit").textContent=[d.tamil,d.english].filter(Boolean).join(" · ");$("total").textContent=fmt(currentStats.total);const pct=Math.min(100,currentStats.total/700000*100);$("targetFill").style.width=pct+"%";$("targetProgress").textContent=fmt(currentStats.total)+" / 700,000 · "+pct.toFixed(2)+"%";$("sideTotal").textContent=fmt(currentStats.total);$("mine").textContent=fmt(currentStats.mine);$("sideMine").textContent=fmt(currentStats.mine);$("contributors").textContent=fmt(currentStats.contributors)}
 function renderMenu(){$("dhikrSelect").innerHTML=dhikrs.map(d=>'<option value="'+esc(d.id)+'">'+esc(d.name)+'</option>').join("");$("dhikrQuickList").innerHTML=dhikrs.map(d=>'<button class="person" style="width:100%;background:transparent;border:0;text-align:left;color:var(--cream)" data-id="'+esc(d.id)+'"><span>'+esc(d.name)+'</span><b>Open →</b></button>').join("");document.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>choose(b.dataset.id))}
@@ -36,8 +54,20 @@ async function loadReport(){if(demo){$("leaderboard").textContent="D1 database c
 $("profileBtn").onclick=()=>{toast("உங்கள் பெயர்: "+(memberName||"Guest"))};$("profileName").textContent=memberName||"Add name";$("dhikrSelect").onchange=e=>choose(e.target.value);$("tap").onclick=()=>addCount(1);document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>addCount(b.dataset.add));$("customAmount").onclick=()=>{const n=prompt("How many counts?");if(n!==null)addCount(n)};$("refreshReport").onclick=loadReport;
 $("addDhikrForm").onsubmit=async e=>{e.preventDefault();if(demo){toast("Connect your D1 Worker first");return}const data={name:$("newName").value.trim(),arabic:$("newArabic").value.trim(),tamil:$("newTamil").value.trim(),english:$("newEnglish").value.trim()};try{const out=await api("/api/dhikr",data);dhikrs.push(out.dhikr);renderMenu();await choose(out.dhikr.id);e.target.reset();toast("New Dhikr saved")}catch(err){toast(err.message)}};
 document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".panel").forEach(x=>x.classList.toggle("active",x.id===b.dataset.tab));if(b.dataset.tab==="reports")loadReport()});
-async function init(){if(demo){dhikrs=[{id:"salawat-main",name:"முக்கிய ஸலவாத்து (பழைய தரவு இணைக்கப்படவில்லை)",arabic:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ",tamil:"அல்லாஹும்ம ஸல்லி அலா முஹம்மதின்",english:"Salawat"},{id:"salawat-khaleel-awn",name:"Ya Khaleel Awn Salawath",arabic:"يَا خَلِيلَ عَوْن",tamil:"யா கலீல்அவ்ன்",english:"Ya Khaleel Awn"},{id:"salawat-custom-1",name:"புதிய ஸலவாத்து",arabic:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَالْآلِ وَالصَّحْبِ وَسَلِّمْ",tamil:"அல்லாஹும்ம ஸல்லி அலா முஹம்மதின் வல் ஆலி வஸ்ஸஹ்பி வஸல்லிம்",english:"Allahumma salli ala Muhammadin wal aali was-sahbi wa sallim"}];renderMenu();await choose(dhikrs[0].id);return}try{const r=await api("/api/dhikr");dhikrs=r.dhikrs;renderMenu();if(!dhikrs.length)throw Error("Add initial Dhikr rows using schema.sql");await choose(dhikrs[0].id)}catch(e){$("connection").textContent="Setup needed";$("message").textContent=e.message}}
-
+async function init(){
+ if(demo){$("connection").textContent="D1 setup required";$("message").textContent="Cloudflare Worker URL and D1 database are not connected yet.";return}
+ try{
+  const r=await api("/api/dhikr");
+  dhikrs=Array.isArray(r.dhikrs)?r.dhikrs:[];
+  if(!dhikrs.length)throw Error("No Dhikr records found in D1. Run schema.sql in yaseeni-live-db.");
+  renderMenu();await choose(dhikrs[0].id);
+ }catch(e){
+  $("connection").textContent="Connection error";
+  $("message").textContent="Dhikr list failed: "+e.message;
+  toast("Unable to load Dhikr list: "+e.message);
+  console.error("Yaseeni Live init:",e);
+ }
+}
 
 function authMode(mode){const reg=mode==="register";$("authName").style.display=reg?"block":"none";$("authName").required=reg;$("authTitle").textContent=reg?"Create your account":"Welcome back";$("authHint").textContent=reg?"Register to save your personal Dhikr history.":"Login to continue your personal records.";$("authSubmit").textContent=reg?"Create account":"Login securely";$("authMessage").textContent=reg?"Use a valid email and password with at least 10 characters.":"Your counts are saved to your account.";$("authForm").dataset.mode=mode}
 $("loginMode").onclick=()=>authMode("login");$("registerMode").onclick=()=>authMode("register");
