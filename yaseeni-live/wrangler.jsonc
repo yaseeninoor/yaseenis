@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "yaseeni-live-api",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-13",
+  "workers_dev": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "yaseeni-live-db",
+      "database_id": "d21d29ca-6872-4722-bdb3-117ac0ec759b"
+    }
+  ]
+}
