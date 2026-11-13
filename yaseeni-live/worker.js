@@ -11,7 +11,10 @@ async function session(req,env){const token=(req.headers.get("Authorization")||"
 const admin=u=>u&&u.role==="admin";
 export default {async fetch(req,env){if(req.method==="OPTIONS")return new Response(null,{headers:cors});const url=new URL(req.url),p=url.pathname;
 try{
-if(p==="/api/health")return json({ok:true,service:"Yaseeni Live Auth + D1"});
+if(p==="/api/health"){
+ const [d,m]=await Promise.all([env.DB.prepare("SELECT id,name,arabic FROM dhikr WHERE active=1 ORDER BY sort_order").all(),env.DB.prepare("SELECT COUNT(*) n FROM members").first()]);
+ return json({ok:true,service:"Yaseeni Live Auth + D1",database:"connected",dhikrCount:d.results.length,dhikrs:d.results,members:m.n});
+}
 if(p==="/api/public/report"&&req.method==="GET"){
  const [online,minutes]=await Promise.all([
   env.DB.prepare("SELECT display_name name,city,country,first_seen,last_seen FROM visitor_presence WHERE last_seen>=datetime('now','-5 minutes') ORDER BY last_seen DESC LIMIT 100").all(),
@@ -36,10 +39,29 @@ if(p==="/api/presence"&&req.method==="POST"){
 }
 if(p.startsWith("/api/")&&!p.startsWith("/api/auth/")&&p!=="/api/admin/bootstrap"&&!user)return json({error:"Login required."},401);
 if(p==="/api/admin/bootstrap"&&req.method==="POST"){const b=await body(req);if(!env.ADMIN_KEY||b.adminKey!==env.ADMIN_KEY)return json({error:"Bootstrap key invalid."},401);const existing=await env.DB.prepare("SELECT id FROM members WHERE role='admin' LIMIT 1").first();if(existing)return json({error:"An admin already exists."},409);const email=String(b.email||"").trim().toLowerCase(),name=String(b.name||"").trim(),password=String(b.password||"");if(!email||!name||password.length<10)return json({error:"Name, email and password (10+ characters) required."},400);const id=uid(),salt=b64(crypto.getRandomValues(new Uint8Array(16))),ph=await passwordHash(password,salt);await env.DB.prepare("INSERT INTO members(id,display_name,email,password_salt,password_hash,role,active) VALUES(?,?,?,?,?,'admin',1)").bind(id,name,email,salt,ph).run();return json({ok:true,id},201)}
-if(p==="/api/dhikr"&&req.method==="GET"){const rows=await env.DB.prepare("SELECT d.*,COALESCE(t.total,0) total FROM dhikr d LEFT JOIN dhikr_totals t ON t.dhikr_id=d.id WHERE d.active=1 ORDER BY d.sort_order,d.created_at").all();return json({dhikrs:rows.results})}
+if(p==="/api/dhikr"&&req.method==="GET"){
+ await env.DB.prepare("INSERT OR IGNORE INTO dhikr(id,name,arabic,tamil,english,sort_order) VALUES('salawat-main','பொது ஸலவாத்து','اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ','அல்லாஹும்ம ஸல்லி அலா முஹம்மதின்','Allahumma salli ala Muhammad',1),('salawat-khaleel-awn','Ya Khaleel Awn Moulana','يا خليل عون مولانا','யா கலீல் அவ்ன் மௌலானா','Ya Khaleel Awn Moulana',2),('salawat-custom-1','ஆல் வஸ்ஸஹ்பி ஸலவாத்து','اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَالْآلِ وَالصَّحْبِ وَسَلِّمْ','அல்லாஹும்ம ஸல்லி அலா முஹம்மதின் வல் ஆலி வஸ்ஸஹ்பி வஸல்லிம்','Allahumma salli ala Muhammadin wal aali was-sahbi wa sallim',3)").run();
+ await env.DB.prepare("UPDATE dhikr SET name='Ya Khaleel Awn Moulana',arabic='يا خليل عون مولانا',tamil='யா கலீல் அவ்ன் மௌலானா',english='Ya Khaleel Awn Moulana' WHERE id='salawat-khaleel-awn'").run();
+ await env.DB.prepare("INSERT OR IGNORE INTO dhikr_totals(dhikr_id,total) SELECT id,0 FROM dhikr WHERE active=1").run();
+ const rows=await env.DB.prepare("SELECT d.*,COALESCE(t.total,0) total FROM dhikr d LEFT JOIN dhikr_totals t ON t.dhikr_id=d.id WHERE d.active=1 ORDER BY d.sort_order,d.created_at").all();
+ return json({dhikrs:rows.results});
+}
 if(p==="/api/dhikr"&&req.method==="POST"){if(!admin(user))return json({error:"Admin access required."},403);const b=await body(req);if(!b.name?.trim())return json({error:"Dhikr name required."},400);const did="dhikr-"+uid();await env.DB.batch([env.DB.prepare("INSERT INTO dhikr(id,name,arabic,tamil,english,sort_order) VALUES(?,?,?,?,?,999)").bind(did,b.name.trim(),b.arabic||"",b.tamil||"",b.english||""),env.DB.prepare("INSERT INTO dhikr_totals(dhikr_id,total) VALUES(?,0)").bind(did)]);return json({dhikr:{id:did,name:b.name,arabic:b.arabic||"",tamil:b.tamil||"",english:b.english||""}},201)}
 if(p==="/api/stats"){const did=url.searchParams.get("dhikrId");const [t,m,c]=await Promise.all([env.DB.prepare("SELECT total FROM dhikr_totals WHERE dhikr_id=?").bind(did).first(),env.DB.prepare("SELECT total FROM dhikr_counts WHERE dhikr_id=? AND member_id=?").bind(did,user.id).first(),env.DB.prepare("SELECT COUNT(*) n FROM dhikr_counts WHERE dhikr_id=? AND total>0").bind(did).first()]);return json({total:t?.total||0,mine:m?.total||0,contributors:c?.n||0})}
-if(p==="/api/count"&&req.method==="POST"){const b=await body(req),did=b.dhikrId,amount=Number(b.amount);if(!did||!Number.isSafeInteger(amount)||amount<1||amount>10000)return json({error:"Valid dhikrId and amount (1-10000) required."},400);const exists=await env.DB.prepare("SELECT id FROM dhikr WHERE id=? AND active=1").bind(did).first();if(!exists)return json({error:"Dhikr not found."},404);await env.DB.batch([env.DB.prepare("INSERT INTO dhikr_totals(dhikr_id,total) VALUES(?,?) ON CONFLICT(dhikr_id) DO UPDATE SET total=total+excluded.total").bind(did,amount),env.DB.prepare("INSERT INTO dhikr_counts(dhikr_id,member_id,total,updated_at) VALUES(?,?,?,datetime('now')) ON CONFLICT(dhikr_id,member_id) DO UPDATE SET total=total+excluded.total,updated_at=datetime('now')").bind(did,user.id,amount),env.DB.prepare("INSERT INTO count_events(dhikr_id,member_id,amount) VALUES(?,?,?)").bind(did,user.id,amount)]);return json({ok:true,added:amount})}
+if(p==="/api/count"&&req.method==="POST"){
+ const b=await body(req),did=b.dhikrId,amount=Number(b.amount);
+ if(!did||!Number.isSafeInteger(amount)||amount<1||amount>10000)return json({error:"Valid dhikrId and amount (1-10000) required."},400);
+ const exists=await env.DB.prepare("SELECT id FROM dhikr WHERE id=? AND active=1").bind(did).first();
+ if(!exists)return json({error:"Dhikr not found."},404);
+ let member=user;
+ if(!member){const guestId=uid(),guestName=String(b.name||"Guest visitor").trim().slice(0,80)||"Guest visitor";await env.DB.prepare("INSERT INTO members(id,display_name,role,active) VALUES(?,?,'guest',1)").bind(guestId,guestName).run();member={id:guestId,name:guestName,role:"guest"};}
+ await env.DB.batch([
+  env.DB.prepare("INSERT INTO dhikr_totals(dhikr_id,total) VALUES(?,?) ON CONFLICT(dhikr_id) DO UPDATE SET total=total+excluded.total").bind(did,amount),
+  env.DB.prepare("INSERT INTO dhikr_counts(dhikr_id,member_id,total,updated_at) VALUES(?,?,?,datetime('now')) ON CONFLICT(dhikr_id,member_id) DO UPDATE SET total=total+excluded.total,updated_at=datetime('now')").bind(did,member.id,amount),
+  env.DB.prepare("INSERT INTO count_events(dhikr_id,member_id,amount) VALUES(?,?,?)").bind(did,member.id,amount)
+ ]);
+ return json({ok:true,added:amount});
+}
 if(p==="/api/leaderboard"){const did=url.searchParams.get("dhikrId");const r=await env.DB.prepare("SELECT m.display_name name,c.total count FROM dhikr_counts c JOIN members m ON m.id=c.member_id WHERE c.dhikr_id=? ORDER BY c.total DESC LIMIT 100").bind(did).all();return json({users:r.results})}
 if(p==="/api/daily"){const did=url.searchParams.get("dhikrId");const r=await env.DB.prepare("SELECT COALESCE(SUM(amount),0) total,COUNT(DISTINCT member_id) contributors FROM count_events WHERE dhikr_id=? AND date(created_at)=date('now')").bind(did).first();return json(r)}
 if(p==="/api/me/summary"){const r=await env.DB.prepare("SELECT d.id dhikr_id,d.name,COALESCE(c.total,0) total FROM dhikr d LEFT JOIN dhikr_counts c ON c.dhikr_id=d.id AND c.member_id=? WHERE d.active=1 ORDER BY d.sort_order").bind(user.id).all();return json({items:r.results})}
