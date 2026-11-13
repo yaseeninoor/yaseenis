@@ -5,7 +5,7 @@ const enc=s=>new TextEncoder().encode(s);
 const b64=b=>btoa(String.fromCharCode(...new Uint8Array(b)));
 const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 async function hashText(s){return b64(await crypto.subtle.digest("SHA-256",enc(s)))}
-async function passwordHash(password,salt){const key=await crypto.subtle.importKey("raw",enc(password),"PBKDF2",false,["deriveBits"]);const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:enc(salt),iterations:210000,hash:"SHA-256"},key,256);return b64(bits)}
+async function passwordHash(password,salt){const key=await crypto.subtle.importKey("raw",enc(password),"PBKDF2",false,["deriveBits"]);const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:enc(salt),iterations:100000,hash:"SHA-256"},key,256);return b64(bits)}
 async function body(r){try{return await r.json()}catch{return {}}}
 async function session(req,env){const token=(req.headers.get("Authorization")||"").replace(/^Bearer\s+/i,"");if(!token)return null;const hash=await hashText(token);const row=await env.DB.prepare("SELECT s.member_id,m.display_name,m.email,m.role,m.active FROM auth_sessions s JOIN members m ON m.id=s.member_id WHERE s.token_hash=? AND s.expires_at>datetime('now')").bind(hash).first();return row&&row.active?{id:row.member_id,name:row.display_name,email:row.email,role:row.role}:null}
 const admin=u=>u&&u.role==="admin";
